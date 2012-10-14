@@ -1,0 +1,104 @@
+.seo-helper() {
+  img:not([alt]),
+  img[alt=""],
+  img[alt^=" "],
+  a[href=""],
+  a[href^=" "],
+  *[title=""],
+  *[id=""] {
+    outline: 2px solid red !important;
+    outline-offset: 3px !important;
+  }
+}
+
+// TEXT
+// --------------------------------------------------
+  .ellipsis {
+    -ms-text-overflow: ellipsis;
+     -o-text-overflow: ellipsis;
+        text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .prevent-text-breakouts() {
+    -ms-word-break: break-all;
+        word-break: break-all;
+        word-break: break-word;
+    -webkit-hyphens: auto;
+       -moz-hyphens: auto;
+            hyphens: auto;
+  }
+
+  .nowrap {
+    white-space: nowrap;
+  }
+
+  .align-begin {
+    text-align: left;
+  }
+
+  .align-end {
+    text-align: right;
+  }
+
+
+// Transitions and Transform
+// --------------------------------------------------
+  .transition-delay(@delay: 300ms) {
+    -webkit-transition-delay: @delay;
+       -moz-transition-delay: @delay;
+         -o-transition-delay: @delay;
+            transition-delay: @delay;
+  }
+
+  .transition-property(@property: all) {
+    -webkit-transition-property: @property;
+       -moz-transition-property: @property;
+         -o-transition-property: @property;
+            transition-property: @property;
+  }
+
+  .transition-duration(@duration: 1s) {
+    -webkit-transition-duration: @duration;
+       -moz-transition-duration: @duration;
+         -o-transition-duration: @duration;
+            transition-duration: @duration;
+  }
+
+  .transition-timing-function(@timing-function: ease-in-out) {
+    -webkit-transition-timing-function: @timing-function;
+       -moz-transition-timing-function: @timing-function;
+         -o-transition-timing-function: @timing-function;
+            transition-timing-function: @timing-function;
+  }
+
+  // Generic Transform
+  .transform(@transform) {
+    -webkit-transform: @transform;
+       -moz-transform: @transform;
+         -o-transform: @transform;
+            transform: @transform;
+  }
+
+  .transform-origin(...) {
+    -webkit-transform-origin: @arguments;
+       -moz-transform-origin: @arguments;
+         -o-transform-origin: @arguments;
+            transform-origin: @arguments;
+  }
+
+  .perspective(...) {
+    -webkit-perspective: @arguments;
+       -moz-perspective: @arguments;
+         -o-perspective: @arguments;
+            perspective: @arguments;
+  }
+
+  .preserve-3d() {
+    -webkit-transform-style: preserve-3d;
+       -moz-transform-style: preserve-3d;
+         -o-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+  }
+

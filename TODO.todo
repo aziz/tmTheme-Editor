@@ -1,0 +1,14 @@
+TODO:
+ ☐ checker bg for transparent colors and better color well
+ ☐ drag and drop file input
+ ☐ save as tmtheme after changes
+ ☐ delete rule/add rule/edit rule/rearrange rule
+ ☐ color picker js
+ ☐ only work with tmtheme files. reject others, error handling
+＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
+Archive:
+ ✔ save theme in file system API @done (12-10-15 01:26)
+ ✔ table formatting @done (12-10-14 23:35)
+ ✔ save name somewhere @done (12-10-14 22:42)
+ ✔ main FG,BG,highlight and others @done (12-10-14 22:32)
+ ✔ bold, italic, underline @done (12-10-14 22:14)

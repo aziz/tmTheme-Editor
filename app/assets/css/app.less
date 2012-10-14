@@ -1,0 +1,60 @@
+@import "bootstrap/bootstrap";
+@import "lib/mixins";
+
+@sidebarMin: 300px;
+@sidebarMax: 400px;
+
+.is_bold { font-weight: bold !important; }
+.is_italic { font-style: italic; }
+.is_underline { text-decoration: underline; }
+.check-box {width: 20px;}
+.color-box {width: 40px;}
+.big-color-box {width: 80px;}
+.truncate {
+  min-width: @sidebarMin - 140px;
+  max-width: @sidebarMax - 140px;
+  .ellipsis();
+  .prevent-text-breakouts();
+}
+
+
+.navbar {margin-bottom: 0;}
+.sidebar {
+  min-width: @sidebarMin;
+  max-width: @sidebarMax;
+  border-left: 1px solid #bebebe;
+  border-right: 1px solid #bebebe;
+  float: left;
+
+  h4 {
+    margin: 0;
+  }
+}
+
+.list {
+  font-family: @monoFontFamily;
+  width: 100%;
+
+  thead {
+    background: #ffffff;
+    background: -moz-linear-gradient(top,  #ffffff 0%, #ffffff 23%, #f4f4f4 54%, #ececec 62%, #ededed 100%);
+    background: -webkit-linear-gradient(top,  #ffffff 0%,#ffffff 23%,#f4f4f4 54%,#ececec 62%,#ededed 100%);
+    background: -o-linear-gradient(top,  #ffffff 0%,#ffffff 23%,#f4f4f4 54%,#ececec 62%,#ededed 100%);
+    background: linear-gradient(to bottom,  #ffffff 0%,#ffffff 23%,#f4f4f4 54%,#ececec 62%,#ededed 100%);
+    height: 15px;
+    font-size: 11px;
+    line-height: 15px;
+    border-top: 1px solid #a8a8a8;
+    border-bottom: 1px solid #b6b6b6;
+    .box-shadow(inset 0 -1px #f4f4f4);
+
+    th { font-weight: normal;}
+    th.align-begin {padding-left: 6px;}
+  }
+
+  tbody {
+    td.name-box {
+      padding-left: 6px;
+    }
+  }
+}

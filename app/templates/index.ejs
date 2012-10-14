@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+<head>
+  <title><%= title -%></title>
+  <%- css("app") -%>
+</head>
+<body ng-app="ThemeEditor" ng-controller="appController">
+
+<div class="navbar navbar-static-top">
+  <div class="navbar-inner">
+    <a class="brand" href="#">{{jsonTheme.name}}</a>
+    <div class="pull-right">
+      <input type="file" id="files" ng-model="input" onchange="angular.element(this).scope().setFiles(this)" />
+    </div>
+  </div>
+</div>
+
+<div class="sidebar">
+
+  <table class="list general">
+    <thead>
+      <tr>
+        <th class="align-begin truncate">General Colors</th>
+        <th class="big-color-box">Color</th>
+      </tr>
+    </thead>
+    <tbody ng-style="{ 'background-color': get_color(jsonTheme.settings[0].settings.background), 'color': get_color(jsonTheme.settings[0].settings.foreground) }">
+      <tr ng-repeat="(key, value) in jsonTheme.settings[0].settings">
+        <td class="name-box truncate" ng-bind="key"></td>
+        <td ng-style="{ 'background-color': get_color(value) }"></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <table class="list">
+    <thead>
+      <tr>
+        <th class="align-begin truncate">Scope Name</th>
+        <!-- <th>selector</th> -->
+        <th class="color-box">FG</th>
+        <th class="color-box">BG</th>
+        <th class="check-box is_bold">B</th>
+        <th class="check-box is_italic">I</th>
+        <th class="check-box is_underline">U</th>
+      </tr>
+    </thead>
+    <tbody ng-style="{ 'background-color': get_color(jsonTheme.settings[0].settings.background), 'color': get_color(jsonTheme.settings[0].settings.foreground) }">
+      <tr ng-repeat="rule in jsonTheme.settings">
+        <td class="name-box truncate" ng-bind="rule.name"
+            ng-style="{ 'color': get_color(rule.settings.foreground), 'background-color': get_color(rule.settings.background) }"
+            ng-class="{'is_italic' : is('italic', rule), 'is_bold': is('bold', rule), 'is_underline': is('underline', rule)}"></td>
+        <!-- <td ng-bind="rule.scope"></td> -->
+        <td class="color-box" ng-style="{ 'background-color': get_color(rule.settings.foreground) }"></td>
+        <td class="color-box" ng-style="{ 'background-color': get_color(rule.settings.background) }"></td>
+        <td class="check-box"><input type="checkbox" ng-checked="is('bold', rule)" ng-click="toggle('bold',rule)"></td>
+        <td class="check-box"><input type="checkbox" ng-checked="is('italic', rule)" ng-click="toggle('italic',rule)"></td>
+        <td class="check-box"><input type="checkbox" ng-checked="is('underline', rule)" ng-click="toggle('underline',rule)"></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<%- js("application") -%>
+</body>
+</html>
+
+
+
+
