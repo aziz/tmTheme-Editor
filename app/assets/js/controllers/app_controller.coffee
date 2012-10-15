@@ -10,6 +10,7 @@ Angie.controller "appController", ['$scope'], ($scope) ->
           reader.onloadend = (e) ->
             $scope.xmlTheme  = this.result
             $scope.jsonTheme = plist_to_json(this.result)
+            console.log $scope.jsonTheme
             $scope.$apply()
           reader.readAsText file
         ), FsErrorHandler
@@ -71,9 +72,8 @@ Angie.controller "appController", ['$scope'], ($scope) ->
           $scope.fs && $scope.fs.root.getFile file.name, {create: true}, (fileEntry) ->
             fileEntry.createWriter (fileWriter) ->
               fileWriter.onwriteend = (e) ->
-                console.log "Write finished"
-                console.log file.name
                 $.cookie('last_theme', file.name)
+                $scope.last_cached_theme = file.name
               blob = new Blob([e.target.result], {type: "text/plain"})
               fileWriter.write(blob)
           $scope.jsonTheme = plist_to_json(e.target.result)
@@ -81,4 +81,8 @@ Angie.controller "appController", ['$scope'], ($scope) ->
             $scope.jsonTheme.settings[0].name = "Default"
           console.log $scope.jsonTheme
           $scope.$apply()
+
+  $scope.save_theme = ->
+    blob = new Blob([json2plist($scope.jsonTheme)], {type: "text/plain;charset=utf-8"})
+    saveAs blob, $scope.last_cached_theme
 

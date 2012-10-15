@@ -20,12 +20,12 @@ plist_to_json = function(plist) {
       xmlDoc=parser.parseFromString(txt,"text/xml");
       return(xmlDoc);
       }
-    catch(e) {alert(e.message)}
+    catch(e) {alert(e.message)};
     }
   return(null);
-  }
+  };
 
-  var output = {}
+  var output = {};
   function jsonify(tag){
     switch(tag.nodeName){
       case 'dict':

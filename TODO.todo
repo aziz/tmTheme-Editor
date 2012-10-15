@@ -1,12 +1,31 @@
 TODO:
- ☐ checker bg for transparent colors and better color well
- ☐ drag and drop file input
- ☐ save as tmtheme after changes
- ☐ delete rule/add rule/edit rule/rearrange rule
- ☐ color picker js
- ☐ only work with tmtheme files. reject others, error handling
+ ☐ drag and drop file input @improvement
+ ☐ checker bg for transparent colors and better color well @ui
+ ☐ delete rule/add rule/edit rule/rearrange rule @feature
+ ☐ color picker js @feature
+ ☐ only work with tmtheme files. reject others, error handling @improvement
+ ☐ preview theme @feature
+ ☐ default text does not work when loading from cache @bug
+ ☐ default text should not be saved @bug
+
+ ☐ \b and \( and \) and &lt; bug when parsing tmlanguages
+
+ ☐ look-behind in js
+
+
+ ☐ js
+ ☐ coffee
+ ☐ html
+ ☐ css
+ ☐ less
+ ☐ ruby
+ ☐ python
+ ☐ java
+ ☐ c
+ ☐ markdown
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ save as tmtheme after changes @done (12-10-15 04:14)
  ✔ save theme in file system API @done (12-10-15 01:26)
  ✔ table formatting @done (12-10-14 23:35)
  ✔ save name somewhere @done (12-10-14 22:42)

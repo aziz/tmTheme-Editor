@@ -1,7 +1,7 @@
 @import "bootstrap/bootstrap";
 @import "lib/mixins";
 
-@sidebarMin: 300px;
+@sidebarMin: 400px;
 @sidebarMax: 400px;
 
 .is_bold { font-weight: bold !important; }
@@ -22,12 +22,32 @@
 .sidebar {
   min-width: @sidebarMin;
   max-width: @sidebarMax;
-  border-left: 1px solid #bebebe;
+  // border-left: 1px solid #bebebe;
   border-right: 1px solid #bebebe;
   float: left;
+  position: absolute;
+  top:40px;
+  left:0px;
+  bottom:0px;
+  overflow-y: scroll;
 
   h4 {
     margin: 0;
+  }
+}
+
+.preview {
+  position: absolute;
+  top: 40px;
+  bottom: 0;
+  left: 401px;
+  right: 0;
+  overflow: scroll;
+
+  pre {
+    border:0;
+    background-color: transparent;
+    .border-radius(0);
   }
 }
 
