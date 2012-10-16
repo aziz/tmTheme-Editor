@@ -10,7 +10,7 @@
   <div class="navbar-inner">
     <a class="brand" href="#">{{jsonTheme.name}}</a>
     <a ng-click="save_theme()" class="btn btn-success btn-small">Download</a>
-    <div class="pull-right">
+    <div class="upload">
       <input type="file" id="files" ng-model="input" onchange="angular.element(this).scope().setFiles(this)" />
     </div>
   </div>
@@ -62,18 +62,10 @@
   </table>
 </div>
 
-<div class="preview" ng-style="{ 'background-color': get_color(jsonTheme.settings[0].settings.background), 'color': get_color(jsonTheme.settings[0].settings.foreground) }">
-<pre ng-style="{ 'background-color': get_color(jsonTheme.settings[0].settings.background), 'color': get_color(jsonTheme.settings[0].settings.foreground) }">  var parser = document.createElement('a');
-  parser.href = "http://example.com:3000/pathname/?search=test#hash";
+<style ng-bind="styles()"></style>
 
-  parser.protocol; // => "http:"
-  parser.hostname; // => "example.com"
-  parser.port;     // => "3000"
-  parser.pathname; // => "/pathname/"
-  parser.search;   // => "?search=test"
-  parser.hash;     // => "#hash"
-  parser.host;     // => "example.com:3000"
-</pre>
+<div class="preview" ng-style="{ 'background-color': get_color(jsonTheme.settings[0].settings.background), 'color': get_color(jsonTheme.settings[0].settings.foreground) }">
+  <pre ng-style="{ 'background-color': get_color(jsonTheme.settings[0].settings.background), 'color': get_color(jsonTheme.settings[0].settings.foreground) }"></pre>
 </div>
 
 <%- js("application") -%>

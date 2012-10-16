@@ -1,15 +1,20 @@
 TODO:
+ ☐ styles: generate all fg,bg,b,u,i for styles
+ ☐ preview theme @feature
  ☐ drag and drop file input @improvement
  ☐ checker bg for transparent colors and better color well @ui
  ☐ delete rule/add rule/edit rule/rearrange rule @feature
  ☐ color picker js @feature
  ☐ only work with tmtheme files. reject others, error handling @improvement
- ☐ preview theme @feature
  ☐ default text does not work when loading from cache @bug
  ☐ default text should not be saved @bug
 
- ☐ \b and \( and \) and &lt; bug when parsing tmlanguages
-
+TM_LANGUAGE parsing:
+ ☐ make test into a proper controller
+ ☐ collect all the scope from all rules and after loop over rules finished apply scopes
+ ☐ test css and then html
+ ☐ support begin/end in tmlanguages
+ ☐ \b and \( and \) and &lt; &gt; &amp; bug when parsing tmlanguages
  ☐ look-behind in js
 
 

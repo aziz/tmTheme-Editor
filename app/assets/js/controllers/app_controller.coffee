@@ -86,3 +86,15 @@ Angie.controller "appController", ['$scope'], ($scope) ->
     blob = new Blob([json2plist($scope.jsonTheme)], {type: "text/plain;charset=utf-8"})
     saveAs blob, $scope.last_cached_theme
 
+  $scope.styles = ->
+    styles = ""
+    if $scope.jsonTheme && $scope.jsonTheme.settings
+      for rule in $scope.jsonTheme.settings
+        fg_color = $scope.get_color(rule.settings.foreground)
+        if rule.scope
+          rules = rule.scope.split(",").map (r) -> ".#{r.trim()}"
+          rules.each (r) ->
+            #console.log r
+            if fg_color
+              styles += "#{r}{color:#{fg_color}}\n"
+    styles
