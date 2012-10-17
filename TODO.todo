@@ -8,14 +8,29 @@ TODO:
  ☐ only work with tmtheme files. reject others, error handling @improvement
  ☐ default text does not work when loading from cache @bug
  ☐ default text should not be saved @bug
+ ☐ try to make it work in other browsers
+ ☐ highlight related scopes in preview on rule select
+ ☐ click on preview and change colors
 
 TM_LANGUAGE parsing:
- ☐ make test into a proper controller
- ☐ collect all the scope from all rules and after loop over rules finished apply scopes
- ☐ test css and then html
  ☐ support begin/end in tmlanguages
- ☐ \b and \( and \) and &lt; &gt; &amp; bug when parsing tmlanguages
  ☐ look-behind in js
+ ☐ support for repository and include
+ ☐ test css and then html
+ ☐ how to add generic addClass("source js")
+
+Problems:
+ ☐ look behind
+ ☐ adding scope as spans
+ ☐ begin/end multi lines
+
+
+
+READ:
+ ☐ export-html plugin
+ ☐ http://blog.stevenlevithan.com/archives/javascript-regex-lookbehind
+ ☐ http://manual.macromates.com/en/language_grammars#language_grammars
+ ☐ http://proger.i-forge.net/How_to_add_line_numbers_using_CSS/ObZ
 
 
  ☐ js
@@ -28,8 +43,20 @@ TM_LANGUAGE parsing:
  ☐ java
  ☐ c
  ☐ markdown
+
+ ☐ begin
+ ☐ end
+ ☐ name
+ ☐ captures = both beginCapturs and endCaptures
+ ☐ beginCaptures
+ ☐ endCaptures
+ ☐ contentName
+ ☐ patterns
+
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ collect all the scope from all rules and after looping over rules finished apply scopes @done (12-10-17 22:18)
+ ✔ make test into a proper controller @done (12-10-16 23:13)
  ✔ save as tmtheme after changes @done (12-10-15 04:14)
  ✔ save theme in file system API @done (12-10-15 01:26)
  ✔ table formatting @done (12-10-14 23:35)

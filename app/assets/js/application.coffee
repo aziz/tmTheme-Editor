@@ -5,8 +5,5 @@
 #= require vendors/tinycolor.js
 #= require vendors/angular-1.0.2.js
 
-#= require lib/json2plist.coffee
-#= require lib/plist2json.coffee
-#= require lib/angular-bootstrap.coffee
-#= require controllers/app_controller.coffee
-#= require test.coffee
+#= require_tree lib
+#= require_tree controllers

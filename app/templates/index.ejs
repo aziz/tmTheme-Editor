@@ -4,10 +4,11 @@
   <title><%= title -%></title>
   <%- css("app") -%>
 </head>
-<body ng-app="ThemeEditor" ng-controller="appController">
+<body ng-app="ThemeEditor" ng-controller="editorController">
 
 <div class="navbar navbar-static-top">
   <div class="navbar-inner">
+    <input type="color" value="rgba(100,0,0,.5)">
     <a class="brand" href="#">{{jsonTheme.name}}</a>
     <a ng-click="save_theme()" class="btn btn-success btn-small">Download</a>
     <div class="upload">
@@ -64,8 +65,12 @@
 
 <style ng-bind="styles()"></style>
 
-<div class="preview" ng-style="{ 'background-color': get_color(jsonTheme.settings[0].settings.background), 'color': get_color(jsonTheme.settings[0].settings.foreground) }">
-  <pre ng-style="{ 'background-color': get_color(jsonTheme.settings[0].settings.background), 'color': get_color(jsonTheme.settings[0].settings.foreground) }"></pre>
+<div class="preview"
+     ng-controller="previewController"
+     ng-style="{ 'background-color': get_color(jsonTheme.settings[0].settings.background), 'color': get_color(jsonTheme.settings[0].settings.foreground) }">
+  <pre  contentEditable="true" ng-bind-html-unsafe="preview()"
+        ng-style="{ 'background-color': get_color(jsonTheme.settings[0].settings.background), 'color': get_color(jsonTheme.settings[0].settings.foreground) }">
+  </pre>
 </div>
 
 <%- js("application") -%>

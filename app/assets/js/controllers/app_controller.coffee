@@ -1,4 +1,4 @@
-Angie.controller "appController", ['$scope'], ($scope) ->
+Angie.controller "editorController", ['$scope'], ($scope) ->
 
   FsInitHandler = (fs) ->
     $scope.fs = fs
