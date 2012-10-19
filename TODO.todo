@@ -13,25 +13,19 @@ TODO:
  ☐ click on preview and change colors
 
 TM_LANGUAGE parsing:
- ☐ support begin/end in tmlanguages
+ ☐ scope type open, close, pos
+ ☐ colorize both sigle and multi line patterns
  ☐ look-behind in js
- ☐ support for repository and include
- ☐ test css and then html
+ ☐ refactor: use proper exec instead of replace!
+ ☐ refactor: why am I matching a lot of repetitive scopes
+ ☐ support for repository and include and "patterns" in multiline
  ☐ how to add generic addClass("source js")
-
-Problems:
- ☐ look behind
- ☐ adding scope as spans
- ☐ begin/end multi lines
-
-
 
 READ:
  ☐ export-html plugin
  ☐ http://blog.stevenlevithan.com/archives/javascript-regex-lookbehind
  ☐ http://manual.macromates.com/en/language_grammars#language_grammars
  ☐ http://proger.i-forge.net/How_to_add_line_numbers_using_CSS/ObZ
-
 
  ☐ js
  ☐ coffee
@@ -44,17 +38,17 @@ READ:
  ☐ c
  ☐ markdown
 
- ☐ begin
- ☐ end
- ☐ name
- ☐ captures = both beginCapturs and endCaptures
- ☐ beginCaptures
- ☐ endCaptures
- ☐ contentName
- ☐ patterns
+
+(?<=something) could be replaced by (?:something) and
+(?<!something) could be replaced by (?:[^something])
+and then we count the position of lookbehind and store it
+and ignore the sub match on lookbehind when processing
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ refactor: move xml cleanup to plist to json and convert all &gd; to normal chars @done (12-10-19 19:09)
+ ✔ adding scope as spans @done (12-10-19 12:04)
+ ✔ begin/end multi lines @done (12-10-19 12:04)
  ✔ collect all the scope from all rules and after looping over rules finished apply scopes @done (12-10-17 22:18)
  ✔ make test into a proper controller @done (12-10-16 23:13)
  ✔ save as tmtheme after changes @done (12-10-15 04:14)

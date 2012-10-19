@@ -1,67 +1,12 @@
 Angie.controller "previewController", ['$scope', '$http'], ($scope, $http) ->
 
-  $scope.code = '''
-    #!/usr/bin/env node
-    Sound.play = function() {}
-    Sound.prototype = { something; }
-    Sound.prototype.play = function() {}
-    Sound.prototype.play = myfunc
-    var parser = document.createElement('a');
-    parser.href = "http://example.com:3000/pathname/?search=test#hash";
-
-    parser.protocol; // => "http:"
-    parser.hostname; // => "example.com"
-    parser.port;     // => "3000"
-    parser.pathname; // => "/pathname/"
-    parser.search;   // => "?search=test"
-    parser.hash;     // => "#hash"
-    parser.host;     // => "example.com:3000"
-
-    /*!
-     * jQuery JavaScript Library v1.8.2
-     * http://jquery.com/
-     *
-     * Includes Sizzle.js
-     * http://sizzlejs.com/
-     *
-     * Copyright 2012 jQuery Foundation and other contributors
-     * Released under the MIT license
-     * http://jquery.org/license
-     *
-     * Date: Thu Sep 20 2012 21:13:05 GMT-0400 (Eastern Daylight Time)
-     */
-
-    // Cross-browser xml parsing
-    parseXML: function( data ) {
-      var xml, tmp;
-      if ( !data || typeof data !== "string" ) {
-        return null;
-      }
-      try {
-        if ( window.DOMParser ) { // Standard
-          tmp = new DOMParser();
-          xml = tmp.parseFromString( data , "text/xml" );
-        } else { // IE
-          xml = new ActiveXObject( "Microsoft.XMLDOM" );
-          xml.async = "false";
-          xml.loadXML( data );
-        }
-      } catch( e ) {
-        xml = undefined;
-      }
-      if ( !xml || !xml.documentElement || xml.getElementsByTagName( "parsererror" ).length ) {
-        jQuery.error( "Invalid XML: " + data );
-      }
-      return xml;
-    };
-  '''
-
-
-
-  $scope.lang_path = "/files/javascript.tmLanguage"
+  $scope.lang_path = "/files/languages/javascript.tmLanguage"
+  $scope.sample_path = "/files/samples/javascript.txt"
   $scope.plist_lang = null
   $scope.json_lang = null
+  $scope.parsed_code = []
   $scope.scope = []
+  $scope.multi_line_scope = []
 
   $http.get($scope.lang_path).success (data) ->
     $scope.plist_lang = data
@@ -69,34 +14,120 @@ Angie.controller "previewController", ['$scope', '$http'], ($scope, $http) ->
     console.log $scope.json_lang
     console.log "MULTI LINES:",  { patterns: $scope.multi_line_patterns() }
     console.log "SINGLE LINES:", { patterns: $scope.single_line_patterns() }
-    #console.log "--------------------------"
-    $scope.parse()
+    $http.get($scope.sample_path).success (code) ->
+      $scope.code = code
+      $scope.parse()
 
-  $scope.single_line_patterns = -> $scope.json_lang.patterns.findAll (p)-> !p.begin
-  $scope.multi_line_patterns  = -> $scope.json_lang.patterns.findAll (p)->  p.begin
+  cleanup_pattenrs = (patterns) ->
+    for pattern in patterns
+      if pattern.match && (pattern.match.search(/\(\?\<\=(.+)\)/) or pattern.match.search(/\(\?\<\!(.+)\)/))
+         pattern.lb = true
+      if pattern.match
+         pattern.match = pattern.match.replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g, "&")
+                                      .replace(/\(\?\<\=(.+?)\)/, "(?:$1)")
+                                      .replace(/\(\?\<\!(.+?)\)/, "(?:[^$1])")
+      if pattern.begin
+         pattern.begin = pattern.begin.replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g, "&")
+                                      .replace(/\(\?\<\=(.+?)\)/, "(?:$1)")
+                                      .replace(/\(\?\<\!(.+?)\)/, "(?:[^$1])")
+      if pattern.end
+         pattern.end = pattern.end.replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g, "&")
+                                  .replace(/\(\?\<\=(.+?)\)/, "(?:$1)")
+                                  .replace(/\(\?\<\!(.+?)\)/, "(?:[^$1])")
+      if pattern.captures
+         pattern.beginCaptures = pattern.captures
+         pattern.endCaptures = pattern.captures
+    return patterns
 
-  $scope.preview = -> $scope.parsed_code.join("\n") if $scope.parsed_code
+  $scope.single_line_patterns = ->
+    patterns = $scope.json_lang.patterns.findAll (p)-> !p.begin
+    patterns = cleanup_pattenrs(patterns)
+    return patterns
+
+  $scope.multi_line_patterns  = ->
+    patterns = $scope.json_lang.patterns.findAll (p)->  p.begin
+    patterns = cleanup_pattenrs(patterns)
+    return patterns
+
+  $scope.preview = -> $scope.colorized if $scope.colorized
+
   $scope.parse = ->
-    $scope.parsed_code = []
+    parse_single_line_patterns()
+    console.log "single line scopes", {"scopes": $scope.scope }
+    colorize_single_lines()
+    parse_multi_line_patterns()
+    colorize_multi_lines()
+    #$scope.parsed_code = [$scope.code] #TEMP: just to get text to the screen
+
+  parse_multi_line_patterns = ->
+    code = $scope.parsed_code.join("\n")
+    for pattern,i in $scope.multi_line_patterns()
+      # 4: has look behinds that are not supported in js
+      continue if [4].find(i)
+      #console.log "[#{i}] ", pattern
+      regex = new RegExp("(#{pattern.begin})([\\s\\S]+?)(#{pattern.end})", "g")
+      code.replace regex, (full_match, sub_matches..., position, full_line) ->
+        #console.log full_match, sub_matches, position #, full_line
+        #console.log sub_matches
+        scope = {}
+        scope.start = position
+        scope.size  = full_match.length
+        scope.name  = pattern.name
+        scope.text  = full_match
+        #console.log scope
+        $scope.multi_line_scope.push scope
+        full_match
+
+      if pattern.contentName
+        cn_regex = new RegExp("(?:#{pattern.begin})([\\s\\S]+?)(?:#{pattern.end})", "g")
+        code.replace cn_regex, (full_match, sub_matches..., position, full_line) ->
+          #console.log sub_matches
+          scope = {}
+          scope.start = position
+          scope.size  = full_match.length
+          scope.name  = pattern.contentName
+          scope.text  = full_match
+          #console.log scope
+          $scope.multi_line_scope.push scope
+          full_match
+
+      begin_regex = new RegExp("(#{pattern.begin})(?:[\\s\\S]+?)(?:#{pattern.end})", "g")
+      code.replace begin_regex, (full_match, sub_matches..., position, full_line) ->
+        #console.log sub_matches
+        for sub, i in sub_matches
+          continue if sub.isBlank()
+          scope = {}
+          scope.start = full_line.search(RegExp.escape(sub))
+          scope.size  = sub.length
+          scope.name  = pattern.beginCaptures[i].name
+          scope.text  = sub
+          #console.log scope
+          $scope.multi_line_scope.push scope
+        full_match
+
+      end_regex = new RegExp("(?:#{pattern.begin})(?:[\\s\\S]+?)(#{pattern.end})", "g")
+      code.replace end_regex, (full_match, sub_matches..., position, full_line) ->
+        #console.log sub_matches
+        for sub, i in sub_matches
+          continue if sub.isBlank()
+          scope = {}
+          scope.start = full_line.search(RegExp.escape(sub))
+          scope.size  = sub.length
+          scope.name  = pattern.endCaptures[i].name
+          scope.text  = sub
+          #console.log scope
+          $scope.multi_line_scope.push scope
+        full_match
+
+  parse_single_line_patterns = ->
     for line, line_number in $scope.code.split("\n")
       for pattern,i in $scope.single_line_patterns()
-        # 27, 28, 31: have look behinds that are not supported in js
-        continue if [31,27,28].find(i)
-        pattern.match = pattern.match.replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g, "&") if pattern.match
-        #pattern.match = pattern.match.replace(/\(\?<=.+?\)/, "") # TODO: removing lookbehind for now.
         regex = new RegExp(pattern.match, "g")
         $scope.scope[line_number] = [] unless $scope.scope[line_number]
         try
-          #match_result = line.match(regex)
-          #if match_result
-          # console.log "Line: ", line
-          # console.log "[#{i}] Name: " , pattern.name
-          # console.log "REGEX: ", pattern.match
-          # console.log "RESULT", match_result
           if pattern.captures
-            #console.log "CAPTURES ==>", pattern.captures
             line = line.replace regex, (full_match, sub_matches..., position, full_line) ->
-              #console.log full_match, sub_matches, position, full_line
+              console.log full_match, sub_matches, position, full_line
               for sub, i in sub_matches
                 continue if sub.isBlank()
                 scope = {}
@@ -123,15 +154,12 @@ Angie.controller "previewController", ['$scope', '$http'], ($scope, $http) ->
           console.error "Error parsing regex `#{pattern.name}` #{i}: "
 
         #console.log "--------------------------"
-    #------------------
-    #console.log "SCOPE", {"scope": $scope.scope}
+
+  colorize_single_lines = ->
     for line, line_number in $scope.code.split("\n")
       #console.log line
-      total_offset = 0
-      close_offset = 0
       close_tag = "</s>"
-      sorted_scope = $scope.scope[line_number] && $scope.scope[line_number].sortBy((s) -> s.start - (s.size/1000))
-      sorted_scope = sorted_scope.unique()
+      sorted_scope = $scope.scope[line_number] && $scope.scope[line_number].unique().sortBy((s) -> s.start - (s.size/1000))
       sorted_scope = [] unless sorted_scope
       #console.log "[#{sorted_scope.length}] Sorted uniq scope", sorted_scope
       for scope, i in sorted_scope
@@ -149,9 +177,25 @@ Angie.controller "previewController", ['$scope', '$http'], ($scope, $http) ->
         #console.log scope
         #console.log line
       #console.log line
-      #console.log "====================="
       $scope.parsed_code.push(line)
 
-
-
-# <span class='support class js'>Sound.prototype</span>
+  colorize_multi_lines = ->
+    code = $scope.parsed_code.join("\n")
+    # total_offset = 0
+    # close_tag = "</s>"
+    # sorted_scope = $scope.multi_line_scope && $scope.multi_line_scope.unique().sortBy((s) -> s.start)
+    # sorted_scope = [] unless sorted_scope
+    # console.log "SORTED: ", {"SORTED_SCOPE": sorted_scope}
+    # for scope,i in sorted_scope
+    #   open_tag = "<s class='#{scope.name.split(".").join(" ")}'>"
+    #   code = code.insert(open_tag,  scope.start)
+    #   code = code.insert(close_tag, scope.start + scope.size + open_tag.length)
+    #   j = i
+    #   loop
+    #     j += 1
+    #     if sorted_scope[j] && sorted_scope[j].start >= scope.start + scope.size
+    #       sorted_scope[j].start = sorted_scope[j].start + open_tag.length + close_tag.length
+    #     else
+    #       sorted_scope[j].start = sorted_scope[j].start + open_tag.length if sorted_scope[j]
+    #     break if j > sorted_scope.length
+    $scope.colorized = code
