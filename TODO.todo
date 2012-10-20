@@ -1,25 +1,27 @@
 TODO:
  ☐ styles: generate all fg,bg,b,u,i for styles
- ☐ preview theme @feature
- ☐ drag and drop file input @improvement
- ☐ checker bg for transparent colors and better color well @ui
- ☐ delete rule/add rule/edit rule/rearrange rule @feature
- ☐ color picker js @feature
- ☐ only work with tmtheme files. reject others, error handling @improvement
  ☐ default text does not work when loading from cache @bug
  ☐ default text should not be saved @bug
+ ☐ checker bg for transparent colors and better color well @ui
+ ☐ delete rule/add rule/edit rule/rearrange rule @feature
+ ☐ preview theme @feature
+ ☐ drag and drop file input @improvement
+ ☐ color picker js @feature
+ ☐ only work with tmtheme files. reject others, error handling @improvement
  ☐ try to make it work in other browsers
  ☐ highlight related scopes in preview on rule select
  ☐ click on preview and change colors
 
 TM_LANGUAGE parsing:
- ☐ scope type open, close, pos
- ☐ colorize both sigle and multi line patterns
+ ☐ "patterns" in multiline
+ ☐ support for repository and include and
  ☐ look-behind in js
+   ✔ mark a pattern that has lookbehind @done (12-10-20 14:03)
+   ✔ replace it with a normal () @done (12-10-20 14:03)
+   ☐ count the position of lookbehind and remember it
+
  ☐ refactor: use proper exec instead of replace!
- ☐ refactor: why am I matching a lot of repetitive scopes
- ☐ support for repository and include and "patterns" in multiline
- ☐ how to add generic addClass("source js")
+
 
 READ:
  ☐ export-html plugin
@@ -27,10 +29,11 @@ READ:
  ☐ http://manual.macromates.com/en/language_grammars#language_grammars
  ☐ http://proger.i-forge.net/How_to_add_line_numbers_using_CSS/ObZ
 
- ☐ js
+
  ☐ coffee
- ☐ html
  ☐ css
+
+ ☐ html
  ☐ less
  ☐ ruby
  ☐ python
@@ -46,6 +49,15 @@ and ignore the sub match on lookbehind when processing
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ captures might not have all the digits @done (12-10-20 02:40)
+ ✔ (?x) switch @done (12-10-20 02:40)
+ ✔ // comment bug in js @done (12-10-20 01:49)
+ ✔ js @done (12-10-20 01:37)
+ ✔ scope score to override others @done (12-10-20 01:16)
+ ✔ how to add generic addClass("source js") @done (12-10-20 01:16)
+ ✔ refactor: why am I matching a lot of repetitive scopes @done (12-10-20 01:15)
+ ✔ colorize both sigle and multi line patterns @done (12-10-20 01:15)
+ ✔ scope type open, close, pos @done (12-10-20 01:15)
  ✔ refactor: move xml cleanup to plist to json and convert all &gd; to normal chars @done (12-10-19 19:09)
  ✔ adding scope as spans @done (12-10-19 12:04)
  ✔ begin/end multi lines @done (12-10-19 12:04)

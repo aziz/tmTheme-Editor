@@ -10,7 +10,9 @@ Angie.controller "editorController", ['$scope'], ($scope) ->
           reader.onloadend = (e) ->
             $scope.xmlTheme  = this.result
             $scope.jsonTheme = plist_to_json(this.result)
-            console.log $scope.jsonTheme
+            if $scope.jsonTheme.settings?[0].settings?.selection
+              $scope.jsonTheme.settings[0].name = "Default"
+            #console.log $scope.jsonTheme
             $scope.$apply()
           reader.readAsText file
         ), FsErrorHandler
