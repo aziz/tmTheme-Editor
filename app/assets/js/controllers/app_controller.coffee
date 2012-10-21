@@ -12,7 +12,7 @@ Angie.controller "editorController", ['$scope'], ($scope) ->
             $scope.jsonTheme = plist_to_json(this.result)
             if $scope.jsonTheme.settings?[0].settings?.selection
               $scope.jsonTheme.settings[0].name = "Default"
-            #console.log $scope.jsonTheme
+            console.log $scope.jsonTheme
             $scope.$apply()
           reader.readAsText file
         ), FsErrorHandler
@@ -61,6 +61,12 @@ Angie.controller "editorController", ['$scope'], ($scope) ->
     fs_array.any(fontStyle)
 
   $scope.toggle = (fontStyle, rule) ->
+    rule.settings = {} unless rule.settings
+    rule.settings.fontStyle = "" unless rule.settings.fontStyle
+    if $scope.is(fontStyle, rule)
+      rule.settings.fontStyle = rule.settings.fontStyle.split(" ").remove(fontStyle).join(" ")
+    else
+      rule.settings.fontStyle += " #{fontStyle}"
 
   $scope.setFiles = (element) ->
     $scope.files.push(file) for file in element.files
@@ -92,11 +98,28 @@ Angie.controller "editorController", ['$scope'], ($scope) ->
     styles = ""
     if $scope.jsonTheme && $scope.jsonTheme.settings
       for rule in $scope.jsonTheme.settings
-        fg_color = $scope.get_color(rule.settings.foreground)
+        fg_color  = if rule.settings.foreground then $scope.get_color(rule.settings.foreground) else null
+        bg_color  = if rule.settings.background then $scope.get_color(rule.settings.background) else null
+        bold      = $scope.is("bold", rule)
+        italic    = $scope.is("italic", rule)
+        underline = $scope.is("underline", rule)
         if rule.scope
           rules = rule.scope.split(",").map (r) -> ".#{r.trim()}"
           rules.each (r) ->
-            #console.log r
-            if fg_color
-              styles += "#{r}{color:#{fg_color}}\n"
+            styles += "#{r}{"
+            styles += "color:#{fg_color};" if fg_color
+            styles += "background-color:#{bg_color};" if bg_color
+            styles += "font-weight:bold;" if bold
+            styles += "font-style:italic;" if italic
+            styles += "text-decoration:underline;" if underline
+            styles += "}\n"
+    #console.log styles
     styles
+
+  $scope.border_color = (bgcolor) ->
+    # TODO this could be cached
+    r = parseInt(bgcolor.substr(1,2),16)
+    g = parseInt(bgcolor.substr(3,2),16)
+    b = parseInt(bgcolor.substr(5,2),16)
+    yiq = ((r*299)+(g*587)+(b*114))/1000
+    if yiq >= 128 then "rgba(0,0,0,.33)" else "rgba(255,255,255,.33)"

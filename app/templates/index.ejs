@@ -8,7 +8,6 @@
 
 <div class="navbar navbar-static-top">
   <div class="navbar-inner">
-    <input type="color" value="rgba(100,0,0,.5)">
     <a class="brand" href="#">{{jsonTheme.name}}</a>
     <a ng-click="save_theme()" class="btn btn-success btn-small">Download</a>
     <div class="upload">
@@ -24,12 +23,17 @@
       <tr>
         <th class="align-begin truncate">General Colors</th>
         <th class="big-color-box">Color</th>
+        <th class="check-box"></th>
       </tr>
     </thead>
     <tbody ng-style="{ 'background-color': get_color(jsonTheme.settings[0].settings.background), 'color': get_color(jsonTheme.settings[0].settings.foreground) }">
       <tr ng-repeat="(key, value) in jsonTheme.settings[0].settings">
         <td class="name-box truncate" ng-bind="key"></td>
-        <td ng-style="{ 'background-color': get_color(value) }"></td>
+        <td>
+          <div class="colorpicker-box" ng-style="{ 'background-color': get_color(value), 'border-color': border_color(get_color(jsonTheme.settings[0].settings.background)) }"></div>
+          <input class="colorpicker-input" type="color">
+          <td class="check-box"></td>
+        </td>
       </tr>
     </tbody>
   </table>
@@ -45,6 +49,7 @@
         <th class="check-box is_bold">B</th>
         <th class="check-box is_italic">I</th>
         <th class="check-box is_underline">U</th>
+        <th class="check-box"></th>
       </tr>
     </thead>
     <tbody ng-style="{ 'background-color': get_color(jsonTheme.settings[0].settings.background), 'color': get_color(jsonTheme.settings[0].settings.foreground) }">
@@ -53,11 +58,18 @@
             ng-style="{ 'color': get_color(rule.settings.foreground), 'background-color': get_color(rule.settings.background) }"
             ng-class="{'is_italic' : is('italic', rule), 'is_bold': is('bold', rule), 'is_underline': is('underline', rule)}"></td>
         <!-- <td ng-bind="rule.scope"></td> -->
-        <td class="color-box" ng-style="{ 'background-color': get_color(rule.settings.foreground) }"></td>
-        <td class="color-box" ng-style="{ 'background-color': get_color(rule.settings.background) }"></td>
+        <td class="color-box">
+          <div class="colorpicker-box" ng-style="{ 'background-color': get_color(rule.settings.foreground), 'border-color': border_color(get_color(jsonTheme.settings[0].settings.background)) }"></div>
+          <input class="colorpicker-input" type="color" ng-model="rule.settings.foreground">
+        </td>
+        <td class="color-box">
+          <div class="colorpicker-box" ng-style="{ 'background-color': get_color(rule.settings.background), 'border-color': border_color(get_color(jsonTheme.settings[0].settings.background)) }"></div>
+          <input class="colorpicker-input" type="color" ng-model="rule.settings.background">
+        </td>
         <td class="check-box"><input type="checkbox" ng-checked="is('bold', rule)" ng-click="toggle('bold',rule)"></td>
         <td class="check-box"><input type="checkbox" ng-checked="is('italic', rule)" ng-click="toggle('italic',rule)"></td>
         <td class="check-box"><input type="checkbox" ng-checked="is('underline', rule)" ng-click="toggle('underline',rule)"></td>
+        <td class="check-box"></td>
       </tr>
     </tbody>
   </table>

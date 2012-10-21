@@ -1,11 +1,16 @@
 TODO:
- ☐ styles: generate all fg,bg,b,u,i for styles
- ☐ default text does not work when loading from cache @bug
+ ☐ general colors
+ ☐ drag and drop file input @improvement
+ ☐ list from file API
+ ☐ lang switch button
+ ☐ delete rule/add rule/edit rule/rearrange rule @feature
+ ☐ test a change
+ ☐ detect dark and light themes
+
+ ☐ save button @feature
  ☐ default text should not be saved @bug
  ☐ checker bg for transparent colors and better color well @ui
- ☐ delete rule/add rule/edit rule/rearrange rule @feature
  ☐ preview theme @feature
- ☐ drag and drop file input @improvement
  ☐ color picker js @feature
  ☐ only work with tmtheme files. reject others, error handling @improvement
  ☐ try to make it work in other browsers
@@ -13,14 +18,13 @@ TODO:
  ☐ click on preview and change colors
 
 TM_LANGUAGE parsing:
+ ☐ look-behind in js
+   ☐ count the position of lookbehind in submatches array
+   ☐ calculate the length of lb text
+   ☐ adjust begin and size based on length on lb text
  ☐ "patterns" in multiline
  ☐ support for repository and include and
- ☐ look-behind in js
-   ✔ mark a pattern that has lookbehind @done (12-10-20 14:03)
-   ✔ replace it with a normal () @done (12-10-20 14:03)
-   ☐ count the position of lookbehind and remember it
-
- ☐ refactor: use proper exec instead of replace!
+ ☐ check to see if the scope is already taken
 
 
 READ:
@@ -49,6 +53,12 @@ and ignore the sub match on lookbehind when processing
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ wrong bg for some texts @done (12-10-21 00:08)
+ ✔ default text does not work when loading from cache @bug @done (12-10-20 16:32)
+ ✔ styles: generate all fg,bg,b,u,i for styles @done (12-10-20 16:31)
+ ✔ mark a pattern that has lookbehind @done (12-10-20 14:03)
+ ✔ replace it with a normal () @done (12-10-20 14:03)
+ ✔ refactor: use proper exec instead of replace! @done (12-10-20 15:38)
  ✔ captures might not have all the digits @done (12-10-20 02:40)
  ✔ (?x) switch @done (12-10-20 02:40)
  ✔ // comment bug in js @done (12-10-20 01:49)

@@ -25,10 +25,11 @@ Angie.controller "previewController", ['$scope', '$http'], ($scope, $http) ->
 
       if pattern.match
         if (/\(\?\<\=(.+?)\)/).test(pattern.match) || (/\(\?\<\!(.+?)\)/).test(pattern.match)
+           #console.log pattern.match
            pattern.lb = true
         pattern.match = pattern.match.replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g, "&")
-                                      .replace(/\(\?\<\=(.+?)\)/, "(?:$1)")
-                                      .replace(/\(\?\<\!(.+?)\)/, "(?:[^$1])")
+                                      .replace(/\(\?\<\=(.+?)\)/, "($1)")
+                                      .replace(/\(\?\<\!(.+?)\)/, "([^$1])")
         if pattern.match.match(/\(\?x\)/)
           pattern.match = pattern.match.replace(/\(\?x\)/,'').replace(/\s+/g,'') # TODO: should also remove comments
 
@@ -136,6 +137,8 @@ Angie.controller "previewController", ['$scope', '$http'], ($scope, $http) ->
             # console.log "Sub Matched: ", sub_matches
             # console.log "Position: ", position
             if full_match
+              # if pattern.lb
+              #   console.log sub_matches.compact()
               scope = {}
               begin_scope = {}
               begin_scope.pos  = position
