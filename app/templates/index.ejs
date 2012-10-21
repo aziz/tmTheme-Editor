@@ -6,17 +6,41 @@
 </head>
 <body ng-app="ThemeEditor" ng-controller="editorController">
 
-<div class="navbar navbar-static-top">
-  <div class="navbar-inner">
-    <a class="brand" href="#">{{jsonTheme.name}}</a>
-    <a ng-click="save_theme()" class="btn btn-success btn-small">Download</a>
-    <div class="upload">
-      <input type="file" id="files" ng-model="input" onchange="angular.element(this).scope().setFiles(this)" />
+<header id="header">
+  <div class="btn-toolbar">
+    <div class="btn-group">
+      <a class="btn btn-info btn-small">Upload</a>
+      <a ng-click="" class="btn btn-info btn-small">New</a>
     </div>
   </div>
-</div>
+  <input type="file" id="files" class="upload" ng-model="input" onchange="angular.element(this).scope().setFiles(this)" />
+  <a ng-click="save_theme()" class="btn btn-success btn-small download">Download</a>
+  <div class="sep"></div>
+  <div class="links">
+    <ul>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Contribute on github</a></li>
+    </ul>
+  </div>
+  <div class="languages">
+    <select name="lang">
+      <option value="javascript">Javascript</option>
+    </select>
+  </div>
+</header>
 
 <div class="sidebar" ng-style="{ 'background-color': get_color(jsonTheme.settings[0].settings.background)}">
+
+  <div class="titlebar">
+    <div class="title">
+      {{jsonTheme.name}}
+    </div>
+    <div class="actions">
+      <div class="save">Save</div>
+      <div class="add">+</div>
+      <div class="remove">-</div>
+    </div>
+  </div>
 
   <table class="list general">
     <thead>
@@ -30,7 +54,7 @@
       <tr ng-repeat="(key, value) in jsonTheme.settings[0].settings">
         <td class="name-box truncate" ng-bind="key"></td>
         <td>
-          <div class="colorpicker-box" ng-style="{ 'background-color': get_color(value), 'border-color': border_color(get_color(jsonTheme.settings[0].settings.background)) }"></div>
+          <div class="colorpicker-box" ng-class="has_color(value)" ng-style="{ 'background-color': get_color(value), 'border-color': border_color(get_color(jsonTheme.settings[0].settings.background)) }"></div>
           <input class="colorpicker-input" type="color">
           <td class="check-box"></td>
         </td>
@@ -59,11 +83,11 @@
             ng-class="{'is_italic' : is('italic', rule), 'is_bold': is('bold', rule), 'is_underline': is('underline', rule)}"></td>
         <!-- <td ng-bind="rule.scope"></td> -->
         <td class="color-box">
-          <div class="colorpicker-box" ng-style="{ 'background-color': get_color(rule.settings.foreground), 'border-color': border_color(get_color(jsonTheme.settings[0].settings.background)) }"></div>
+          <div class="colorpicker-box" ng-class="has_color(rule.settings.foreground)" ng-style="{ 'background-color': get_color(rule.settings.foreground), 'border-color': border_color(get_color(jsonTheme.settings[0].settings.background)) }"></div>
           <input class="colorpicker-input" type="color" ng-model="rule.settings.foreground">
         </td>
         <td class="color-box">
-          <div class="colorpicker-box" ng-style="{ 'background-color': get_color(rule.settings.background), 'border-color': border_color(get_color(jsonTheme.settings[0].settings.background)) }"></div>
+          <div class="colorpicker-box" ng-class="has_color(rule.settings.background)" ng-style="{ 'background-color': get_color(rule.settings.background), 'border-color': border_color(get_color(jsonTheme.settings[0].settings.background)) }"></div>
           <input class="colorpicker-input" type="color" ng-model="rule.settings.background">
         </td>
         <td class="check-box"><input type="checkbox" ng-checked="is('bold', rule)" ng-click="toggle('bold',rule)"></td>
@@ -75,12 +99,13 @@
   </table>
 </div>
 
+<style ng-bind="gutter()"></style>
 <style ng-bind="styles()"></style>
 
 <div class="preview"
      ng-controller="previewController"
      ng-style="{ 'background-color': get_color(jsonTheme.settings[0].settings.background), 'color': get_color(jsonTheme.settings[0].settings.foreground) }">
-  <pre  contentEditable="true" ng-bind-html-unsafe="preview()"
+  <pre contentEditable="true" ng-bind-html-unsafe="preview()"
         ng-style="{ 'background-color': get_color(jsonTheme.settings[0].settings.background), 'color': get_color(jsonTheme.settings[0].settings.foreground) }">
   </pre>
 </div>

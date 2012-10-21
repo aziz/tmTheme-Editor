@@ -10,7 +10,7 @@ Angie.controller "editorController", ['$scope'], ($scope) ->
           reader.onloadend = (e) ->
             $scope.xmlTheme  = this.result
             $scope.jsonTheme = plist_to_json(this.result)
-            if $scope.jsonTheme.settings?[0].settings?.selection
+            if $scope.jsonTheme?.settings?[0].settings?.selection
               $scope.jsonTheme.settings[0].name = "Default"
             console.log $scope.jsonTheme
             $scope.$apply()
@@ -55,6 +55,12 @@ Angie.controller "editorController", ['$scope'], ($scope) ->
       new_rgba.toRgbString()
     else
       color
+
+  $scope.has_color = (color) ->
+    if $scope.get_color(color)
+      "has_color"
+    else
+      false
 
   $scope.is = (fontStyle, rule) ->
     fs_array = rule.settings?.fontStyle?.split(" ") || []
@@ -117,9 +123,37 @@ Angie.controller "editorController", ['$scope'], ($scope) ->
     styles
 
   $scope.border_color = (bgcolor) ->
-    # TODO this could be cached
-    r = parseInt(bgcolor.substr(1,2),16)
-    g = parseInt(bgcolor.substr(3,2),16)
-    b = parseInt(bgcolor.substr(5,2),16)
-    yiq = ((r*299)+(g*587)+(b*114))/1000
-    if yiq >= 128 then "rgba(0,0,0,.33)" else "rgba(255,255,255,.33)"
+    if $scope.light_or_dark(bgcolor) == "light" then "rgba(0,0,0,.33)" else "rgba(255,255,255,.33)"
+
+  $scope.light_or_dark = (bgcolor) ->
+    c = tinycolor(bgcolor).toRgb()
+    yiq = ((c.r*299)+(c.g*587)+(c.b*114))/1000
+    if yiq >= 128 then "light" else "dark"
+
+  $scope.darken = (color, percent) ->
+    c = tinycolor(color)
+    hsl = c.toHsl()
+    hsl.l -= percent/100
+    hsl.l = clamp(hsl.l)
+    tinycolor(hsl).toHslString()
+
+  $scope.lighten = (color, percent) ->
+    c = tinycolor(color)
+    hsl = c.toHsl()
+    hsl.l += percent/100
+    hsl.l = clamp(hsl.l)
+    tinycolor(hsl).toHslString()
+
+  clamp = (val) -> Math.min(1, Math.max(0, val))
+
+  $scope.gutter = ->
+    style = ""
+    if $scope.jsonTheme && $scope.jsonTheme.settings && $scope.jsonTheme.settings[0]
+      bgcolor = $scope.get_color($scope.jsonTheme.settings[0].settings.background)
+      if $scope.light_or_dark(bgcolor) == "light"
+        style = "pre .l:before { background-color: #{$scope.darken(bgcolor, 2)};"
+        style += "color: #{$scope.darken(bgcolor, 18)}};"
+      else
+        style = "pre .l:before { background-color: #{$scope.lighten(bgcolor, 2)};"
+        style += "color: #{$scope.lighten(bgcolor, 12)}};"
+    style

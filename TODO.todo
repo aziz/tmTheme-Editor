@@ -1,23 +1,29 @@
 TODO:
+ ☐ test a change
+ ☐ default text should not be saved @bug
  ☐ general colors
+   ☐ selection color
+   ☐ line highlight
+   ☐ invisibles
+   ☐ gutter colors
+   ☐ line number colors
  ☐ drag and drop file input @improvement
- ☐ list from file API
  ☐ lang switch button
  ☐ delete rule/add rule/edit rule/rearrange rule @feature
- ☐ test a change
- ☐ detect dark and light themes
-
  ☐ save button @feature
- ☐ default text should not be saved @bug
- ☐ checker bg for transparent colors and better color well @ui
- ☐ preview theme @feature
+ ☐ preview theme @wip @feature
  ☐ color picker js @feature
- ☐ only work with tmtheme files. reject others, error handling @improvement
- ☐ try to make it work in other browsers
  ☐ highlight related scopes in preview on rule select
  ☐ click on preview and change colors
+ low:
+ ☐ list from file API
+ ☐ only work with tmtheme files. reject others, error handling @improvement
+ ☐ try to make it work in other browsers
+ ☐ about page
+ ☐ github icon
 
 TM_LANGUAGE parsing:
+ ☐ for empty lines add a nbsp; for selection stuff
  ☐ look-behind in js
    ☐ count the position of lookbehind in submatches array
    ☐ calculate the length of lb text
@@ -31,8 +37,6 @@ READ:
  ☐ export-html plugin
  ☐ http://blog.stevenlevithan.com/archives/javascript-regex-lookbehind
  ☐ http://manual.macromates.com/en/language_grammars#language_grammars
- ☐ http://proger.i-forge.net/How_to_add_line_numbers_using_CSS/ObZ
-
 
  ☐ coffee
  ☐ css
@@ -46,13 +50,14 @@ READ:
  ☐ markdown
 
 
-(?<=something) could be replaced by (?:something) and
-(?<!something) could be replaced by (?:[^something])
-and then we count the position of lookbehind and store it
-and ignore the sub match on lookbehind when processing
+change lang x | font-family x | font size x |
+Settings: show-invis? | show line numbers? | highlight current line?
+About | donate | Fork on github
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ checker bg for transparent colors and better color well @ui @done (12-10-21 21:28)
+ ✔ detect dark and light themes @done (12-10-21 21:27)
  ✔ wrong bg for some texts @done (12-10-21 00:08)
  ✔ default text does not work when loading from cache @bug @done (12-10-20 16:32)
  ✔ styles: generate all fg,bg,b,u,i for styles @done (12-10-20 16:31)

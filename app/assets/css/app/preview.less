@@ -1,0 +1,42 @@
+s {text-decoration: none;}
+.is_bold { font-weight: bold !important; }
+.is_italic { font-style: italic; }
+.is_underline { text-decoration: underline; }
+
+.preview {
+  position: absolute;
+  top: @header_height+ 1;
+  bottom: 0;
+  left: 401px;
+  right: 0;
+  overflow: scroll;
+
+  pre {
+    font-size: 15px;
+    border:0;
+    background-color: transparent;
+    .border-radius(0);
+    counter-reset: line_numbers;
+    padding:0;
+    margin:0;
+
+    .l {
+      display: inline-block;
+      counter-increment: line_numbers;
+    }
+    .l:before {
+      content: counter(line_numbers);
+      width: 40px;
+      text-align: right;
+      //background-color: rgba(255,255,255,.03);
+      //color: rgba(255,255,255,.3);
+      display: inline-block;
+      padding: 0 8px 0 0;
+      margin-right: 8px;
+      font-weight: normal;
+      font-style: normal;
+      text-decoration: none;
+      .user-select(none);
+    }
+  }
+}
