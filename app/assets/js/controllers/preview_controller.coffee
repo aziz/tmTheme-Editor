@@ -1,67 +1,35 @@
-Angie.controller "previewController", ['$scope', '$http'], ($scope, $http) ->
+Angie.controller "previewController", ['$scope', '$http', '$rootScope'], ($scope, $http, $rootScope) ->
 
-  $scope.lang_path = "/files/languages/JavaScript.tmLanguage"
-  $scope.sample_path = "/files/samples/javascript.txt"
+  $scope.current_lang = "javascript"
+  $scope.lang_path = "/files/languages/#{$scope.current_lang}.tmLanguage"
+  $scope.sample_path = "/files/samples/#{$scope.current_lang}.txt"
+  $scope.available_langs = ['javascript', 'coffeescript']
+
   $scope.plist_lang = null
   $scope.json_lang = null
-  $scope.parsed_code = []
-  $scope.scope = []
 
-  $http.get($scope.lang_path).success (data) ->
-    $scope.plist_lang = data
-    $scope.json_lang = plist_to_json($scope.plist_lang)
-    console.log "LANG:", $scope.json_lang
-    console.log "MULTI LINES:",  { patterns: $scope.multi_line_patterns() }
-    console.log "SINGLE LINES:", { patterns: $scope.single_line_patterns() }
-    $http.get($scope.sample_path).success (code) ->
-      $scope.code = code
-      #$scope.code = "#!/usr/bin/env node"
-      $scope.parse()
+  $scope.$watch 'lang_path', (n,o) ->
+    if $scope.lang_path
+      $http.get($scope.lang_path).success (data) ->
+        $scope.colorized = ""
+        $scope.parsed_code = []
+        $scope.scope = []
+        $scope.plist_lang = data
+        $scope.json_lang = plist_to_json($scope.plist_lang)
+        console.log "LANG:", $scope.json_lang
+        console.log "MULTI LINES:",  { patterns: $scope.multi_line_patterns() }
+        console.log "SINGLE LINES:", { patterns: $scope.single_line_patterns() }
+        $http.get($scope.sample_path).success (code) ->
+          $scope.code = code
+          #$scope.code = "#!/usr/bin/env node"
+          $scope.parse()
+          #$scope.$apply()
 
-  cleanup = (patterns) ->
-    for pattern in patterns
-      if pattern.include
-        Object.merge(pattern, $scope.json_lang.repository[pattern.include.replace("#","")])
-
-      if pattern.match
-        if (/\(\?\<\=(.+?)\)/).test(pattern.match) || (/\(\?\<\!(.+?)\)/).test(pattern.match)
-           #console.log pattern.match
-           pattern.lb = true
-        pattern.match = pattern.match.replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g, "&")
-                                      .replace(/\(\?\<\=(.+?)\)/, "($1)")
-                                      .replace(/\(\?\<\!(.+?)\)/, "([^$1])")
-        if pattern.match.match(/\(\?x\)/)
-          pattern.match = pattern.match.replace(/\(\?x\)/,'').replace(/\s+/g,'') # TODO: should also remove comments
-
-      if pattern.begin
-        if (/\(\?\<\=(.+?)\)/).test(pattern.begin) || (/\(\?\<\!(.+?)\)/).test(pattern.begin)
-           pattern.lb_begin = true
-        pattern.begin = pattern.begin.replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g, "&")
-                                      .replace(/\(\?\<\=(.+?)\)/, "(?:$1)")
-                                      .replace(/\(\?\<\!(.+?)\)/, "(?:[^$1])")
-        if pattern.begin.match(/\(\?x\)/)
-          pattern.begin = pattern.begin.replace(/\(\?x\)/,'').replace(/\s+/g,'') # TODO: should also remove comments
-        pattern.beginCaptures = [] unless pattern.beginCaptures
-
-      if pattern.end
-        if (/\(\?\<\=(.+?)\)/).test(pattern.end) || (/\(\?\<\!(.+?)\)/).test(pattern.end)
-           pattern.lb_end = true
-        pattern.end = pattern.end.replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g, "&")
-                                  .replace(/\(\?\<\=(.+?)\)/, "(?:$1)")
-                                  .replace(/\(\?\<\!(.+?)\)/, "(?:[^$1])")
-        if pattern.end.match(/\(\?x\)/)
-          pattern.end = pattern.end.replace(/\(\?x\)/,'').replace(/\s+/g,'') # TODO: should also remove comments
-        pattern.endCaptures = [] unless pattern.endCaptures
-
-      if pattern.captures && pattern.begin
-         pattern.beginCaptures = pattern.captures
-         pattern.endCaptures = pattern.captures
-
-      if pattern.patterns
-        for pat in pattern.patterns
-          Object.merge(pat, $scope.json_lang.repository[pat.include.replace("#","")]) if pat.include
-        cleanup(pattern.patterns)
-    return patterns
+  $scope.set_lang = (lang) ->
+    console.log lang
+    $scope.current_lang = lang
+    $scope.sample_path = "/files/samples/#{lang}.txt"
+    $scope.lang_path = "/files/languages/#{lang}.tmLanguage"
 
   $scope.single_line_patterns = ->
     patterns = $scope.json_lang.patterns.findAll (p)-> !p.begin
@@ -72,8 +40,6 @@ Angie.controller "previewController", ['$scope', '$http'], ($scope, $http) ->
     patterns = $scope.json_lang.patterns.findAll (p)->  p.begin
     patterns = cleanup(patterns)
     return patterns
-
-  $scope.preview = -> $scope.colorized if $scope.colorized
 
   $scope.parse = ->
     parse_single_line_patterns()
@@ -256,6 +222,51 @@ Angie.controller "previewController", ['$scope', '$http'], ($scope, $http) ->
       #     #console.log scope
       #     $scope.multi_line_scope.push scope
       #   full_match
+
+  cleanup = (patterns) ->
+    for pattern in patterns
+      if pattern.include
+        Object.merge(pattern, $scope.json_lang.repository[pattern.include.replace("#","")])
+
+      if pattern.match
+        if (/\(\?\<\=(.+?)\)/).test(pattern.match) || (/\(\?\<\!(.+?)\)/).test(pattern.match)
+           #console.log pattern.match
+           pattern.lb = true
+        pattern.match = pattern.match.replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g, "&")
+                                      .replace(/\(\?\<\=(.+?)\)/, "($1)")
+                                      .replace(/\(\?\<\!(.+?)\)/, "([^$1])")
+        if pattern.match.match(/\(\?x\)/)
+          pattern.match = pattern.match.replace(/\(\?x\)/,'').replace(/\s+/g,'') # TODO: should also remove comments
+
+      if pattern.begin
+        if (/\(\?\<\=(.+?)\)/).test(pattern.begin) || (/\(\?\<\!(.+?)\)/).test(pattern.begin)
+           pattern.lb_begin = true
+        pattern.begin = pattern.begin.replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g, "&")
+                                      .replace(/\(\?\<\=(.+?)\)/, "(?:$1)")
+                                      .replace(/\(\?\<\!(.+?)\)/, "(?:[^$1])")
+        if pattern.begin.match(/\(\?x\)/)
+          pattern.begin = pattern.begin.replace(/\(\?x\)/,'').replace(/\s+/g,'') # TODO: should also remove comments
+        pattern.beginCaptures = [] unless pattern.beginCaptures
+
+      if pattern.end
+        if (/\(\?\<\=(.+?)\)/).test(pattern.end) || (/\(\?\<\!(.+?)\)/).test(pattern.end)
+           pattern.lb_end = true
+        pattern.end = pattern.end.replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g, "&")
+                                  .replace(/\(\?\<\=(.+?)\)/, "(?:$1)")
+                                  .replace(/\(\?\<\!(.+?)\)/, "(?:[^$1])")
+        if pattern.end.match(/\(\?x\)/)
+          pattern.end = pattern.end.replace(/\(\?x\)/,'').replace(/\s+/g,'') # TODO: should also remove comments
+        pattern.endCaptures = [] unless pattern.endCaptures
+
+      if pattern.captures && pattern.begin
+         pattern.beginCaptures = pattern.captures
+         pattern.endCaptures = pattern.captures
+
+      if pattern.patterns
+        for pat in pattern.patterns
+          Object.merge(pat, $scope.json_lang.repository[pat.include.replace("#","")]) if pat.include
+        cleanup(pattern.patterns)
+    return patterns
 
   sorted_scope = (line_scope) ->
     sorted = line_scope && line_scope.sort (a,b) ->

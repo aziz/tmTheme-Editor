@@ -4,6 +4,7 @@
 #= require vendors/FileSaver.js
 #= require vendors/tinycolor.js
 #= require vendors/angular-1.0.2.js
+#= require vendors/bootstrap/bootstrap-dropdown.js
 
 #= require_tree lib
 #= require_tree controllers

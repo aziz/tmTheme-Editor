@@ -8,19 +8,24 @@ TODO:
    ☐ gutter colors
    ☐ line number colors
  ☐ drag and drop file input @improvement
- ☐ lang switch button
- ☐ delete rule/add rule/edit rule/rearrange rule @feature
- ☐ save button @feature
- ☐ preview theme @wip @feature
- ☐ color picker js @feature
+ ☐ add rule
+ ☐ edit rule
+ ☐ rearrange rule
+ ☐ delete rule
+ ☐ save button
+ ☐ new button
+ ☐ preview theme @wip
+ ☐ color picker js
  ☐ highlight related scopes in preview on rule select
  ☐ click on preview and change colors
+
  low:
  ☐ list from file API
  ☐ only work with tmtheme files. reject others, error handling @improvement
  ☐ try to make it work in other browsers
  ☐ about page
  ☐ github icon
+ ☐ powered by tmtheme-editor inside themes with links
 
 TM_LANGUAGE parsing:
  ☐ for empty lines add a nbsp; for selection stuff
@@ -56,6 +61,7 @@ About | donate | Fork on github
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ lang switch button @done (12-10-22 00:41)
  ✔ checker bg for transparent colors and better color well @ui @done (12-10-21 21:28)
  ✔ detect dark and light themes @done (12-10-21 21:27)
  ✔ wrong bg for some texts @done (12-10-21 00:08)
