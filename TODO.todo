@@ -1,6 +1,14 @@
 TODO:
- ☐ test a change
- ☐ default text should not be saved @bug
+ ☐ edit-popover
+   ☐ transparent state
+   ☐ remve color and make transparent
+ ☐ selected state
+ ☐ add rule
+ ☐ delete rule
+ ☐ edit rule
+
+ ☐ highlight related scopes in preview on rule select
+ ☐ write generals to file on download and save
  ☐ general colors
    ☐ selection color
    ☐ line highlight
@@ -8,16 +16,11 @@ TODO:
    ☐ gutter colors
    ☐ line number colors
  ☐ drag and drop file input @improvement
- ☐ add rule
- ☐ edit rule
  ☐ rearrange rule
- ☐ delete rule
- ☐ save button
  ☐ new button
- ☐ preview theme @wip
  ☐ color picker js
- ☐ highlight related scopes in preview on rule select
  ☐ click on preview and change colors
+ ☐ preview theme @wip
 
  low:
  ☐ list from file API
@@ -26,16 +29,27 @@ TODO:
  ☐ about page
  ☐ github icon
  ☐ powered by tmtheme-editor inside themes with links
+ ☐ add license
+ ☐ cache the parsed theme and lang to disk (to hopefully make it faster)
+ ☐ tweet/gplus/fb/github buttons
+ ☐ position sticky for sidebar table headers
+ ☐ webworker to do processing in bg
 
 TM_LANGUAGE parsing:
  ☐ for empty lines add a nbsp; for selection stuff
+ ☐ check to see if the scope is already taken
+ ☐ "patterns" in multiline
  ☐ look-behind in js
    ☐ count the position of lookbehind in submatches array
    ☐ calculate the length of lb text
    ☐ adjust begin and size based on length on lb text
- ☐ "patterns" in multiline
- ☐ support for repository and include and
- ☐ check to see if the scope is already taken
+ ☐ support for repository and include (support for external includes)
+
+multi line algo:
+ ☐ check if the interval is not taken (something bigger surround me)
+ ☐ remove all inside single line scopes
+ ☐ apply scope,begincapture,endcapture,contentName
+ ☐ go inside and apply patterns for text inside
 
 
 READ:
@@ -61,6 +75,10 @@ About | donate | Fork on github
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ default text should not be saved @bug @done (12-10-23 00:58)
+ ✔ gutter does not update @done (12-10-23 00:56)
+ ✔ test a change in theme @done (12-10-22 19:59)
+ ✔ save button @done (12-10-22 15:56)
  ✔ lang switch button @done (12-10-22 00:41)
  ✔ checker bg for transparent colors and better color well @ui @done (12-10-21 21:28)
  ✔ detect dark and light themes @done (12-10-21 21:27)

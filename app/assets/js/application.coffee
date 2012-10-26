@@ -1,4 +1,5 @@
 #= require vendors/sugar-1.3.5.js
+#= require vendors/xregexp.js
 #= require vendors/jquery-1.8.2.js
 #= require vendors/jquery.cookie.js
 #= require vendors/FileSaver.js

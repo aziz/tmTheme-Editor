@@ -16,3 +16,7 @@
 - filesystem API
 - file saver  API
 - Drap/Drop
+
+## Fetures: ##
+- upload your theme
+- being able to refresh

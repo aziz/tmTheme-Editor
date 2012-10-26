@@ -5,7 +5,7 @@
   // border-top: 1px solid #a8a8a8;
   float: left;
   position: absolute;
-  top:@header_height + 1;
+  top:@header_height + 26;
   left:0px;
   bottom:0px;
   overflow-y: scroll;
@@ -22,6 +22,8 @@
 
 .titlebar {
   @height : 24px;
+  min-width: @sidebarMin;
+  max-width: @sidebarMax;
   background: #ffffff;
   background: -moz-linear-gradient(top,  #ffffff 0%, #ffffff 23%, #f4f4f4 54%, #ececec 62%, #ededed 100%);
   background: -webkit-linear-gradient(top,  #ffffff 0%,#ffffff 23%,#f4f4f4 54%,#ececec 62%,#ededed 100%);
@@ -33,11 +35,12 @@
   border-bottom: 1px solid #b6b6b6;
   .box-shadow(inset 0 -1px #f4f4f4);
   font-family: @systemFontFamily;
-  padding-left: 6px;
-  position: relative;
+  position: fixed;
   font-weight: bold;
+  border-right: 1px solid #989898;
 
   .title {
+    padding-left: 6px;
     .ellipsis();
     width: 288px;
   }
@@ -128,5 +131,114 @@
    margin:0;
    padding:0;
    cursor: pointer;
+  }
+}
+
+.edit-popover {
+  top: 180px;
+  left: 395px;
+
+  position: absolute;
+  z-index: 9999;
+  width: 254px;
+  padding: 12px;
+  .border-radius(5px);
+  #gradient > .vertical(#fdfdfd, #ededed);
+  border: 1px solid rgba(0,0,0,.35);
+  border-top: 1px solid rgba(0,0,0,.25);
+  border-bottom: 1px solid rgba(0,0,0,.45);
+  @bs: inset 0 0 0 1px #f9f9f9, 0 20px 60px rgba(0,0,0,.5);
+  .box-shadow(@bs);
+  font-size: 12px;
+
+  &:after {
+    content: "";
+    position: absolute;
+    .square(0);
+    border: 11px solid transparent;
+    border-right: 11px solid #f6f6f6;
+    left:-21px;
+    top: 50%;
+    margin-top: -11px;
+  }
+
+  &:before {
+    content: "";
+    position: absolute;
+    .square(0);
+    border: 11px solid transparent;
+    border-right: 11px solid rgba(0,0,0,.4);
+    left:-22px;
+    top: 50%;
+    margin-top: -11px;
+  }
+
+  label {
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 13px;
+    margin-bottom: 2px;
+
+    &.small {
+      margin: 8px 0;
+      input {
+        margin: 0 0 1px;
+      }
+    }
+  }
+
+  input[type='text'] {
+    width: 240px;
+    .border-radius(1px);
+  }
+
+  textarea {
+    width: 240px;
+    .border-radius(1px);
+    resize: none;
+    margin-bottom: 0;
+  }
+
+  table {
+    width: 100%;
+
+    td {
+      vertical-align: top;
+    }
+  }
+
+  @boxh: 25px;
+  @boxw: 75px;
+
+  .fg-box, .bg-box {
+    position: relative;
+    width: @boxw;
+    height: @boxh;
+    margin-bottom: 8px;
+  }
+
+  .colorpicker-input {
+    width: @boxw;
+    position: absolute;
+    height: @boxh;
+    top:0;
+    left:0;
+    opacity:0;
+    padding:0;
+    margin:0;
+    cursor: pointer;
+  }
+
+  .colorpicker-box {
+    width: @boxw;
+    height: @boxh;
+    position: absolute;
+    top:0;
+    left:0;
+    border:1px solid rgba(0,0,0,.33);
+  }
+
+  .btn-sep {
+    margin-top: 11px;
   }
 }

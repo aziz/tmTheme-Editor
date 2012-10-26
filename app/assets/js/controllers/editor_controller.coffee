@@ -1,18 +1,19 @@
 Angie.controller "editorController", ['$scope'], ($scope) ->
+  $scope.temp = { "name": "alaki", "scope": "alaki.scope", "settings": { "foreground": "#C99E00", "fontStyle": "bold italic" } }
 
   FsInitHandler = (fs) ->
     $scope.fs = fs
     $scope.$apply()
     if $scope.last_cached_theme
+      $scope.files.push($scope.last_cached_theme)
       fs.root.getFile $scope.last_cached_theme, {}, ((fileEntry) ->
         fileEntry.file ((file) ->
           reader = new FileReader()
           reader.onloadend = (e) ->
-            $scope.xmlTheme  = this.result
-            $scope.jsonTheme = plist_to_json(this.result)
-            if $scope.jsonTheme?.settings?[0].settings?.selection
-              $scope.jsonTheme.settings[0].name = "Default"
-            console.log $scope.jsonTheme
+            $scope.xmlTheme  = this.result.trim()
+            #console.log "XML:", $scope.xmlTheme
+            $scope.jsonTheme = plist_to_json($scope.xmlTheme)
+            #console.log "JSON:", $scope.jsonTheme
             $scope.$apply()
           reader.readAsText file
         ), FsErrorHandler
@@ -44,6 +45,17 @@ Angie.controller "editorController", ['$scope'], ($scope) ->
   $scope.xmlTheme = ""
   $scope.jsonTheme = ""
   $scope.files = []
+  $scope.gcolors = []
+
+  $scope.$watch "xmlTheme", (n,o) ->
+    $scope.gcolors = []
+    if $scope.jsonTheme && $scope.jsonTheme.settings
+      for key, val of $scope.jsonTheme.settings[0].settings
+        $scope.gcolors.push({"name": key, "color": val})
+    #console.log "GENRAL: ", $scope.gcolors
+
+  $scope.bg = -> $scope.gcolors.length > 0 && $scope.gcolors.find((gc)-> gc.name == "background").color
+  $scope.fg = -> $scope.gcolors.length > 0 && $scope.gcolors.find((gc)-> gc.name == "foreground").color
 
   $scope.get_color = (color) ->
     if color && color.length > 7
@@ -82,7 +94,7 @@ Angie.controller "editorController", ['$scope'], ($scope) ->
       reader.readAsText(file) # Read in the tmtheme file
       reader.onload = do (file) ->
         (e) ->
-          $scope.xmlTheme = e.target.result
+          $scope.xmlTheme = e.target.result.trim()
           $scope.fs && $scope.fs.root.getFile file.name, {create: true}, (fileEntry) ->
             fileEntry.createWriter (fileWriter) ->
               fileWriter.onwriteend = (e) ->
@@ -91,14 +103,22 @@ Angie.controller "editorController", ['$scope'], ($scope) ->
               blob = new Blob([e.target.result], {type: "text/plain"})
               fileWriter.write(blob)
           $scope.jsonTheme = plist_to_json(e.target.result)
-          if $scope.jsonTheme.settings?[0].settings?.selection
-            $scope.jsonTheme.settings[0].name = "Default"
           console.log $scope.jsonTheme
           $scope.$apply()
 
-  $scope.save_theme = ->
-    blob = new Blob([json2plist($scope.jsonTheme)], {type: "text/plain;charset=utf-8"})
+  $scope.download_theme = ->
+    console.log json2plist($scope.jsonTheme)
+    blob = new Blob([json2plist($scope.jsonTheme)], {type: "text/plain"})
     saveAs blob, $scope.last_cached_theme
+
+  $scope.save_theme = ->
+    $scope.fs && $scope.fs.root.getFile $scope.files.first(), {}, (fileEntry) ->
+      fileEntry.createWriter (fileWriter) ->
+        fileWriter.onwriteend = (e) -> console.log "File Saved"
+        fileWriter.onerror = (e) -> console.log "Error in writing"
+        #console.log json2plist($scope.jsonTheme)
+        blob = new Blob([json2plist($scope.jsonTheme)], {type: "text/plain"})
+        fileWriter.write(blob)
 
   $scope.styles = ->
     styles = ""
@@ -118,7 +138,7 @@ Angie.controller "editorController", ['$scope'], ($scope) ->
             styles += "font-weight:bold;" if bold
             styles += "font-style:italic;" if italic
             styles += "text-decoration:underline;" if underline
-            styles += "}\n"
+            styles += "}"
     #console.log styles
     styles
 
@@ -126,8 +146,12 @@ Angie.controller "editorController", ['$scope'], ($scope) ->
     if $scope.light_or_dark(bgcolor) == "light" then "rgba(0,0,0,.33)" else "rgba(255,255,255,.33)"
 
   $scope.light_or_dark = (bgcolor) ->
-    c = tinycolor(bgcolor).toRgb()
-    yiq = ((c.r*299)+(c.g*587)+(c.b*114))/1000
+    #console.log bgcolor
+    c = tinycolor(bgcolor)
+    #console.log c
+    d = c.toRgb()
+    #console.log d
+    yiq = ((d.r*299)+(d.g*587)+(d.b*114))/1000
     if yiq >= 128 then "light" else "dark"
 
   $scope.darken = (color, percent) ->
@@ -148,8 +172,8 @@ Angie.controller "editorController", ['$scope'], ($scope) ->
 
   $scope.gutter = ->
     style = ""
-    if $scope.jsonTheme && $scope.jsonTheme.settings && $scope.jsonTheme.settings[0]
-      bgcolor = $scope.get_color($scope.jsonTheme.settings[0].settings.background)
+    if $scope.jsonTheme && $scope.jsonTheme.settings && $scope.bg()
+      bgcolor = $scope.get_color($scope.bg())
       if $scope.light_or_dark(bgcolor) == "light"
         style = "pre .l:before { background-color: #{$scope.darken(bgcolor, 2)};"
         style += "color: #{$scope.darken(bgcolor, 18)}};"

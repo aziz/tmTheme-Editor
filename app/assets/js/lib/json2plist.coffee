@@ -1,6 +1,6 @@
 window.json2plist = (json) ->
   header  = '<?xml version="1.0" encoding="UTF-8"?>\n<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">\n<plist version="1.0">\n<dict>\n'
-  footer  = '</dict>\n</plist>\n'
+  footer  = '</dict>\n</plist>'
   content = ""
   indent_level = 1
 
@@ -36,4 +36,4 @@ window.json2plist = (json) ->
         else
           content += "#{'\t'.repeat(indent_level)}<dict>\n#{plist_object2string(value, indent_level+1)}#{'\t'.repeat(indent_level)}</dict>\n"
 
-  header + content + footer
+  (header + content + footer).trim()
