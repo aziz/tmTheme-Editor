@@ -1,5 +1,4 @@
 
-
 ## How to use this:
 - install pow, node, npm
 - `npm install`
@@ -17,6 +16,6 @@
 - file saver  API
 - Drap/Drop
 
-## Fetures: ##
+## Features: ##
 - upload your theme
 - being able to refresh

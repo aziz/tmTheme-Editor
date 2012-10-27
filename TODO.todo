@@ -1,12 +1,11 @@
 TODO:
  ☐ edit-popover
-   ☐ transparent state
    ☐ remve color and make transparent
- ☐ selected state
- ☐ add rule
- ☐ delete rule
- ☐ edit rule
-
+   ☐ escape should close the bubble
+   ☐ shortcut to see popover (up and down to traverse the rules, enter to open, n for new rule)
+   ☐ focus state for color pickers
+ ☐ show color value as hint on hover
+ ☐ add all possible general colors to all themes
  ☐ highlight related scopes in preview on rule select
  ☐ write generals to file on download and save
  ☐ general colors
@@ -34,6 +33,7 @@ TODO:
  ☐ tweet/gplus/fb/github buttons
  ☐ position sticky for sidebar table headers
  ☐ webworker to do processing in bg
+ ☐ angular performance enhancement
 
 TM_LANGUAGE parsing:
  ☐ for empty lines add a nbsp; for selection stuff
@@ -75,6 +75,13 @@ About | donate | Fork on github
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ add rule @done (12-10-27 23:58)
+ ✔ ngcloak for popovers @done (12-10-27 23:44)
+ ✔ delete rule @done (12-10-27 22:28)
+ ✔ edit rule @done (12-10-27 20:56)
+ ✔ transparent state @done (12-10-27 20:46)
+ ✔ hilight for selected state @done (12-10-27 19:52)
+ ✔ bold/italic/underline @done (12-10-27 19:32)
  ✔ default text should not be saved @bug @done (12-10-23 00:58)
  ✔ gutter does not update @done (12-10-23 00:56)
  ✔ test a change in theme @done (12-10-22 19:59)

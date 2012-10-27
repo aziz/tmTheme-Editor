@@ -1,5 +1,4 @@
 Angie.controller "editorController", ['$scope'], ($scope) ->
-  $scope.temp = { "name": "alaki", "scope": "alaki.scope", "settings": { "foreground": "#C99E00", "fontStyle": "bold italic" } }
 
   FsInitHandler = (fs) ->
     $scope.fs = fs
@@ -37,7 +36,7 @@ Angie.controller "editorController", ['$scope'], ($scope) ->
     console.log "Error: " + msg
 
   window.requestFileSystem  = window.requestFileSystem || window.webkitRequestFileSystem
-  window.BlobBuilder = window.BlobBuilder || window.WebKitBlobBuilder
+  window.BlobBuilder        = window.BlobBuilder || window.WebKitBlobBuilder
   window.requestFileSystem(window.TEMPORARY, 3*1024*1024,  FsInitHandler, FsErrorHandler)
 
   $scope.last_cached_theme = $.cookie('last_theme')
@@ -52,7 +51,6 @@ Angie.controller "editorController", ['$scope'], ($scope) ->
     if $scope.jsonTheme && $scope.jsonTheme.settings
       for key, val of $scope.jsonTheme.settings[0].settings
         $scope.gcolors.push({"name": key, "color": val})
-    #console.log "GENRAL: ", $scope.gcolors
 
   $scope.bg = -> $scope.gcolors.length > 0 && $scope.gcolors.find((gc)-> gc.name == "background").color
   $scope.fg = -> $scope.gcolors.length > 0 && $scope.gcolors.find((gc)-> gc.name == "foreground").color
@@ -181,3 +179,56 @@ Angie.controller "editorController", ['$scope'], ($scope) ->
         style = "pre .l:before { background-color: #{$scope.lighten(bgcolor, 2)};"
         style += "color: #{$scope.lighten(bgcolor, 12)}};"
     style
+
+  $scope.selected_rule = null
+  $scope.edit_popover_visible = false
+  $scope.new_popover_visible = false
+  $scope.popover_rule = {}
+  $scope.new_rule_pristine = {"name":"","scope":"","settings":{}}
+  $scope.new_rule = Object.clone($scope.new_rule_pristine)
+
+  $scope.is_selected = (rule) ->
+    rule == $scope.selected_rule
+
+  $scope.selected_gradient = (rule) ->
+    return "" unless $scope.is_selected(rule)
+    if $scope.light_or_dark($scope.bg()) == "light" then "selected_bglight" else "selected_bgdark"
+
+  $scope.mark_as_selected = (rule) ->
+    $scope.selected_rule = rule
+    $scope.edit_popover_visible = false
+
+  $scope.toggle_edit_popover = (rule, rule_index) ->
+    $scope.popover_rule = rule
+    $scope.edit_popover_visible = true
+    row = $("#scope-lists .rule-#{rule_index}")
+    #console.log  row.offset().top + (row.outerHeight()/2)
+    $("#edit-popover").css("top", row.offset().top + (row.outerHeight()/2) - 140)
+
+  $scope.close_popover = ->
+    $scope.edit_popover_visible = false
+
+  $scope.$watch "edit_popover_visible", (n,o) ->
+    if n
+      $(".sidebar").css("overflow-y", "hidden")
+    else
+      $(".sidebar").css("overflow-y", "scroll")
+
+  $scope.delete_rule = (rule) ->
+    return if rule
+    rules = $scope.jsonTheme.settings
+    index = rules.findIndex(rule)
+    rules.remove(rule)
+    $scope.selected_rule = rules[index]
+    $scope.edit_popover_visible = false
+
+  $scope.toggle_new_rule_popover = ->
+    $scope.new_rule = Object.clone($scope.new_rule_pristine, true)
+    $scope.new_popover_visible = !$scope.new_popover_visible
+
+  $scope.add_rule = (new_rule) ->
+    $scope.jsonTheme.settings.push(new_rule)
+    $scope.toggle_new_rule_popover()
+    sidebar = $(".sidebar")
+    max_scroll_height = sidebar[0].scrollHeight
+    sidebar.animate {"scrollTop": max_scroll_height}, 500, "swing"
