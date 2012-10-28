@@ -4,7 +4,8 @@
   <title><%= title -%></title>
   <%- css("app") -%>
 </head>
-<body ng-app="ThemeEditor" ng-controller="editorController">
+<body ng-app="ThemeEditor" ng-controller="editorController"
+      shortcut='{ "escape": "hide_all_popovers()", "ctrl+n": "toggle_new_rule_popover()" }'>
 <div ng-controller="previewController">
 
 <header id="header">
@@ -23,7 +24,7 @@
   <input type="file" id="files" class="upload" ng-model="input" onchange="angular.element(this).scope().setFiles(this)" />
 
   <div class="sep"></div>
-  <div class="languages">
+  <div ng-cloak class="languages">
     <div class="btn-group">
       <a ng-click="" class="btn btn-small dropdown-toggle" data-toggle="dropdown">
         {{ current_lang }}
@@ -44,9 +45,9 @@
   </div>
 </header>
 
-<div class="titlebar">
+<div ng-cloak class="titlebar">
   <div class="title">
-    {{jsonTheme.name}}
+    <input type="text" ng-model="jsonTheme.name">
   </div>
   <div class="actions" ng-hide="gcolors.length==0">
     <div ng-click="toggle_new_rule_popover()" ng-class="{'active': new_popover_visible }" class="add">+</div>
@@ -54,7 +55,7 @@
   </div>
 </div>
 
-<div class="sidebar" ng-style="{ 'background-color': get_color(bg())}">
+<div ng-cloak class="sidebar" ng-style="{ 'background-color': get_color(bg())}">
 
   <table class="list general">
     <thead ng-hide="gcolors.length==0">
@@ -72,7 +73,10 @@
           <div class="colorpicker-box"
                ng-class="has_color(gcolor.color)"
                ng-style="{ 'background-color': get_color(gcolor.color), 'border-color': border_color(get_color(bg())) }"></div>
-          <input class="colorpicker-input" type="color" ng-model="gcolor.color" ng-change="update_gcolor(gcolor, angualr.element(this).val())">
+          <input type="color" class="colorpicker-input"
+                 title="{{gcolor.color}}"
+                 ng-model="gcolor.color"
+                 ng-change="update_gcolor(gcolor, angualr.element(this).val())">
           <td>
           </td>
         </td>
@@ -86,7 +90,6 @@
     <thead ng-show="jsonTheme">
       <tr>
         <th class="align-begin truncate">Scope Name</th>
-        <!-- <th>selector</th> -->
         <th class="color-box">FG</th>
         <th class="color-box">BG</th>
         <th class="check-box is_bold">B</th>
@@ -107,11 +110,11 @@
             ng-class="{'is_italic' : is('italic', rule), 'is_bold': is('bold', rule), 'is_underline': is('underline', rule)}"></td>
         <td class="color-box">
           <div class="colorpicker-box" ng-class="has_color(rule.settings.foreground)" ng-style="{ 'background-color': get_color(rule.settings.foreground), 'border-color': border_color(get_color(bg())) }"></div>
-          <input class="colorpicker-input" type="color" ng-model="rule.settings.foreground">
+          <input class="colorpicker-input" type="color" title="{{rule.settings.foreground}}" ng-model="rule.settings.foreground">
         </td>
         <td class="color-box">
           <div class="colorpicker-box" ng-class="has_color(rule.settings.background)" ng-style="{ 'background-color': get_color(rule.settings.background), 'border-color': border_color(get_color(bg())) }"></div>
-          <input class="colorpicker-input" type="color" ng-model="rule.settings.background">
+          <input class="colorpicker-input" type="color" title="{{rule.settings.background}}" ng-model="rule.settings.background">
         </td>
         <td class="check-box"><input type="checkbox" ng-checked="is('bold', rule)"      ng-click="toggle('bold',rule)"     ></td>
         <td class="check-box"><input type="checkbox" ng-checked="is('italic', rule)"    ng-click="toggle('italic',rule)"   ></td>
@@ -136,15 +139,17 @@
       </td>
       <td>
         <label>Foreground</label>
-        <div class="fg-box">
+        <div class="fg-box" ng-class="has_color(popover_rule.settings.foreground)">
           <div class="colorpicker-box" ng-class="has_color(popover_rule.settings.foreground)" ng-style="{ 'background-color': get_color(popover_rule.settings.foreground) }"></div>
-          <input class="colorpicker-input" type="color" ng-model="popover_rule.settings.foreground">
+          <a ng-click="reset_color(popover_rule, 'foreground')" class="reset">Reset</a>
+          <input class="colorpicker-input" type="color" title="{{popover_rule.settings.foreground}}" ng-model="popover_rule.settings.foreground">
         </div>
 
         <label>Background</label>
-        <div class="bg-box">
+        <div class="bg-box" ng-class="has_color(popover_rule.settings.background)">
           <div class="colorpicker-box" ng-class="has_color(popover_rule.settings.background)" ng-style="{ 'background-color': get_color(popover_rule.settings.background) }"></div>
-          <input class="colorpicker-input" type="color" ng-model="popover_rule.settings.background">
+          <a ng-click="reset_color(popover_rule, 'background')" class="reset">Reset</a>
+          <input class="colorpicker-input" type="color" title="{{popover_rule.settings.background}}" ng-model="popover_rule.settings.background">
         </div>
       </td>
     </tr>
@@ -174,15 +179,17 @@
       </td>
       <td>
         <label>Foreground</label>
-        <div class="fg-box">
+        <div class="fg-box" ng-class="has_color(new_rule.settings.foreground)">
           <div class="colorpicker-box" ng-class="has_color(new_rule.settings.foreground)" ng-style="{ 'background-color': get_color(new_rule.settings.foreground) }"></div>
-          <input class="colorpicker-input" type="color" ng-model="new_rule.settings.foreground">
+          <a ng-click="reset_color(new_rule, 'foreground')" class="reset">Reset</a>
+          <input class="colorpicker-input" type="color" title="{{new_rule.settings.foreground}}" ng-model="new_rule.settings.foreground">
         </div>
 
         <label>Background</label>
-        <div class="bg-box">
+        <div class="bg-box" ng-class="has_color(new_rule.settings.background)">
           <div class="colorpicker-box" ng-class="has_color(new_rule.settings.background)" ng-style="{ 'background-color': get_color(new_rule.settings.background) }"></div>
-          <input class="colorpicker-input" type="color" ng-model="new_rule.settings.background">
+          <a ng-click="reset_color(new_rule, 'background')" class="reset">Reset</a>
+          <input class="colorpicker-input" type="color" title="{{new_rule.settings.background}}" ng-model="new_rule.settings.background">
         </div>
       </td>
     </tr>
@@ -197,8 +204,9 @@
   </div>
 </div>
 
-<style ng-bind="gutter()"></style>
-<style ng-bind="styles()"></style>
+<style ng-bind="theme_gutter()"></style>
+<style ng-bind="theme_selection()"></style>
+<style ng-bind="theme_styles()"></style>
 
 <div class="preview" ng-style="{ 'background-color': get_color(bg()), 'color': get_color(fg()) }">
   <pre ng-bind-html-unsafe="colorized" ng-style="{ 'background-color': get_color(bg()), 'color': get_color(fg()) }"></pre>
@@ -208,7 +216,4 @@
 <%- js("application") -%>
 </body>
 </html>
-
-
-
 

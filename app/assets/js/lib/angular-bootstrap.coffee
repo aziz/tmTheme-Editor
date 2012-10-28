@@ -25,4 +25,10 @@ window.Angie = {
     args = dependencies
     args.push(fn)
     Angular.service name, args
+
+  directive: (name, dependencies, fn) ->
+    args = dependencies
+    args.push(fn)
+    Angular.directive name, args
+
 }

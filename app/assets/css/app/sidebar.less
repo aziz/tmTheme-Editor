@@ -45,6 +45,22 @@
     padding-left: 6px;
     .ellipsis();
     width: 288px;
+
+    input {
+      background-color: transparent;
+      border:0;
+      .box-shadow(none);
+      width: 288px;
+      text-shadow: 0 1px 0 rgba(255,255,255,.4);
+      display: inline-block;
+      height: @height;
+      padding: 0;
+      margin-bottom: 0;
+      line-height: @height;
+      color: #333;
+      .border-radius(0);
+      font-weight: bold;
+    }
   }
 
   .actions {
@@ -140,12 +156,39 @@
 
 }
 
+a.reset {
+  visibility: hidden;
+  position: absolute;
+  left: 85px;
+  top: 3px;
+  font-size: 11px;
+  padding-left: 10px;
+  color: #888;
+
+  &:before {
+    content: "";
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAG0lEQVQIW2P4//+/EwgzMDBAMIYAjIEkgSoAAL9FHAm65CvoAAAAAElFTkSuQmCC);
+    display: block;
+    position: absolute;
+    top:6px;
+    left:0;
+    .square(6px);
+    border: 1px solid rgba(0,0,0,.33);
+  }
+}
+
+.fg-box, .bg-box {
+  &.has_color:hover a.reset {
+    visibility: visible;
+  }
+}
+
 .colorpicker-box {
   top: 1px; bottom: 1px;
   left: 1px; right: 1px;
   border: 1px solid rgba(255,255,255,.33);
   position: absolute;
-  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAG0lEQVQIW2P4//+/EwgzMDBAMIYAjIEkgSoAAL9FHAm65CvoAAAAAElFTkSuQmCC);    background-size: 4px 4px;
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAG0lEQVQIW2P4//+/EwgzMDBAMIYAjIEkgSoAAL9FHAm65CvoAAAAAElFTkSuQmCC);
   .background-clip(padding-box);
 
   &.has_color {
@@ -264,7 +307,7 @@
 
   .fg-box, .bg-box {
     position: relative;
-    width: @boxw;
+    //width: @boxw;
     height: @boxh;
     margin-bottom: 8px;
   }

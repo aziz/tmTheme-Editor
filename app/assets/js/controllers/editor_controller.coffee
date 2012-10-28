@@ -12,7 +12,7 @@ Angie.controller "editorController", ['$scope'], ($scope) ->
             $scope.xmlTheme  = this.result.trim()
             #console.log "XML:", $scope.xmlTheme
             $scope.jsonTheme = plist_to_json($scope.xmlTheme)
-            #console.log "JSON:", $scope.jsonTheme
+            console.log "THEME:", $scope.jsonTheme
             $scope.$apply()
           reader.readAsText file
         ), FsErrorHandler
@@ -35,6 +35,8 @@ Angie.controller "editorController", ['$scope'], ($scope) ->
         msg = "Unknown Error"
     console.log "Error: " + msg
 
+  clamp = (val) -> Math.min(1, Math.max(0, val))
+
   window.requestFileSystem  = window.requestFileSystem || window.webkitRequestFileSystem
   window.BlobBuilder        = window.BlobBuilder || window.WebKitBlobBuilder
   window.requestFileSystem(window.TEMPORARY, 3*1024*1024,  FsInitHandler, FsErrorHandler)
@@ -54,12 +56,14 @@ Angie.controller "editorController", ['$scope'], ($scope) ->
 
   $scope.bg = -> $scope.gcolors.length > 0 && $scope.gcolors.find((gc)-> gc.name == "background").color
   $scope.fg = -> $scope.gcolors.length > 0 && $scope.gcolors.find((gc)-> gc.name == "foreground").color
+  $scope.selection_color = -> $scope.gcolors.length > 0 && $scope.gcolors.find((gc)-> gc.name == "selection")?.color
+  $scope.gutter_fg = -> $scope.gcolors.length > 0 && $scope.gcolors.find((gc)-> gc.name == "gutterForeground")?.color
 
   $scope.get_color = (color) ->
     if color && color.length > 7
       hex_color = color.to(7)
       rgba = tinycolor(hex_color).toRgb()
-      opacity = parseInt(color.at(7,8).join(""), 16)*(1/255)
+      opacity = parseInt(color.at(7,8).join(""), 16)/256
       rgba.a = opacity
       new_rgba = tinycolor(rgba)
       new_rgba.toRgbString()
@@ -118,7 +122,7 @@ Angie.controller "editorController", ['$scope'], ($scope) ->
         blob = new Blob([json2plist($scope.jsonTheme)], {type: "text/plain"})
         fileWriter.write(blob)
 
-  $scope.styles = ->
+  $scope.theme_styles = ->
     styles = ""
     if $scope.jsonTheme && $scope.jsonTheme.settings
       for rule in $scope.jsonTheme.settings
@@ -140,8 +144,7 @@ Angie.controller "editorController", ['$scope'], ($scope) ->
     #console.log styles
     styles
 
-  $scope.border_color = (bgcolor) ->
-    if $scope.light_or_dark(bgcolor) == "light" then "rgba(0,0,0,.33)" else "rgba(255,255,255,.33)"
+  $scope.border_color = (bgcolor) -> if $scope.light_or_dark(bgcolor) == "light" then "rgba(0,0,0,.33)" else "rgba(255,255,255,.33)"
 
   $scope.light_or_dark = (bgcolor) ->
     #console.log bgcolor
@@ -166,18 +169,25 @@ Angie.controller "editorController", ['$scope'], ($scope) ->
     hsl.l = clamp(hsl.l)
     tinycolor(hsl).toHslString()
 
-  clamp = (val) -> Math.min(1, Math.max(0, val))
-
-  $scope.gutter = ->
+  $scope.theme_gutter = ->
     style = ""
     if $scope.jsonTheme && $scope.jsonTheme.settings && $scope.bg()
       bgcolor = $scope.get_color($scope.bg())
       if $scope.light_or_dark(bgcolor) == "light"
         style = "pre .l:before { background-color: #{$scope.darken(bgcolor, 2)};"
-        style += "color: #{$scope.darken(bgcolor, 18)}};"
+        gutter_foreground = $scope.get_color($scope.gutter_fg()) || $scope.darken(bgcolor, 12)
+        style += "color: #{gutter_foreground}};"
       else
         style = "pre .l:before { background-color: #{$scope.lighten(bgcolor, 2)};"
-        style += "color: #{$scope.lighten(bgcolor, 12)}};"
+        gutter_foreground = $scope.get_color($scope.gutter_fg()) || $scope.lighten(bgcolor, 12)
+        style += "color: #{gutter_foreground}};"
+    style
+
+  $scope.theme_selection = ->
+    style = ""
+    if $scope.jsonTheme && $scope.jsonTheme.settings
+      style += "pre *::selection, pre *::-moz-selection, pre *::-webkit-selection, pre::selection, pre::-moz-selection, pre::-webkit-selection {background:"
+      style += "#{$scope.get_color($scope.selection_color())};}"
     style
 
   $scope.selected_rule = null
@@ -187,8 +197,7 @@ Angie.controller "editorController", ['$scope'], ($scope) ->
   $scope.new_rule_pristine = {"name":"","scope":"","settings":{}}
   $scope.new_rule = Object.clone($scope.new_rule_pristine)
 
-  $scope.is_selected = (rule) ->
-    rule == $scope.selected_rule
+  $scope.is_selected = (rule) -> rule == $scope.selected_rule
 
   $scope.selected_gradient = (rule) ->
     return "" unless $scope.is_selected(rule)
@@ -202,11 +211,23 @@ Angie.controller "editorController", ['$scope'], ($scope) ->
     $scope.popover_rule = rule
     $scope.edit_popover_visible = true
     row = $("#scope-lists .rule-#{rule_index}")
-    #console.log  row.offset().top + (row.outerHeight()/2)
     $("#edit-popover").css("top", row.offset().top + (row.outerHeight()/2) - 140)
+    if $scope.edit_popover_visible
+      focus = -> $("#edit-popover .name-input").focus()
+      setTimeout(focus, 0)
 
-  $scope.close_popover = ->
+  $scope.toggle_new_rule_popover = ->
+    $scope.new_rule = Object.clone($scope.new_rule_pristine, true)
+    $scope.new_popover_visible = !$scope.new_popover_visible
+    if $scope.new_popover_visible
+      focus = -> $("#new-popover .name-input").focus()
+      setTimeout(focus, 0)
+
+  $scope.close_popover = -> $scope.edit_popover_visible = false
+
+  $scope.hide_all_popovers = ->
     $scope.edit_popover_visible = false
+    $scope.toggle_new_rule_popover() if $scope.new_popover_visible
 
   $scope.$watch "edit_popover_visible", (n,o) ->
     if n
@@ -215,16 +236,12 @@ Angie.controller "editorController", ['$scope'], ($scope) ->
       $(".sidebar").css("overflow-y", "scroll")
 
   $scope.delete_rule = (rule) ->
-    return if rule
+    return unless rule
     rules = $scope.jsonTheme.settings
     index = rules.findIndex(rule)
     rules.remove(rule)
     $scope.selected_rule = rules[index]
     $scope.edit_popover_visible = false
-
-  $scope.toggle_new_rule_popover = ->
-    $scope.new_rule = Object.clone($scope.new_rule_pristine, true)
-    $scope.new_popover_visible = !$scope.new_popover_visible
 
   $scope.add_rule = (new_rule) ->
     $scope.jsonTheme.settings.push(new_rule)
@@ -232,3 +249,5 @@ Angie.controller "editorController", ['$scope'], ($scope) ->
     sidebar = $(".sidebar")
     max_scroll_height = sidebar[0].scrollHeight
     sidebar.animate {"scrollTop": max_scroll_height}, 500, "swing"
+
+  $scope.reset_color = (rule, attr) -> rule.settings[attr] = undefined

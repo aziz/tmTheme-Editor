@@ -8,4 +8,5 @@
 #= require vendors/bootstrap/bootstrap-dropdown.js
 
 #= require_tree lib
+#= require_tree directives
 #= require_tree controllers

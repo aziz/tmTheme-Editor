@@ -1,39 +1,42 @@
 TODO:
- ☐ edit-popover
-   ☐ remve color and make transparent
-   ☐ escape should close the bubble
-   ☐ shortcut to see popover (up and down to traverse the rules, enter to open, n for new rule)
-   ☐ focus state for color pickers
- ☐ show color value as hint on hover
- ☐ add all possible general colors to all themes
- ☐ highlight related scopes in preview on rule select
+ ☐ close edit-popover before opening new-popover
  ☐ write generals to file on download and save
- ☐ general colors
-   ☐ selection color
-   ☐ line highlight
-   ☐ invisibles
-   ☐ gutter colors
-   ☐ line number colors
- ☐ drag and drop file input @improvement
- ☐ rearrange rule
  ☐ new button
- ☐ color picker js
- ☐ click on preview and change colors
+ ☐ test download
+ ☐ test save
+ ☐ show description of general colors on hover, title on +, - buttons and header buttons
+ ☐ add all possible general colors to all themes (?) how to add general color rules
+ ☐ drag and drop file input @improvement
  ☐ preview theme @wip
+ ☐ check errors in: Dawn, Monokai FannonEd, idleFingers
+ ☐ add lang specific scopes to pre to get scope specific backgrounds
+
+Pre Publish:
+ ☐ google analytics
+ ☐ SEO info, met tags
+ ☐ tweet/gplus/fb/github buttons
+ ☐ about page
+ ☐ add license
+ ☐ powered by tmtheme-editor inside themes with links
 
  low:
+ ☐ click on preview and change colors
+ ☐ highlight related scopes in preview on rule select
+ ☐ setting color with transparency (different alpha channel representation)
+ ☐ show keyboard shortcuts on ?
+ ☐ show line highlight
+ ☐ angular performance enhancement
+ ☐ show invisibles
+ ☐ rearrange rule
+ ☐ shortcuts (up and down to traverse the rules, enter to open, ctrl+delete to delete, ctrl+s to save, ...)
+ ☐ color picker js
  ☐ list from file API
  ☐ only work with tmtheme files. reject others, error handling @improvement
  ☐ try to make it work in other browsers
- ☐ about page
- ☐ github icon
- ☐ powered by tmtheme-editor inside themes with links
- ☐ add license
  ☐ cache the parsed theme and lang to disk (to hopefully make it faster)
- ☐ tweet/gplus/fb/github buttons
  ☐ position sticky for sidebar table headers
+ ☐ focus state for color pickers
  ☐ webworker to do processing in bg
- ☐ angular performance enhancement
 
 TM_LANGUAGE parsing:
  ☐ for empty lines add a nbsp; for selection stuff
@@ -51,7 +54,6 @@ multi line algo:
  ☐ apply scope,begincapture,endcapture,contentName
  ☐ go inside and apply patterns for text inside
 
-
 READ:
  ☐ export-html plugin
  ☐ http://blog.stevenlevithan.com/archives/javascript-regex-lookbehind
@@ -59,7 +61,6 @@ READ:
 
  ☐ coffee
  ☐ css
-
  ☐ html
  ☐ less
  ☐ ruby
@@ -75,6 +76,17 @@ About | donate | Fork on github
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ show color value as hint on hover @done (12-10-28 22:48)
+ ✔ general colors @done (12-10-28 22:32)
+ ✔ line number colors @done (12-10-28 22:32)
+ ✔ gutter colors @done (12-10-28 22:32)
+ ✔ fg @done (12-10-28 20:16)
+ ✔ bg @done (12-10-28 20:16)
+ ✔ selection color @done (12-10-28 20:16)
+ ✔ caret @done (12-10-28 20:17)
+ ✔ edit-popover: remove color and make transparent @done (12-10-28 18:12)
+ ✔ escape should close the bubble @done (12-10-28 11:36)
+ ✔ rename theme name @done (12-10-28 00:40)
  ✔ add rule @done (12-10-27 23:58)
  ✔ ngcloak for popovers @done (12-10-27 23:44)
  ✔ delete rule @done (12-10-27 22:28)
@@ -115,3 +127,43 @@ Archive:
  ✔ save name somewhere @done (12-10-14 22:42)
  ✔ main FG,BG,highlight and others @done (12-10-14 22:32)
  ✔ bold, italic, underline @done (12-10-14 22:14)
+
+
+✔ 1.  background:                  "#001417"
+✔ 2.  foreground:                  "#C8C7C4"
+
+✔ 3.  selection:                   "#123466"
+4.  caret:                       "#B7CEEB"
+✘ 5.  lineHighlight:               "#252525"
+✘ 6.  invisibles:                  "#4B4E55"
+
+✘ 7.  selectionForeground:         "#606060"
+✔ 8.  gutterForeground:            "#606060"
+
+9.  activeGuide:                 "#363636"
+10. guide:                       "#252525"
+
+11. bracketContentsForeground:   "#B6DFEB"
+12. bracketContentsOptions:      "underline"
+13. bracketsForeground:          "#B6DFEB"
+14. bracketsOptions:             "foreground underline"
+15. tagsForeground:              "#B6DFEB"
+16. tagsOptions:                 "underline"
+
+17. findHighlight:               "#b9edf8"
+
+18. inactiveSelection:           "#263645"
+19. inactiveSelectionForeground: "#263645"
+
+
+--- ✄ -----------------------
+   bracketsForeground
+   bracketsOptions
+   bracketContentsForeground
+   bracketContentsOptions
+   tagsForeground
+   tagsOptions
+
+   xxxForeground controls the color of the underline and text, while xxxOptions contains a space separated list of flags, which may be 'underline' and 'foreground'. 'underline' will show an underline, while 'foreground' will show the text itself in a different color.
+
+   'bracketsXXX' is used when the caret is next to the brackets, while 'bracketContentsXXX' is used when the caret is between brackets. If you set all the bracketsXXX and bracketContentsXXX keys to the same value, then there will be no visual difference between having the caret next to a bracket or not.
