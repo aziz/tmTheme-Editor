@@ -10,3 +10,24 @@
 #= require_tree lib
 #= require_tree directives
 #= require_tree controllers
+
+
+$ ->
+
+  uploadBtn = $("#upload-btn")
+  uploadInput = $("#files")
+
+  uploadInput.mouseenter ->
+    uploadBtn.addClass("hover")
+
+  uploadInput.mouseleave ->
+    uploadBtn.removeClass("hover")
+
+  uploadInput.click ->
+    uploadBtn.addClass("active")
+    delayed = ->
+      uploadBtn.removeClass("hover").removeClass("active")
+    setTimeout(delayed,1200)
+
+  uploadInput.mouseup ->
+    uploadBtn.removeClass("active")

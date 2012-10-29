@@ -108,18 +108,27 @@ Angie.controller "editorController", ['$scope'], ($scope) ->
           console.log $scope.jsonTheme
           $scope.$apply()
 
+  $scope.update_general_colors = ->
+    globals = $scope.jsonTheme.settings[0]
+    globals.settings = {}
+    globals.settings[gc.name] = gc.color for gc in $scope.gcolors
+
   $scope.download_theme = ->
-    console.log json2plist($scope.jsonTheme)
-    blob = new Blob([json2plist($scope.jsonTheme)], {type: "text/plain"})
+    $scope.update_general_colors()
+    plist = json2plist($scope.jsonTheme)
+    #console.log plist
+    blob = new Blob([plist], {type: "text/plain"})
     saveAs blob, $scope.last_cached_theme
 
   $scope.save_theme = ->
+    $scope.update_general_colors()
+    plist = json2plist($scope.jsonTheme)
+    console.log plist
     $scope.fs && $scope.fs.root.getFile $scope.files.first(), {}, (fileEntry) ->
       fileEntry.createWriter (fileWriter) ->
         fileWriter.onwriteend = (e) -> console.log "File Saved"
         fileWriter.onerror = (e) -> console.log "Error in writing"
-        #console.log json2plist($scope.jsonTheme)
-        blob = new Blob([json2plist($scope.jsonTheme)], {type: "text/plain"})
+        blob = new Blob([plist], {type: "text/plain"})
         fileWriter.write(blob)
 
   $scope.theme_styles = ->
@@ -175,7 +184,7 @@ Angie.controller "editorController", ['$scope'], ($scope) ->
       bgcolor = $scope.get_color($scope.bg())
       if $scope.light_or_dark(bgcolor) == "light"
         style = "pre .l:before { background-color: #{$scope.darken(bgcolor, 2)};"
-        gutter_foreground = $scope.get_color($scope.gutter_fg()) || $scope.darken(bgcolor, 12)
+        gutter_foreground = $scope.get_color($scope.gutter_fg()) || $scope.darken(bgcolor, 18)
         style += "color: #{gutter_foreground}};"
       else
         style = "pre .l:before { background-color: #{$scope.lighten(bgcolor, 2)};"
@@ -208,6 +217,7 @@ Angie.controller "editorController", ['$scope'], ($scope) ->
     $scope.edit_popover_visible = false
 
   $scope.toggle_edit_popover = (rule, rule_index) ->
+    $scope.new_popover_visible = false
     $scope.popover_rule = rule
     $scope.edit_popover_visible = true
     row = $("#scope-lists .rule-#{rule_index}")
@@ -217,6 +227,7 @@ Angie.controller "editorController", ['$scope'], ($scope) ->
       setTimeout(focus, 0)
 
   $scope.toggle_new_rule_popover = ->
+    $scope.edit_popover_visible = false
     $scope.new_rule = Object.clone($scope.new_rule_pristine, true)
     $scope.new_popover_visible = !$scope.new_popover_visible
     if $scope.new_popover_visible

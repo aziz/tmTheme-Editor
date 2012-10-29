@@ -1,9 +1,6 @@
 TODO:
- ☐ close edit-popover before opening new-popover
- ☐ write generals to file on download and save
- ☐ new button
- ☐ test download
  ☐ test save
+ ☐ new button
  ☐ show description of general colors on hover, title on +, - buttons and header buttons
  ☐ add all possible general colors to all themes (?) how to add general color rules
  ☐ drag and drop file input @improvement
@@ -13,13 +10,15 @@ TODO:
 
 Pre Publish:
  ☐ google analytics
- ☐ SEO info, met tags
  ☐ tweet/gplus/fb/github buttons
- ☐ about page
- ☐ add license
+ ☐ SEO info, met tags
+ ☐ put it on github
+ ☐ about page, should link to README on github
  ☐ powered by tmtheme-editor inside themes with links
+ ☐ better readme
 
  low:
+ ☐ when bg has alpha putting it on both pre and preview give the wrong color
  ☐ click on preview and change colors
  ☐ highlight related scopes in preview on rule select
  ☐ setting color with transparency (different alpha channel representation)
@@ -76,6 +75,10 @@ About | donate | Fork on github
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ add license @done (12-10-29 17:06)
+ ✔ write generals to file on download @done (12-10-29 16:12)
+ ✔ test download @done (12-10-29 16:12)
+ ✔ close edit-popover before opening new-popover @done (12-10-29 15:05)
  ✔ show color value as hint on hover @done (12-10-28 22:48)
  ✔ general colors @done (12-10-28 22:32)
  ✔ line number colors @done (12-10-28 22:32)
@@ -167,3 +170,4 @@ Archive:
    xxxForeground controls the color of the underline and text, while xxxOptions contains a space separated list of flags, which may be 'underline' and 'foreground'. 'underline' will show an underline, while 'foreground' will show the text itself in a different color.
 
    'bracketsXXX' is used when the caret is next to the brackets, while 'bracketContentsXXX' is used when the caret is between brackets. If you set all the bracketsXXX and bracketContentsXXX keys to the same value, then there will be no visual difference between having the caret next to a bracket or not.
+
