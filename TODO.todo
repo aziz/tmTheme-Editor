@@ -9,8 +9,10 @@ TODO:
  ☐ refactor handleFileDrop and setFiles and extract repeated code
  ☐ falsh the dropzone on file hover
  ☐ brake template into partials
+ ☐ escape html on converting to plist and unescape when reading back for name and scope
 
 Pre Publish:
+ ☐ favicon
  ☐ google analytics
  ☐ tweet/gplus/fb/github buttons
  ☐ SEO info, met tags
@@ -38,6 +40,7 @@ Pre Publish:
  ☐ position sticky for sidebar table headers
  ☐ focus state for color pickers
  ☐ webworker to do processing in bg
+ ☐ list of known themes, how to add your own
 
 TM_LANGUAGE parsing:
  ☐ for empty lines add a nbsp; for selection stuff

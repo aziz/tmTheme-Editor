@@ -227,9 +227,8 @@
 <style ng-bind="theme_styles()"></style>
 
 <div class="preview"
-     ng-show="jsonTheme"
      ng-style="{ 'background-color': get_color(bg()), 'color': get_color(fg()) }">
-  <pre ng-bind-html-unsafe="colorized" ng-style="{ 'background-color': get_color(bg()), 'color': get_color(fg()) }"></pre>
+  <pre ng-show="jsonTheme" ng-bind-html-unsafe="colorized" ng-style="{ 'background-color': get_color(bg()), 'color': get_color(fg()) }"></pre>
 </div>
 
 </div>
