@@ -37,6 +37,44 @@ Angie.controller "editorController", ['$scope'], ($scope) ->
 
   clamp = (val) -> Math.min(1, Math.max(0, val))
 
+  dropZone = document.getElementById('drop_zone')
+
+  handleFileDrop = (evt) ->
+    evt.stopPropagation()
+    evt.preventDefault()
+    console.log "dropfiles called"
+    files = evt.dataTransfer.files # FileList object.
+    console.log files
+    $scope.files.push(file.name) for file in files
+    for file in files
+      #continue unless f.type.match("image.*")
+      reader = new FileReader()
+      reader.readAsText(file) # Read in the tmtheme file
+      reader.onload = do (file) ->
+        (e) ->
+          $scope.xmlTheme = e.target.result.trim()
+          $scope.fs && $scope.fs.root.getFile file.name, {create: true}, (fileEntry) ->
+            fileEntry.createWriter (fileWriter) ->
+              fileWriter.onwriteend = (e) ->
+                $.cookie('last_theme', file.name)
+                $scope.last_cached_theme = file.name
+              blob = new Blob([$scope.xmlTheme], {type: "text/plain"})
+              fileWriter.write(blob)
+          $scope.jsonTheme = plist_to_json($scope.xmlTheme)
+          console.log $scope.jsonTheme
+          $scope.$apply()
+
+
+
+  handleDragOver = (evt) ->
+    console.log "dragover called"
+    evt.stopPropagation()
+    evt.preventDefault()
+    evt.dataTransfer.dropEffect = "copy"
+
+  dropZone.addEventListener('dragover', handleDragOver, false);
+  dropZone.addEventListener('drop', handleFileDrop, false);
+
   window.requestFileSystem  = window.requestFileSystem || window.webkitRequestFileSystem
   window.BlobBuilder        = window.BlobBuilder || window.WebKitBlobBuilder
   window.requestFileSystem(window.TEMPORARY, 3*1024*1024,  FsInitHandler, FsErrorHandler)
@@ -102,9 +140,9 @@ Angie.controller "editorController", ['$scope'], ($scope) ->
               fileWriter.onwriteend = (e) ->
                 $.cookie('last_theme', file.name)
                 $scope.last_cached_theme = file.name
-              blob = new Blob([e.target.result], {type: "text/plain"})
+              blob = new Blob([$scope.xmlTheme], {type: "text/plain"})
               fileWriter.write(blob)
-          $scope.jsonTheme = plist_to_json(e.target.result)
+          $scope.jsonTheme = plist_to_json($scope.xmlTheme)
           console.log $scope.jsonTheme
           $scope.$apply()
 
@@ -123,13 +161,25 @@ Angie.controller "editorController", ['$scope'], ($scope) ->
   $scope.save_theme = ->
     $scope.update_general_colors()
     plist = json2plist($scope.jsonTheme)
-    console.log plist
-    $scope.fs && $scope.fs.root.getFile $scope.files.first(), {}, (fileEntry) ->
-      fileEntry.createWriter (fileWriter) ->
-        fileWriter.onwriteend = (e) -> console.log "File Saved"
-        fileWriter.onerror = (e) -> console.log "Error in writing"
-        blob = new Blob([plist], {type: "text/plain"})
-        fileWriter.write(blob)
+    #console.log plist
+    #console.log $scope.files.first()
+    $scope.fs && $scope.fs.root.getFile $scope.files.first(), {create: false}, (fileEntry) ->
+
+      fileEntry.remove ->
+
+        #console.log('File removed.')
+        $scope.fs && $scope.fs.root.getFile $scope.files.first(), {create: true}, (fileEntry) ->
+          fileEntry.createWriter (fileWriter) ->
+            fileWriter.onwriteend = (e) -> console.log "File Saved"
+            fileWriter.onerror = (e) -> console.log "Error in writing"
+            blob = new Blob([plist], {type: "text/plain"})
+            fileWriter.write(blob)
+          , FsErrorHandler
+        , FsErrorHandler
+
+      , FsErrorHandler
+    , FsErrorHandler
+
 
   $scope.theme_styles = ->
     styles = ""

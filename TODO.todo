@@ -1,12 +1,14 @@
 TODO:
- ☐ test save
+ ☐ download by the theme real name from the app not the filename
  ☐ new button
  ☐ show description of general colors on hover, title on +, - buttons and header buttons
  ☐ add all possible general colors to all themes (?) how to add general color rules
- ☐ drag and drop file input @improvement
  ☐ preview theme @wip
  ☐ check errors in: Dawn, Monokai FannonEd, idleFingers
  ☐ add lang specific scopes to pre to get scope specific backgrounds
+ ☐ refactor handleFileDrop and setFiles and extract repeated code
+ ☐ falsh the dropzone on file hover
+ ☐ brake template into partials
 
 Pre Publish:
  ☐ google analytics
@@ -75,6 +77,9 @@ About | donate | Fork on github
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ test save @done (12-10-30 08:38)
+ ✔ hide preview code if no jsontheme @done (12-10-30 01:07)
+ ✔ drag and drop file input @improvement @done (12-10-30 00:29)
  ✔ add license @done (12-10-29 17:06)
  ✔ write generals to file on download @done (12-10-29 16:12)
  ✔ test download @done (12-10-29 16:12)
@@ -171,3 +176,11 @@ Archive:
 
    'bracketsXXX' is used when the caret is next to the brackets, while 'bracketContentsXXX' is used when the caret is between brackets. If you set all the bracketsXXX and bracketContentsXXX keys to the same value, then there will be no visual difference between having the caret next to a bracket or not.
 
+
+
+// Check for the various File API support.
+if (window.File && window.FileReader && window.FileList && window.Blob) {
+  // Great success! All the File APIs are supported.
+} else {
+  alert('The File APIs are not fully supported in this browser.');
+}

@@ -4,12 +4,12 @@
   <title><%= title -%></title>
   <%- css("app") -%>
 </head>
-<body ng-app="ThemeEditor" ng-controller="editorController"
+<body id="drop_zone" ng-app="ThemeEditor" ng-controller="editorController"
       shortcut='{ "escape": "hide_all_popovers()", "ctrl+n": "toggle_new_rule_popover()" }'>
 <div ng-controller="previewController">
 
 <header id="header">
-  <div class="btn-toolbar">
+  <div class="btn-toolbar new-upload">
     <div class="btn-group">
       <a id="upload-btn" class="btn btn-info btn-small">Upload</a>
       <a ng-click="" class="btn btn-info btn-small">New</a>
@@ -24,7 +24,7 @@
   <input type="file" id="files" class="upload" ng-model="input" onchange="angular.element(this).scope().setFiles(this)" />
 
   <div class="sep"></div>
-  <div ng-cloak class="languages">
+  <div ng-cloak ng-show="jsonTheme" class="languages">
     <div class="btn-group">
       <a ng-click="" class="btn btn-small dropdown-toggle" data-toggle="dropdown">
         {{ current_lang }}
@@ -38,21 +38,21 @@
     </div>
   </div>
   <div class="links">
+    <ul>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Github</a></li>
+    </ul>
+  </div>
 
-    <!--
-    <iframe src="http://ghbtns.com/github-btn.html?user=aziz&amp;repo=PlainTasks&amp;type=fork"
-            allowtransparency="true" frameborder="0" scrolling="0" width="53px" height="20px">
+  <div class="social-links">
+    <iframe src="http://ghbtns.com/github-btn.html?user=aziz&amp;repo=PlainTasks&amp;type=watch"
+            allowtransparency="true" frameborder="0" scrolling="0" width="50px" height="20px">
     </iframe>
-    -->
 
-    <iframe src="http://ghbtns.com/github-btn.html?user=aziz&amp;repo=PlainTasks&amp;type=watch&amp;count=true"
-            allowtransparency="true" frameborder="0" scrolling="0" width="110px" height="20px">
-    </iframe>
-
-    <a href="https://twitter.com/share" class="twitter-share-button" data-via="aziz">Tweet</a>
+    <a href="https://twitter.com/share" class="twitter-share-button" data-via="aziz" data-count="none">Tweet</a>
     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 
-    <div class="g-plusone" data-size="medium"></div>
+    <div class="g-plusone" data-size="medium" data-annotation="none"></div>
     <script type="text/javascript">
       (function() {
         var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
@@ -60,11 +60,6 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
       })();
     </script>
-
-    <ul>
-      <li><a href="#">About</a></li>
-      <li><a href="#">Github</a></li>
-    </ul>
   </div>
 </header>
 
@@ -231,7 +226,9 @@
 <style ng-bind="theme_selection()"></style>
 <style ng-bind="theme_styles()"></style>
 
-<div class="preview" ng-style="{ 'background-color': get_color(bg()), 'color': get_color(fg()) }">
+<div class="preview"
+     ng-show="jsonTheme"
+     ng-style="{ 'background-color': get_color(bg()), 'color': get_color(fg()) }">
   <pre ng-bind-html-unsafe="colorized" ng-style="{ 'background-color': get_color(bg()), 'color': get_color(fg()) }"></pre>
 </div>
 
