@@ -11,7 +11,7 @@ window.json2plist = (json) ->
       obj_str += "#{'\t'.repeat(oindent)}<key>#{okey}</key>\n"
       switch typeof ovalue
         when "string"
-          obj_str += "#{'\t'.repeat(oindent)}<string>#{ovalue}</string>\n"
+          obj_str += "#{'\t'.repeat(oindent)}<string>#{ovalue.escapeHTML()}</string>\n"
         when "object"
           if Array.isArray(ovalue)
             obj_str += "#{'\t'.repeat(oindent)}<array>\n#{plist_array2string(ovalue, oindent + 1)}#{'\t'.repeat(oindent)}</array>\n"
@@ -29,7 +29,7 @@ window.json2plist = (json) ->
     content += "#{'\t'.repeat(indent_level)}<key>#{key}</key>\n"
     switch typeof value
       when "string"
-        content += "#{'\t'.repeat(indent_level)}<string>#{value}</string>\n"
+        content += "#{'\t'.repeat(indent_level)}<string>#{value.escapeHTML()}</string>\n"
       when "object"
         if Array.isArray(value)
           content += "#{'\t'.repeat(indent_level)}<array>\n#{plist_array2string(value, indent_level+1)}#{'\t'.repeat(indent_level)}</array>\n"

@@ -7,12 +7,10 @@ path     = require 'path'
 less     = require 'less'
 sugar    = require 'sugar'
 
-
 template_engine = require 'ejs-locals'
 gzip            = require 'connect-gzip'
 poweredBy       = require 'connect-powered-by'
 assets_manager  = require 'connect-assets'
-
 
 app = module.exports = express()
 

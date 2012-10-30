@@ -1,13 +1,4 @@
 
-## How to use this:
-- install pow, node, npm
-- `npm install`
-- `echo 9999 > ~/.pow/node-sandbox`
-- `nodemon app.coffee`
-- open [http://node-sandbox.dev/](http://node-sandbox.dev/) in browser
-- to run in production mode locally run `NODE_ENV=production PORT=9999 coffee app.coffee`
-
-
 ## Used HTML5 tech:
 - Blob constructing
 - FileReader API
@@ -22,8 +13,8 @@
 
 
 ## Copyright
-TMThemeEditor
-Copyright (C) 2012 Allen Bargi
+**TMThemeEditor**  
+&copy; Copyright 2012 Allen Bargi
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as

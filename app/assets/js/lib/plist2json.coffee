@@ -23,8 +23,8 @@ window.jsonify = (tag) ->
         a.push jsonify(nodes[i])  unless nodes[i].nodeName is "#text"
         i++
       a
-    when "string"  then tag.textContent
-    when "data"    then tag.textContent
+    when "string"  then tag.textContent.unescapeHTML()
+    when "data"    then tag.textContent.unescapeHTML()
     when "real"    then tag.textContent
     when "integer" then tag.textContent
     when "true"    then true

@@ -1,18 +1,15 @@
 TODO:
- ☐ download by the theme real name from the app not the filename
- ☐ new button
  ☐ show description of general colors on hover, title on +, - buttons and header buttons
+ ☐ add lang specific scopes to pre to get scope specific backgrounds (idefingers)
+ ☐ new button
  ☐ add all possible general colors to all themes (?) how to add general color rules
- ☐ preview theme @wip
- ☐ check errors in: Dawn, Monokai FannonEd, idleFingers
- ☐ add lang specific scopes to pre to get scope specific backgrounds
  ☐ refactor handleFileDrop and setFiles and extract repeated code
  ☐ falsh the dropzone on file hover
  ☐ brake template into partials
- ☐ escape html on converting to plist and unescape when reading back for name and scope
+ ☐ check errors in: Dawn, Monokai FannonEd, idleFingers
+ ☐ preview theme @wip
 
 Pre Publish:
- ☐ favicon
  ☐ google analytics
  ☐ tweet/gplus/fb/github buttons
  ☐ SEO info, met tags
@@ -20,6 +17,7 @@ Pre Publish:
  ☐ about page, should link to README on github
  ☐ powered by tmtheme-editor inside themes with links
  ☐ better readme
+ ☐ option: chrome app
 
  low:
  ☐ when bg has alpha putting it on both pre and preview give the wrong color
@@ -80,6 +78,9 @@ About | donate | Fork on github
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ escape html on converting to plist and unescape when reading back for name and scope @done (12-10-30 22:59)
+ ✔ favicon @done (12-10-30 22:11)
+ ✔ download by the theme real name from the app not the filename @done (12-10-30 22:07)
  ✔ test save @done (12-10-30 08:38)
  ✔ hide preview code if no jsontheme @done (12-10-30 01:07)
  ✔ drag and drop file input @improvement @done (12-10-30 00:29)

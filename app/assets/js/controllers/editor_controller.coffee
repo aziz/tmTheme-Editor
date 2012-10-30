@@ -156,7 +156,7 @@ Angie.controller "editorController", ['$scope'], ($scope) ->
     plist = json2plist($scope.jsonTheme)
     #console.log plist
     blob = new Blob([plist], {type: "text/plain"})
-    saveAs blob, $scope.last_cached_theme
+    saveAs blob, "#{$scope.jsonTheme.name}.tmtheme"
 
   $scope.save_theme = ->
     $scope.update_general_colors()
