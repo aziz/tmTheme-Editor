@@ -1,20 +1,19 @@
 {
-  "name": "sandbox",
-  "version": "0.0.1",
+  "name": "tmtheme-editor",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "start": "coffee app"
   },
   "dependencies": {
-    "express": "3.0.0rc3",
-    "ejs-locals": "~0.1.5",
+    "express": "3.0.0rc5",
+    "ejs-locals": "0.2.5",
     "connect-assets": "*",
     "connect-powered-by": "*",
     "connect-gzip": "*",
     "coffee-script": "*",
     "less": "*",
-    "sugar": "*",
-    "cabinet": "*"
+    "sugar": "*"
   },
   "devDependencies": {
     "nodemon": "*"

@@ -4,79 +4,217 @@
   <title><%= title -%></title>
   <%- css("app") -%>
 </head>
-<body ng-app="ThemeEditor" ng-controller="editorController">
+<body id="drop_zone" ng-app="ThemeEditor" ng-controller="editorController"
+      shortcut='{ "escape": "hide_all_popovers()", "ctrl+n": "toggle_new_rule_popover()" }'>
+<div ng-controller="previewController">
 
-<div class="navbar navbar-static-top">
-  <div class="navbar-inner">
-    <input type="color" value="rgba(100,0,0,.5)">
-    <a class="brand" href="#">{{jsonTheme.name}}</a>
-    <a ng-click="save_theme()" class="btn btn-success btn-small">Download</a>
-    <div class="upload">
-      <input type="file" id="files" ng-model="input" onchange="angular.element(this).scope().setFiles(this)" />
+<header id="header">
+  <div class="btn-toolbar new-upload">
+    <div class="btn-group">
+      <a id="upload-btn" class="btn btn-info btn-small">Upload</a>
+      <a ng-click="" class="btn btn-info btn-small">New</a>
     </div>
+  </div>
+  <div class="btn-toolbar dl-save">
+    <div class="btn-group">
+      <a ng-click="save_theme()" class="btn btn-success btn-small  save">Save</a>
+      <a ng-click="download_theme()" class="btn btn-success btn-small download">Download</a>
+    </div>
+  </div>
+  <input type="file" id="files" class="upload" ng-model="input" onchange="angular.element(this).scope().setFiles(this)" />
+
+  <div class="sep"></div>
+  <div ng-cloak ng-show="jsonTheme" class="languages">
+    <div class="btn-group">
+      <a ng-click="" class="btn btn-small dropdown-toggle" data-toggle="dropdown">
+        {{ current_lang }}
+        <span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu">
+        <li ng-repeat="lang in available_langs">
+          <a ng-click="set_lang(lang)">{{lang}}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="links">
+    <ul>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Github</a></li>
+    </ul>
+  </div>
+</header>
+
+<div ng-cloak class="titlebar">
+  <div class="title">
+    <input type="text" ng-model="jsonTheme.name">
+  </div>
+  <div class="actions" ng-hide="gcolors.length==0">
+    <div ng-click="toggle_new_rule_popover()" ng-class="{'active': new_popover_visible }" class="add">+</div>
+    <div ng-click="delete_rule(selected_rule)" class="remove">-</div>
   </div>
 </div>
 
-<div class="sidebar" ng-style="{ 'background-color': get_color(jsonTheme.settings[0].settings.background)}">
+<div ng-cloak class="sidebar" ng-style="{ 'background-color': get_color(bg())}">
 
   <table class="list general">
-    <thead>
+    <thead ng-hide="gcolors.length==0">
       <tr>
         <th class="align-begin truncate">General Colors</th>
         <th class="big-color-box">Color</th>
+        <th class="check-box"></th>
       </tr>
     </thead>
-    <tbody ng-style="{ 'background-color': get_color(jsonTheme.settings[0].settings.background), 'color': get_color(jsonTheme.settings[0].settings.foreground) }">
-      <tr ng-repeat="(key, value) in jsonTheme.settings[0].settings">
-        <td class="name-box truncate" ng-bind="key"></td>
-        <td ng-style="{ 'background-color': get_color(value) }"></td>
+    <tbody ng-style="{ 'background-color': get_color(bg()), 'color': get_color(fg()) }">
+
+      <tr ng-repeat="gcolor in gcolors">
+        <td class="name-box truncate" ng-bind="gcolor.name"></td>
+        <td>
+          <div class="colorpicker-box"
+               ng-class="has_color(gcolor.color)"
+               ng-style="{ 'background-color': get_color(gcolor.color), 'border-color': border_color(get_color(bg())) }"></div>
+          <input type="color" class="colorpicker-input"
+                 title="{{gcolor.color}}"
+                 ng-model="gcolor.color"
+                 ng-change="update_gcolor(gcolor, angualr.element(this).val())">
+          <td>
+          </td>
+        </td>
       </tr>
+
     </tbody>
   </table>
 
 
-  <table class="list">
-    <thead>
+  <table id="scope-lists" class="list">
+    <thead ng-show="jsonTheme">
       <tr>
         <th class="align-begin truncate">Scope Name</th>
-        <!-- <th>selector</th> -->
         <th class="color-box">FG</th>
         <th class="color-box">BG</th>
         <th class="check-box is_bold">B</th>
         <th class="check-box is_italic">I</th>
         <th class="check-box is_underline">U</th>
+        <th class="check-box"></th>
       </tr>
     </thead>
-    <tbody ng-style="{ 'background-color': get_color(jsonTheme.settings[0].settings.background), 'color': get_color(jsonTheme.settings[0].settings.foreground) }">
-      <tr ng-repeat="rule in jsonTheme.settings">
+    <tbody ng-style="{ 'background-color': get_color(bg()), 'color': get_color(fg()) }">
+      <tr ng-repeat="rule in jsonTheme.settings"
+          ng-hide="$first"
+          ng-click="mark_as_selected(rule)"
+          ng-dblclick="toggle_edit_popover(rule, $index)"
+          ng-class="selected_gradient(rule)"
+          class="rule-{{$index}}">
         <td class="name-box truncate" ng-bind="rule.name"
             ng-style="{ 'color': get_color(rule.settings.foreground), 'background-color': get_color(rule.settings.background) }"
             ng-class="{'is_italic' : is('italic', rule), 'is_bold': is('bold', rule), 'is_underline': is('underline', rule)}"></td>
-        <!-- <td ng-bind="rule.scope"></td> -->
-        <td class="color-box" ng-style="{ 'background-color': get_color(rule.settings.foreground) }"></td>
-        <td class="color-box" ng-style="{ 'background-color': get_color(rule.settings.background) }"></td>
-        <td class="check-box"><input type="checkbox" ng-checked="is('bold', rule)" ng-click="toggle('bold',rule)"></td>
-        <td class="check-box"><input type="checkbox" ng-checked="is('italic', rule)" ng-click="toggle('italic',rule)"></td>
+        <td class="color-box">
+          <div class="colorpicker-box" ng-class="has_color(rule.settings.foreground)" ng-style="{ 'background-color': get_color(rule.settings.foreground), 'border-color': border_color(get_color(bg())) }"></div>
+          <input class="colorpicker-input" type="color" title="{{rule.settings.foreground}}" ng-model="rule.settings.foreground">
+        </td>
+        <td class="color-box">
+          <div class="colorpicker-box" ng-class="has_color(rule.settings.background)" ng-style="{ 'background-color': get_color(rule.settings.background), 'border-color': border_color(get_color(bg())) }"></div>
+          <input class="colorpicker-input" type="color" title="{{rule.settings.background}}" ng-model="rule.settings.background">
+        </td>
+        <td class="check-box"><input type="checkbox" ng-checked="is('bold', rule)"      ng-click="toggle('bold',rule)"     ></td>
+        <td class="check-box"><input type="checkbox" ng-checked="is('italic', rule)"    ng-click="toggle('italic',rule)"   ></td>
         <td class="check-box"><input type="checkbox" ng-checked="is('underline', rule)" ng-click="toggle('underline',rule)"></td>
+        <td class="check-box"></td>
       </tr>
     </tbody>
   </table>
 </div>
 
-<style ng-bind="styles()"></style>
+<div ng-cloak id="edit-popover" class="edit-popover" ng-show="edit_popover_visible">
+  <label>Name</label>
+  <textarea class="name-input" ng-model="popover_rule.name"></textarea>
 
-<div class="preview"
-     ng-controller="previewController"
-     ng-style="{ 'background-color': get_color(jsonTheme.settings[0].settings.background), 'color': get_color(jsonTheme.settings[0].settings.foreground) }">
-  <pre  contentEditable="true" ng-bind-html-unsafe="preview()"
-        ng-style="{ 'background-color': get_color(jsonTheme.settings[0].settings.background), 'color': get_color(jsonTheme.settings[0].settings.foreground) }">
-  </pre>
+  <table>
+    <tr>
+      <td>
+        <label>Font Styles</label>
+        <label class="small"><input type="checkbox" ng-checked="is('bold', popover_rule)"      ng-click="toggle('bold',popover_rule)"     > <b>Bold</b></label>
+        <label class="small"><input type="checkbox" ng-checked="is('italic', popover_rule)"    ng-click="toggle('italic',popover_rule)"   > <i>Italic</i></label>
+        <label class="small"><input type="checkbox" ng-checked="is('underline', popover_rule)" ng-click="toggle('underline',popover_rule)"> <u>Underline</u></label>
+      </td>
+      <td>
+        <label>Foreground</label>
+        <div class="fg-box" ng-class="has_color(popover_rule.settings.foreground)">
+          <div class="colorpicker-box" ng-class="has_color(popover_rule.settings.foreground)" ng-style="{ 'background-color': get_color(popover_rule.settings.foreground) }"></div>
+          <a ng-click="reset_color(popover_rule, 'foreground')" class="reset">Reset</a>
+          <input class="colorpicker-input" type="color" title="{{popover_rule.settings.foreground}}" ng-model="popover_rule.settings.foreground">
+        </div>
+
+        <label>Background</label>
+        <div class="bg-box" ng-class="has_color(popover_rule.settings.background)">
+          <div class="colorpicker-box" ng-class="has_color(popover_rule.settings.background)" ng-style="{ 'background-color': get_color(popover_rule.settings.background) }"></div>
+          <a ng-click="reset_color(popover_rule, 'background')" class="reset">Reset</a>
+          <input class="colorpicker-input" type="color" title="{{popover_rule.settings.background}}" ng-model="popover_rule.settings.background">
+        </div>
+      </td>
+    </tr>
+  </table>
+
+  <label>Scope</label>
+  <textarea ng-model="popover_rule.scope"></textarea>
+
+  <div class="btn-sep">
+    <a ng-click="delete_rule(popover_rule)" class="btn btn-small btn-danger pull-left">Delete</a>
+    <a ng-click="close_popover()" class="btn btn-small transparent pull-right">Done</a>
+  </div>
 </div>
 
+
+<div ng-cloak id="new-popover" class="edit-popover new-popover" ng-show="new_popover_visible">
+  <label>Name</label>
+  <textarea class="name-input" ng-model="new_rule.name"></textarea>
+
+  <table>
+    <tr>
+      <td>
+        <label>Font Styles</label>
+        <label class="small"><input type="checkbox" ng-checked="is('bold', new_rule)"      ng-click="toggle('bold',new_rule)"     > <b>Bold</b></label>
+        <label class="small"><input type="checkbox" ng-checked="is('italic', new_rule)"    ng-click="toggle('italic',new_rule)"   > <i>Italic</i></label>
+        <label class="small"><input type="checkbox" ng-checked="is('underline', new_rule)" ng-click="toggle('underline',new_rule)"> <u>Underline</u></label>
+      </td>
+      <td>
+        <label>Foreground</label>
+        <div class="fg-box" ng-class="has_color(new_rule.settings.foreground)">
+          <div class="colorpicker-box" ng-class="has_color(new_rule.settings.foreground)" ng-style="{ 'background-color': get_color(new_rule.settings.foreground) }"></div>
+          <a ng-click="reset_color(new_rule, 'foreground')" class="reset">Reset</a>
+          <input class="colorpicker-input" type="color" title="{{new_rule.settings.foreground}}" ng-model="new_rule.settings.foreground">
+        </div>
+
+        <label>Background</label>
+        <div class="bg-box" ng-class="has_color(new_rule.settings.background)">
+          <div class="colorpicker-box" ng-class="has_color(new_rule.settings.background)" ng-style="{ 'background-color': get_color(new_rule.settings.background) }"></div>
+          <a ng-click="reset_color(new_rule, 'background')" class="reset">Reset</a>
+          <input class="colorpicker-input" type="color" title="{{new_rule.settings.background}}" ng-model="new_rule.settings.background">
+        </div>
+      </td>
+    </tr>
+  </table>
+
+  <label>Scope</label>
+  <textarea ng-model="new_rule.scope"></textarea>
+
+  <div class="btn-sep">
+    <a ng-click="toggle_new_rule_popover()" class="btn btn-small pull-left">Cancel</a>
+    <a ng-click="add_rule(new_rule)" class="btn btn-small btn-primary transparent pull-right">&nbsp;&nbsp;Add&nbsp;&nbsp;</a>
+  </div>
+</div>
+
+<style ng-bind="theme_gutter()"></style>
+<style ng-bind="theme_selection()"></style>
+<style ng-bind="theme_styles()"></style>
+
+<div class="preview"
+     ng-style="{ 'background-color': get_color(bg()), 'color': get_color(fg()) }">
+  <pre ng-show="jsonTheme" ng-bind-html-unsafe="colorized" ng-style="{ 'background-color': get_color(bg()), 'color': get_color(fg()) }"></pre>
+</div>
+
+</div>
 <%- js("application") -%>
 </body>
 </html>
-
-
-
 

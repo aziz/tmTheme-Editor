@@ -1,4 +1,27 @@
-#!/usr/bin/env node
+// Cross-browser xml parsing
+parseXML: function( data ) {
+  var xml, tmp;
+  if ( !data || typeof data !== "string" ) {
+    return null;
+  }
+  try {
+    if ( window.DOMParser ) { // Standard
+      tmp = new DOMParser();
+      xml = tmp.parseFromString( data , "text/xml" );
+    } else { // IE
+      xml = new ActiveXObject( "Microsoft.XMLDOM" );
+      xml.async = false;
+      xml.loadXML( data );
+    }
+  } catch( e ) {
+    xml = undefined;
+  }
+  if ( !xml || !xml.documentElement || xml.getElementsByTagName( "parsererror" ).length ) {
+    jQuery.error( "Invalid XML: " + data );
+  }
+  return xml;
+};
+
 Sound.play = function() {}
 Sound.prototype = { something; }
 Sound.prototype.play = function() {}
@@ -19,40 +42,4 @@ sdfds
 sdfdsf
 sdfsdfsdf"
 
-/*!
- * jQuery JavaScript Library v'1.8.2'
- * http://jquery.com/
- *
- * Includes Sizzle.js
- * http://sizzlejs.com/
- *
- * Copyright 2012 jQuery Foundation and other contributors
- * Released under the MIT license
- * http://jquery.org/license
- *
- * Date: Thu Sep 20 2012 21:13:05 GMT-0400 (Eastern Daylight Time)
- */
-
-// Cross-browser xml parsing
-parseXML: function( data ) {
-  var xml, tmp;
-  if ( !data || typeof data !== "string" ) {
-    return null;
-  }
-  try {
-    if ( window.DOMParser ) { // Standard
-      tmp = new DOMParser();
-      xml = tmp.parseFromString( data , "text/xml" );
-    } else { // IE
-      xml = new ActiveXObject( "Microsoft.XMLDOM" );
-      xml.async = "false";
-      xml.loadXML( data );
-    }
-  } catch( e ) {
-    xml = undefined;
-  }
-  if ( !xml || !xml.documentElement || xml.getElementsByTagName( "parsererror" ).length ) {
-    jQuery.error( "Invalid XML: " + data );
-  }
-  return xml;
-};
+#!/usr/bin/env node

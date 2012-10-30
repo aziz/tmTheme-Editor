@@ -40,13 +40,13 @@ legend {
 label,
 input,
 button,
-select,
+//select,
 textarea {
   #font > .shorthand(@baseFontSize,normal,@baseLineHeight); // Set size, weight, line-height here
 }
 input,
 button,
-select,
+//select,
 textarea {
   font-family: @baseFontFamily; // And only set font-family here for those that need it (note the missing label element)
 }
@@ -61,7 +61,7 @@ label {
 // -------------------------
 
 // Shared size and type resets
-select,
+//select,
 textarea,
 input[type="text"],
 input[type="password"],
@@ -151,7 +151,7 @@ input[type="checkbox"] {
 }
 
 // Set the height of select and file controls to match text inputs
-select,
+//select,
 input[type="file"] {
   height: 30px; /* In IE7, the height of the select element cannot be changed by height, only font-size */
   *margin-top: 4px; /* For IE7, add top margin to align select with labels */
@@ -159,20 +159,20 @@ input[type="file"] {
 }
 
 // Make select elements obey height by applying a border
-select {
-  width: 220px; // default input width + 10px of padding that doesn't get applied
-  border: 1px solid #bbb;
-  background-color: @inputBackground; // Chrome on Linux and Mobile Safari need background-color
-}
+// select {
+//   width: 220px; // default input width + 10px of padding that doesn't get applied
+//   border: 1px solid #bbb;
+//   background-color: @inputBackground; // Chrome on Linux and Mobile Safari need background-color
+// }
 
 // Make multiple select elements height not fixed
-select[multiple],
-select[size] {
-  height: auto;
-}
+// select[multiple],
+// select[size] {
+//   height: auto;
+// }
 
 // Focus for select, file, radio, and checkbox
-select:focus,
+//select:focus,
 input[type="file"]:focus,
 input[type="radio"]:focus,
 input[type="checkbox"]:focus {
@@ -266,12 +266,12 @@ textarea {
 
 // Grid style input sizes
 input[class*="span"],
-select[class*="span"],
+//select[class*="span"],
 textarea[class*="span"],
 .uneditable-input[class*="span"],
 // Redeclare since the fluid row class is more specific
 .row-fluid input[class*="span"],
-.row-fluid select[class*="span"],
+//.row-fluid select[class*="span"],
 .row-fluid textarea[class*="span"],
 .row-fluid .uneditable-input[class*="span"] {
   float: none;
@@ -283,7 +283,7 @@ textarea[class*="span"],
 .input-prepend input[class*="span"],
 .input-prepend .uneditable-input[class*="span"],
 .row-fluid input[class*="span"],
-.row-fluid select[class*="span"],
+// .row-fluid select[class*="span"],
 .row-fluid textarea[class*="span"],
 .row-fluid .uneditable-input[class*="span"],
 .row-fluid .input-prepend [class*="span"],
@@ -315,10 +315,10 @@ textarea[class*="span"],
 
 // Disabled and read-only inputs
 input[disabled],
-select[disabled],
+//select[disabled],
 textarea[disabled],
 input[readonly],
-select[readonly],
+//select[readonly],
 textarea[readonly] {
   cursor: not-allowed;
   background-color: @inputDisabledBackground;
@@ -353,8 +353,9 @@ input[type="checkbox"][readonly] {
 // HTML5 invalid states
 // Shares styles with the .control-group.error above
 input:focus:required:invalid,
-textarea:focus:required:invalid,
-select:focus:required:invalid {
+textarea:focus:required:invalid
+//, select:focus:required:invalid
+{
   color: #b94a48;
   border-color: #ee5f5b;
   &:focus {
@@ -412,7 +413,7 @@ select:focus:required:invalid {
   white-space: nowrap; // Prevent span and input from separating
 
   input,
-  select,
+  //select,
   .uneditable-input {
     position: relative; // placed here by default so that on :focus we can place the input above the .add-on for full border and box-shadow goodness
     margin-bottom: 0; // prevent bottom margin from screwing up alignment in stacked forms
@@ -462,7 +463,7 @@ select:focus:required:invalid {
 }
 .input-append {
   input,
-  select,
+  //select,
   .uneditable-input {
     .border-radius(@inputBorderRadius 0 0 @inputBorderRadius);
   }
@@ -474,7 +475,7 @@ select:focus:required:invalid {
 // Remove all border-radius for inputs with both prepend and append
 .input-prepend.input-append {
   input,
-  select,
+  //select,
   .uneditable-input {
     .border-radius(0);
   }
@@ -536,7 +537,7 @@ input.search-query {
 .form-horizontal {
   input,
   textarea,
-  select,
+  //select,
   .help-inline,
   .uneditable-input,
   .input-prepend,

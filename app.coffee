@@ -21,10 +21,8 @@ app.configure ->
   app.set 'port', settings.port
   app.set 'views', "#{__dirname}/app/templates"
   app.set 'view engine', 'ejs'
-  app.use express.favicon()
   app.use express.bodyParser()
   app.use express.cookieParser()
-  #app.use express.session { secret: settings.sessionSecret }
   app.use express.methodOverride()
   app.use assets_manager("buildDir": "tmp", "src": "app/assets/")
   app.use app.router

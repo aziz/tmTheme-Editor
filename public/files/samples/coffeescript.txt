@@ -1,0 +1,56 @@
+Angie.controller "previewController", ['$scope', '$http', '$rootScope'], ($scope, $http, $rootScope) ->
+
+  $scope.current_lang = "coffeescript"
+  $scope.lang_path = "/files/languages/#{$scope.current_lang}.tmLanguage"
+  $scope.sample_path = "/files/samples/#{$scope.current_lang}.txt"
+  $scope.available_langs = ['javascript', 'coffeescript', 'html', 'ruby', 'python'] #
+
+  $scope.plist_lang = null
+  $scope.json_lang = null
+
+  $scope.$watch 'lang_path', (n,o) ->
+    if $scope.lang_path
+      $http.get($scope.lang_path).success (data) ->
+        $scope.colorized = ""
+        $scope.parsed_code = []
+        $scope.scope = []
+        $scope.plist_lang = data
+        $scope.json_lang = plist_to_json($scope.plist_lang)
+        $scope.single_line_patterns = single_line_patterns()
+        $scope.multi_line_patterns = multi_line_patterns()
+        console.log "LANG:", $scope.json_lang
+        console.log "MULTI LINES:",  { patterns: $scope.multi_line_patterns }
+        console.log "SINGLE LINES:", { patterns: $scope.single_line_patterns }
+        $http.get($scope.sample_path).success (code) ->
+          $scope.code = code
+          #$scope.code = "#!/usr/bin/env node"
+          $scope.parse()
+
+# Assignment:
+number   = 42
+opposite = true
+
+# Conditions:
+number = -42 if opposite
+
+# Functions:
+square = (x) -> x * x
+
+# Arrays:
+list = [1, 2, 3, 4, 5]
+
+# Objects:
+math =
+  root:   Math.sqrt
+  square: square
+  cube:   (x) -> x * square x
+
+# Splats:
+race = (winner, runners...) ->
+  print winner, runners
+
+# Existence:
+alert "I knew it!" if elvis?
+
+# Array comprehensions:
+cubes = (math.cube num for num in list)

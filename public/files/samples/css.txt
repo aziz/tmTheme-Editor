@@ -1,0 +1,24 @@
+body {
+    font-family: arial;
+    }
+h1 {    
+    background-color:#CCC;
+    border: 1px solid;
+    color:#39F;
+    text-align: center;
+    }
+
+table {
+    background-color: #F60;
+    border: 1px solid #39F;
+    width: 100%;
+    }
+td {
+    border: 0px;
+    text-align: center;
+    }
+p {
+    color:#09F;
+    text-indent: 20px;    
+    }
+
