@@ -50,34 +50,9 @@ TM_LANGUAGE parsing:
    ☐ adjust begin and size based on length on lb text
  ☐ support for repository and include (support for external includes)
 
-multi line algo:
- ☐ check if the interval is not taken (something bigger surround me)
- ☐ remove all inside single line scopes
- ☐ apply scope,begincapture,endcapture,contentName
- ☐ go inside and apply patterns for text inside
-
-READ:
- ☐ export-html plugin
- ☐ http://blog.stevenlevithan.com/archives/javascript-regex-lookbehind
- ☐ http://manual.macromates.com/en/language_grammars#language_grammars
-
- ☐ coffee
- ☐ css
- ☐ html
- ☐ less
- ☐ ruby
- ☐ python
- ☐ java
- ☐ c
- ☐ markdown
-
-
-change lang x | font-family x | font size x |
-Settings: show-invis? | show line numbers? | highlight current line?
-About | donate | Fork on github
-
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ readme @done (12-10-31 01:28)
  ✔ escape html on converting to plist and unescape when reading back for name and scope @done (12-10-30 22:59)
  ✔ favicon @done (12-10-30 22:11)
  ✔ download by the theme real name from the app not the filename @done (12-10-30 22:07)
@@ -140,51 +115,3 @@ Archive:
  ✔ main FG,BG,highlight and others @done (12-10-14 22:32)
  ✔ bold, italic, underline @done (12-10-14 22:14)
 
-
-✔ 1.  background:                  "#001417"
-✔ 2.  foreground:                  "#C8C7C4"
-
-✔ 3.  selection:                   "#123466"
-4.  caret:                       "#B7CEEB"
-✘ 5.  lineHighlight:               "#252525"
-✘ 6.  invisibles:                  "#4B4E55"
-
-✘ 7.  selectionForeground:         "#606060"
-✔ 8.  gutterForeground:            "#606060"
-
-9.  activeGuide:                 "#363636"
-10. guide:                       "#252525"
-
-11. bracketContentsForeground:   "#B6DFEB"
-12. bracketContentsOptions:      "underline"
-13. bracketsForeground:          "#B6DFEB"
-14. bracketsOptions:             "foreground underline"
-15. tagsForeground:              "#B6DFEB"
-16. tagsOptions:                 "underline"
-
-17. findHighlight:               "#b9edf8"
-
-18. inactiveSelection:           "#263645"
-19. inactiveSelectionForeground: "#263645"
-
-
---- ✄ -----------------------
-   bracketsForeground
-   bracketsOptions
-   bracketContentsForeground
-   bracketContentsOptions
-   tagsForeground
-   tagsOptions
-
-   xxxForeground controls the color of the underline and text, while xxxOptions contains a space separated list of flags, which may be 'underline' and 'foreground'. 'underline' will show an underline, while 'foreground' will show the text itself in a different color.
-
-   'bracketsXXX' is used when the caret is next to the brackets, while 'bracketContentsXXX' is used when the caret is between brackets. If you set all the bracketsXXX and bracketContentsXXX keys to the same value, then there will be no visual difference between having the caret next to a bracket or not.
-
-
-
-// Check for the various File API support.
-if (window.File && window.FileReader && window.FileList && window.Blob) {
-  // Great success! All the File APIs are supported.
-} else {
-  alert('The File APIs are not fully supported in this browser.');
-}

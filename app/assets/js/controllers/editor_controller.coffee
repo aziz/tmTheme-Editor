@@ -37,17 +37,20 @@ Angie.controller "editorController", ['$scope'], ($scope) ->
 
   clamp = (val) -> Math.min(1, Math.max(0, val))
 
+  window.requestFileSystem  = window.requestFileSystem || window.webkitRequestFileSystem
+  window.BlobBuilder        = window.BlobBuilder || window.WebKitBlobBuilder
+  window.requestFileSystem(window.TEMPORARY, 3*1024*1024,  FsInitHandler, FsErrorHandler)
   dropZone = document.getElementById('drop_zone')
 
   handleFileDrop = (evt) ->
     evt.stopPropagation()
     evt.preventDefault()
-    console.log "dropfiles called"
+    #console.log "dropfiles called"
     files = evt.dataTransfer.files # FileList object.
-    console.log files
+    #console.log files
     $scope.files.push(file.name) for file in files
     for file in files
-      #continue unless f.type.match("image.*")
+      #continue unless f.type.match("tmtheme")
       reader = new FileReader()
       reader.readAsText(file) # Read in the tmtheme file
       reader.onload = do (file) ->
@@ -64,10 +67,7 @@ Angie.controller "editorController", ['$scope'], ($scope) ->
           console.log $scope.jsonTheme
           $scope.$apply()
 
-
-
   handleDragOver = (evt) ->
-    console.log "dragover called"
     evt.stopPropagation()
     evt.preventDefault()
     evt.dataTransfer.dropEffect = "copy"
@@ -75,9 +75,6 @@ Angie.controller "editorController", ['$scope'], ($scope) ->
   dropZone.addEventListener('dragover', handleDragOver, false);
   dropZone.addEventListener('drop', handleFileDrop, false);
 
-  window.requestFileSystem  = window.requestFileSystem || window.webkitRequestFileSystem
-  window.BlobBuilder        = window.BlobBuilder || window.WebKitBlobBuilder
-  window.requestFileSystem(window.TEMPORARY, 3*1024*1024,  FsInitHandler, FsErrorHandler)
 
   $scope.last_cached_theme = $.cookie('last_theme')
   $scope.fs = null
@@ -129,7 +126,7 @@ Angie.controller "editorController", ['$scope'], ($scope) ->
   $scope.setFiles = (element) ->
     $scope.files.push(file) for file in element.files
     for file in $scope.files
-      #continue unless f.type.match("image.*")
+      #continue unless f.type.match("tmtheme")
       reader = new FileReader()
       reader.readAsText(file) # Read in the tmtheme file
       reader.onload = do (file) ->
@@ -180,7 +177,6 @@ Angie.controller "editorController", ['$scope'], ($scope) ->
       , FsErrorHandler
     , FsErrorHandler
 
-
   $scope.theme_styles = ->
     styles = ""
     if $scope.jsonTheme && $scope.jsonTheme.settings
@@ -200,17 +196,13 @@ Angie.controller "editorController", ['$scope'], ($scope) ->
             styles += "font-style:italic;" if italic
             styles += "text-decoration:underline;" if underline
             styles += "}"
-    #console.log styles
     styles
 
   $scope.border_color = (bgcolor) -> if $scope.light_or_dark(bgcolor) == "light" then "rgba(0,0,0,.33)" else "rgba(255,255,255,.33)"
 
   $scope.light_or_dark = (bgcolor) ->
-    #console.log bgcolor
     c = tinycolor(bgcolor)
-    #console.log c
     d = c.toRgb()
-    #console.log d
     yiq = ((d.r*299)+(d.g*587)+(d.b*114))/1000
     if yiq >= 128 then "light" else "dark"
 
