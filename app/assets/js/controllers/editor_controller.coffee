@@ -1,8 +1,24 @@
-Angie.controller "editorController", ['$scope'], ($scope) ->
+Angie.controller "editorController", ['$scope', '$http'], ($scope, $http) ->
 
   FsInitHandler = (fs) ->
     $scope.fs = fs
     $scope.$apply()
+
+    unless $scope.last_cached_theme
+      default_cs = "/files/themes/PlasticCodeWrap.tmtheme"
+      $http.get(default_cs).success (code) ->
+        $scope.xmlTheme = code
+        $scope.fs && $scope.fs.root.getFile "PlasticCodeWrap.tmtheme", {create: true}, (fileEntry) ->
+          fileEntry.createWriter (fileWriter) ->
+            fileWriter.onwriteend = (e) ->
+              $.cookie('last_theme', "PlasticCodeWrap.tmtheme")
+              $scope.last_cached_theme = "PlasticCodeWrap.tmtheme"
+            blob = new Blob([$scope.xmlTheme], {type: "text/plain"})
+            fileWriter.write(blob)
+        $scope.jsonTheme = plist_to_json($scope.xmlTheme)
+        console.log "THEME:", $scope.jsonTheme
+        #$scope.$apply()
+
     if $scope.last_cached_theme
       $scope.files.push($scope.last_cached_theme)
       fs.root.getFile $scope.last_cached_theme, {}, ((fileEntry) ->

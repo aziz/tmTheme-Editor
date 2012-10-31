@@ -11,7 +11,6 @@
 			<dict>
 				<key>background</key>
 				<string>#00161B</string>
-				<!-- <string>#00161F</string> -->
 				<key>caret</key>
 				<string>#8BA7A7</string>
 				<key>foreground</key>
@@ -22,38 +21,16 @@
 				<string>#FFFFFF0D</string>
 				<key>selection</key>
 				<string>#C5DFE980</string>
-
 				<key>findHighlight</key>
 				<string>#ffe792</string>
-
 				<key>inactiveSelection</key>
 				<string>#ff7e00</string>
-<!--
-				<key>inactiveSelectionForeground</key>
-				<string>#00ff00</string>
--->
 				<key>gutterForeground</key>
 				<string>#73797b75</string>
 				<key>guide</key>
 				<string>#73797b30</string>
 				<key>activeGuide</key>
 				<string>#73797b60</string>
-
-<!--
-
-				<key>bracketsOptions</key>
-				<string>foreground underline</string>
-				<key>bracketContentsForeground</key>
-				<string>#ff0000</string>
-				<key>bracketContentsOptions</key>
-				<string>underline</string>
-
-				<key>tagsForeground</key>
-				<string>#ff0000</string>
-				<key>tagsOptions</key>
-				<string>underline</string>
--->
-
 			</dict>
 		</dict>
 		<dict>
@@ -64,7 +41,7 @@
 			<key>settings</key>
 			<dict>
 				<key>fontStyle</key>
-				<string>italic</string>
+				<string></string>
 				<key>foreground</key>
 				<string>#1E9AE0</string>
 			</dict>
@@ -88,7 +65,7 @@
 			<key>settings</key>
 			<dict>
 				<key>fontStyle</key>
-				<string>bold</string>
+				<string></string>
 				<key>foreground</key>
 				<string>#EFE900</string>
 			</dict>
@@ -101,7 +78,7 @@
 			<key>settings</key>
 			<dict>
 				<key>fontStyle</key>
-				<string>bold</string>
+				<string></string>
 				<key>foreground</key>
 				<string>#FFAA00</string>
 			</dict>
@@ -199,7 +176,7 @@
 			<key>settings</key>
 			<dict>
 				<key>fontStyle</key>
-				<string>italic</string>
+				<string></string>
 				<key>foreground</key>
 				<string>#4EE161</string>
 			</dict>
@@ -296,17 +273,6 @@
 			<dict>
 				<key>foreground</key>
 				<string>#AFC4DB</string>
-			</dict>
-		</dict>
-		<dict>
-			<key>name</key>
-			<string>Doctype/XML Processing</string>
-			<key>scope</key>
-			<string>declaration.sgml.html declaration.doctype, declaration.sgml.html declaration.doctype entity, declaration.sgml.html declaration.doctype string, declaration.xml-processing, declaration.xml-processing entity, declaration.xml-processing string</string>
-			<key>settings</key>
-			<dict>
-				<key>foreground</key>
-				<string>#73817D</string>
 			</dict>
 		</dict>
 		<dict>
@@ -418,7 +384,7 @@
 				<key>background</key>
 				<string>#0E2231</string>
 				<key>fontStyle</key>
-				<string>italic</string>
+				<string></string>
 				<key>foreground</key>
 				<string>#F8F8F8</string>
 			</dict>
@@ -462,7 +428,6 @@
 				<string>#F8F8F8</string>
 			</dict>
 		</dict>
-
 		<dict>
 			<key>name</key>
 			<string>SublimeLinter Annotations</string>
@@ -470,77 +435,77 @@
 			<string>sublimelinter.outline.notes</string>
 			<key>settings</key>
 			<dict>
-			    <key>background</key>
-			    <string>#FFFFAA50</string>
+				<key>background</key>
+				<string>#FFFFAA50</string>
 			</dict>
-	</dict>
-	<dict>
-	    <key>name</key>
-	    <string>SublimeLinter Outline</string>
-	    <key>scope</key>
-	    <string>sublimelinter.outline.illegal</string>
-	    <key>settings</key>
-	    <dict>
-	        <key>background</key>
-	        <string>#FF4A5250</string>
-	    </dict>
-	</dict>
-	<dict>
-	    <key>name</key>
-	    <string>SublimeLinter Underline</string>
-	    <key>scope</key>
-	    <string>sublimelinter.underline.illegal</string>
-	    <key>settings</key>
-	    <dict>
-	        <key>background</key>
-	        <string>#FF000050</string>
-	    </dict>
-	</dict>
-	<dict>
-	    <key>name</key>
-	    <string>SublimeLinter Warning Outline</string>
-	    <key>scope</key>
-	    <string>sublimelinter.outline.warning</string>
-	    <key>settings</key>
-	    <dict>
-	        <key>background</key>
-	        <string>#DF940050</string>
-	    </dict>
-	</dict>
-	<dict>
-	    <key>name</key>
-	    <string>SublimeLinter Warning Underline</string>
-	    <key>scope</key>
-	    <string>sublimelinter.underline.warning</string>
-	    <key>settings</key>
-	    <dict>
-	        <key>background</key>
-	        <string>#FF000050</string>
-	    </dict>
-	</dict>
-	<dict>
-	    <key>name</key>
-	    <string>SublimeLinter Violation Outline</string>
-	    <key>scope</key>
-	    <string>sublimelinter.outline.violation</string>
-	    <key>settings</key>
-	    <dict>
-	        <key>background</key>
-	        <string>#ffffff33</string>
-	    </dict>
-	</dict>
-	<dict>
-	    <key>name</key>
-	    <string>SublimeLinter Violation Underline</string>
-	    <key>scope</key>
-	    <string>sublimelinter.underline.violation</string>
-	    <key>settings</key>
-	    <dict>
-	        <key>background</key>
-	        <string>#FF000050</string>
-	    </dict>
-	</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>SublimeLinter Outline</string>
+			<key>scope</key>
+			<string>sublimelinter.outline.illegal</string>
+			<key>settings</key>
 			<dict>
+				<key>background</key>
+				<string>#FF4A5250</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>SublimeLinter Underline</string>
+			<key>scope</key>
+			<string>sublimelinter.underline.illegal</string>
+			<key>settings</key>
+			<dict>
+				<key>background</key>
+				<string>#FF000050</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>SublimeLinter Warning Outline</string>
+			<key>scope</key>
+			<string>sublimelinter.outline.warning</string>
+			<key>settings</key>
+			<dict>
+				<key>background</key>
+				<string>#DF940050</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>SublimeLinter Warning Underline</string>
+			<key>scope</key>
+			<string>sublimelinter.underline.warning</string>
+			<key>settings</key>
+			<dict>
+				<key>background</key>
+				<string>#FF000050</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>SublimeLinter Violation Outline</string>
+			<key>scope</key>
+			<string>sublimelinter.outline.violation</string>
+			<key>settings</key>
+			<dict>
+				<key>background</key>
+				<string>#ffffff33</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>SublimeLinter Violation Underline</string>
+			<key>scope</key>
+			<string>sublimelinter.underline.violation</string>
+			<key>settings</key>
+			<dict>
+				<key>background</key>
+				<string>#FF000050</string>
+			</dict>
+		</dict>
+		<dict>
 			<key>name</key>
 			<string>html id</string>
 			<key>scope</key>
@@ -566,7 +531,7 @@
 			<key>name</key>
 			<string>html punctuations tags</string>
 			<key>scope</key>
-			<string>punctuation.definition.tag.end.html, punctuation.definition.tag.begin.html, punctuation.definition.tag.html</string>
+			<string>punctuation.definition.tag.end, punctuation.definition.tag.begin, punctuation.definition.tag</string>
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
@@ -676,7 +641,7 @@
 			<key>name</key>
 			<string>Coffee vars</string>
 			<key>scope</key>
-			<string>variable.assignment.coffee</string>
+			<string>variable.assignment.coffee variable.assignment.coffee</string>
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
@@ -703,6 +668,17 @@
 			<dict>
 				<key>foreground</key>
 				<string>#9DF39F</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Doctype/XML Processing</string>
+			<key>scope</key>
+			<string>meta.tag.sgml.doctype.xml, declaration.sgml.html declaration.doctype, declaration.sgml.html declaration.doctype entity, declaration.sgml.html declaration.doctype string, declaration.xml-processing, declaration.xml-processing entity, declaration.xml-processing string, doctype</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#73817D</string>
 			</dict>
 		</dict>
 	</array>

@@ -10,6 +10,7 @@ TODO:
  ☐ preview theme @wip
 
 Pre Publish:
+ ☐ set production env on heroku
  ☐ google analytics
  ☐ tweet/gplus/fb/github buttons
  ☐ SEO info, met tags
@@ -17,9 +18,10 @@ Pre Publish:
  ☐ about page, should link to README on github
  ☐ powered by tmtheme-editor inside themes with links
  ☐ better readme
- ☐ option: chrome app
+ ☐ delete gh-pages branch
 
  low:
+ ☐ option: chrome app
  ☐ when bg has alpha putting it on both pre and preview give the wrong color
  ☐ click on preview and change colors
  ☐ highlight related scopes in preview on rule select
