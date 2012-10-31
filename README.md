@@ -18,7 +18,7 @@ As a side project I started to write a tmLanguage parser in javascript to be abl
 
 `esc`: closes all the popovers
 
-## HTML5 APIs used:
+## HTML5 APIs used
 - Blob constructing
 - FileReader API
 - fileWriter API
