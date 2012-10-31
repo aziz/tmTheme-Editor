@@ -11,11 +11,8 @@ TODO:
 
 Pre Publish:
  ☐ set production env on heroku
- ☐ google analytics
  ☐ tweet/gplus/fb/github buttons
  ☐ SEO info, met tags
- ☐ put it on github
- ☐ about page, should link to README on github
  ☐ powered by tmtheme-editor inside themes with links
  ☐ better readme
  ☐ delete gh-pages branch
@@ -54,6 +51,9 @@ TM_LANGUAGE parsing:
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ google analytics @done (12-10-31 03:15)
+ ✔ put it on github @done (12-10-31 03:10)
+ ✔ about page, should link to README on github @done (12-10-31 03:10)
  ✔ readme @done (12-10-31 01:28)
  ✔ escape html on converting to plist and unescape when reading back for name and scope @done (12-10-30 22:59)
  ✔ favicon @done (12-10-30 22:11)
