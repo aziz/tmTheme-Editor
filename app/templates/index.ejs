@@ -25,6 +25,7 @@
 
   <div class="sep"></div>
   <div ng-cloak ng-show="jsonTheme" class="languages">
+<!--
     <div class="btn-group">
       <a ng-click="" class="btn btn-small dropdown-toggle" data-toggle="dropdown">
         {{ current_lang }}
@@ -36,6 +37,7 @@
         </li>
       </ul>
     </div>
+-->
   </div>
   <div class="links">
     <ul>
@@ -98,7 +100,7 @@
         <th class="check-box"></th>
       </tr>
     </thead>
-    <tbody ng-style="{ 'background-color': get_color(bg()), 'color': get_color(fg()) }">
+    <tbody ui-sortable ui-options="sortable_options" ng-model="jsonTheme.settings" ng-style="{ 'background-color': get_color(bg()), 'color': get_color(fg()) }">
       <tr ng-repeat="rule in jsonTheme.settings"
           ng-hide="$first"
           ng-click="mark_as_selected(rule)"
@@ -160,7 +162,7 @@
 
   <div class="btn-sep">
     <a ng-click="delete_rule(popover_rule)" class="btn btn-small btn-danger pull-left">Delete</a>
-    <a ng-click="close_popover()" class="btn btn-small transparent pull-right">Done</a>
+    <a ng-click="close_popover()" class="btn btn-small btn-primary transparent pull-right">Done</a>
   </div>
 </div>
 
@@ -199,8 +201,8 @@
   <textarea ng-model="new_rule.scope"></textarea>
 
   <div class="btn-sep">
-    <a ng-click="toggle_new_rule_popover()" class="btn btn-small pull-left">Cancel</a>
     <a ng-click="add_rule(new_rule)" class="btn btn-small btn-primary transparent pull-right">&nbsp;&nbsp;Add&nbsp;&nbsp;</a>
+    <a style="margin-right:8px;" ng-click="toggle_new_rule_popover()" class="btn btn-small  pull-right">Cancel</a>
   </div>
 </div>
 

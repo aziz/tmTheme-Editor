@@ -1,4 +1,7 @@
 TODO:
+ ☐ make sidebar scopes sortable
+ ☐ remove the language toggle for now
+ ☐ removal and addition of core settings stuff like gutter background and foreground
  ☐ show description of general colors on hover, title on +, - buttons and header buttons
  ☐ add lang specific scopes to pre to get scope specific backgrounds (idefingers)
  ☐ new button
@@ -10,12 +13,12 @@ TODO:
  ☐ preview theme @wip
 
 Pre Publish:
- ☐ set production env on heroku
- ☐ tweet/gplus/fb/github buttons
- ☐ SEO info, met tags
- ☐ powered by tmtheme-editor inside themes with links
+ ☐ only works in chrome message @imp
+ ☐ set production env on heroku @imp
+ ☐ tweet/gplus/fb/github buttons @imp
+ ☐ SEO info, met tags @imp
+ ☐ powered by tmtheme-editor inside themes with links @imp
  ☐ better readme
- ☐ delete gh-pages branch
 
  low:
  ☐ option: chrome app
@@ -38,6 +41,7 @@ Pre Publish:
  ☐ focus state for color pickers
  ☐ webworker to do processing in bg
  ☐ list of known themes, how to add your own
+ ☐ contrast score for bg and fg
 
 TM_LANGUAGE parsing:
  ☐ for empty lines add a nbsp; for selection stuff
@@ -51,6 +55,8 @@ TM_LANGUAGE parsing:
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ delete gh-pages branch @done (13-01-24 23:23)
+ ✔ ---- v. 0.1 -------------------- @done (12-11-01 00:36)
  ✔ google analytics @done (12-10-31 03:15)
  ✔ put it on github @done (12-10-31 03:10)
  ✔ about page, should link to README on github @done (12-10-31 03:10)

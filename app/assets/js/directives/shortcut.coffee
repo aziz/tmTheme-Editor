@@ -1,10 +1,6 @@
 Angie.directive "shortcut", [], ()->
   (scope, element, attr) ->
     element.bind "keyup", (event) ->
-      # console.log attr.shortcut
-      # console.log event.keyCode
-      # console.log event
-      # console.log String.fromCharCode(event.keyCode).toLowerCase()
       shortcut_obj = JSON.parse(attr.shortcut)
       switch
         when event.keyCode == 27

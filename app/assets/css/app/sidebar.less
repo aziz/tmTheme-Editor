@@ -4,10 +4,11 @@
   border-right: 1px solid #989898;
   float: left;
   position: absolute;
-  top:@header_height + 26;
-  left:0px;
-  bottom:0px;
+  top: @header_height + 26;
+  left: 0px;
+  bottom: 0px;
   overflow-y: scroll;
+  overflow-x: hidden;
 
   .check-box {width: 20px; text-align: center;}
   .color-box {width: 40px;}
@@ -192,6 +193,7 @@ a.reset {
   top: 1px; bottom: 1px;
   left: 1px; right: 1px;
   border: 1px solid rgba(255,255,255,.33);
+  width: 26px;
   position: absolute;
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAG0lEQVQIW2P4//+/EwgzMDBAMIYAjIEkgSoAAL9FHAm65CvoAAAAAElFTkSuQmCC);
   .background-clip(padding-box);
@@ -208,14 +210,14 @@ a.reset {
   left: 1px; right: 1px;
   opacity: 0;
   width: auto;
-  margin:0;
-  padding:0;
+  margin:0 !important;
+  padding:0 !important;
   cursor: pointer;
 }
 
 .edit-popover {
   top: 180px;
-  left: 395px;
+  left: 165px;
 
   position: absolute;
   z-index: 9999;
@@ -312,7 +314,7 @@ a.reset {
 
   .fg-box, .bg-box {
     position: relative;
-    //width: @boxw;
+    // width: @boxw;
     height: @boxh;
     margin-bottom: 8px;
   }
@@ -341,4 +343,8 @@ a.reset {
   .btn-sep {
     margin-top: 11px;
   }
+}
+
+.ui-sortable-placeholder {
+  height: 23px;
 }

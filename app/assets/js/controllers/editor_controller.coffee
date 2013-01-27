@@ -320,3 +320,14 @@ Angie.controller "editorController", ['$scope', '$http'], ($scope, $http) ->
     sidebar.animate {"scrollTop": max_scroll_height}, 500, "swing"
 
   $scope.reset_color = (rule, attr) -> rule.settings[attr] = undefined
+
+  $scope.sortable_options = {
+    axis: "y"
+    containment: "parent"
+    helper: (e, tr) ->
+      $originals = tr.children()
+      $helper = tr.clone()
+      $helper.children().each (index) ->
+        $(this).width $originals.eq(index).width()
+      $helper
+  }
