@@ -1,0 +1,38 @@
+<div ng-cloak id="new-popover" class="edit-popover new-popover" ng-show="new_popover_visible">
+  <label>Name</label>
+  <textarea class="name-input" ng-model="new_rule.name"></textarea>
+
+  <table>
+    <tr>
+      <td>
+        <label>Font Styles</label>
+        <label class="small"><input type="checkbox" ng-checked="is('bold', new_rule)"      ng-click="toggle('bold',new_rule)"     > <b>Bold</b></label>
+        <label class="small"><input type="checkbox" ng-checked="is('italic', new_rule)"    ng-click="toggle('italic',new_rule)"   > <i>Italic</i></label>
+        <label class="small"><input type="checkbox" ng-checked="is('underline', new_rule)" ng-click="toggle('underline',new_rule)"> <u>Underline</u></label>
+      </td>
+      <td>
+        <label>Foreground</label>
+        <div class="fg-box" ng-class="has_color(new_rule.settings.foreground)">
+          <div class="colorpicker-box" ng-class="has_color(new_rule.settings.foreground)" ng-style="{ 'background-color': get_color(new_rule.settings.foreground) }"></div>
+          <a ng-click="reset_color(new_rule, 'foreground')" class="reset">Reset</a>
+          <input class="colorpicker-input" type="color" title="{{new_rule.settings.foreground}}" ng-model="new_rule.settings.foreground">
+        </div>
+
+        <label>Background</label>
+        <div class="bg-box" ng-class="has_color(new_rule.settings.background)">
+          <div class="colorpicker-box" ng-class="has_color(new_rule.settings.background)" ng-style="{ 'background-color': get_color(new_rule.settings.background) }"></div>
+          <a ng-click="reset_color(new_rule, 'background')" class="reset">Reset</a>
+          <input class="colorpicker-input" type="color" title="{{new_rule.settings.background}}" ng-model="new_rule.settings.background">
+        </div>
+      </td>
+    </tr>
+  </table>
+
+  <label>Scope</label>
+  <textarea ng-model="new_rule.scope"></textarea>
+
+  <div class="btn-sep">
+    <a ng-click="add_rule(new_rule)" class="btn btn-small btn-primary transparent pull-right">&nbsp;&nbsp;Add&nbsp;&nbsp;</a>
+    <a style="margin-right:8px;" ng-click="toggle_new_rule_popover()" class="btn btn-small  pull-right">Cancel</a>
+  </div>
+</div>

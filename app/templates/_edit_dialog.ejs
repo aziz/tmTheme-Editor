@@ -1,0 +1,38 @@
+<div ng-cloak id="edit-popover" class="edit-popover" ng-show="edit_popover_visible">
+  <label>Name</label>
+  <textarea class="name-input" ng-model="popover_rule.name"></textarea>
+
+  <table>
+    <tr>
+      <td>
+        <label>Font Styles</label>
+        <label class="small"><input type="checkbox" ng-checked="is('bold', popover_rule)"      ng-click="toggle('bold',popover_rule)"     > <b>Bold</b></label>
+        <label class="small"><input type="checkbox" ng-checked="is('italic', popover_rule)"    ng-click="toggle('italic',popover_rule)"   > <i>Italic</i></label>
+        <label class="small"><input type="checkbox" ng-checked="is('underline', popover_rule)" ng-click="toggle('underline',popover_rule)"> <u>Underline</u></label>
+      </td>
+      <td>
+        <label>Foreground</label>
+        <div class="fg-box" ng-class="has_color(popover_rule.settings.foreground)">
+          <div class="colorpicker-box" ng-class="has_color(popover_rule.settings.foreground)" ng-style="{ 'background-color': get_color(popover_rule.settings.foreground) }"></div>
+          <a ng-click="reset_color(popover_rule, 'foreground')" class="reset">Reset</a>
+          <input class="colorpicker-input" type="color" title="{{popover_rule.settings.foreground}}" ng-model="popover_rule.settings.foreground">
+        </div>
+
+        <label>Background</label>
+        <div class="bg-box" ng-class="has_color(popover_rule.settings.background)">
+          <div class="colorpicker-box" ng-class="has_color(popover_rule.settings.background)" ng-style="{ 'background-color': get_color(popover_rule.settings.background) }"></div>
+          <a ng-click="reset_color(popover_rule, 'background')" class="reset">Reset</a>
+          <input class="colorpicker-input" type="color" title="{{popover_rule.settings.background}}" ng-model="popover_rule.settings.background">
+        </div>
+      </td>
+    </tr>
+  </table>
+
+  <label>Scope</label>
+  <textarea ng-model="popover_rule.scope"></textarea>
+
+  <div class="btn-sep">
+    <a ng-click="delete_rule(popover_rule)" class="btn btn-small btn-danger pull-left">Delete</a>
+    <a ng-click="close_popover()" class="btn btn-small btn-primary transparent pull-right">Done</a>
+  </div>
+</div>

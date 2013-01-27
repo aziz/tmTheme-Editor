@@ -1,7 +1,7 @@
 Angie.directive "shortcut", [], ()->
   (scope, element, attr) ->
     element.bind "keyup", (event) ->
-      shortcut_obj = JSON.parse(attr.shortcut)
+      shortcut_obj = scope.$eval(attr.shortcut)
       switch
         when event.keyCode == 27
           scope.$apply shortcut_obj["escape"]

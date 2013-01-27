@@ -8,7 +8,7 @@ It started as a personal experiment trying to use new HTML5 File APIs in Chrome 
 
 ![](http://f.cl.ly/items/1L1u0B2R2x261H3Z401V/Screen%20Shot.png)
 
-You can add your color scheme using the `upload` button (which does not upload anything to any server, but only allows the page to have access to the file. You can also drag and drop the file on to the page) and start tweaking the colors, add or remove rules and see the effect instantly on the preview pane. 
+You can add your color scheme using the `Open` button (which does not upload anything to any server, but only allows the page to have access to the file. You can also drag and drop the file on to the page) and start tweaking the colors, add or remove rules and see the effect instantly on the preview pane. 
 
 As soon as you add a color scheme to the editor it saves the file using the File System API so that you can refresh the page and still have the color scheme loaded. Whenever you're happy with your changes you can save them so that editor can persist it on the disk. To get back the new tmtheme file you can click `Download` button and use it in your editor.
 

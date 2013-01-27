@@ -331,3 +331,8 @@ Angie.controller "editorController", ['$scope', '$http'], ($scope, $http) ->
         $(this).width $originals.eq(index).width()
       $helper
   }
+
+  $scope.shortcuts = {
+    "escape": "hide_all_popovers()",
+    "ctrl+n": "toggle_new_rule_popover()"
+  }
