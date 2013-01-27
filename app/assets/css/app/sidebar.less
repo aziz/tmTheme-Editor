@@ -101,7 +101,13 @@
   font-family: @monoFontFamily;
   width: 100%;
 
-  &.general thead {border-top: 0;}
+  &.general {
+    thead {border-top: 0;}
+    .truncate {
+      min-width: @sidebarMin - 60px;
+      max-width: @sidebarMax - 60px;
+    }
+  }
 
   thead {
     background: #ffffff;
@@ -133,7 +139,7 @@
     }
   }
 
-  &:not(.general) td.name-box {
+  & td.name-box {
     cursor:pointer;
   }
 
