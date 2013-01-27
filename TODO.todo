@@ -1,15 +1,16 @@
 TODO:
- ☐ removal and addition of general colors @v0.2
- ☐ add lang specific scopes to pre to get scope specific backgrounds (idefingers) @v0.2
- ☐ check errors in: Dawn, Monokai FannonEd, idleFingers
- ☐ new button @v0.2
  ☐ only works in chrome message @v0.2
- ☐ set production env on heroku @v0.2
  ☐ SEO info, met tags @v0.2
  ☐ powered by tmtheme-editor inside themes with links @v0.2
+ ☐ set production env on heroku @v0.2
+ ☐ list of known themes, how to add your own @v0.2
+
+ ☐ removal and addition of general colors @v0.2
+ ☐ new button @v0.2
+ ☐ add lang specific scopes to pre to get scope specific backgrounds (idefingers) @v0.2
+ ☐ check errors in: Dawn, Monokai FannonEd, idleFingers
  ☐ focus state for color pickers @v0.2
  ☐ when bg has alpha putting it on both pre and preview give the wrong color @v0.2
- ☐ list of known themes, how to add your own @v0.2
 
  low:
  ☐ option: chrome app
