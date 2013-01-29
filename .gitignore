@@ -1,3 +1,5 @@
 node_modules
 tmp
 log/*.log
+public/css
+public/js
