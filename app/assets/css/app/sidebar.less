@@ -1,7 +1,8 @@
 .sidebar {
-  min-width: @sidebarMin;
-  max-width: @sidebarMax;
+  min-width: @sidebarMin - 1;
+  max-width: @sidebarMax - 1;
   border-right: 1px solid #989898;
+  border-left: 1px solid #989898;
   float: left;
   position: absolute;
   top: @header_height + 26;
@@ -25,8 +26,8 @@
 
 .titlebar {
   @height : 24px;
-  min-width: @sidebarMin;
-  max-width: @sidebarMax;
+  min-width: @sidebarMin - 1;
+  max-width: @sidebarMax - 1;
   background: #ffffff;
   background: -moz-linear-gradient(top,  #ffffff 0%, #ffffff 23%, #f4f4f4 54%, #ececec 62%, #ededed 100%);
   background: -webkit-linear-gradient(top,  #ffffff 0%,#ffffff 23%,#f4f4f4 54%,#ececec 62%,#ededed 100%);
@@ -41,6 +42,7 @@
   position: fixed;
   font-weight: bold;
   border-right: 1px solid #989898;
+  border-left: 1px solid #989898;
 
   .title {
     padding-left: 6px;

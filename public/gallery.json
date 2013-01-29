@@ -1,0 +1,10 @@
+[
+{ "name": "Summerfruit",     "url": "https://raw.github.com/ichbinadrian/Summerfruit/master/Summerfruit.tmtheme" },
+{ "name": "Tomorrow-Night-Blue", "url": "https://raw.github.com/chriskempson/tomorrow-theme/master/textmate/Tomorrow-Night-Blue.tmTheme" },
+{ "name": "Tomorrow-Night-Bright", "url": "https://raw.github.com/chriskempson/tomorrow-theme/master/textmate/Tomorrow-Night-Bright.tmTheme" },
+{ "name": "Tomorrow-Night-Eighties", "url": "https://raw.github.com/chriskempson/tomorrow-theme/master/textmate/Tomorrow-Night-Eighties.tmTheme" },
+{ "name": "Tomorrow-Night", "url": "https://raw.github.com/chriskempson/tomorrow-theme/master/textmate/Tomorrow-Night.tmTheme" },
+{ "name": "Tomorrow", "url": "https://raw.github.com/chriskempson/tomorrow-theme/master/textmate/Tomorrow.tmTheme" },
+{ "name": "Calydon", "url": "https://raw.github.com/carlcalderon/sublime-color-schemes/master/Calydon/Calydon.tmTheme" }
+
+]

@@ -17,7 +17,8 @@
     "connect-gzip": "*",
     "coffee-script": "*",
     "less": "*",
-    "sugar": "*"
+    "sugar": "*",
+    "request": ""
   },
   "devDependencies": {
     "nodemon": "*"

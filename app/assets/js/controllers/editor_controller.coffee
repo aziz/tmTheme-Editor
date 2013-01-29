@@ -16,7 +16,7 @@ Angie.controller "editorController", ['$scope', '$http'], ($scope, $http) ->
             blob = new Blob([$scope.xmlTheme], {type: "text/plain"})
             fileWriter.write(blob)
         $scope.jsonTheme = plist_to_json($scope.xmlTheme)
-        console.log "THEME:", $scope.jsonTheme
+        #console.log "THEME:", $scope.jsonTheme
         #$scope.$apply()
 
     if $scope.last_cached_theme
@@ -28,7 +28,7 @@ Angie.controller "editorController", ['$scope', '$http'], ($scope, $http) ->
             $scope.xmlTheme  = this.result.trim()
             #console.log "XML:", $scope.xmlTheme
             $scope.jsonTheme = plist_to_json($scope.xmlTheme)
-            console.log "THEME:", $scope.jsonTheme
+            #console.log "THEME:", $scope.jsonTheme
             $scope.$apply()
           reader.readAsText file
         ), FsErrorHandler
@@ -50,6 +50,9 @@ Angie.controller "editorController", ['$scope', '$http'], ($scope, $http) ->
       else
         msg = "Unknown Error"
     console.log "Error: " + msg
+
+  show_gallery = -> $("#gallery").removeClass("hide")
+  setTimeout(show_gallery, 3000)
 
   clamp = (val) -> Math.min(1, Math.max(0, val))
 
@@ -80,7 +83,7 @@ Angie.controller "editorController", ['$scope', '$http'], ($scope, $http) ->
               blob = new Blob([$scope.xmlTheme], {type: "text/plain"})
               fileWriter.write(blob)
           $scope.jsonTheme = plist_to_json($scope.xmlTheme)
-          console.log $scope.jsonTheme
+          #console.log $scope.jsonTheme
           $scope.$apply()
 
   handleDragOver = (evt) ->
@@ -156,7 +159,7 @@ Angie.controller "editorController", ['$scope', '$http'], ($scope, $http) ->
               blob = new Blob([$scope.xmlTheme], {type: "text/plain"})
               fileWriter.write(blob)
           $scope.jsonTheme = plist_to_json($scope.xmlTheme)
-          console.log $scope.jsonTheme
+          #console.log $scope.jsonTheme
           $scope.$apply()
 
   $scope.update_general_colors = ->
@@ -193,27 +196,6 @@ Angie.controller "editorController", ['$scope', '$http'], ($scope, $http) ->
       , FsErrorHandler
     , FsErrorHandler
 
-  $scope.theme_styles = ->
-    styles = ""
-    if $scope.jsonTheme && $scope.jsonTheme.settings
-      for rule in $scope.jsonTheme.settings
-        fg_color  = if rule.settings.foreground then $scope.get_color(rule.settings.foreground) else null
-        bg_color  = if rule.settings.background then $scope.get_color(rule.settings.background) else null
-        bold      = $scope.is("bold", rule)
-        italic    = $scope.is("italic", rule)
-        underline = $scope.is("underline", rule)
-        if rule.scope
-          rules = rule.scope.split(",").map (r) -> ".#{r.trim()}"
-          rules.each (r) ->
-            styles += "#{r}{"
-            styles += "color:#{fg_color};" if fg_color
-            styles += "background-color:#{bg_color};" if bg_color
-            styles += "font-weight:bold;" if bold
-            styles += "font-style:italic;" if italic
-            styles += "text-decoration:underline;" if underline
-            styles += "}"
-    styles
-
   $scope.border_color = (bgcolor) -> if $scope.light_or_dark(bgcolor) == "light" then "rgba(0,0,0,.33)" else "rgba(255,255,255,.33)"
 
   $scope.light_or_dark = (bgcolor) ->
@@ -235,6 +217,27 @@ Angie.controller "editorController", ['$scope', '$http'], ($scope, $http) ->
     hsl.l += percent/100
     hsl.l = clamp(hsl.l)
     tinycolor(hsl).toHslString()
+
+  $scope.theme_styles = ->
+    styles = ""
+    if $scope.jsonTheme && $scope.jsonTheme.settings
+      for rule in $scope.jsonTheme.settings
+        fg_color  = if rule.settings.foreground then $scope.get_color(rule.settings.foreground) else null
+        bg_color  = if rule.settings.background then $scope.get_color(rule.settings.background) else null
+        bold      = $scope.is("bold", rule)
+        italic    = $scope.is("italic", rule)
+        underline = $scope.is("underline", rule)
+        if rule.scope
+          rules = rule.scope.split(",").map (r) -> ".#{r.trim()}"
+          rules.each (r) ->
+            styles += "#{r}{"
+            styles += "color:#{fg_color};" if fg_color
+            styles += "background-color:#{bg_color};" if bg_color
+            styles += "font-weight:bold;" if bold
+            styles += "font-style:italic;" if italic
+            styles += "text-decoration:underline;" if underline
+            styles += "}"
+    styles
 
   $scope.theme_gutter = ->
     style = ""
@@ -336,3 +339,6 @@ Angie.controller "editorController", ['$scope', '$http'], ($scope, $http) ->
     "escape": "hide_all_popovers()",
     "ctrl+n": "toggle_new_rule_popover()"
   }
+
+  $scope.gallery = null
+  $scope.toggle_gallery = -> $scope.gallery = if $scope.gallery then null else "slide"

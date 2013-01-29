@@ -1,11 +1,12 @@
 <header id="header">
+  <a ng-click="toggle_gallery()" class="btn btn-info btn-small">Gallery</a>
   <div class="btn-toolbar new-upload">
     <div class="btn-group">
       <a id="upload-btn" class="btn btn-info btn-small">Open</a>
       <a ng-click="" class="btn btn-info btn-small">New</a>
     </div>
   </div>
-  <div class="btn-toolbar dl-save">
+  <div ng-class="gallery" class="btn-toolbar dl-save">
     <div class="btn-group">
       <a ng-click="save_theme()" class="btn btn-success btn-small  save">Save</a>
       <a ng-click="download_theme()" class="btn btn-success btn-small download">Download</a>
@@ -13,7 +14,7 @@
   </div>
   <input type="file" id="files" class="upload" ng-model="input" onchange="angular.element(this).scope().setFiles(this)" />
 
-  <div class="sep"></div>
+  <div ng-class="gallery" class="sep"></div>
   <div ng-cloak ng-show="jsonTheme" class="languages">
 <!--
     <div class="btn-group">

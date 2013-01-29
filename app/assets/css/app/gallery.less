@@ -1,0 +1,47 @@
+#gallery {
+  width: 200px;
+  z-index: -1;
+  position: absolute;
+  top: 37px;
+  bottom: 0;
+  left: 0px;
+  // border-right: 1px solid #989898;
+  font-family: @monoFontFamily;
+  font-size: 15px;
+  line-height: 20px;
+
+  ul {
+    list-style-type: none;
+    margin:0;
+
+    li {
+      // border-bottom: 1px solid black;
+      cursor: pointer;
+      padding: 2px 2px 2px 4px;
+      .ellipsis();
+    }
+  }
+
+  .selected_bglight {
+    #gradient > .vertical(rgba(0,0,0,.1),rgba(0,0,0,.3));
+    background-color: transparent;
+    border-top: 1px solid rgba(0,0,0,.1);
+    border-bottom: 1px solid rgba(0,0,0,.2);
+  }
+
+  .selected_bgdark {
+    #gradient > .vertical(rgba(255,255,255,.1),rgba(255,255,255,.3));
+    background-color: transparent;
+    border-top: 1px solid rgba(255,255,255,.1);
+    border-bottom: 1px solid rgba(255,255,255,.2);
+  }
+
+}
+
+.sidebar, .titlebar, .preview, .dl-save, .sep {
+  .transition(all 1s ease);
+
+  &.slide {
+    .translate3d(200px,0,0);
+  }
+}

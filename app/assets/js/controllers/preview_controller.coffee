@@ -18,16 +18,16 @@ Angie.controller "previewController", ['$scope', '$http', '$rootScope'], ($scope
         $scope.json_lang = plist_to_json($scope.plist_lang)
         $scope.single_line_patterns = single_line_patterns()
         $scope.multi_line_patterns = multi_line_patterns()
-        console.log "LANG:", $scope.json_lang
-        console.log "MULTI LINES:",  { patterns: $scope.multi_line_patterns }
-        console.log "SINGLE LINES:", { patterns: $scope.single_line_patterns }
+        #console.log "LANG:", $scope.json_lang
+        #console.log "MULTI LINES:",  { patterns: $scope.multi_line_patterns }
+        #console.log "SINGLE LINES:", { patterns: $scope.single_line_patterns }
         $http.get($scope.sample_path).success (code) ->
           $scope.code = code
           #$scope.code = "#!/usr/bin/env node"
           $scope.parse()
 
   $scope.set_lang = (lang) ->
-    console.log lang
+    #console.log lang
     $scope.current_lang = lang
     $scope.sample_path = "/files/samples/#{lang}.txt"
     $scope.lang_path = "/files/languages/#{lang}.tmLanguage"

@@ -10,24 +10,26 @@
       ng-controller="editorController"
       shortcut='shortcuts'>
 
-<div ng-controller="previewController">
+  <% include _gallery %>
+
+<div ng-controller="previewController" id="preview">
 
   <% include _header %>
   <% include _sidebar %>
-  <% include _edit_dialog %>
-  <% include _new_dialog %>
 
   <style ng-bind="theme_gutter()"></style>
   <style ng-bind="theme_selection()"></style>
   <style ng-bind="theme_styles()"></style>
 
-  <div class="preview" ng-style="{ 'background-color': get_color(bg()), 'color': get_color(fg()) }">
+  <div ng-class="gallery" class="preview" ng-style="{ 'background-color': get_color(bg()), 'color': get_color(fg()) }">
     <pre ng-show="jsonTheme"
          ng-bind-html-unsafe="colorized"
          ng-style="{ 'background-color': get_color(bg()), 'color': get_color(fg()) }"></pre>
   </div>
 
 </div>
+<% include _edit_dialog %>
+<% include _new_dialog %>
 <%- js("application") -%>
 <% include _ga  %>
 </body>

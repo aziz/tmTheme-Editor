@@ -1,4 +1,4 @@
-<div ng-cloak class="titlebar">
+<div ng-cloak ng-class="gallery" class="titlebar">
   <div class="title">
     <input type="text" ng-model="jsonTheme.name">
   </div>
@@ -8,7 +8,7 @@
   </div>
 </div>
 
-<div ng-cloak class="sidebar" ng-style="{ 'background-color': get_color(bg())}">
+<div ng-cloak ng-class="gallery" class="sidebar" ng-style="{ 'background-color': get_color(bg())}">
 
   <table class="list general">
     <thead ng-hide="gcolors.length==0">

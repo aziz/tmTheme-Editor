@@ -28,6 +28,7 @@ app.configure ->
 
 app.configure 'development', ->
   app.use express.logger('dev')
+  app.use poweredBy("FREEDOM")
   app.use express.errorHandler('dumpExceptions': true, 'showStack': true)
 
 app.configure 'production', ->
@@ -38,6 +39,7 @@ app.configure 'production', ->
   app.use express.logger(stream: log)
 
 app.get '/', routes.index
+app.get '/get_uri', routes.get_uri
 
 http.createServer(app).listen settings.port, ->
   console.log "Express server listening on port #{settings.port} in '#{app.get('env')}' environment"

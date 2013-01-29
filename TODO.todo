@@ -12,6 +12,15 @@ TODO:
  ☐ focus state for color pickers @v0.2
  ☐ when bg has alpha putting it on both pre and preview give the wrong color @v0.2
 
+Gallery:
+ ☐ permalink for each theme
+ ☐ set some info on the server for SEO
+ ☐ convert drag/drop and file system api to service
+ ☐ loading message while loading theme
+
+SEO:
+ ☐ meta descriptoion
+
  low:
  ☐ option: chrome app
  ☐ better readme
@@ -43,6 +52,12 @@ TM_LANGUAGE parsing:
    ☐ calculate the length of lb text
    ☐ adjust begin and size based on length on lb text
  ☐ support for repository and include (support for external includes)
+
+THEMES:
+// { "name": "Raydric",         "url": "https://raw.github.com/raydric/raydric-color-scheme/master/Raydric.tmTheme" },
+// { "name": "FrontEndDelight", "url": "https://raw.github.com/bernatfortet/sublime-frontend-delight/master/FrontEndDelightColorScheme.tmTheme" },
+//{ "name": "", "url": "" },
+
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
