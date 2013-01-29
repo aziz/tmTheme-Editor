@@ -4,16 +4,21 @@
   position: absolute;
   top: 37px;
   bottom: 0;
-  left: 0px;
+  left: -200px;
   // border-right: 1px solid #989898;
   font-family: @monoFontFamily;
   font-size: 15px;
   line-height: 20px;
-  overflow-y: scroll;
 
   ul {
     list-style-type: none;
     margin:0;
+    overflow-y: scroll;
+    position: absolute;
+    top: 25px;
+    bottom: 0;
+    left: 0px;
+    right: 0px;
 
     li {
       // border-bottom: 1px solid black;
@@ -39,11 +44,28 @@
     border-bottom: 1px solid rgba(255,255,255,.2);
   }
 
+  .titlebar {
+    max-width: 200px;
+    min-width: 200px;
+
+    .title {
+      color: #333;
+      width: auto;
+      font-weight: normal;
+      font-size: 11px;
+    }
+    .actions .add {
+      right: 0;
+    }
+  }
+
 }
 
-.sidebar, .titlebar, .preview, .dl-save, .sep, #new-popover, #edit-popover {
-  -webkit-transition: -webkit-transform 1s ease;
-          transition: transform 1s ease;
+.sidebar, .titlebar, .preview, .dl-save, .sep, #new-popover, #edit-popover, #gallery .titlebar, #gallery ul {
+  -webkit-transition: -webkit-transform .4s ease;
+          transition: transform .4s ease;
+  -webkit-backface-visibility: hidden;
+  -webkit-perspective: 1000;
 
   &.slide {
     .translate3d(200px,0,0);

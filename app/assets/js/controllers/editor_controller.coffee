@@ -1,23 +1,40 @@
-Angie.controller "editorController", ['$scope', '$http'], ($scope, $http) ->
+Angie.controller "editorController", ['$scope', '$http', '$location', 'ThemeLoader'], ($scope, $http, $location, ThemeLoader) ->
+
+  $scope.is_browser_supported = window.chrome
+
+  # loading theme from URL
+  if $location.path() && $location.path().replace("/","").length > 0
+    theme = $location.path().replace("/","")
+  else
+    theme = "PlasticCodeWrap"
+    $location.path("PlasticCodeWrap")
+  ThemeLoader.themes.success (data) ->
+    available_themes = data
+    theme_obj = available_themes.find (t) -> t.name == theme
+    console.log theme_obj
+    ThemeLoader.load(theme_obj).success (data) ->
+      $scope.xmlTheme  = data
+      $scope.jsonTheme = plist_to_json($scope.xmlTheme)
 
   FsInitHandler = (fs) ->
     $scope.fs = fs
     $scope.$apply()
 
-    unless $scope.last_cached_theme
-      default_cs = "/files/themes/plastic.tmtheme"
-      $http.get(default_cs).success (code) ->
-        $scope.xmlTheme = code
-        $scope.fs && $scope.fs.root.getFile "plastic.tmtheme", {create: true}, (fileEntry) ->
-          fileEntry.createWriter (fileWriter) ->
-            fileWriter.onwriteend = (e) ->
-              $.cookie('last_theme', "plastic.tmtheme")
-              $scope.last_cached_theme = "plastic.tmtheme"
-            blob = new Blob([$scope.xmlTheme], {type: "text/plain"})
-            fileWriter.write(blob)
-        $scope.jsonTheme = plist_to_json($scope.xmlTheme)
-        #console.log "THEME:", $scope.jsonTheme
-        #$scope.$apply()
+    # if URL does not have any theme and nothing is cached going back to the default plastic theme
+    #if !$scope.last_cached_theme && !($location.path() && $location.path().replace("/","").length > 0)
+    #  default_cs = "/files/themes/plastic.tmtheme"
+    #  $http.get(default_cs).success (code) ->
+    #    $scope.xmlTheme = code
+    #    $scope.fs && $scope.fs.root.getFile "plastic.tmtheme", {create: true}, (fileEntry) ->
+    #      fileEntry.createWriter (fileWriter) ->
+    #        fileWriter.onwriteend = (e) ->
+    #          $.cookie('last_theme', "plastic.tmtheme")
+    #          $scope.last_cached_theme = "plastic.tmtheme"
+    #        blob = new Blob([$scope.xmlTheme], {type: "text/plain"})
+    #        fileWriter.write(blob)
+    #    $scope.jsonTheme = plist_to_json($scope.xmlTheme)
+    #    #console.log "THEME:", $scope.jsonTheme
+    #    #$scope.$apply()
 
     if $scope.last_cached_theme
       $scope.files.push($scope.last_cached_theme)
@@ -52,9 +69,10 @@ Angie.controller "editorController", ['$scope', '$http'], ($scope, $http) ->
     console.log "Error: " + msg
 
   show_gallery = -> $("#gallery").removeClass("hide")
-  setTimeout(show_gallery, 3000)
+  setTimeout(show_gallery, 800)
 
   clamp = (val) -> Math.min(1, Math.max(0, val))
+
 
   window.requestFileSystem  = window.requestFileSystem || window.webkitRequestFileSystem
   window.BlobBuilder        = window.BlobBuilder || window.WebKitBlobBuilder
@@ -93,7 +111,6 @@ Angie.controller "editorController", ['$scope', '$http'], ($scope, $http) ->
 
   dropZone.addEventListener('dragover', handleDragOver, false);
   dropZone.addEventListener('drop', handleFileDrop, false);
-
 
   $scope.last_cached_theme = $.cookie('last_theme')
   $scope.fs = null

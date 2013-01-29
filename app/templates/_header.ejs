@@ -1,5 +1,7 @@
 <header id="header">
-  <a ng-click="toggle_gallery()" class="btn btn-info btn-small" href="javascript:void(0)">Gallery</a>
+  <a ng-click="toggle_gallery()"
+     ng-class="{'active': gallery}"
+     class="btn btn-info btn-small" href="javascript:void(0)">Gallery</a>
   <div class="btn-toolbar new-upload">
     <div class="btn-group">
       <a href="javascript:void(0)" id="upload-btn" class="btn btn-info btn-small">Open</a>
@@ -34,6 +36,7 @@
     <%// include _social %>
     <ul>
       <li><a href="https://github.com/aziz/tmTheme-Editor#tmtheme-editor">About</a></li>
+      <li><a href="https://github.com/aziz/tmTheme-Editor/issues/new">Feedback</a></li>
       <li><a href="https://github.com/aziz/tmTheme-Editor">Github</a></li>
     </ul>
   </div>

@@ -1,7 +1,11 @@
 <!doctype html>
 <html>
 <head>
-  <title>TMTheme Editor</title>
+  <title>TmTheme Editor</title>
+  <meta name="author" content="Allen Bargi">
+  <meta name="description" content="TmTheme Editor is the a visual color-scheme/theme editor for Sublime Text and Textmate editors.">
+  <meta name="keywords" content="tmtheme, theme editor, color scheme editor, sublime, sublime text, texmate, textmate theme editor, sublime theme editor">
+
   <%- css("app") -%>
 </head>
 
@@ -9,7 +13,7 @@
       ng-app="ThemeEditor"
       ng-controller="editorController"
       shortcut='shortcuts'>
-
+  <% include _browser_support %>
   <% include _gallery %>
 
 <div ng-controller="previewController" id="preview">

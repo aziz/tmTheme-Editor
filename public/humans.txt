@@ -1,0 +1,6 @@
+/* TEAM */
+Allen Bargi
+Twitter: http://twitter.com/aziz
+Github: http://github.com/aziz
+
+Github Repo: https://github.com/aziz/tmTheme-Editor
