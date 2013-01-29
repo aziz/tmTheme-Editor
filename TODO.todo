@@ -13,10 +13,16 @@ TODO:
  ☐ when bg has alpha putting it on both pre and preview give the wrong color @v0.2
 
 Gallery:
+ ☐ active state for gallery button
+ ☐ plastic code wrap on the list
+ ☐ header for gallery list
+ ☐ ad your theme button
  ☐ permalink for each theme
  ☐ set some info on the server for SEO
  ☐ convert drag/drop and file system api to service
  ☐ loading message while loading theme
+ ☐ add more themes
+ ☐ show total number of themes in gallery
 
 SEO:
  ☐ meta descriptoion
@@ -35,6 +41,7 @@ SEO:
  ☐ show invisibles
  ☐ shortcuts (up and down to traverse the rules, enter to open, ctrl+delete to delete, ctrl+s to save, ...)
  ☐ color picker js
+ ☐ undo delete rule
  ☐ list from file API
  ☐ only work with tmtheme files. reject others, error handling @improvement
  ☐ try to make it work in other browsers
@@ -54,9 +61,15 @@ TM_LANGUAGE parsing:
  ☐ support for repository and include (support for external includes)
 
 THEMES:
-// { "name": "Raydric",         "url": "https://raw.github.com/raydric/raydric-color-scheme/master/Raydric.tmTheme" },
-// { "name": "FrontEndDelight", "url": "https://raw.github.com/bernatfortet/sublime-frontend-delight/master/FrontEndDelightColorScheme.tmTheme" },
-//{ "name": "", "url": "" },
+fix: larapaste, obsidian, PksTheme
+{"name": "Raydric",         "url": "https://raw.github.com/raydric/raydric-color-scheme/master/Raydric.tmTheme" },
+{"name": "FrontEndDelight", "url": "https://raw.github.com/bernatfortet/sublime-frontend-delight/master/FrontEndDelightColorScheme.tmTheme" },
+{"name": "Ciapre", "url": "https://raw.github.com/vinhnx/Ciapre.tmTheme/master/Ciapre.tmTheme"},
+{"name": "CiapreBlack", "url": "https://raw.github.com/vinhnx/Ciapre.tmTheme/master/CiapreBlack.tmTheme"},
+{"name": "Sundried", "url": "https://raw.github.com/frou/Sundried/master/Sundried.tmTheme"},
+{"name": "Perv Orange", "url": "https://raw.github.com/FlavourSys/Perv-ColorScheme/master/Perv%20Orange.tmTheme"},
+{"name": "Red Planet", "url": "https://raw.github.com/eliquious/Red-Planet-Theme/master/Red%20Planet.tmTheme"},
+{"name": "KWrite", "url": "https://raw.github.com/daris/sublime-kwrite-color-scheme/master/KWrite.tmTheme"},
 
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
