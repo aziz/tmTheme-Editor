@@ -28,7 +28,7 @@ Angie.controller "editorController", ['$scope', '$http'], ($scope, $http) ->
             $scope.xmlTheme  = this.result.trim()
             #console.log "XML:", $scope.xmlTheme
             $scope.jsonTheme = plist_to_json($scope.xmlTheme)
-            #console.log "THEME:", $scope.jsonTheme
+            console.log "THEME:", $scope.jsonTheme
             $scope.$apply()
           reader.readAsText file
         ), FsErrorHandler
@@ -83,7 +83,7 @@ Angie.controller "editorController", ['$scope', '$http'], ($scope, $http) ->
               blob = new Blob([$scope.xmlTheme], {type: "text/plain"})
               fileWriter.write(blob)
           $scope.jsonTheme = plist_to_json($scope.xmlTheme)
-          #console.log $scope.jsonTheme
+          console.log $scope.jsonTheme
           $scope.$apply()
 
   handleDragOver = (evt) ->
@@ -221,9 +221,9 @@ Angie.controller "editorController", ['$scope', '$http'], ($scope, $http) ->
   $scope.theme_styles = ->
     styles = ""
     if $scope.jsonTheme && $scope.jsonTheme.settings
-      for rule in $scope.jsonTheme.settings
-        fg_color  = if rule.settings.foreground then $scope.get_color(rule.settings.foreground) else null
-        bg_color  = if rule.settings.background then $scope.get_color(rule.settings.background) else null
+      for rule in $scope.jsonTheme.settings.compact()
+        fg_color  = if rule?.settings?.foreground then $scope.get_color(rule.settings.foreground) else null
+        bg_color  = if rule?.settings?.background then $scope.get_color(rule.settings.background) else null
         bold      = $scope.is("bold", rule)
         italic    = $scope.is("italic", rule)
         underline = $scope.is("underline", rule)

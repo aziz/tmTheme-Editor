@@ -18,7 +18,9 @@
     li {
       // border-bottom: 1px solid black;
       cursor: pointer;
-      padding: 2px 2px 2px 4px;
+      padding: 1px 2px 1px 4px;
+      border-top: 1px solid transparent;
+      border-bottom: 1px solid transparent;
       .ellipsis();
     }
   }
@@ -40,7 +42,8 @@
 }
 
 .sidebar, .titlebar, .preview, .dl-save, .sep, #new-popover, #edit-popover {
-  .transition(all 1s ease);
+  -webkit-transition: -webkit-transform 1s ease;
+          transition: transform 1s ease;
 
   &.slide {
     .translate3d(200px,0,0);

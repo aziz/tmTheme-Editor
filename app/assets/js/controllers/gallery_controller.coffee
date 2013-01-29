@@ -12,6 +12,7 @@ Angie.controller "galleryController", ['$scope', '$http'], ($scope, $http) ->
       #console.log data
       $scope.$parent.xmlTheme  = data
       $scope.$parent.jsonTheme = plist_to_json($scope.xmlTheme)
+      console.log "THEME:", $scope.jsonTheme
       # tmp = -> $scope.$apply()
       # setTimeout(100, tmp)
 

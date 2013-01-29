@@ -52,7 +52,7 @@
       </tr>
     </thead>
     <tbody ui-sortable ui-options="sortable_options" ng-model="jsonTheme.settings" ng-style="{ 'background-color': get_color(bg()), 'color': get_color(fg()) }">
-      <tr ng-repeat="rule in jsonTheme.settings"
+      <tr ng-repeat="rule in jsonTheme.settings.compact()"
           ng-hide="$first"
           ng-click="mark_as_selected(rule)"
           ng-dblclick="toggle_edit_popover(rule, $index)"

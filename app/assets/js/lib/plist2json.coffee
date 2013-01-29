@@ -8,6 +8,7 @@ window.jsonify = (tag) ->
       i = 0
       nodes = tag.childNodes
       while i < nodes.length
+        #console.log nodes[i], nodes[i].nodeName
         if nodes[i].nodeName is "key"
           key = nodes[i].textContent
           i++

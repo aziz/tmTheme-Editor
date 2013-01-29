@@ -7,10 +7,10 @@ TODO:
 
  ☐ removal and addition of general colors @v0.2
  ☐ new button @v0.2
- ☐ add lang specific scopes to pre to get scope specific backgrounds (idefingers) @v0.2
  ☐ check errors in: Dawn, Monokai FannonEd, idleFingers
  ☐ focus state for color pickers @v0.2
  ☐ when bg has alpha putting it on both pre and preview give the wrong color @v0.2
+ ☐ kissmetrics event tracking
 
 Gallery:
  ☐ active state for gallery button
@@ -61,19 +61,14 @@ TM_LANGUAGE parsing:
  ☐ support for repository and include (support for external includes)
 
 THEMES:
-fix: larapaste, obsidian, PksTheme
-{"name": "Raydric",         "url": "https://raw.github.com/raydric/raydric-color-scheme/master/Raydric.tmTheme" },
-{"name": "FrontEndDelight", "url": "https://raw.github.com/bernatfortet/sublime-frontend-delight/master/FrontEndDelightColorScheme.tmTheme" },
-{"name": "Ciapre", "url": "https://raw.github.com/vinhnx/Ciapre.tmTheme/master/Ciapre.tmTheme"},
-{"name": "CiapreBlack", "url": "https://raw.github.com/vinhnx/Ciapre.tmTheme/master/CiapreBlack.tmTheme"},
-{"name": "Sundried", "url": "https://raw.github.com/frou/Sundried/master/Sundried.tmTheme"},
 {"name": "Perv Orange", "url": "https://raw.github.com/FlavourSys/Perv-ColorScheme/master/Perv%20Orange.tmTheme"},
-{"name": "Red Planet", "url": "https://raw.github.com/eliquious/Red-Planet-Theme/master/Red%20Planet.tmTheme"},
-{"name": "KWrite", "url": "https://raw.github.com/daris/sublime-kwrite-color-scheme/master/KWrite.tmTheme"},
+{"name": "FrontEndDelight", "url": "https://raw.github.com/bernatfortet/sublime-frontend-delight/master/FrontEndDelightColorScheme.tmTheme" },
 
+http://www.sublimetext.com/forum/viewtopic.php?f=2&t=10766
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ add lang specific scopes to pre to get scope specific backgrounds (idefingers) @v0.2 @done (13-01-29 13:02)
  ✔ rearrange rule @done (13-01-27 16:01)
  ✘ preview theme @wip @cancelled (13-01-27 15:44)
  ✘ add all possible general colors to all themes (?) how to add general color rules @cancelled (13-01-27 15:43)
