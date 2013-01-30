@@ -623,7 +623,7 @@
 		</dict>
 		<dict>
 			<key>name</key>
-			<string>™ Function Call</string>
+			<string>™ Function Call</string>
 			<key>scope</key>
 			<string>keyword.other.special-method, meta.function-call entity.name.function -(meta.function-call meta.function), support.function - variable</string>
 			<key>settings</key>
@@ -634,7 +634,7 @@
 		</dict>
 		<dict>
 			<key>name</key>
-			<string>™ Library Function Call</string>
+			<string>™ Library Function Call</string>
 			<key>scope</key>
 			<string>meta.function-call support.function - variable</string>
 			<key>settings</key>
@@ -660,7 +660,7 @@
 		</dict>
 		<dict>
 			<key>name</key>
-			<string>™ Function Call Arguments Punctuation</string>
+			<string>™ Function Call Arguments Punctuation</string>
 			<key>scope</key>
 			<string>punctuation.section.function, meta.brace.curly.function, meta.function-call punctuation.section.scope.ruby, meta.function-call punctuation.separator.object</string>
 			<key>settings</key>
@@ -706,7 +706,7 @@ meta.brace.round</string>
 		</dict>
 		<dict>
 			<key>name</key>
-			<string>™ Keyword Control</string>
+			<string>™ Keyword Control</string>
 			<key>scope</key>
 			<string>keyword.control</string>
 			<key>settings</key>
@@ -717,7 +717,7 @@ meta.brace.round</string>
 		</dict>
 		<dict>
 			<key>name</key>
-			<string>™ Keyword</string>
+			<string>™ Keyword</string>
 			<key>scope</key>
 			<string>keyword</string>
 			<key>settings</key>
@@ -725,7 +725,7 @@ meta.brace.round</string>
 		</dict>
 		<dict>
 			<key>name</key>
-			<string>™ Keyword other</string>
+			<string>™ Keyword other</string>
 			<key>scope</key>
 			<string>keyword.other</string>
 			<key>settings</key>
@@ -744,7 +744,7 @@ meta.brace.round</string>
 		</dict>
 		<dict>
 			<key>name</key>
-			<string>™ Keyword Operator</string>
+			<string>™ Keyword Operator</string>
 			<key>scope</key>
 			<string>keyword.operator, declaration.function.operator, meta.preprocessor.c.include, punctuation.separator.operator</string>
 			<key>settings</key>
