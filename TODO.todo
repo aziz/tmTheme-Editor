@@ -7,16 +7,20 @@ TODO:
  ☐ focus state for color pickers @v0.2
  ☐ when bg has alpha putting it on both pre and preview give the wrong color @v0.2
  ☐ sorting bug
+ ☐ popover window at the bottom of the page
+ ☐ closing popovers by clicking out of it
 
 Services:
  ☐ load theme should be on a service
  ☐ convert drag/drop and file system api to service
 
 Gallery:
+ ☐ load gallery from github absolute URL
  ☐ ad your theme button
  ☐ set some info on the server for SEO
  ☐ loading message while loading theme
  ☐ add more themes
+ ☐ remove raydric
 
  low:
  ☐ option: chrome app
@@ -55,13 +59,17 @@ TM_LANGUAGE parsing:
 THEMES:
 {"name": "Perv Orange", "url": "https://raw.github.com/FlavourSys/Perv-ColorScheme/master/Perv%20Orange.tmTheme"},
 {"name": "FrontEndDelight", "url": "https://raw.github.com/bernatfortet/sublime-frontend-delight/master/FrontEndDelightColorScheme.tmTheme" },
-
+{"name": "Larapaste", "url": "https://raw.github.com/villimagg/Larapaste-sublime-theme/master/Larapaste.tmTheme"},
+{"name": "PKsTheme", "url": "https://raw.github.com/mjs7231/sublime-pkstheme/master/PKsTheme.tmTheme"},
+{"name": "Raydric",         "url": "https://raw.github.com/raydric/raydric-color-scheme/master/Raydric.tmTheme" },
 http://www.sublimetext.com/forum/viewtopic.php?f=2&t=10766
+
+https://raw.github.com/jbergantine/Birds-of-Paradise-for-TextMate/master/Birds%20of%20Paradise.tmTheme
+
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
  ✔ permalink for each theme @done (13-01-29 22:27)
- ✔ popover window at the bottom of the page @done (13-01-29 21:19)
  ✔ header for gallery list @done (13-01-29 20:43)
  ✔ show total number of themes in gallery @done (13-01-29 20:43)
  ✔ only works in chrome message @v0.2 @done (13-01-29 20:03)

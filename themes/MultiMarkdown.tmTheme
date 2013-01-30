@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>name</key>
+	<string>MultiMarkdown</string>
+	<key>settings</key>
+	<array>
+		<dict>
+			<key>settings</key>
+			<dict>
+				<key>background</key>
+				<string>#FFFFFF</string>
+				<key>caret</key>
+				<string>#000000</string>
+				<key>foreground</key>
+				<string>#000000</string>
+				<key>invisibles</key>
+				<string>#BFBFBF</string>
+				<key>lineHighlight</key>
+				<string>#00000012</string>
+				<key>selection</key>
+				<string>#B5D8F7</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>MultiMarkdown Metadata</string>
+			<key>scope</key>
+			<string>meta.header.multimarkdown</string>
+			<key>settings</key>
+			<dict>
+				<key>background</key>
+				<string>#FFFFFF</string>
+				<key>foreground</key>
+				<string>#979797</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>MultiMarkdown meta key</string>
+			<key>scope</key>
+			<string>meta.header.key.multimarkdown</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string>underline</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>MultiMarkdown meta value</string>
+			<key>scope</key>
+			<string>meta.header.value.multimarkdown</string>
+			<key>settings</key>
+			<dict/>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Markdown Heading</string>
+			<key>scope</key>
+			<string>markup.heading.markdown</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string>bold underline</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Markdown Table</string>
+			<key>scope</key>
+			<string>markup.table.multimarkdown</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#FF0000</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Markdown Link Def</string>
+			<key>scope</key>
+			<string>meta.link.reference.def.markdown</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#21FF0A</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>MultiMarkdown Footnote Def</string>
+			<key>scope</key>
+			<string>meta.footnote.reference.def.multimarkdown</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#FF8D04</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>MultiMarkdown Citation Def</string>
+			<key>scope</key>
+			<string>meta.citation.reference.def.multimarkdown</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#0ABFFF</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Markdown Code Block</string>
+			<key>scope</key>
+			<string>markup.raw.block.markdown</string>
+			<key>settings</key>
+			<dict>
+				<key>background</key>
+				<string>#E5E5E5</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>MultiMarkdown Math</string>
+			<key>scope</key>
+			<string>markup.math.multimarkdown</string>
+			<key>settings</key>
+			<dict>
+				<key>background</key>
+				<string>#E5E5E5</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Markdown Code Span</string>
+			<key>scope</key>
+			<string>markup.raw.inline.markdown</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string>bold</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Markdown Quote</string>
+			<key>scope</key>
+			<string>markup.quote.markdown</string>
+			<key>settings</key>
+			<dict>
+				<key>background</key>
+				<string>#E5E5E5</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Possible Citation</string>
+			<key>scope</key>
+			<string>citation.possible</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#FF0093</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Markdown link</string>
+			<key>scope</key>
+			<string>meta.link</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#0205F0</string>
+			</dict>
+		</dict>
+	</array>
+	<key>uuid</key>
+	<string>2250B6DC-C3BE-4BE8-B815-17B11D90BD6F</string>
+</dict>
+</plist>

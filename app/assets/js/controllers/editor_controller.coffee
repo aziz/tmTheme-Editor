@@ -20,16 +20,16 @@ Angie.controller "editorController", ['$scope', '$http', '$location', 'ThemeLoad
     $scope.fs = fs
     $scope.$apply()
 
-    # if URL does not have any theme and nothing is cached going back to the default plastic theme
+    # if URL does not have any theme and nothing is cached going back to the default PlasticCodeWrap theme
     #if !$scope.last_cached_theme && !($location.path() && $location.path().replace("/","").length > 0)
-    #  default_cs = "/files/themes/plastic.tmtheme"
+    #  default_cs = "/files/themes/PlasticCodeWrap.tmtheme"
     #  $http.get(default_cs).success (code) ->
     #    $scope.xmlTheme = code
-    #    $scope.fs && $scope.fs.root.getFile "plastic.tmtheme", {create: true}, (fileEntry) ->
+    #    $scope.fs && $scope.fs.root.getFile "PlasticCodeWrap.tmtheme", {create: true}, (fileEntry) ->
     #      fileEntry.createWriter (fileWriter) ->
     #        fileWriter.onwriteend = (e) ->
-    #          $.cookie('last_theme', "plastic.tmtheme")
-    #          $scope.last_cached_theme = "plastic.tmtheme"
+    #          $.cookie('last_theme', "PlasticCodeWrap.tmtheme")
+    #          $scope.last_cached_theme = "PlasticCodeWrap.tmtheme"
     #        blob = new Blob([$scope.xmlTheme], {type: "text/plain"})
     #        fileWriter.write(blob)
     #    $scope.jsonTheme = plist_to_json($scope.xmlTheme)
