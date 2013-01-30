@@ -10,7 +10,7 @@
             <key>settings</key>
             <dict>
                 <key>background</key>
-                <!-- <string>#d6c4b6</string> -->
+                <string>#d6c4b6</string>
                 <!-- <string>#e5e6ea</string> -->
                 <!-- <string>#c2c2c2</string> -->
                 <string>#dfcebe</string>

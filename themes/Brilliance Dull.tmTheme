@@ -675,9 +675,9 @@
 			<key>name</key>
 			<string>™ Function Punctuation</string>
 			<key>scope</key>
-			<string>meta.group.braces.round punctuation.section.scope, 
-meta.group.braces.round meta.delimiter.object.comma, 
-meta.group.braces.curly.function meta.delimiter.object.comma, 
+			<string>meta.group.braces.round punctuation.section.scope,
+meta.group.braces.round meta.delimiter.object.comma,
+meta.group.braces.curly.function meta.delimiter.object.comma,
 meta.brace.round</string>
 			<key>settings</key>
 			<dict>
@@ -2341,9 +2341,9 @@ source.css meta.scope.property-list meta.property-value punctuation.separator.ar
 			<key>name</key>
 			<string>Object Punctuation</string>
 			<key>scope</key>
-			<string>punctuation.separator.objects, 
-meta.group.braces.curly meta.delimiter.object.comma, 
-punctuation.separator.key-value -meta.tag, 
+			<string>punctuation.separator.objects,
+meta.group.braces.curly meta.delimiter.object.comma,
+punctuation.separator.key-value -meta.tag,
 source.ocaml punctuation.separator.match-definition
 </string>
 			<key>settings</key>
@@ -2598,7 +2598,7 @@ source.ocaml punctuation.separator.match-definition
 			<key>name</key>
 			<string>IE6</string>
 			<key>scope</key>
-			<string>meta.property.vendor.microsoft.trident.4, 
+			<string>meta.property.vendor.microsoft.trident.4,
 meta.property.vendor.microsoft.trident.4 support.type.property-name,
 meta.property.vendor.microsoft.trident.4 punctuation.terminator.rule</string>
 			<key>settings</key>
@@ -2613,7 +2613,7 @@ meta.property.vendor.microsoft.trident.4 punctuation.terminator.rule</string>
 			<key>name</key>
 			<string>IE7</string>
 			<key>scope</key>
-			<string>meta.property.vendor.microsoft.trident.5, 
+			<string>meta.property.vendor.microsoft.trident.5,
 meta.property.vendor.microsoft.trident.5 support.type.property-name,
 meta.property.vendor.microsoft.trident.5 punctuation.separator.key-value,
 meta.property.vendor.microsoft.trident.5 punctuation.terminator.rule</string>
