@@ -1,27 +1,24 @@
 TODO:
- ☐ set production env on heroku @v0.2
  ☐ list of known themes, how to add your own @v0.2
  ☐ removal and addition of general colors @v0.2
  ☐ new button @v0.2
- ☐ check errors in: Dawn, Monokai FannonEd, idleFingers
+ ☐ set production env on heroku @v0.2
+
  ☐ focus state for color pickers @v0.2
- ☐ when bg has alpha putting it on both pre and preview give the wrong color @v0.2
- ☐ sorting bug
  ☐ popover window at the bottom of the page
  ☐ closing popovers by clicking out of it
+
  ☐ row highlight on dark bgs
 
 Services:
  ☐ load theme should be on a service
  ☐ convert drag/drop and file system api to service
+ ☐ do not use file api, use localstorage
 
 Gallery:
- ☐ load gallery from github absolute URL
+ ☐ loading message while loading theme
  ☐ ad your theme button
  ☐ set some info on the server for SEO
- ☐ loading message while loading theme
- ☐ add more themes
- ☐ remove raydric
 
  low:
  ☐ option: chrome app
@@ -57,22 +54,16 @@ TM_LANGUAGE parsing:
    ☐ adjust begin and size based on length on lb text
  ☐ support for repository and include (support for external includes)
 
-THEMES:
-{"name": "Perv Orange", "url": "https://raw.github.com/FlavourSys/Perv-ColorScheme/master/Perv%20Orange.tmTheme"},
-{"name": "FrontEndDelight", "url": "https://raw.github.com/bernatfortet/sublime-frontend-delight/master/FrontEndDelightColorScheme.tmTheme" },
-{"name": "Larapaste", "url": "https://raw.github.com/villimagg/Larapaste-sublime-theme/master/Larapaste.tmTheme"},
-{"name": "PKsTheme", "url": "https://raw.github.com/mjs7231/sublime-pkstheme/master/PKsTheme.tmTheme"},
-{"name": "Raydric",         "url": "https://raw.github.com/raydric/raydric-color-scheme/master/Raydric.tmTheme" },
 http://www.sublimetext.com/forum/viewtopic.php?f=2&t=10766
-
-{"name":"Brilliance Black", "url":"https://raw.github.com/aziz/tmTheme-Editor/master/themes/Brilliance%20Black.tmTheme"}
-{"name":"Brilliance Dull", "url":"https://raw.github.com/aziz/tmTheme-Editor/master/themes/Brilliance%20Dull.tmTheme"}
-{"name":"Brilliance White", "url":"https://raw.github.com/aziz/tmTheme-Editor/master/themes/Brilliance%20White.tmTheme"}
-
-
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ can not reload from URL @done (13-01-31 00:49)
+ ✔ sorting bug @done (13-01-31 00:49)
+ ✘ when bg has alpha putting it on both pre and preview give the wrong color @v0.2 @cancelled (13-01-31 00:48)
+ ✔ check errors in: Dawn, Monokai FannonEd, idleFingers @done (13-01-31 00:48)
+ ✔ add more themes @done (13-01-31 00:41)
+ ✘ load gallery from github absolute URL @cancelled (13-01-31 00:41)
  ✔ permalink for each theme @done (13-01-29 22:27)
  ✔ header for gallery list @done (13-01-29 20:43)
  ✔ show total number of themes in gallery @done (13-01-29 20:43)
