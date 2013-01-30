@@ -9,6 +9,7 @@ TODO:
  ☐ sorting bug
  ☐ popover window at the bottom of the page
  ☐ closing popovers by clicking out of it
+ ☐ row highlight on dark bgs
 
 Services:
  ☐ load theme should be on a service
@@ -64,7 +65,10 @@ THEMES:
 {"name": "Raydric",         "url": "https://raw.github.com/raydric/raydric-color-scheme/master/Raydric.tmTheme" },
 http://www.sublimetext.com/forum/viewtopic.php?f=2&t=10766
 
-https://raw.github.com/jbergantine/Birds-of-Paradise-for-TextMate/master/Birds%20of%20Paradise.tmTheme
+{"name":"Brilliance Black", "url":"https://raw.github.com/aziz/tmTheme-Editor/master/themes/Brilliance%20Black.tmTheme"}
+{"name":"Brilliance Dull", "url":"https://raw.github.com/aziz/tmTheme-Editor/master/themes/Brilliance%20Dull.tmTheme"}
+{"name":"Brilliance White", "url":"https://raw.github.com/aziz/tmTheme-Editor/master/themes/Brilliance%20White.tmTheme"}
+
 
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
