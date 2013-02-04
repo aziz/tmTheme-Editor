@@ -1,26 +1,37 @@
 TODO:
- ☐ list of known themes, how to add your own @v0.2
- ☐ removal and addition of general colors @v0.2
- ☐ new button @v0.2
- ☐ set production env on heroku @v0.2
-
- ☐ focus state for color pickers @v0.2
- ☐ popover window at the bottom of the page
- ☐ closing popovers by clicking out of it
-
- ☐ row highlight on dark bgs
+ ☐ how to add your own @v0.2
+ ☐ popover window at the bottom of the page @v0.2
+ ☐ windows bug for color boxes @v0.2
+ ☐ do not load theme if it's already loaded
+ ☐ loading message while loading theme
+ ☐ on file drop clear the URL
+--- ✄ -----------------------
+ ☐ support for HTML,CSS,JS,Ruby,Python and other languages @v0.3
+ ☐ removal and addition of general colors @v0.3
+ ☐ new button @v0.3
+ ☐ set production env on heroku @v0.3
+ ☐ focus state for color pickers @v0.3
+ ☐ closing popovers by clicking out of it @v0.3
+ ☐ row highlight on dark bgs @v0.3
 
 Services:
  ☐ load theme should be on a service
  ☐ convert drag/drop and file system api to service
  ☐ do not use file api, use localstorage
 
-Gallery:
- ☐ loading message while loading theme
- ☐ ad your theme button
- ☐ set some info on the server for SEO
-
  low:
+ ☐ apply filters (on colors) brightness/contract @v0.4
+ ☐ contrast score for bg and fg https://github.com/LeaVerou/contrast-ratio @v0.4
+ ☐ use pre processed sample code for other languages @v0.4
+ ☐ color picker js https://github.com/bebraw/colorjoe @v0.4
+ ☐ undo delete rule @v0.4
+ ☐ download colors as photoshop color palette
+   ☐ http://www.colourlovers.com/ase.phps
+   ☐ https://github.com/nsfmc/swatch
+   ☐ http://blog.soulwire.co.uk/code/actionscript-3/as3-ase-adobe-swatch-exchange-encoder
+ ☐ support for Textmate 2 new <key>semanticClass</key><string>theme.dark.tomorrow</string>
+ ☐ set some info on the server for SEO when a theme is in URL
+ ☐ a settings button with the ability to edit name/author/uuid
  ☐ option: chrome app
  ☐ better readme
  ☐ event tracking
@@ -34,15 +45,13 @@ Gallery:
  ☐ angular performance enhancement
  ☐ show invisibles
  ☐ shortcuts (up and down to traverse the rules, enter to open, ctrl+delete to delete, ctrl+s to save, ...)
- ☐ color picker js
- ☐ undo delete rule
  ☐ list from file API
- ☐ only work with tmtheme files. reject others, error handling @improvement
+ ☐ only work with tmtheme files. reject others, error handling
  ☐ try to make it work in other browsers
  ☐ cache the parsed theme and lang to disk (to hopefully make it faster)
  ☐ position sticky for sidebar table headers
  ☐ webworker to do processing in bg
- ☐ contrast score for bg and fg
+
 
 TM_LANGUAGE parsing:
  ☐ for empty lines add a nbsp; for selection stuff
@@ -58,6 +67,7 @@ http://www.sublimetext.com/forum/viewtopic.php?f=2&t=10766
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ error parsing themes with comment @done (13-02-04 21:48)
  ✔ can not reload from URL @done (13-01-31 00:49)
  ✔ sorting bug @done (13-01-31 00:49)
  ✘ when bg has alpha putting it on both pre and preview give the wrong color @v0.2 @cancelled (13-01-31 00:48)

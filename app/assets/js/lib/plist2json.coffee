@@ -30,6 +30,7 @@ window.jsonify = (tag) ->
     when "integer" then tag.textContent
     when "true"    then true
     when "false"   then false
+    else console.log tag.nodeName, tag
 
 window.loadXMLString = (txt) ->
   try
@@ -47,9 +48,10 @@ window.loadXMLString = (txt) ->
   null
 
 window.plist_to_json = (plist) ->
-  doc = loadXMLString(plist)
-  #console.log doc
+  # removing all the comments
+  plist_without_comments = plist.replace(/<!--[\s\S]+?-->/g, "")
+  doc = loadXMLString(plist_without_comments)
   i = 0
   while i < doc.documentElement.childNodes.length
-    return jsonify(doc.documentElement.childNodes[i])  unless doc.documentElement.childNodes[i].nodeName is "#text"
+    return jsonify(doc.documentElement.childNodes[i]) unless doc.documentElement.childNodes[i].nodeName is "#text"
     i++
