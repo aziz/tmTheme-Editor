@@ -30,7 +30,7 @@ window.jsonify = (tag) ->
     when "integer" then tag.textContent
     when "true"    then true
     when "false"   then false
-    else console.log tag.nodeName, tag
+    else console.log "node name is not valid: ", tag.nodeName, tag
 
 window.loadXMLString = (txt) ->
   try
@@ -51,6 +51,7 @@ window.plist_to_json = (plist) ->
   # removing all the comments
   plist_without_comments = plist.replace(/<!--[\s\S]+?-->/g, "")
   doc = loadXMLString(plist_without_comments)
+  console.log doc
   i = 0
   while i < doc.documentElement.childNodes.length
     return jsonify(doc.documentElement.childNodes[i]) unless doc.documentElement.childNodes[i].nodeName is "#text"

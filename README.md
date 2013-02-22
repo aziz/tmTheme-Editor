@@ -26,7 +26,7 @@ As a side project I started to write a tmLanguage parser in javascript to be abl
 - fileWriter API
 - filesystem API
 - file saver API
-- Drap and Drop API
+- Drag and Drop API
 
 written in [coffeescript](http://coffeescript.org/) using [angular.js](angularjs.org)
 

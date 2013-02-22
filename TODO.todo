@@ -5,6 +5,8 @@ TODO:
  ☐ do not load theme if it's already loaded
  ☐ loading message while loading theme
  ☐ on file drop clear the URL
+ ☐ remove brilliance themes
+ ☐ summerfruit is renamed
 --- ✄ -----------------------
  ☐ support for HTML,CSS,JS,Ruby,Python and other languages @v0.3
  ☐ removal and addition of general colors @v0.3
@@ -49,7 +51,7 @@ Services:
  ☐ only work with tmtheme files. reject others, error handling
  ☐ try to make it work in other browsers
  ☐ cache the parsed theme and lang to disk (to hopefully make it faster)
- ☐ position sticky for sidebar table headers
+ ☐ position sticky for sidebar table headers https://github.com/davist11/jQuery-Stickem
  ☐ webworker to do processing in bg
 
 
