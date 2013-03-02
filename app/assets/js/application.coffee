@@ -7,6 +7,7 @@
 #= require vendors/tinycolor.js
 #= require vendors/angular-1.0.4.js
 #= require vendors/bootstrap/bootstrap-dropdown.js
+#= require vendors/bootstrap/bootstrap-tooltip.js
 
 #= require_tree lib
 #= require_tree directives
@@ -15,7 +16,7 @@
 
 
 $ ->
-
+  $("[data-toggle='tooltip']").tooltip()
   uploadBtn = $("#upload-btn")
   uploadInput = $("#files")
   uploadInput.mouseenter -> uploadBtn.addClass("hover")

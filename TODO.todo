@@ -1,12 +1,9 @@
 TODO:
- ☐ how to add your own @v0.2
  ☐ popover window at the bottom of the page @v0.2
  ☐ windows bug for color boxes @v0.2
  ☐ do not load theme if it's already loaded
  ☐ loading message while loading theme
  ☐ on file drop clear the URL
- ☐ remove brilliance themes
- ☐ summerfruit is renamed
 --- ✄ -----------------------
  ☐ support for HTML,CSS,JS,Ruby,Python and other languages @v0.3
  ☐ removal and addition of general colors @v0.3
@@ -69,6 +66,9 @@ http://www.sublimetext.com/forum/viewtopic.php?f=2&t=10766
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ how to add your own @v0.2 @done (13-03-02 11:17)
+ ✔ remove brilliance themes @done (13-03-02 11:17)
+ ✔ summerfruit is renamed @done (13-03-02 11:16)
  ✔ error parsing themes with comment @done (13-02-04 21:48)
  ✔ can not reload from URL @done (13-01-31 00:49)
  ✔ sorting bug @done (13-01-31 00:49)
