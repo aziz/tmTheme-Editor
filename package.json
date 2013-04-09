@@ -18,7 +18,7 @@
     "coffee-script": "*",
     "less": "*",
     "sugar": "*",
-    "request": ""
+    "request": "*"
   },
   "devDependencies": {
     "nodemon": "*"
