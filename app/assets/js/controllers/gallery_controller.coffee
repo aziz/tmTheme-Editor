@@ -5,6 +5,7 @@ Angie.controller "galleryController", ['$scope', '$http', '$location', 'ThemeLoa
   $scope.selected_theme = null
 
   $scope.load_theme = (theme) ->
+    $("#edit-popover, #new-popover").hide()
     $location.path(theme.name)
     $scope.selected_theme = theme
     ThemeLoader.load(theme).success (data) ->
