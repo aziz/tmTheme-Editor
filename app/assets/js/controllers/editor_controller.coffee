@@ -299,7 +299,17 @@ Angie.controller "editorController", ['$scope', '$http', '$location', 'ThemeLoad
     $scope.popover_rule = rule
     $scope.edit_popover_visible = true
     row = $("#scope-lists .rule-#{rule_index}")
-    $("#edit-popover").css("top", row.offset().top + (row.outerHeight()/2) - 140)
+    win_height = $(window).height()
+    if (win_height - row.offset().top) < 160
+      $("#edit-popover").css({
+        "top": "auto"
+        "bottom": win_height - row.offset().top
+      }).addClass("on-top")
+    else
+      $("#edit-popover").css({
+        "top": row.offset().top + (row.outerHeight()/2) - 140
+        "bottom": "auto"
+      }).removeClass("on-top")
     if $scope.edit_popover_visible
       focus = -> $("#edit-popover .name-input").focus()
       setTimeout(focus, 0)

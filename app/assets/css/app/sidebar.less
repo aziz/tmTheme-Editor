@@ -264,6 +264,26 @@ a.reset {
     left:-22px;
   }
 
+  &.on-top {
+    &:after, &:before {
+      top: auto;
+      border-right: 11px solid transparent;
+      left: 50%;
+      margin-top: 0;
+      margin-left: -11px;
+    }
+
+    &:after {
+      border-top: 11px solid #EDEDED;
+      bottom: -21px;
+    }
+
+    &:before {
+      border-top: 11px solid rgba(0,0,0,.4);
+      bottom: -22px;
+    }
+  }
+
   &.new-popover {
     top: 68px;
     left: 215px;
