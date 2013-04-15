@@ -1,5 +1,4 @@
 TODO:
- ☐ popover window at the bottom of the page @v0.2
  ☐ windows bug for color boxes @v0.2
  ☐ do not load theme if it's already loaded
  ☐ loading message while loading theme
@@ -66,6 +65,7 @@ http://www.sublimetext.com/forum/viewtopic.php?f=2&t=10766
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ popover window at the bottom of the page @v0.2 @done (13-04-15 17:02)
  ✔ how to add your own @v0.2 @done (13-03-02 11:17)
  ✔ remove brilliance themes @done (13-03-02 11:17)
  ✔ summerfruit is renamed @done (13-03-02 11:16)
