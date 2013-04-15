@@ -310,6 +310,9 @@ Angie.controller "editorController", ['$scope', '$http', '$location', 'ThemeLoad
         "top": row.offset().top + (row.outerHeight()/2) - 140
         "bottom": "auto"
       }).removeClass("on-top")
+    $("#preview, #gallery").one "click", (e) ->
+      $scope.edit_popover_visible = false
+      $scope.$digest()
     if $scope.edit_popover_visible
       focus = -> $("#edit-popover .name-input").focus()
       setTimeout(focus, 0)

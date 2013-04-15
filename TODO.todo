@@ -9,7 +9,6 @@ TODO:
  ☐ new button @v0.3
  ☐ set production env on heroku @v0.3
  ☐ focus state for color pickers @v0.3
- ☐ closing popovers by clicking out of it @v0.3
  ☐ row highlight on dark bgs @v0.3
 
 Services:
@@ -65,6 +64,7 @@ http://www.sublimetext.com/forum/viewtopic.php?f=2&t=10766
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ closing popovers by clicking out of it @v0.3 @done (13-04-15 17:26)
  ✔ popover window at the bottom of the page @v0.2 @done (13-04-15 17:02)
  ✔ how to add your own @v0.2 @done (13-03-02 11:17)
  ✔ remove brilliance themes @done (13-03-02 11:17)
