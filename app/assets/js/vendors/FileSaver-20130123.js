@@ -1,6 +1,6 @@
 /* FileSaver.js
  * A saveAs() FileSaver implementation.
- * 2011-08-02
+ * 2013-01-23
  * 
  * By Eli Grey, http://eligrey.com
  * License: X11/MIT
@@ -13,7 +13,9 @@
 
 /*! @source http://purl.eligrey.com/github/FileSaver.js/blob/master/FileSaver.js */
 
-var saveAs = saveAs || (function(view) {
+var saveAs = saveAs
+  || (navigator.msSaveBlob && navigator.msSaveBlob.bind(navigator))
+  || (function(view) {
 	"use strict";
 	var
 		  doc = view.document
@@ -30,7 +32,7 @@ var saveAs = saveAs || (function(view) {
 				"click", true, false, view, 0, 0, 0, 0, 0
 				, false, false, false, false, 0, null
 			);
-			return node.dispatchEvent(event); // false if event was cancelled
+			node.dispatchEvent(event);
 		}
 		, webkit_req_fs = view.webkitRequestFileSystem
 		, req_fs = view.requestFileSystem || webkit_req_fs || view.mozRequestFileSystem
@@ -90,7 +92,9 @@ var saveAs = saveAs || (function(view) {
 					if (blob_changed || !object_url) {
 						object_url = get_object_url(blob);
 					}
-					target_view.location.href = object_url;
+					if (target_view) {
+						target_view.location.href = object_url;
+					}
 					filesaver.readyState = filesaver.DONE;
 					dispatch_all();
 				}
@@ -112,11 +116,10 @@ var saveAs = saveAs || (function(view) {
 				object_url = get_object_url(blob);
 				save_link.href = object_url;
 				save_link.download = name;
-				if (click(save_link)) {
-					filesaver.readyState = filesaver.DONE;
-					dispatch_all();
-					return;
-				}
+				click(save_link);
+				filesaver.readyState = filesaver.DONE;
+				dispatch_all();
+				return;
 			}
 			// Object and web filesystem URLs have a problem saving in Google Chrome when
 			// viewed in a tab, so I force save with application/octet-stream

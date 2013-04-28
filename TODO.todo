@@ -1,15 +1,14 @@
 TODO:
- ☐ update js vendors
  ☐ mark light and dark. filter on light/dark
  ☐ use bs-tooltip instead of default html tooltips
  ☐ search for themes and scopes
  ☐ toggle buttons for Global/Scope/Settings
- ☐ theme list text should not be selectable
  ☐ hover state for scopes #26
  ☐ do not load theme if it's already loaded
  ☐ loading message while loading theme
  ☐ on file drop clear the URL
  ☐ windows bug for color boxes @v0.2
+ ☐ BUG: when someone drops a theme reloads are broken
 --- ✄ -----------------------
  ☐ support for HTML,CSS,JS,Ruby,Python and other languages @v0.3
  ☐ removal and addition of general colors @v0.3
@@ -55,6 +54,7 @@ Services:
  ☐ cache the parsed theme and lang to disk (to hopefully make it faster)
  ☐ position sticky for sidebar table headers https://github.com/davist11/jQuery-Stickem
  ☐ webworker to do processing in bg
+ ☐ upgrade bootstrap
 
 ColorScheme Info:
  ☐ UUID
@@ -77,6 +77,8 @@ http://www.sublimetext.com/forum/viewtopic.php?f=2&t=10766
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ update js vendors @done (13-04-28 21:44)
+ ✔ theme list text should not be selectable @done (13-04-28 21:22)
  ✔ add: https://github.com/daylerees/colour-schemes @done (13-04-28 16:54)
  ✔ closing popovers by clicking out of it @v0.3 @done (13-04-15 17:26)
  ✔ popover window at the bottom of the page @v0.2 @done (13-04-15 17:02)
