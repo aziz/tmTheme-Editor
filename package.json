@@ -13,7 +13,6 @@
     "express": "*",
     "ejs-locals": "*",
     "connect-assets": "*",
-    "connect-powered-by": "*",
     "connect-gzip": "*",
     "coffee-script": "*",
     "less": "*",

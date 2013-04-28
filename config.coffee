@@ -1,9 +1,7 @@
-settings =
-  port:          process.env.PORT || 9999
-  uri:           'http://localhost:8080' # Without trailing /
-
+settings = {}
 if process.env.NODE_ENV == 'production'
-  settings.uri = 'http://production-domain.com'
   settings.port = process.env.PORT || 80
+else
+  settings.port = process.env.PORT || 9999
 
 module.exports = settings
