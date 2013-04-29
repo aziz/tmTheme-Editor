@@ -24,3 +24,11 @@ Angie.controller "StatsController", ['$scope', '$http', '$location', 'ThemeLoade
     $scope.themes = data
     progress_unit = 100.0/data.length
     load_theme(theme) for theme in $scope.themes
+
+  $scope.gallery = ->
+    $scope.themes.map (theme) ->
+      {
+        "name": theme.name
+        "url": theme.url
+        "light": theme.is_light
+      }

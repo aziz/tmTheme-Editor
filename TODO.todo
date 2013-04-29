@@ -4,6 +4,7 @@ TODO:
  ☐ search for themes and scopes
  ☐ toggle buttons for Global/Scope/Settings
  ☐ hover state for scopes #26
+ ☐ put theme name as html title
  ☐ do not load theme if it's already loaded
  ☐ loading message while loading theme
  ☐ on file drop clear the URL

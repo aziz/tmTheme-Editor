@@ -13,7 +13,6 @@
 
 <div ng-controller="StatsController">
 
-  <!-- <pre> themes | json }}</pre> -->
   <div class="container">
     <br>
     <div ng-hide="progress > 99" class="progress progress-striped active">
@@ -65,6 +64,8 @@
         </tr>
       </tbody>
     </table>
+
+    <!-- <pre>{{ gallery() | json }}</pre> -->
   </div>
 </div>
 <%- js("stats") -%>
