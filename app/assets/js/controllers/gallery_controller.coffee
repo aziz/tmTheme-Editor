@@ -27,6 +27,7 @@ Angie.controller "galleryController", ['$scope', '$http', '$location', 'ThemeLoa
 
   $scope.filter = {
     type: null
+    name: null
   }
 
   $scope.toggle_type_filter = (type) ->
