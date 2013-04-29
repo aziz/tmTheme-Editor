@@ -11,13 +11,21 @@
         target="_blank" class="add"
         data-toggle="tooltip" data-placement="bottom"
         title="Add your own theme to the gallery">+</a>
+        <a ng-click="toggle_type_filter('dark')"
+           ng-class="{'active': filter.type == 'dark'}"
+           class="dark_filter" data-toggle="tooltip" data-placement="bottom" title="Show Dark Themes">Dark</a>
+        <a ng-click="toggle_type_filter('light')"
+           ng-class="{'active': filter.type == 'light' }"
+           class="light_filter" data-toggle="tooltip" data-placement="bottom" title="Show Light Themes">Light</a>
    </div>
   </div>
   <ul ng-class="gallery" ng-style="{ 'background-color': get_color(bg()), 'color': get_color(fg()) }">
-    <li ng-repeat="theme in themes"
+    <li ng-repeat="theme in themes | filter: filter"
         ng-click="load_theme(theme)"
         ng-class="selected_gradient(theme)">
-        {{theme.name}}
+        <span class="light_theme_icon" ng-show="theme.light"></span>
+        <span class="dark_theme_icon"  ng-show="!theme.light"></span>
+        <span>{{theme.name}}</span>
     </li>
   </ul>
 </div>

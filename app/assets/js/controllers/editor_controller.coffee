@@ -11,7 +11,7 @@ Angie.controller "editorController", ['$scope', '$http', '$location', 'ThemeLoad
   ThemeLoader.themes.success (data) ->
     available_themes = data
     theme_obj = available_themes.find (t) -> t.name == theme
-    console.log theme_obj
+    # console.log theme_obj
     ThemeLoader.load(theme_obj).success (data) ->
       $scope.xmlTheme  = data
       $scope.jsonTheme = plist_to_json($scope.xmlTheme)

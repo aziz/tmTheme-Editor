@@ -1,14 +1,18 @@
 TODO:
- ☐ mark light and dark. filter on light/dark
+ Gallery:
+ ☐ loading message while loading theme
+ ☐ do not load theme if it's already loaded
+ ☐ search in gallery
+ ☐ remember gallery state (open/close)
+ Editor:
  ☐ use bs-tooltip instead of default html tooltips
- ☐ search for themes and scopes
+ ☐ search for scopes
  ☐ toggle buttons for Global/Scope/Settings
  ☐ hover state for scopes #26
  ☐ put theme name as html title
- ☐ do not load theme if it's already loaded
- ☐ loading message while loading theme
- ☐ on file drop clear the URL
  ☐ windows bug for color boxes @v0.2
+
+ ☐ on file drop clear the URL
  ☐ BUG: when someone drops a theme reloads are broken
 --- ✄ -----------------------
  ☐ support for HTML,CSS,JS,Ruby,Python and other languages @v0.3
@@ -79,6 +83,7 @@ http://www.sublimetext.com/forum/viewtopic.php?f=2&t=10766
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ mark light and dark. filter on light/dark @done (13-04-29 18:19)
  ✔ load theme should be on a service @done (13-04-28 22:55)
  ✔ update js vendors @done (13-04-28 21:44)
  ✔ theme list text should not be selectable @done (13-04-28 21:22)
