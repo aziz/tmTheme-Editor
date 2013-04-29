@@ -371,5 +371,12 @@ Angie.controller "editorController", ['$scope', '$http', '$location', 'ThemeLoad
     "ctrl+n": "toggle_new_rule_popover()"
   }
 
-  $scope.gallery = null
-  $scope.toggle_gallery = -> $scope.gallery = if $scope.gallery then null else "slide"
+
+  $scope.gallery = if $.cookie('gallery_state') && $.cookie('gallery_state') == "slide" then "slide" else null
+  $scope.toggle_gallery = ->
+    if $scope.gallery
+      $scope.gallery = null
+      $.cookie('gallery_state', "closed")
+    else
+      $scope.gallery = "slide"
+      $.cookie('gallery_state', "slide")

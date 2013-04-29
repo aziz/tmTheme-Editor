@@ -1,7 +1,6 @@
 TODO:
  Gallery:
  ☐ search in gallery
- ☐ remember gallery state (open/close)
  Editor:
  ☐ use bs-tooltip instead of default html tooltips
  ☐ search for scopes
@@ -82,6 +81,7 @@ http://www.sublimetext.com/forum/viewtopic.php?f=2&t=10766
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ remember gallery state (open/close) @done (13-04-29 23:07)
  ✔ loading message while loading theme @done (13-04-29 22:47)
  ✔ do not load theme if it's already loaded @done (13-04-29 22:47)
  ✔ mark light and dark. filter on light/dark @done (13-04-29 18:19)
