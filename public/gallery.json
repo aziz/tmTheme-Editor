@@ -107,6 +107,8 @@
 {"name":"Pastie", "url":"https://raw.github.com/aziz/tmTheme-Editor/master/themes/Pastie.tmTheme"},
 {"name":"Patriot", "url":"https://raw.github.com/daylerees/colour-schemes/master/Patriot.tmTheme"},
 {"name":"Peacock", "url":"https://raw.github.com/daylerees/colour-schemes/master/Peacock.tmTheme"},
+{"name":"Perv Orange Moonlight", "url": "https://raw.github.com/FlavourSys/Perv-ColorScheme/master/Perv%20Orange%20Moonlight.tmTheme"},
+{"name":"Perv Orange", "url": "https://raw.github.com/FlavourSys/Perv-ColorScheme/master/Perv%20Orange.tmTheme"},
 {"name":"Phix Dark", "url": "https://raw.github.com/stuartherbert/sublime-phix-color-scheme/master/Phix%20Dark.tmTheme"},
 {"name":"PlasticCodeWrap", "url":"https://raw.github.com/aziz/tmTheme-Editor/master/themes/PlasticCodeWrap.tmTheme"},
 {"name":"Potpourri", "url":"https://raw.github.com/daylerees/colour-schemes/master/Potpourri.tmTheme"},
