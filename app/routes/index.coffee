@@ -11,6 +11,10 @@ routes.get_uri = (req, res) ->
       res.set 'Content-Type', 'text/plain'
       res.send body
 
+routes.stats = (req, res) ->
+  view = {}
+  res.render 'stats', view
+
 module.exports = routes
 
 

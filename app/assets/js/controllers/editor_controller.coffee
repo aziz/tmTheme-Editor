@@ -73,7 +73,6 @@ Angie.controller "editorController", ['$scope', '$http', '$location', 'ThemeLoad
 
   clamp = (val) -> Math.min(1, Math.max(0, val))
 
-
   window.requestFileSystem  = window.requestFileSystem || window.webkitRequestFileSystem
   window.BlobBuilder        = window.BlobBuilder || window.WebKitBlobBuilder
   window.requestFileSystem(window.TEMPORARY, 3*1024*1024,  FsInitHandler, FsErrorHandler)
@@ -125,6 +124,9 @@ Angie.controller "editorController", ['$scope', '$http', '$location', 'ThemeLoad
       for key, val of $scope.jsonTheme.settings[0].settings
         $scope.gcolors.push({"name": key, "color": val})
 
+
+  # COLOR ----------------------------------------
+
   $scope.bg = -> $scope.gcolors.length > 0 && $scope.gcolors.find((gc)-> gc.name == "background").color
   $scope.fg = -> $scope.gcolors.length > 0 && $scope.gcolors.find((gc)-> gc.name == "foreground").color
   $scope.selection_color = -> $scope.gcolors.length > 0 && $scope.gcolors.find((gc)-> gc.name == "selection")?.color
@@ -147,72 +149,6 @@ Angie.controller "editorController", ['$scope', '$http', '$location', 'ThemeLoad
     else
       false
 
-  $scope.is = (fontStyle, rule) ->
-    fs_array = rule.settings?.fontStyle?.split(" ") || []
-    fs_array.any(fontStyle)
-
-  $scope.toggle = (fontStyle, rule) ->
-    rule.settings = {} unless rule.settings
-    rule.settings.fontStyle = "" unless rule.settings.fontStyle
-    if $scope.is(fontStyle, rule)
-      rule.settings.fontStyle = rule.settings.fontStyle.split(" ").remove(fontStyle).join(" ")
-    else
-      rule.settings.fontStyle += " #{fontStyle}"
-
-  $scope.setFiles = (element) ->
-    $scope.files.push(file) for file in element.files
-    for file in $scope.files
-      #continue unless f.type.match("tmtheme")
-      reader = new FileReader()
-      reader.readAsText(file) # Read in the tmtheme file
-      reader.onload = do (file) ->
-        (e) ->
-          $scope.xmlTheme = e.target.result.trim()
-          $scope.fs && $scope.fs.root.getFile file.name, {create: true}, (fileEntry) ->
-            fileEntry.createWriter (fileWriter) ->
-              fileWriter.onwriteend = (e) ->
-                $.cookie('last_theme', file.name)
-                $scope.last_cached_theme = file.name
-              blob = new Blob([$scope.xmlTheme], {type: "text/plain"})
-              fileWriter.write(blob)
-          $scope.jsonTheme = plist_to_json($scope.xmlTheme)
-          #console.log $scope.jsonTheme
-          $scope.$apply()
-
-  $scope.update_general_colors = ->
-    globals = $scope.jsonTheme.settings[0]
-    globals.settings = {}
-    globals.settings[gc.name] = gc.color for gc in $scope.gcolors
-
-  $scope.download_theme = ->
-    $scope.update_general_colors()
-    plist = json2plist($scope.jsonTheme)
-    #console.log plist
-    blob = new Blob([plist], {type: "text/plain"})
-    saveAs blob, "#{$scope.jsonTheme.name}.tmTheme"
-
-  $scope.save_theme = ->
-    $scope.update_general_colors()
-    plist = json2plist($scope.jsonTheme)
-    #console.log plist
-    #console.log $scope.files.first()
-    $scope.fs && $scope.fs.root.getFile $scope.files.first(), {create: false}, (fileEntry) ->
-
-      fileEntry.remove ->
-
-        #console.log('File removed.')
-        $scope.fs && $scope.fs.root.getFile $scope.files.first(), {create: true}, (fileEntry) ->
-          fileEntry.createWriter (fileWriter) ->
-            fileWriter.onwriteend = (e) -> console.log "File Saved"
-            fileWriter.onerror = (e) -> console.log "Error in writing"
-            blob = new Blob([plist], {type: "text/plain"})
-            fileWriter.write(blob)
-          , FsErrorHandler
-        , FsErrorHandler
-
-      , FsErrorHandler
-    , FsErrorHandler
-
   $scope.border_color = (bgcolor) -> if $scope.light_or_dark(bgcolor) == "light" then "rgba(0,0,0,.33)" else "rgba(255,255,255,.33)"
 
   $scope.light_or_dark = (bgcolor) ->
@@ -234,6 +170,71 @@ Angie.controller "editorController", ['$scope', '$http', '$location', 'ThemeLoad
     hsl.l += percent/100
     hsl.l = clamp(hsl.l)
     tinycolor(hsl).toHslString()
+
+  # ----------------------------------------------
+
+  $scope.is = (fontStyle, rule) ->
+    fs_array = rule.settings?.fontStyle?.split(" ") || []
+    fs_array.any(fontStyle)
+
+  $scope.toggle = (fontStyle, rule) ->
+    rule.settings = {} unless rule.settings
+    rule.settings.fontStyle = "" unless rule.settings.fontStyle
+    if $scope.is(fontStyle, rule)
+      rule.settings.fontStyle = rule.settings.fontStyle.split(" ").remove(fontStyle).join(" ")
+    else
+      rule.settings.fontStyle += " #{fontStyle}"
+
+  $scope.update_general_colors = ->
+    globals = $scope.jsonTheme.settings[0]
+    globals.settings = {}
+    globals.settings[gc.name] = gc.color for gc in $scope.gcolors
+
+
+  $scope.setFiles = (element) ->
+    $scope.files.push(file) for file in element.files
+    for file in $scope.files
+      #continue unless f.type.match("tmtheme")
+      reader = new FileReader()
+      reader.readAsText(file) # Read in the tmtheme file
+      reader.onload = do (file) ->
+        (e) ->
+          $scope.xmlTheme = e.target.result.trim()
+          $scope.fs && $scope.fs.root.getFile file.name, {create: true}, (fileEntry) ->
+            fileEntry.createWriter (fileWriter) ->
+              fileWriter.onwriteend = (e) ->
+                $.cookie('last_theme', file.name)
+                $scope.last_cached_theme = file.name
+              blob = new Blob([$scope.xmlTheme], {type: "text/plain"})
+              fileWriter.write(blob)
+          $scope.jsonTheme = plist_to_json($scope.xmlTheme)
+          #console.log $scope.jsonTheme
+          $scope.$apply()
+
+  $scope.download_theme = ->
+    $scope.update_general_colors()
+    plist = json2plist($scope.jsonTheme)
+    blob = new Blob([plist], {type: "text/plain"})
+    saveAs blob, "#{$scope.jsonTheme.name}.tmTheme"
+
+  $scope.save_theme = ->
+    $scope.update_general_colors()
+    plist = json2plist($scope.jsonTheme)
+    $scope.fs && $scope.fs.root.getFile $scope.files.first(), {create: false}, (fileEntry) ->
+
+      fileEntry.remove ->
+        #console.log('File removed.')
+        $scope.fs && $scope.fs.root.getFile $scope.files.first(), {create: true}, (fileEntry) ->
+          fileEntry.createWriter (fileWriter) ->
+            fileWriter.onwriteend = (e) -> console.log "File Saved"
+            fileWriter.onerror = (e) -> console.log "Error in writing"
+            blob = new Blob([plist], {type: "text/plain"})
+            fileWriter.write(blob)
+          , FsErrorHandler
+        , FsErrorHandler
+
+      , FsErrorHandler
+    , FsErrorHandler
 
   $scope.theme_styles = ->
     styles = ""

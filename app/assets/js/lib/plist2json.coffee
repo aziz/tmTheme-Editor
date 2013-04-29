@@ -51,7 +51,7 @@ window.plist_to_json = (plist) ->
   # removing all the comments
   plist_without_comments = plist.replace(/<!--[\s\S]+?-->/g, "")
   doc = loadXMLString(plist_without_comments)
-  console.log doc
+  #console.log doc
   i = 0
   while i < doc.documentElement.childNodes.length
     return jsonify(doc.documentElement.childNodes[i]) unless doc.documentElement.childNodes[i].nodeName is "#text"

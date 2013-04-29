@@ -18,9 +18,10 @@ TODO:
  ☐ row highlight on dark bgs @v0.3
 
 Services:
- ☐ load theme should be on a service
  ☐ convert drag/drop and file system api to service
  ☐ do not use file api, use localstorage
+ ☐ plis_to_json should be a service
+ ☐ light_or_dark method and tinycolor should be a service
 
  low:
  ☐ apply filters (on colors) brightness/contract @v0.4
@@ -77,6 +78,7 @@ http://www.sublimetext.com/forum/viewtopic.php?f=2&t=10766
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ load theme should be on a service @done (13-04-28 22:55)
  ✔ update js vendors @done (13-04-28 21:44)
  ✔ theme list text should not be selectable @done (13-04-28 21:22)
  ✔ add: https://github.com/daylerees/colour-schemes @done (13-04-28 16:54)

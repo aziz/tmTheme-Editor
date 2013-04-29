@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+  <title>TmTheme Editor Stats</title>
+  <meta name="author" content="Allen Bargi">
+  <meta name="description" content="TmTheme Editor is the a visual color-scheme/theme editor for Sublime Text and Textmate editors.">
+  <meta name="keywords" content="tmtheme, theme editor, color scheme editor, sublime, sublime text, texmate, textmate theme editor, sublime theme editor">
+
+  <%- css("stats") -%>
+</head>
+
+<body ng-app="ThemeEditor">
+
+<div ng-controller="StatsController">
+
+  <!-- <pre> themes | json }}</pre> -->
+  <div class="container">
+    <br>
+    <div ng-hide="progress > 99" class="progress progress-striped active">
+      <div class="bar" style="width: {{ progress }}%;"></div>
+    </div>
+    <table class="table table-striped table-condensed">
+      <thead>
+        <th style="width:30px">#</th>
+        <th ng-click="predicate = 'name'; reverse=!reverse" style="width:200px">Name</th>
+        <th ng-click="predicate = 'jsonTheme.author'; reverse=!reverse" style="width:200px">Author</th>
+        <th ng-click="predicate = 'jsonTheme.settings.length'; reverse=!reverse" style="width:50px" >Scopes</th>
+        <th ng-click="predicate = 'bgcolor'; reverse=!reverse">BG</th>
+        <th ng-click="predicate = 'is_light'; reverse=!reverse">light/dark</th>
+      </thead>
+      <tbody>
+        <tr ng-repeat="theme in themes | orderBy:predicate:reverse">
+          <td>{{ $index + 1 }}</td>
+          <td><a ng-href="/#/{{ theme.name }}">{{ theme.name }}</a></td>
+          <td>{{ theme.jsonTheme.author }}</td>
+          <td>{{ theme.jsonTheme.settings.length }}</td>
+          <td>
+            <span style="display: inline-block;width: 32px; height: 16px; border:1px solid #000; background-color: {{ theme.bgcolor.to(7) }}"></span>
+            {{ theme.bgcolor }}
+          </td>
+          <td>
+            <div ng-show="theme.is_light" style="border-radius:50px;  width: 16px; height: 16px; border: 1px solid rgba(0,0,0,.4); background-color: #fff"></div>
+            <div ng-hide="theme.is_light" style="border-radius:50px;  width: 16px; height: 16px; border: 1px solid rgba(0,0,0,.4); background-color: #000"></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<%- js("stats") -%>
+</body>
+</html>
