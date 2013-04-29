@@ -1,13 +1,12 @@
 TODO:
  Gallery:
- ☐ loading message while loading theme
- ☐ do not load theme if it's already loaded
  ☐ search in gallery
  ☐ remember gallery state (open/close)
  Editor:
  ☐ use bs-tooltip instead of default html tooltips
  ☐ search for scopes
  ☐ toggle buttons for Global/Scope/Settings
+ ☐ list tr border issues for table headers
  ☐ hover state for scopes #26
  ☐ put theme name as html title
  ☐ windows bug for color boxes @v0.2
@@ -83,6 +82,8 @@ http://www.sublimetext.com/forum/viewtopic.php?f=2&t=10766
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ loading message while loading theme @done (13-04-29 22:47)
+ ✔ do not load theme if it's already loaded @done (13-04-29 22:47)
  ✔ mark light and dark. filter on light/dark @done (13-04-29 18:19)
  ✔ load theme should be on a service @done (13-04-28 22:55)
  ✔ update js vendors @done (13-04-28 21:44)

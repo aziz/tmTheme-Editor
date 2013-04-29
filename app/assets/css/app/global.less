@@ -66,3 +66,20 @@ body {overflow: hidden;}
   }
 
 }
+
+#loading {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 200px;
+  top: 37px;
+  z-index: 99999999;
+  background: rgba(0,0,0,.6) url(/images/loading.gif) no-repeat center center;
+  opacity: 0;
+  display: none;
+  .transition(all 1600ms ease);
+
+  &.show {
+    opacity:1;
+  }
+}
