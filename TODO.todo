@@ -1,11 +1,11 @@
 TODO:
  Editor:
- ☐ use bs-tooltip instead of default html tooltips
  ☐ search for scopes
- ☐ toggle buttons for Global/Scope/Settings
- ☐ list tr border issues for table headers
  ☐ hover state for scopes #26
  ☐ put theme name as html title
+ ☐ toggle buttons for Global/Scope/Settings
+ ☐ a settings button with the ability to edit name/author/uuid/comments
+ ☐ use bs-tooltip instead of default html tooltips
  ☐ windows bug for color boxes @v0.2
 
  ☐ on file drop clear the URL
@@ -34,9 +34,7 @@ Services:
    ☐ http://www.colourlovers.com/ase.phps
    ☐ https://github.com/nsfmc/swatch
    ☐ http://blog.soulwire.co.uk/code/actionscript-3/as3-ase-adobe-swatch-exchange-encoder
- ☐ support for Textmate 2 new <key>semanticClass</key><string>theme.dark.tomorrow</string>
  ☐ set some info on the server for SEO when a theme is in URL
- ☐ a settings button with the ability to edit name/author/uuid
  ☐ option: chrome app
  ☐ better readme
  ☐ event tracking
@@ -79,6 +77,8 @@ http://www.sublimetext.com/forum/viewtopic.php?f=2&t=10766
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ list tr border issues for table headers @done (13-04-30 00:31)
+ ✘ support for Textmate 2 new <key>semanticClass</key><string>theme.dark.tomorrow</string> @cancelled (13-04-30 00:23)
  ✔ search in gallery @done (13-04-30 00:17)
  ✔ remember gallery state (open/close) @done (13-04-29 23:07)
  ✔ loading message while loading theme @done (13-04-29 22:47)
