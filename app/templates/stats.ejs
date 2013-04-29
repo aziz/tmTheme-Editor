@@ -22,17 +22,37 @@
     <table class="table table-striped table-condensed">
       <thead>
         <th style="width:30px">#</th>
-        <th ng-click="predicate = 'name'; reverse=!reverse" style="width:200px">Name</th>
-        <th ng-click="predicate = 'jsonTheme.author'; reverse=!reverse" style="width:200px">Author</th>
-        <th ng-click="predicate = 'jsonTheme.settings.length'; reverse=!reverse" style="width:50px" >Scopes</th>
-        <th ng-click="predicate = 'bgcolor'; reverse=!reverse">BG</th>
-        <th ng-click="predicate = 'is_light'; reverse=!reverse">light/dark</th>
+        <th ng-class="{'active': predicate == 'name' }" ng-click="predicate = 'name'; reverse=!reverse" style="width:200px">
+          Name
+          <span ng-show="predicate == 'name' && reverse == true">▼</span>
+          <span ng-show="predicate == 'name' && reverse == false">▲</span>
+        </th>
+        <th ng-class="{'active': predicate == 'jsonTheme.author' }" ng-click="predicate = 'jsonTheme.author'; reverse=!reverse" style="width:200px">
+          Author
+          <span ng-show="predicate == 'jsonTheme.author' && reverse == true">▼</span>
+          <span ng-show="predicate == 'jsonTheme.author' && reverse == false">▲</span>
+        </th>
+        <th ng-class="{'active': predicate == 'jsonTheme.settings.length' }" ng-click="predicate = 'jsonTheme.settings.length'; reverse=!reverse" style="width:80px" >
+          Scopes
+          <span ng-show="predicate == 'jsonTheme.settings.length' && reverse == true">▼</span>
+          <span ng-show="predicate == 'jsonTheme.settings.length' && reverse == false">▲</span>
+        </th>
+        <th ng-class="{'active': predicate == 'bgcolor' }" ng-click="predicate = 'bgcolor'; reverse=!reverse">
+          BG
+          <span ng-show="predicate == 'bgcolor' && reverse == true">▼</span>
+          <span ng-show="predicate == 'bgcolor' && reverse == false">▲</span>
+        </th>
+        <th ng-class="{'active': predicate == 'is_light' }" ng-click="predicate = 'is_light'; reverse=!reverse">
+          light/dark
+          <span ng-show="predicate == 'is_light' && reverse == true">▼</span>
+          <span ng-show="predicate == 'is_light' && reverse == false">▲</span>
+        </th>
       </thead>
       <tbody>
         <tr ng-repeat="theme in themes | orderBy:predicate:reverse">
           <td>{{ $index + 1 }}</td>
           <td><a ng-href="/#/{{ theme.name }}">{{ theme.name }}</a></td>
-          <td>{{ theme.jsonTheme.author }}</td>
+          <td>{{ theme.jsonTheme.author.truncate(22) }}</td>
           <td>{{ theme.jsonTheme.settings.length }}</td>
           <td>
             <span style="display: inline-block;width: 32px; height: 16px; border:1px solid #000; background-color: {{ theme.bgcolor.to(7) }}"></span>
