@@ -18,6 +18,26 @@
     <div ng-hide="progress > 99" class="progress progress-striped active">
       <div class="bar" style="width: {{ progress }}%;"></div>
     </div>
+
+    <table class="table table-striped table-condensed">
+      <thead>
+        <th>#</th>
+        <th>Scope</th>
+        <th style="width: 50px">Count</th>
+        <th style="width: 300px"></th>
+      </thead>
+      <tbody>
+        <tr ng-repeat="scope in scopes_data | orderBy:'count':true">
+          <td>{{ $index+1 }}</td>
+          <td>{{ scope.name }}</td>
+          <td style="text-align: right;">{{ scope.count }}</td>
+          <td>
+            <span style="position: relative;top:3px;background-color: #20B2C5; width: {{scope.count}}px; height: 16px; display: inline-block;"></span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
     <table class="table table-striped table-condensed">
       <thead>
         <th style="width:30px">#</th>
