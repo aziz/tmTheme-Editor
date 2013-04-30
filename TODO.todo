@@ -77,6 +77,7 @@ http://www.sublimetext.com/forum/viewtopic.php?f=2&t=10766
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ bottom of the gallery list is not accessible @done (13-04-30 12:52)
  ✔ list tr border issues for table headers @done (13-04-30 00:31)
  ✘ support for Textmate 2 new <key>semanticClass</key><string>theme.dark.tomorrow</string> @cancelled (13-04-30 00:23)
  ✔ search in gallery @done (13-04-30 00:17)
