@@ -1,16 +1,26 @@
-<div ng-cloak ng-class="gallery" class="titlebar">
-  <div class="title">
-    <input type="text" ng-model="jsonTheme.name">
+<div ng-class="gallery" class="tabbar">
+  <a ng-click="current_tab = 'scopes'"  ng-class="{'active': current_tab == 'scopes'}">Scopes</a>
+  <a ng-click="current_tab = 'general'" ng-class="{'active': current_tab == 'general'}">General</a>
+  <a ng-click="current_tab = 'info'"    ng-class="{'active': current_tab == 'info'}">Info</a>
+</div>
+
+<div ng-cloak ng-class="gallery" class="actionbar">
+  <div class="search">
+    <input type="search" ng-model="scopes_filter.name" ng-class="{'has_text': scopes_filter.name.length > 0}">
+    <div ng-show="scopes_filter.name" ng-click="scopes_filter.name = null" class="clear_search">&times;</div>
   </div>
-  <div class="actions" ng-hide="gcolors.length==0">
-    <div ng-click="toggle_new_rule_popover()" ng-class="{'active': new_popover_visible }" class="add">+</div>
-    <div ng-click="delete_rule(selected_rule)" class="remove">-</div>
+  <div class="actions">
+    <div ng-click="toggle_new_rule_popover()"
+         ng-class="{'active': new_popover_visible }" class="add"
+         data-toggle="tooltip" data-placement="top" title="Add">+</div>
+    <div ng-click="delete_rule(selected_rule)" class="remove"
+         data-toggle="tooltip" data-placement="top" title="Remove">-</div>
   </div>
 </div>
 
 <div ng-cloak ng-class="gallery" class="sidebar" ng-style="{ 'background-color': get_color(bg())}">
 
-  <table class="list general">
+  <table ng-show="current_tab == 'general'" class="list general">
     <thead ng-hide="gcolors.length==0">
       <tr>
         <th class="align-begin truncate">General Colors</th>
@@ -30,16 +40,16 @@
                  title="{{gcolor.color}}"
                  ng-model="gcolor.color"
                  ng-change="update_gcolor(gcolor, angualr.element(this).val())">
-          <td>
-          </td>
+
         </td>
+        <td></td>
       </tr>
 
     </tbody>
   </table>
 
 
-  <table id="scope-lists" class="list">
+  <table ng-show="current_tab == 'scopes'" id="scope-lists" class="list">
     <thead ng-show="jsonTheme">
       <tr>
         <th class="align-begin truncate">Scope Name</th>
@@ -52,8 +62,7 @@
       </tr>
     </thead>
     <tbody ui-sortable ui-options="sortable_options" ng-model="jsonTheme.settings" ng-style="{ 'background-color': get_color(bg()), 'color': get_color(fg()) }">
-      <tr ng-repeat="rule in jsonTheme.settings.compact()"
-          ng-hide="$first"
+      <tr ng-repeat="rule in jsonTheme.settings.compact() | filter: scopes_filter"
           ng-click="mark_as_selected(rule)"
           ng-dblclick="toggle_edit_popover(rule, $index)"
           ng-class="selected_gradient(rule)"
@@ -76,4 +85,37 @@
       </tr>
     </tbody>
   </table>
+
+  <table ng-show="current_tab == 'info'" class="list info">
+    <thead>
+      <tr>
+        <th style="width:80px" class="align-begin">Property</th>
+        <th class="align-begin">Value</th>
+      </tr>
+    </thead>
+    <tbody ui-sortable ui-options="sortable_options" ng-style="{ 'background-color': get_color(bg()), 'color': get_color(fg()) }">
+
+      <tr>
+        <td class="name-box">Name</td>
+        <td>{{jsonTheme.name}}</td>
+      </tr>
+      <tr>
+        <td class="name-box">Author</td>
+        <td>{{jsonTheme.author}}</td>
+      </tr>
+
+
+      <tr>
+        <td class="name-box">UUID</td>
+        <td>{{jsonTheme.uuid}}</td>
+      </tr>
+
+      <tr>
+        <td class="name-box">Comment</td>
+        <td>{{jsonTheme.comment}}</td>
+      </tr>
+
+    </tbody>
+  </table>
+
 </div>

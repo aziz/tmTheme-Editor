@@ -2,6 +2,17 @@ Angie.controller "editorController", ['$scope', '$http', '$location', 'ThemeLoad
 
   $scope.is_browser_supported = window.chrome
 
+  $scope.current_tab = 'scopes'
+  $scope.scopes_filter = {
+    name: null
+  }
+
+  $scope.page_title = ->
+    if $scope.jsonTheme
+      $scope.jsonTheme.name + ' — ' + 'TmTheme Editor'
+    else
+      'TmTheme Editor'
+
   # loading theme from URL
   if $location.path() && $location.path().replace("/","").length > 0
     theme = $location.path().replace("/","")
@@ -305,12 +316,17 @@ Angie.controller "editorController", ['$scope', '$http', '$location', 'ThemeLoad
       $("#edit-popover").css({
         "top": "auto"
         "bottom": win_height - row.offset().top
-      }).addClass("on-top")
+      }).removeClass("on-bottom").addClass("on-top")
+    else if row.offset().top < 160
+      $("#edit-popover").css({
+        "top": row.offset().top + row.outerHeight()
+        "bottom": "auto"
+      }).removeClass("on-top").addClass("on-bottom")
     else
       $("#edit-popover").css({
         "top": row.offset().top + (row.outerHeight()/2) - 140
         "bottom": "auto"
-      }).removeClass("on-top")
+      }).removeClass("on-top").removeClass("on-bottom")
     $("#preview, #gallery").one "click", (e) ->
       $scope.edit_popover_visible = false
       $scope.$digest()

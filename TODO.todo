@@ -1,11 +1,15 @@
 TODO:
+ ☐ should preprocess theme and cleaned it up for presentation
+   ☐ general/info/scope
+   ☐ format colors
+   ☐ add dark or light to the parent node of controller
+   ☐ ng-hide $first cause an issue
+   ☐ hover state for scopes #26
+
+Gallery:
+ ☐ highlight current theme does not work properly
  Editor:
- ☐ search for scopes
- ☐ hover state for scopes #26
- ☐ put theme name as html title
- ☐ toggle buttons for Global/Scope/Settings
- ☐ a settings button with the ability to edit name/author/uuid/comments
- ☐ use bs-tooltip instead of default html tooltips
+ ☐ edit for info tab
  ☐ windows bug for color boxes @v0.2
 
  ☐ on file drop clear the URL
@@ -25,6 +29,7 @@ Services:
  ☐ light_or_dark method and tinycolor should be a service
 
  low:
+ ☐ being able to auto upload current theme inside sublim to a server and preview it: http://pastie.org/pastes/7745711/text
  ☐ apply filters (on colors) brightness/contract @v0.4
  ☐ contrast score for bg and fg https://github.com/LeaVerou/contrast-ratio @v0.4
  ☐ use pre processed sample code for other languages @v0.4
@@ -77,6 +82,15 @@ http://www.sublimetext.com/forum/viewtopic.php?f=2&t=10766
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ put theme name as html title @done (13-05-01 03:28)
+ ✔ clear scope search on theme load @done (13-05-01 03:19)
+ ✔ style search input @done (13-05-01 03:13)
+ ✔ use bs-tooltip instead of default html tooltips @done (13-05-01 02:19)
+ ✔ popover near the top broundry check @done (13-05-01 02:12)
+ ✔ bring back + and - @done (13-05-01 01:35)
+ ✔ search for scopes @done (13-05-01 01:35)
+ ✔ toggle buttons for Global/Scope/Settings @done (13-05-01 00:41)
+ ✔ a settings button with the ability to edit name/author/uuid/comments @done (13-05-01 00:42)
  ✔ Add scope statistic @done (13-04-30 17:18)
  ✔ use spinner.js @done (13-04-30 17:18)
  ✔ bottom of the gallery list is not accessible @done (13-04-30 12:52)

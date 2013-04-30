@@ -17,8 +17,11 @@
   <input type="file" id="files" class="upload" ng-model="input" onchange="angular.element(this).scope().setFiles(this)" />
 
   <div ng-class="gallery" class="sep"></div>
+  <div ng-class="gallery" ng-cloak ng-show="jsonTheme" class="theme-title">
+    {{ jsonTheme.name }}
+  </div>
+  <!--
   <div ng-cloak ng-show="jsonTheme" class="languages">
-<!--
     <div class="btn-group">
       <a ng-click="" class="btn btn-small dropdown-toggle" data-toggle="dropdown">
         {{ current_lang }}
@@ -30,8 +33,8 @@
         </li>
       </ul>
     </div>
--->
   </div>
+  -->
   <div class="links">
     <%// include _social %>
     <ul>

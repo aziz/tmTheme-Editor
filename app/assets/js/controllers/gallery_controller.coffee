@@ -11,6 +11,7 @@ Angie.controller "galleryController", ['$scope', '$http', '$location', 'ThemeLoa
     return if $scope.selected_theme == theme
     throbber.on()
     $("#edit-popover, #new-popover").hide()
+    $scope.$parent.scopes_filter.name = null
     $location.path(theme.name)
     $scope.selected_theme = theme
     ThemeLoader.load(theme).success (data) ->
