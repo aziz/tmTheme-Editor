@@ -27,11 +27,11 @@
 @import "bootstrap/tables.less";
 
 // Components: common
-//@import "bootstrap/sprites.less";
+@import "bootstrap/sprites.less";
 @import "bootstrap/dropdowns.less";
-//@import "bootstrap/wells.less";
+@import "bootstrap/wells.less";
 @import "bootstrap/component-animations.less";
-//@import "bootstrap/close.less";
+@import "bootstrap/close.less";
 
 // Components: Buttons & Alerts
 @import "bootstrap/buttons.less";
@@ -39,9 +39,9 @@
 //@import "bootstrap/alerts.less"; // Note: alerts share common CSS with buttons and thus have styles in buttons.less
 
 // Components: Nav
-//@import "bootstrap/navs.less";
-//@import "bootstrap/navbar.less";
-//@import "bootstrap/breadcrumbs.less";
+@import "bootstrap/navs.less";
+@import "bootstrap/navbar.less";
+// @import "bootstrap/breadcrumbs.less";
 //@import "bootstrap/pagination.less";
 //@import "bootstrap/pager.less";
 
@@ -65,8 +65,8 @@
 //@import "http://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic,700italic";
 @import "http://fonts.googleapis.com/css?family=Source+Code+Pro:400,700";
 
-@sansFontFamily: 'Source Code Pro',"lucida grande", "Segoe UI","Helvetica Neue", Helvetica, Arial, sans-serif;
-@systemFontFamily: 'Source Code Pro',"lucida grande", "Segoe UI", Helvetica, Arial, sans-serif;
+@sansFontFamily: "lucida grande", "Segoe UI","Helvetica Neue", Helvetica, Arial, sans-serif;
+@systemFontFamily: "lucida grande", "Segoe UI", Helvetica, Arial, sans-serif;
 @monoFontFamily:  'Source Code Pro','Ubuntu Mono', 'Monaco', 'Menlo', 'Consolas', "Courier New", monospace;
 @sidebarMin: 400px;
 @sidebarMax: 400px;
@@ -74,13 +74,67 @@
 
 [ng-cloak], .ng-cloak { display: none; }
 [ng-click] { cursor: pointer; }
-// @import "app/global";
-// @import "app/header";
+
 // @import "app/sidebar";
 // @import "app/preview";
 // @import "app/gallery";
 
+@import "app/global";
+@import "app/header";
 
-th.active {
-  background-color: #eee;
+
+table {
+  font-family: @monoFontFamily;
+
+  th.active {
+    background-color: #eee;
+  }
+}
+
+.progress {
+  @pwidth: 400px;
+  position: absolute;
+  width: @pwidth;
+  top: 12px;
+  left: 50%;
+  margin-left: -1 * @pwidth/2;
+  border: 1px solid #969696;
+  height: 12px;
+  .border-radius(99px);
+  @bs: 0 1px 0 rgba(255,255,255,.5) , inset 0 1px 3px rgba(0,0,0,.3);
+  .box-shadow(@bs);
+
+  .bar {
+    .border-radius(99px);
+    @bs: 0 1px 0 rgba(255,255,255,.5) , inset 0 1px 3px rgba(0,0,0,.3);
+    .box-shadow(@bs);
+  }
+}
+
+#header {
+  position: fixed;
+  left: 0;
+  right: 0;
+}
+
+#stats-tabs {
+  position: fixed;
+  left: 8px;
+  right: 8px;
+  top: 44px;
+}
+
+#stats-tables {
+  position: fixed;
+  left: 8px;
+  right: 8px;
+  top: 90px;
+  bottom: 0;
+  overflow: scroll;
+}
+
+#loading {
+  left: 0;
+  // display: block;
+  // opacity: 1;
 }

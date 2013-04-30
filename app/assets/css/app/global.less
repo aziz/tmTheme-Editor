@@ -74,12 +74,18 @@ body {overflow: hidden;}
   left: 200px;
   top: 37px;
   z-index: 99999999;
-  background: rgba(0,0,0,.6) url(/images/loading.gif) no-repeat center center;
+  background: rgba(0,0,0,.6);
   opacity: 0;
   display: none;
   .transition(all 1600ms ease);
 
   &.show {
     opacity:1;
+  }
+
+  .spinner {
+    position: absolute !important;
+    left: 50% !important;
+    top: 50% !important;
   }
 }

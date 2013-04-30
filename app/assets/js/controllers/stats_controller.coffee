@@ -5,6 +5,7 @@ Angie.controller "StatsController", ['$scope', '$http', '$location', 'ThemeLoade
   $scope.progress = 0
   $scope.predicate = "name"
   $scope.reverse = false
+  $scope.current_tab = "themes"
   progress_unit = 0
 
   load_theme = (theme) ->
@@ -13,8 +14,10 @@ Angie.controller "StatsController", ['$scope', '$http', '$location', 'ThemeLoade
       theme.jsonTheme = plist_to_json(theme.xmlTheme)
       theme.bgcolor = theme.jsonTheme.settings.first().settings.background
       theme.is_light = light_or_dark(theme.bgcolor.to(7)) == "light"
-      process_scopes(theme.jsonTheme.settings)
-      $scope.progress += progress_unit
+      process = -> process_scopes(theme.jsonTheme.settings)
+      update_progress = -> $scope.progress += progress_unit
+      setTimeout(process, 0)
+      setTimeout(update_progress, 0)
 
   process_scopes = (settings) ->
     for setting in settings
