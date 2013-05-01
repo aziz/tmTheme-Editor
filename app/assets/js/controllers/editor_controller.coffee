@@ -17,6 +17,7 @@ Angie.controller "editorController", ['$scope', '$http', '$location', 'ThemeLoad
   $scope.new_rule_pristine = {"name":"","scope":"","settings":{}}
   $scope.new_rule = Object.clone($scope.new_rule_pristine)
   $scope.gallery = if $.cookie('gallery_state') && $.cookie('gallery_state') == "slide" then "slide" else null
+  $scope.new_property = {property: "", value: ""}
 
   $scope.sortable_options = {
     axis: "y"
@@ -65,6 +66,7 @@ Angie.controller "editorController", ['$scope', '$http', '$location', 'ThemeLoad
     $scope.xmlTheme  = data
     $scope.jsonTheme = plist_to_json($scope.xmlTheme)
     $scope.gcolors = []
+    $scope.selected_rule = null
     if $scope.jsonTheme && $scope.jsonTheme.settings
       for key, val of $scope.jsonTheme.settings[0].settings
         $scope.gcolors.push({"name": key, "color": val})
@@ -296,22 +298,25 @@ Angie.controller "editorController", ['$scope', '$http', '$location', 'ThemeLoad
   $scope.theme_selection = ->
     style = ""
     if $scope.jsonTheme && $scope.jsonTheme.settings
-      style += "pre *::selection, pre *::-moz-selection, pre *::-webkit-selection, pre::selection, pre::-moz-selection, pre::-webkit-selection {background:"
-      style += "#{$scope.get_color($scope.selection_color())};}"
+      style += "pre::selection {background:transparent}.preview pre *::selection {background:"
+      style += "#{$scope.get_color($scope.selection_color())} }"
     style
 
 
   # ---------------------------------------------------------------------
 
   $scope.is_selected = (rule) -> rule == $scope.selected_rule
+  $scope.is_gcolor_selected = (rule) -> rule == $scope.general_selected_rule
 
-  $scope.selected_gradient = (rule) ->
-    return "" unless $scope.is_selected(rule)
-    if $scope.light_or_dark($scope.bg()) == "light" then "selected_bglight" else "selected_bgdark"
+  # $scope.selected_gradient = (rule) ->
+  #   return "" unless $scope.is_selected(rule)
+  #   if $scope.light_or_dark($scope.bg()) == "light" then "selected_bglight" else "selected_bgdark"
 
   $scope.mark_as_selected = (rule) ->
     $scope.selected_rule = rule
     $scope.edit_popover_visible = false
+
+  $scope.mark_as_selected_gcolor = (rule) -> $scope.general_selected_rule = rule
 
   # ---------------------------------------------------------------------
 

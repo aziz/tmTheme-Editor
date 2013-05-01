@@ -1,19 +1,16 @@
 TODO:
- ☐ add dark or light to the parent node of controller
- ☐ better gradient for selected rule
- ☐ row highlight on dark bgs @v0.3
- ☐ hover state for scopes #26
-
- General Color:
- ☐ selected rule
- ☐ add, remove
-
- ☐ drop themes /saved theme should call procesed
+ ☐ BUG: in bg dectction in /#/Fluidvision
+ ☐ drop themes/saved theme should call procesed
  ☐ when last_theme cookie exists redirect wins and overwrtie it on reload
  ☐ BUG: when someone drops a theme reloads are broken
 
-Gallery:
- ☐ context specific + and -
+ ☐ hover state for scopes #26
+ ☐ position of editor box at the bottom
+
+ General Color:
+ ☐ add, remove
+ Info:
+ ☐ add, remove
 
  Editor:
  ☐ windows bug for color boxes @v0.2
@@ -77,9 +74,6 @@ TM_LANGUAGE parsing:
    ☐ adjust begin and size based on length on lb text
  ☐ support for repository and include (support for external includes)
 
-http://www.sublimetext.com/forum/viewtopic.php?f=2&t=10766
-
-
 DID YOU KNOW:
  ☐ you can drag and drop and reorder scopes
  ☐ you can drag and drop your color schemes
@@ -91,9 +85,13 @@ DID YOU KNOW:
  ☐ add you own theme to gallery
  ☐ you can see the edit panel by dbl clicking the scopes
 
-
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ selected rule @done (13-05-01 17:59)
+ ✔ selection background does not work @done (13-05-01 21:33)
+ ✔ add dark or light to the parent node of controller @done (13-05-01 17:46)
+ ✔ better gradient for selected rule @done (13-05-01 17:46)
+ ✔ row highlight on dark bgs @v0.3 @done (13-05-01 17:45)
  ✔ border of the color types @done (13-05-01 16:48)
  ✔ semanticClass: theme.light.something @done (13-05-01 16:48)
  ✔ colorSpaceName: "sRGB" @done (13-05-01 16:40)

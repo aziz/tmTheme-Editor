@@ -9,7 +9,8 @@
 </head>
 
 <body id="drop_zone"
-      shortcut='shortcuts'>
+      shortcut='shortcuts'
+      ng-class="'current_theme_' + light_or_dark(bg())">
   <% include _browser_support %>
   <% include _gallery %>
 

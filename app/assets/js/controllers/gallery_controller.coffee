@@ -24,10 +24,6 @@ Angie.controller "galleryController", ['$scope', '$http', '$location', 'ThemeLoa
 
   $scope.is_selected_theme = (theme) -> theme == $scope.selected_theme
 
-  $scope.selected_gradient = (theme) ->
-    return "" unless $scope.is_selected_theme(theme)
-    if $scope.light_or_dark($scope.bg()) == "light" then "selected_bglight" else "selected_bgdark"
-
   $scope.toggle_type_filter = (type) ->
     if $scope.filter.type == type
       $scope.filter.type = null

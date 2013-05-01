@@ -5,16 +5,31 @@
 </div>
 
 <div ng-cloak ng-class="gallery" class="actionbar">
-  <div class="search">
-    <input type="search" ng-model="scopes_filter.name" ng-class="{'has_text': scopes_filter.name.length > 0}">
-    <div ng-show="scopes_filter.name" ng-click="scopes_filter.name = null" class="clear_search">&times;</div>
+  <div ng-show="current_tab == 'scopes'" >
+    <div class="search">
+      <input type="search" ng-model="scopes_filter.name">
+      <div ng-show="scopes_filter.name" ng-click="scopes_filter.name = null" class="clear_search">&times;</div>
+    </div>
+    <div class="actions">
+      <div ng-click="toggle_new_rule_popover()"
+           ng-class="{'active': new_popover_visible }" class="add"
+           data-toggle="tooltip" data-placement="top" title="Add">+</div>
+      <div ng-click="delete_rule(selected_rule)"
+           ng-class="{'disabled': !selected_rule }" class="remove"
+           data-toggle="tooltip" data-placement="top" title="Remove">-</div>
+    </div>
   </div>
-  <div class="actions">
+
+  <div ng-show="current_tab == 'general'" class="actions">
     <div ng-click="toggle_new_rule_popover()"
          ng-class="{'active': new_popover_visible }" class="add"
          data-toggle="tooltip" data-placement="top" title="Add">+</div>
-    <div ng-click="delete_rule(selected_rule)" class="remove"
-         data-toggle="tooltip" data-placement="top" title="Remove">-</div>
+  </div>
+
+  <div ng-show="current_tab == 'info'" class="actions">
+    <div ng-click="toggle_new_rule_popover()"
+         ng-class="{'active': new_popover_visible }" class="add"
+         data-toggle="tooltip" data-placement="top" title="Add">+</div>
   </div>
 </div>
 
@@ -30,8 +45,10 @@
     </thead>
     <tbody ui-sortable ui-options="sortable_options" ng-model="gcolors" ng-style="{ 'background-color': get_color(bg()), 'color': get_color(fg()) }">
 
-      <tr ng-repeat="gcolor in gcolors">
-        <td class="name-box truncate" ng-bind="gcolor.name"></td>
+      <tr ng-repeat="gcolor in gcolors"
+          ng-click="mark_as_selected_gcolor(gcolor)"
+          ng-class="{ 'selected': is_gcolor_selected(gcolor) }">
+        <td class="name-box truncate">{{gcolor.name}}</td>
         <td>
           <div class="colorpicker-box"
                ng-class="has_color(gcolor.color)"
@@ -63,10 +80,10 @@
     </thead>
     <tbody ui-sortable ui-options="sortable_options" ng-model="jsonTheme.settings" ng-style="{ 'background-color': get_color(bg()), 'color': get_color(fg()) }">
       <tr ng-repeat="rule in jsonTheme.settings.compact() | filter: scopes_filter"
-          ng-hide="rule.settings.caret"
+          ng-hide="rule.settings.invisibles"
           ng-click="mark_as_selected(rule)"
           ng-dblclick="toggle_edit_popover(rule, $index)"
-          ng-class="selected_gradient(rule)"
+          ng-class="{ 'selected': is_selected(rule) }"
           class="rule-{{$index}}">
         <td class="name-box truncate"
             ng-style="{ 'color': get_color(rule.settings.foreground), 'background-color': get_color(rule.settings.background) }"
@@ -115,7 +132,6 @@
         <td class="name-box">Comment</td>
         <td><textarea type="text" ng-model="jsonTheme.comment"></textarea></td>
       </tr>
-
     </tbody>
   </table>
 
