@@ -4,7 +4,6 @@ TODO:
  ☐ BUG: when someone drops a theme reloads are broken
 
  ☐ hover state for scopes #26
- ☐ position of editor box at the bottom
 
  General Color:
  ☐ add, remove
@@ -86,6 +85,7 @@ DID YOU KNOW:
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ position of editor box at the bottom @done (13-05-01 22:23)
  ✔ BUG: in bg dectction in /#/Fluidvision @done (13-05-01 22:07)
  ✔ selected rule @done (13-05-01 17:59)
  ✔ selection background does not work @done (13-05-01 21:33)
