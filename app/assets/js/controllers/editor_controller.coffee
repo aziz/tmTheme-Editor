@@ -51,20 +51,27 @@ Angie.controller "editorController", ['$scope', '$http', '$location', 'ThemeLoad
 
   clamp = (val) -> Math.min(1, Math.max(0, val))
 
-  # Initializing ----------------------------------------------
+  # -- Initializing ----------------------------------------------
+
+  # There's theme name in URL
   if $location.path() && $location.path().replace("/","").length > 0
     theme = $location.path().replace("/","")
+  # There's a theme locally saved
+  else if $scope.last_cached_theme
+    console.log "Loading from local file system"
+  # Loading Default theme
   else
     theme = "PlasticCodeWrap"
     $location.path("PlasticCodeWrap")
   ThemeLoader.themes.success (data) ->
     available_themes = data
-    theme_obj = available_themes.find (t) -> t.name == theme
-    ThemeLoader.load(theme_obj).success (data) -> $scope.process_theme(data)
+    if theme
+      theme_obj = available_themes.find (t) -> t.name == theme
+      ThemeLoader.load(theme_obj).success (data) -> $scope.process_theme(data)
 
   $scope.process_theme = (data) ->
     $scope.xmlTheme  = data
-    $scope.jsonTheme = plist_to_json($scope.xmlTheme)
+    $scope.jsonTheme = plist_to_json(data)
     $scope.gcolors = []
     $scope.selected_rule = null
     if $scope.jsonTheme && $scope.jsonTheme.settings
@@ -74,21 +81,18 @@ Angie.controller "editorController", ['$scope', '$http', '$location', 'ThemeLoad
     $scope.jsonTheme.semanticClass = "theme.#{$scope.light_or_dark($scope.bg())}.#{$scope.jsonTheme.name.underscore().replace(/[\(\)'&]/g, "")}"
 
 
-  # FileSystem and Drag/Drop ----------------------------------
+  # File System API -----------------------------------------
   FsInitHandler = (fs) ->
     $scope.fs = fs
     $scope.$apply()
 
-    if $scope.last_cached_theme
+    if $scope.last_cached_theme && !($location.path() && $location.path().replace("/","").length > 0)
       $scope.files.push($scope.last_cached_theme)
       fs.root.getFile $scope.last_cached_theme, {}, ((fileEntry) ->
         fileEntry.file ((file) ->
           reader = new FileReader()
           reader.onloadend = (e) ->
-            $scope.xmlTheme  = this.result.trim()
-            #console.log "XML:", $scope.xmlTheme
-            $scope.jsonTheme = plist_to_json($scope.xmlTheme)
-            console.log "THEME:", $scope.jsonTheme
+            $scope.process_theme(this.result.trim())
             $scope.$apply()
           reader.readAsText file
         ), FsErrorHandler
@@ -114,33 +118,39 @@ Angie.controller "editorController", ['$scope', '$http', '$location', 'ThemeLoad
   window.requestFileSystem  = window.requestFileSystem || window.webkitRequestFileSystem
   window.BlobBuilder        = window.BlobBuilder || window.WebKitBlobBuilder
   window.requestFileSystem(window.TEMPORARY, 3*1024*1024,  FsInitHandler, FsErrorHandler)
-  dropZone = document.getElementById('drop_zone')
 
-  handleFileDrop = (evt) ->
-    evt.stopPropagation()
-    evt.preventDefault()
-    #console.log "dropfiles called"
-    files = evt.dataTransfer.files # FileList object.
-    #console.log files
-    $scope.files.push(file.name) for file in files
+  read_files = (files) ->
     for file in files
       #continue unless f.type.match("tmtheme")
       reader = new FileReader()
       reader.readAsText(file) # Read in the tmtheme file
       reader.onload = do (file) ->
         (e) ->
-          $scope.xmlTheme = e.target.result.trim()
+          xml_data = e.target.result.trim()
           $scope.fs && $scope.fs.root.getFile file.name, {create: true}, (fileEntry) ->
             fileEntry.createWriter (fileWriter) ->
               fileWriter.onwriteend = (e) ->
                 $.cookie('last_theme', file.name)
                 $scope.last_cached_theme = file.name
-              blob = new Blob([$scope.xmlTheme], {type: "text/plain"})
+              blob = new Blob([xml_data], {type: "text/plain"})
               fileWriter.write(blob)
-          $scope.jsonTheme = plist_to_json($scope.xmlTheme)
+          $scope.process_theme(xml_data)
           $location.path("")
-          console.log $scope.jsonTheme
           $scope.$apply()
+
+  $scope.setFiles = (element) ->
+    $scope.files.push(file) for file in element.files
+    read_files($scope.files)
+
+  # Drag & Drop ---------------------------------------------
+  dropZone = document.getElementById('drop_zone')
+
+  handleFileDrop = (evt) ->
+    evt.stopPropagation()
+    evt.preventDefault()
+    files = evt.dataTransfer.files # FileList object.
+    $scope.files.push(file.name) for file in files
+    read_files(files)
 
   handleDragOver = (evt) ->
     evt.stopPropagation()
@@ -212,26 +222,6 @@ Angie.controller "editorController", ['$scope', '$http', '$location', 'ThemeLoad
     globals = $scope.jsonTheme.settings[0]
     globals.settings = {}
     globals.settings[gc.name] = gc.color for gc in $scope.gcolors
-
-  $scope.setFiles = (element) ->
-    $scope.files.push(file) for file in element.files
-    for file in $scope.files
-      #continue unless f.type.match("tmtheme")
-      reader = new FileReader()
-      reader.readAsText(file) # Read in the tmtheme file
-      reader.onload = do (file) ->
-        (e) ->
-          $scope.xmlTheme = e.target.result.trim()
-          $scope.fs && $scope.fs.root.getFile file.name, {create: true}, (fileEntry) ->
-            fileEntry.createWriter (fileWriter) ->
-              fileWriter.onwriteend = (e) ->
-                $.cookie('last_theme', file.name)
-                $scope.last_cached_theme = file.name
-              blob = new Blob([$scope.xmlTheme], {type: "text/plain"})
-              fileWriter.write(blob)
-          $scope.jsonTheme = plist_to_json($scope.xmlTheme)
-          #console.log $scope.jsonTheme
-          $scope.$apply()
 
   $scope.download_theme = ->
     update_general_colors()

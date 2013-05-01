@@ -1,21 +1,15 @@
 TODO:
- ☐ drop themes/saved theme should call procesed
- ☐ when last_theme cookie exists redirect wins and overwrtie it on reload
- ☐ BUG: when someone drops a theme reloads are broken
-
  ☐ hover state for scopes #26
-
  General Color:
  ☐ add, remove
+ ☐ some general settings are not colors /#/BoxUK
  Info:
  ☐ add, remove
-
  Editor:
  ☐ windows bug for color boxes @v0.2
- ☐ refactor save button
- ☐ refactor drag and drop
 
 --- ✄ -----------------------
+ ☐ allow users to delete local files
  ☐ support for HTML,CSS,JS,Ruby,Python and other languages @v0.3
  ☐ removal and addition of general colors @v0.3
  ☐ new button @v0.3
@@ -44,7 +38,6 @@ Services:
  ☐ option: chrome app
  ☐ better readme
  ☐ event tracking
- ☐ refactor handleFileDrop and setFiles and extract repeated code
  ☐ show description of general colors on hover, title on +, - buttons and header buttons
  ☐ click on preview and change colors
  ☐ highlight related scopes in preview on rule select
@@ -85,6 +78,12 @@ DID YOU KNOW:
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ refactor save button @done (13-05-01 23:22)
+ ✔ refactor drag and drop @done (13-05-01 23:22)
+ ✔ refactor handleFileDrop and $scope.setFiles and extract repeated code @done (13-05-01 23:22)
+ ✔ drop themes/saved theme should call procesed @done (13-05-01 23:06)
+ ✔ when last_theme cookie exists redirect wins and overwrtie it on reload @done (13-05-01 23:06)
+ ✔ BUG: when someone drops a theme reloads are broken @done (13-05-01 23:06)
  ✔ position of editor box at the bottom @done (13-05-01 22:23)
  ✔ BUG: in bg dectction in /#/Fluidvision @done (13-05-01 22:07)
  ✔ selected rule @done (13-05-01 17:59)
