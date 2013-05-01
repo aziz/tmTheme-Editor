@@ -67,11 +67,8 @@ Services:
  ☐ upgrade bootstrap
 
 ColorScheme Info:
- ☐ UUID
- ☐ Name
- ☐ Author
- ☐ Comment
- ☐ semanticClass
+ ☐ semanticClass: theme.light.something
+ ☐ colorSpaceName: "sRGB"
 
 TM_LANGUAGE parsing:
  ☐ for empty lines add a nbsp; for selection stuff
@@ -84,6 +81,19 @@ TM_LANGUAGE parsing:
  ☐ support for repository and include (support for external includes)
 
 http://www.sublimetext.com/forum/viewtopic.php?f=2&t=10766
+
+
+DID YOU KNOW:
+ ☐ you can drag and drop and reorder scopes
+ ☐ you can drag and drop your color schemes
+ ☐ you can save your changes locally and come back later
+ ☐ you can add scope
+ ☐ shortcuts
+ ☐ filter by light/dark in gallery
+ ☐ take look at stats and find mose popular scopes or biggest color schemes in gallery
+ ☐ add you own theme to gallery
+ ☐ you can see the edit panel by dbl clicking the scopes
+
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:

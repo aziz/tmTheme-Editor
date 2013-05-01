@@ -49,16 +49,17 @@
   a {
     color: #333;
     font-weight: 600;
-    padding: 0 10px;
-    border-left: 1px solid #989898;
+    padding: 0;
+    border-right: 1px solid #989898;
     text-decoration: none;
     font-size: 13px;
     display: inline-block;
     line-height: 25px;
-    min-width: 70px;
+    width: 33.33%;
+    .box-sizing(border-box);
 
     &:last-child {
-      border-right: 1px solid #989898;
+      border-right: 0px solid #989898;
     }
 
     &.active {
