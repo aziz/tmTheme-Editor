@@ -94,25 +94,23 @@
       </tr>
     </thead>
     <tbody ui-sortable ui-options="sortable_options" ng-style="{ 'background-color': get_color(bg()), 'color': get_color(fg()) }">
-
-      <tr>
-        <td class="name-box">Name</td>
-        <td>{{jsonTheme.name}}</td>
-      </tr>
-      <tr>
-        <td class="name-box">Author</td>
-        <td>{{jsonTheme.author}}</td>
-      </tr>
-
-
       <tr>
         <td class="name-box">UUID</td>
         <td>{{jsonTheme.uuid}}</td>
       </tr>
 
       <tr>
+        <td class="name-box">Name</td>
+        <td><input type="text" ng-model="jsonTheme.name"></td>
+      </tr>
+      <tr>
+        <td class="name-box">Author</td>
+        <td><input type="text" ng-model="jsonTheme.author"></td>
+      </tr>
+
+      <tr>
         <td class="name-box">Comment</td>
-        <td>{{jsonTheme.comment}}</td>
+        <td><textarea type="text" ng-model="jsonTheme.comment"></textarea></td>
       </tr>
 
     </tbody>

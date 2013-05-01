@@ -6,6 +6,10 @@ Angie.controller "galleryController", ['$scope', '$http', '$location', 'ThemeLoa
     $scope.themes = data
 
   $scope.selected_theme = null
+  $scope.filter = {
+    type: null
+    name: null
+  }
 
   $scope.load_theme = (theme) ->
     return if $scope.selected_theme == theme
@@ -18,18 +22,12 @@ Angie.controller "galleryController", ['$scope', '$http', '$location', 'ThemeLoa
       $scope.$parent.xmlTheme  = data
       $scope.$parent.jsonTheme = plist_to_json($scope.xmlTheme)
       throbber.off()
-      # console.log "THEME:", $scope.jsonTheme
 
   $scope.is_selected_theme = (theme) -> theme == $scope.selected_theme
 
   $scope.selected_gradient = (theme) ->
     return "" unless $scope.is_selected_theme(theme)
     if $scope.light_or_dark($scope.bg()) == "light" then "selected_bglight" else "selected_bgdark"
-
-  $scope.filter = {
-    type: null
-    name: null
-  }
 
   $scope.toggle_type_filter = (type) ->
     if $scope.filter.type == type

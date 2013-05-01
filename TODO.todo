@@ -1,5 +1,6 @@
 TODO:
  ☐ should preprocess theme and cleaned it up for presentation
+   ☐ breack into smaller controllers?
    ☐ general/info/scope
    ☐ format colors
    ☐ add dark or light to the parent node of controller
@@ -8,12 +9,15 @@ TODO:
 
 Gallery:
  ☐ highlight current theme does not work properly
- Editor:
- ☐ edit for info tab
- ☐ windows bug for color boxes @v0.2
+ ☐ context specific + and -
 
- ☐ on file drop clear the URL
+ Editor:
+ ☐ windows bug for color boxes @v0.2
+ ☐ when last_theme cookie exists redirect wins and overwrtie it on reload
  ☐ BUG: when someone drops a theme reloads are broken
+ ☐ refactor save button
+ ☐ refactor drag and drop
+
 --- ✄ -----------------------
  ☐ support for HTML,CSS,JS,Ruby,Python and other languages @v0.3
  ☐ removal and addition of general colors @v0.3
@@ -29,6 +33,7 @@ Services:
  ☐ light_or_dark method and tinycolor should be a service
 
  low:
+ ☐ update uuid
  ☐ being able to auto upload current theme inside sublim to a server and preview it: http://pastie.org/pastes/7745711/text
  ☐ apply filters (on colors) brightness/contract @v0.4
  ☐ contrast score for bg and fg https://github.com/LeaVerou/contrast-ratio @v0.4
@@ -82,6 +87,8 @@ http://www.sublimetext.com/forum/viewtopic.php?f=2&t=10766
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ on file drop clear the URL @done (13-05-01 04:00)
+ ✔ edit for info tab @done (13-05-01 03:38)
  ✔ put theme name as html title @done (13-05-01 03:28)
  ✔ clear scope search on theme load @done (13-05-01 03:19)
  ✔ style search input @done (13-05-01 03:13)
