@@ -17,10 +17,11 @@
       </a>
     </div>
   </div>
-  <input type="file" id="files" class="upload" ng-model="input" onchange="angular.element(this).scope().setFiles(this)" />
+  <input type="file" id="files" class="upload"
+         ng-model="input" onchange="angular.element(this).scope().setFiles(this)" />
 
   <div ng-class="gallery" class="sep"></div>
-  <div ng-class="gallery" ng-cloak ng-show="jsonTheme" class="theme-title">
+  <div ng-cloak ng-class="gallery" ng-show="jsonTheme" class="theme-title">
     {{ jsonTheme.name }}
   </div>
   <!--
@@ -40,11 +41,6 @@
   -->
   <div class="links">
     <%// include _social %>
-    <ul>
-      <li><a href="https://github.com/aziz/tmTheme-Editor#tmtheme-editor">About</a></li>
-      <li><a href="https://github.com/aziz/tmTheme-Editor/issues/new">Feedback</a></li>
-      <li><a href="https://github.com/aziz/tmTheme-Editor">Github</a></li>
-      <li><a href="/stats"><strong>Some Stats</strong></a></li>
-    </ul>
+    <% include _links %>
   </div>
 </header>

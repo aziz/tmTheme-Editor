@@ -1,5 +1,4 @@
 TODO:
- ☐ BUG: in bg dectction in /#/Fluidvision
  ☐ drop themes/saved theme should call procesed
  ☐ when last_theme cookie exists redirect wins and overwrtie it on reload
  ☐ BUG: when someone drops a theme reloads are broken
@@ -87,6 +86,7 @@ DID YOU KNOW:
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ BUG: in bg dectction in /#/Fluidvision @done (13-05-01 22:07)
  ✔ selected rule @done (13-05-01 17:59)
  ✔ selection background does not work @done (13-05-01 21:33)
  ✔ add dark or light to the parent node of controller @done (13-05-01 17:46)
