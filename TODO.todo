@@ -1,22 +1,20 @@
 TODO:
- Editor:
- ☐ search for scopes
  ☐ hover state for scopes #26
- ☐ put theme name as html title
- ☐ toggle buttons for Global/Scope/Settings
- ☐ a settings button with the ability to edit name/author/uuid/comments
- ☐ use bs-tooltip instead of default html tooltips
+ General Color:
+ ☐ add, remove
+ ☐ some general settings are not colors /#/BoxUK
+ Info:
+ ☐ add, remove
+ Editor:
  ☐ windows bug for color boxes @v0.2
 
- ☐ on file drop clear the URL
- ☐ BUG: when someone drops a theme reloads are broken
 --- ✄ -----------------------
+ ☐ allow users to delete local files
  ☐ support for HTML,CSS,JS,Ruby,Python and other languages @v0.3
  ☐ removal and addition of general colors @v0.3
  ☐ new button @v0.3
  ☐ set production env on heroku @v0.3
  ☐ focus state for color pickers @v0.3
- ☐ row highlight on dark bgs @v0.3
 
 Services:
  ☐ convert drag/drop and file system api to service
@@ -25,6 +23,8 @@ Services:
  ☐ light_or_dark method and tinycolor should be a service
 
  low:
+ ☐ update uuid
+ ☐ being able to auto upload current theme inside sublim to a server and preview it: http://pastie.org/pastes/7745711/text
  ☐ apply filters (on colors) brightness/contract @v0.4
  ☐ contrast score for bg and fg https://github.com/LeaVerou/contrast-ratio @v0.4
  ☐ use pre processed sample code for other languages @v0.4
@@ -38,7 +38,6 @@ Services:
  ☐ option: chrome app
  ☐ better readme
  ☐ event tracking
- ☐ refactor handleFileDrop and setFiles and extract repeated code
  ☐ show description of general colors on hover, title on +, - buttons and header buttons
  ☐ click on preview and change colors
  ☐ highlight related scopes in preview on rule select
@@ -56,13 +55,6 @@ Services:
  ☐ webworker to do processing in bg
  ☐ upgrade bootstrap
 
-ColorScheme Info:
- ☐ UUID
- ☐ Name
- ☐ Author
- ☐ Comment
- ☐ semanticClass
-
 TM_LANGUAGE parsing:
  ☐ for empty lines add a nbsp; for selection stuff
  ☐ check to see if the scope is already taken
@@ -73,10 +65,46 @@ TM_LANGUAGE parsing:
    ☐ adjust begin and size based on length on lb text
  ☐ support for repository and include (support for external includes)
 
-http://www.sublimetext.com/forum/viewtopic.php?f=2&t=10766
+DID YOU KNOW:
+ ☐ you can drag and drop and reorder scopes
+ ☐ you can drag and drop your color schemes
+ ☐ you can save your changes locally and come back later
+ ☐ you can add scope
+ ☐ shortcuts
+ ☐ filter by light/dark in gallery
+ ☐ take look at stats and find mose popular scopes or biggest color schemes in gallery
+ ☐ add you own theme to gallery
+ ☐ you can see the edit panel by dbl clicking the scopes
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ refactor save button @done (13-05-01 23:22)
+ ✔ refactor drag and drop @done (13-05-01 23:22)
+ ✔ refactor handleFileDrop and $scope.setFiles and extract repeated code @done (13-05-01 23:22)
+ ✔ drop themes/saved theme should call procesed @done (13-05-01 23:06)
+ ✔ when last_theme cookie exists redirect wins and overwrtie it on reload @done (13-05-01 23:06)
+ ✔ BUG: when someone drops a theme reloads are broken @done (13-05-01 23:06)
+ ✔ position of editor box at the bottom @done (13-05-01 22:23)
+ ✔ BUG: in bg dectction in /#/Fluidvision @done (13-05-01 22:07)
+ ✔ selected rule @done (13-05-01 17:59)
+ ✔ selection background does not work @done (13-05-01 21:33)
+ ✔ add dark or light to the parent node of controller @done (13-05-01 17:46)
+ ✔ better gradient for selected rule @done (13-05-01 17:46)
+ ✔ row highlight on dark bgs @v0.3 @done (13-05-01 17:45)
+ ✔ border of the color types @done (13-05-01 16:48)
+ ✔ semanticClass: theme.light.something @done (13-05-01 16:48)
+ ✔ colorSpaceName: "sRGB" @done (13-05-01 16:40)
+ ✔ on file drop clear the URL @done (13-05-01 04:00)
+ ✔ edit for info tab @done (13-05-01 03:38)
+ ✔ put theme name as html title @done (13-05-01 03:28)
+ ✔ clear scope search on theme load @done (13-05-01 03:19)
+ ✔ style search input @done (13-05-01 03:13)
+ ✔ use bs-tooltip instead of default html tooltips @done (13-05-01 02:19)
+ ✔ popover near the top broundry check @done (13-05-01 02:12)
+ ✔ bring back + and - @done (13-05-01 01:35)
+ ✔ search for scopes @done (13-05-01 01:35)
+ ✔ toggle buttons for Global/Scope/Settings @done (13-05-01 00:41)
+ ✔ a settings button with the ability to edit name/author/uuid/comments @done (13-05-01 00:42)
  ✔ Add scope statistic @done (13-04-30 17:18)
  ✔ use spinner.js @done (13-04-30 17:18)
  ✔ bottom of the gallery list is not accessible @done (13-04-30 12:52)

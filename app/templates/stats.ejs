@@ -2,10 +2,7 @@
 <html>
 <head>
   <title>TmTheme Editor Stats</title>
-  <meta name="author" content="Allen Bargi">
-  <meta name="description" content="TmTheme Editor is the a visual color-scheme/theme editor for Sublime Text and Textmate editors.">
-  <meta name="keywords" content="tmtheme, theme editor, color scheme editor, sublime, sublime text, texmate, textmate theme editor, sublime theme editor">
-
+  <% include _meta %>
   <%- css("stats") -%>
 </head>
 
@@ -22,12 +19,7 @@
 
     <div class="links">
       <%// include _social %>
-      <ul>
-        <li><a href="https://github.com/aziz/tmTheme-Editor#tmtheme-editor">About</a></li>
-        <li><a href="https://github.com/aziz/tmTheme-Editor/issues/new">Feedback</a></li>
-        <li><a href="https://github.com/aziz/tmTheme-Editor">Github</a></li>
-        <li><a href="/stats"><strong>Some Stats</strong></a></li>
-      </ul>
+      <% include _links %>
     </div>
   </header>
 
@@ -116,5 +108,6 @@
   <div id="loading"></div>
 </div>
 <%- js("stats") -%>
+<% include _ga  %>
 </body>
 </html>

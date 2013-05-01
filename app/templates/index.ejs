@@ -1,18 +1,14 @@
 <!doctype html>
-<html>
+<html ng-app="ThemeEditor" ng-controller="editorController">
 <head>
-  <title>TmTheme Editor</title>
-  <meta name="author" content="Allen Bargi">
-  <meta name="description" content="TmTheme Editor is the a visual color-scheme/theme editor for Sublime Text and Textmate editors.">
-  <meta name="keywords" content="tmtheme, theme editor, color scheme editor, sublime, sublime text, texmate, textmate theme editor, sublime theme editor">
-
+  <title ng-bind="page_title()"></title>
+  <% include _meta %>
   <%- css("app") -%>
 </head>
 
 <body id="drop_zone"
-      ng-app="ThemeEditor"
-      ng-controller="editorController"
-      shortcut='shortcuts'>
+      shortcut='shortcuts'
+      ng-class="'current_theme_' + light_or_dark(get_color(bg()))">
   <% include _browser_support %>
   <% include _gallery %>
 

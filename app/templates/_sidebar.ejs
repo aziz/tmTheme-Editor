@@ -1,79 +1,13 @@
-<div ng-cloak ng-class="gallery" class="titlebar">
-  <div class="title">
-    <input type="text" ng-model="jsonTheme.name">
-  </div>
-  <div class="actions" ng-hide="gcolors.length==0">
-    <div ng-click="toggle_new_rule_popover()" ng-class="{'active': new_popover_visible }" class="add">+</div>
-    <div ng-click="delete_rule(selected_rule)" class="remove">-</div>
-  </div>
+<div ng-class="gallery" class="tabbar">
+  <a ng-click="current_tab = 'scopes'"  ng-class="{'active': current_tab == 'scopes'}">Scopes</a>
+  <a ng-click="current_tab = 'general'" ng-class="{'active': current_tab == 'general'}">General</a>
+  <a ng-click="current_tab = 'info'"    ng-class="{'active': current_tab == 'info'}">Info</a>
 </div>
 
+<% include _action_bar %>
+
 <div ng-cloak ng-class="gallery" class="sidebar" ng-style="{ 'background-color': get_color(bg())}">
-
-  <table class="list general">
-    <thead ng-hide="gcolors.length==0">
-      <tr>
-        <th class="align-begin truncate">General Colors</th>
-        <th class="big-color-box">Color</th>
-        <th class="check-box"></th>
-      </tr>
-    </thead>
-    <tbody ui-sortable ui-options="sortable_options" ng-model="gcolors" ng-style="{ 'background-color': get_color(bg()), 'color': get_color(fg()) }">
-
-      <tr ng-repeat="gcolor in gcolors">
-        <td class="name-box truncate" ng-bind="gcolor.name"></td>
-        <td>
-          <div class="colorpicker-box"
-               ng-class="has_color(gcolor.color)"
-               ng-style="{ 'background-color': get_color(gcolor.color), 'border-color': border_color(get_color(bg())) }"></div>
-          <input type="color" class="colorpicker-input"
-                 title="{{gcolor.color}}"
-                 ng-model="gcolor.color"
-                 ng-change="update_gcolor(gcolor, angualr.element(this).val())">
-          <td>
-          </td>
-        </td>
-      </tr>
-
-    </tbody>
-  </table>
-
-
-  <table id="scope-lists" class="list">
-    <thead ng-show="jsonTheme">
-      <tr>
-        <th class="align-begin truncate">Scope Name</th>
-        <th class="color-box">FG</th>
-        <th class="color-box">BG</th>
-        <th class="check-box is_bold">B</th>
-        <th class="check-box is_italic">I</th>
-        <th class="check-box is_underline">U</th>
-        <th class="check-box"></th>
-      </tr>
-    </thead>
-    <tbody ui-sortable ui-options="sortable_options" ng-model="jsonTheme.settings" ng-style="{ 'background-color': get_color(bg()), 'color': get_color(fg()) }">
-      <tr ng-repeat="rule in jsonTheme.settings.compact()"
-          ng-hide="$first"
-          ng-click="mark_as_selected(rule)"
-          ng-dblclick="toggle_edit_popover(rule, $index)"
-          ng-class="selected_gradient(rule)"
-          class="rule-{{$index}}">
-        <td class="name-box truncate" ng-bind="rule.name"
-            ng-style="{ 'color': get_color(rule.settings.foreground), 'background-color': get_color(rule.settings.background) }"
-            ng-class="{'is_italic' : is('italic', rule), 'is_bold': is('bold', rule), 'is_underline': is('underline', rule)}"></td>
-        <td class="color-box">
-          <div class="colorpicker-box" ng-class="has_color(rule.settings.foreground)" ng-style="{ 'background-color': get_color(rule.settings.foreground), 'border-color': border_color(get_color(bg())) }"></div>
-          <input class="colorpicker-input" type="color" title="{{rule.settings.foreground}}" ng-model="rule.settings.foreground">
-        </td>
-        <td class="color-box">
-          <div class="colorpicker-box" ng-class="has_color(rule.settings.background)" ng-style="{ 'background-color': get_color(rule.settings.background), 'border-color': border_color(get_color(bg())) }"></div>
-          <input class="colorpicker-input" type="color" title="{{rule.settings.background}}" ng-model="rule.settings.background">
-        </td>
-        <td class="check-box"><input type="checkbox" ng-checked="is('bold', rule)"      ng-click="toggle('bold',rule)"     ></td>
-        <td class="check-box"><input type="checkbox" ng-checked="is('italic', rule)"    ng-click="toggle('italic',rule)"   ></td>
-        <td class="check-box"><input type="checkbox" ng-checked="is('underline', rule)" ng-click="toggle('underline',rule)"></td>
-        <td class="check-box"></td>
-      </tr>
-    </tbody>
-  </table>
+  <% include _table_general %>
+  <% include _table_scopes %>
+  <% include _table_info %>
 </div>

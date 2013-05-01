@@ -1,51 +1,98 @@
 Angie.controller "editorController", ['$scope', '$http', '$location', 'ThemeLoader'], ($scope, $http, $location, ThemeLoader) ->
 
   $scope.is_browser_supported = window.chrome
+  $scope.last_cached_theme = $.cookie('last_theme')
+  $scope.fs = null
 
-  # loading theme from URL
+  $scope.current_tab   = 'scopes'
+  $scope.scopes_filter = { name: null }
+  $scope.xmlTheme = ""
+  $scope.jsonTheme = ""
+  $scope.files = []
+  $scope.gcolors = []
+  $scope.selected_rule = null
+  $scope.popover_rule = {}
+  $scope.edit_popover_visible = false
+  $scope.new_popover_visible = false
+  $scope.new_rule_pristine = {"name":"","scope":"","settings":{}}
+  $scope.new_rule = Object.clone($scope.new_rule_pristine)
+  $scope.gallery = if $.cookie('gallery_state') && $.cookie('gallery_state') == "slide" then "slide" else null
+  $scope.new_property = {property: "", value: ""}
+
+  $scope.sortable_options = {
+    axis: "y"
+    containment: "parent"
+    helper: (e, tr) ->
+      originals = tr.children()
+      helper = tr.clone()
+      helper.children().each (index) ->
+        $(this).width originals.eq(index).width()
+      helper
+  }
+
+  $scope.shortcuts = {
+    "escape": "hide_all_popovers()",
+    "ctrl+n": "toggle_new_rule_popover()"
+  }
+
+  $scope.page_title = ->
+    if $scope.jsonTheme
+      $scope.jsonTheme.name + ' — ' + 'TmTheme Editor'
+    else
+      'TmTheme Editor'
+
+  $scope.toggle_gallery = ->
+    if $scope.gallery
+      $scope.gallery = null
+      $.cookie('gallery_state', "closed")
+    else
+      $scope.gallery = "slide"
+      $.cookie('gallery_state', "slide")
+
+  clamp = (val) -> Math.min(1, Math.max(0, val))
+
+  # -- Initializing ----------------------------------------------
+
+  # There's theme name in URL
   if $location.path() && $location.path().replace("/","").length > 0
     theme = $location.path().replace("/","")
+  # There's a theme locally saved
+  else if $scope.last_cached_theme
+    console.log "Loading from local file system"
+  # Loading Default theme
   else
     theme = "PlasticCodeWrap"
     $location.path("PlasticCodeWrap")
   ThemeLoader.themes.success (data) ->
     available_themes = data
-    theme_obj = available_themes.find (t) -> t.name == theme
-    # console.log theme_obj
-    ThemeLoader.load(theme_obj).success (data) ->
-      $scope.xmlTheme  = data
-      $scope.jsonTheme = plist_to_json($scope.xmlTheme)
+    if theme
+      theme_obj = available_themes.find (t) -> t.name == theme
+      ThemeLoader.load(theme_obj).success (data) -> $scope.process_theme(data)
 
+  $scope.process_theme = (data) ->
+    $scope.xmlTheme  = data
+    $scope.jsonTheme = plist_to_json(data)
+    $scope.gcolors = []
+    $scope.selected_rule = null
+    if $scope.jsonTheme && $scope.jsonTheme.settings
+      for key, val of $scope.jsonTheme.settings[0].settings
+        $scope.gcolors.push({"name": key, "color": val})
+    $scope.jsonTheme.colorSpaceName = "sRGB"
+    $scope.jsonTheme.semanticClass = "theme.#{$scope.light_or_dark($scope.bg())}.#{$scope.jsonTheme.name.underscore().replace(/[\(\)'&]/g, "")}"
+
+
+  # File System API -----------------------------------------
   FsInitHandler = (fs) ->
     $scope.fs = fs
     $scope.$apply()
 
-    # if URL does not have any theme and nothing is cached going back to the default PlasticCodeWrap theme
-    #if !$scope.last_cached_theme && !($location.path() && $location.path().replace("/","").length > 0)
-    #  default_cs = "/files/themes/PlasticCodeWrap.tmtheme"
-    #  $http.get(default_cs).success (code) ->
-    #    $scope.xmlTheme = code
-    #    $scope.fs && $scope.fs.root.getFile "PlasticCodeWrap.tmtheme", {create: true}, (fileEntry) ->
-    #      fileEntry.createWriter (fileWriter) ->
-    #        fileWriter.onwriteend = (e) ->
-    #          $.cookie('last_theme', "PlasticCodeWrap.tmtheme")
-    #          $scope.last_cached_theme = "PlasticCodeWrap.tmtheme"
-    #        blob = new Blob([$scope.xmlTheme], {type: "text/plain"})
-    #        fileWriter.write(blob)
-    #    $scope.jsonTheme = plist_to_json($scope.xmlTheme)
-    #    #console.log "THEME:", $scope.jsonTheme
-    #    #$scope.$apply()
-
-    if $scope.last_cached_theme
+    if $scope.last_cached_theme && !($location.path() && $location.path().replace("/","").length > 0)
       $scope.files.push($scope.last_cached_theme)
       fs.root.getFile $scope.last_cached_theme, {}, ((fileEntry) ->
         fileEntry.file ((file) ->
           reader = new FileReader()
           reader.onloadend = (e) ->
-            $scope.xmlTheme  = this.result.trim()
-            #console.log "XML:", $scope.xmlTheme
-            $scope.jsonTheme = plist_to_json($scope.xmlTheme)
-            console.log "THEME:", $scope.jsonTheme
+            $scope.process_theme(this.result.trim())
             $scope.$apply()
           reader.readAsText file
         ), FsErrorHandler
@@ -68,64 +115,53 @@ Angie.controller "editorController", ['$scope', '$http', '$location', 'ThemeLoad
         msg = "Unknown Error"
     console.log "Error: " + msg
 
-  show_gallery = -> $("#gallery").removeClass("hide")
-  setTimeout(show_gallery, 800)
-
-  clamp = (val) -> Math.min(1, Math.max(0, val))
-
   window.requestFileSystem  = window.requestFileSystem || window.webkitRequestFileSystem
   window.BlobBuilder        = window.BlobBuilder || window.WebKitBlobBuilder
   window.requestFileSystem(window.TEMPORARY, 3*1024*1024,  FsInitHandler, FsErrorHandler)
-  dropZone = document.getElementById('drop_zone')
 
-  handleFileDrop = (evt) ->
-    evt.stopPropagation()
-    evt.preventDefault()
-    #console.log "dropfiles called"
-    files = evt.dataTransfer.files # FileList object.
-    #console.log files
-    $scope.files.push(file.name) for file in files
+  read_files = (files) ->
     for file in files
       #continue unless f.type.match("tmtheme")
       reader = new FileReader()
       reader.readAsText(file) # Read in the tmtheme file
       reader.onload = do (file) ->
         (e) ->
-          $scope.xmlTheme = e.target.result.trim()
+          xml_data = e.target.result.trim()
           $scope.fs && $scope.fs.root.getFile file.name, {create: true}, (fileEntry) ->
             fileEntry.createWriter (fileWriter) ->
               fileWriter.onwriteend = (e) ->
                 $.cookie('last_theme', file.name)
                 $scope.last_cached_theme = file.name
-              blob = new Blob([$scope.xmlTheme], {type: "text/plain"})
+              blob = new Blob([xml_data], {type: "text/plain"})
               fileWriter.write(blob)
-          $scope.jsonTheme = plist_to_json($scope.xmlTheme)
-          console.log $scope.jsonTheme
+          $scope.process_theme(xml_data)
+          $location.path("")
           $scope.$apply()
+
+  $scope.setFiles = (element) ->
+    $scope.files.push(file) for file in element.files
+    read_files($scope.files)
+
+  # Drag & Drop ---------------------------------------------
+  dropZone = document.getElementById('drop_zone')
+
+  handleFileDrop = (evt) ->
+    evt.stopPropagation()
+    evt.preventDefault()
+    files = evt.dataTransfer.files # FileList object.
+    $scope.files.push(file.name) for file in files
+    read_files(files)
 
   handleDragOver = (evt) ->
     evt.stopPropagation()
     evt.preventDefault()
     evt.dataTransfer.dropEffect = "copy"
 
-  dropZone.addEventListener('dragover', handleDragOver, false);
-  dropZone.addEventListener('drop', handleFileDrop, false);
-
-  $scope.last_cached_theme = $.cookie('last_theme')
-  $scope.fs = null
-  $scope.xmlTheme = ""
-  $scope.jsonTheme = ""
-  $scope.files = []
-  $scope.gcolors = []
-
-  $scope.$watch "xmlTheme", (n,o) ->
-    $scope.gcolors = []
-    if $scope.jsonTheme && $scope.jsonTheme.settings
-      for key, val of $scope.jsonTheme.settings[0].settings
-        $scope.gcolors.push({"name": key, "color": val})
+  dropZone.addEventListener 'dragover', handleDragOver, false
+  dropZone.addEventListener 'drop', handleFileDrop, false
 
 
-  # COLOR ----------------------------------------
+  # COLOR ----------------------------------------------------
 
   $scope.bg = -> $scope.gcolors.length > 0 && $scope.gcolors.find((gc)-> gc.name == "background").color
   $scope.fg = -> $scope.gcolors.length > 0 && $scope.gcolors.find((gc)-> gc.name == "foreground").color
@@ -143,12 +179,7 @@ Angie.controller "editorController", ['$scope', '$http', '$location', 'ThemeLoad
     else
       color
 
-  $scope.has_color = (color) ->
-    if $scope.get_color(color)
-      "has_color"
-    else
-      false
-
+  $scope.has_color = (color) -> if $scope.get_color(color) then "has_color" else false
   $scope.border_color = (bgcolor) -> if $scope.light_or_dark(bgcolor) == "light" then "rgba(0,0,0,.33)" else "rgba(255,255,255,.33)"
 
   $scope.light_or_dark = (bgcolor) ->
@@ -185,40 +216,21 @@ Angie.controller "editorController", ['$scope', '$http', '$location', 'ThemeLoad
     else
       rule.settings.fontStyle += " #{fontStyle}"
 
-  $scope.update_general_colors = ->
+  # Download and Save ---------------------------------------------------
+
+  update_general_colors = ->
     globals = $scope.jsonTheme.settings[0]
     globals.settings = {}
     globals.settings[gc.name] = gc.color for gc in $scope.gcolors
 
-
-  $scope.setFiles = (element) ->
-    $scope.files.push(file) for file in element.files
-    for file in $scope.files
-      #continue unless f.type.match("tmtheme")
-      reader = new FileReader()
-      reader.readAsText(file) # Read in the tmtheme file
-      reader.onload = do (file) ->
-        (e) ->
-          $scope.xmlTheme = e.target.result.trim()
-          $scope.fs && $scope.fs.root.getFile file.name, {create: true}, (fileEntry) ->
-            fileEntry.createWriter (fileWriter) ->
-              fileWriter.onwriteend = (e) ->
-                $.cookie('last_theme', file.name)
-                $scope.last_cached_theme = file.name
-              blob = new Blob([$scope.xmlTheme], {type: "text/plain"})
-              fileWriter.write(blob)
-          $scope.jsonTheme = plist_to_json($scope.xmlTheme)
-          #console.log $scope.jsonTheme
-          $scope.$apply()
-
   $scope.download_theme = ->
-    $scope.update_general_colors()
+    update_general_colors()
     plist = json2plist($scope.jsonTheme)
     blob = new Blob([plist], {type: "text/plain"})
     saveAs blob, "#{$scope.jsonTheme.name}.tmTheme"
 
   $scope.save_theme = ->
-    $scope.update_general_colors()
+    update_general_colors()
     plist = json2plist($scope.jsonTheme)
     $scope.fs && $scope.fs.root.getFile $scope.files.first(), {create: false}, (fileEntry) ->
 
@@ -235,6 +247,8 @@ Angie.controller "editorController", ['$scope', '$http', '$location', 'ThemeLoad
 
       , FsErrorHandler
     , FsErrorHandler
+
+  # Theme Stylesheet Generator ------------------------------------------
 
   $scope.theme_styles = ->
     styles = ""
@@ -274,26 +288,27 @@ Angie.controller "editorController", ['$scope', '$http', '$location', 'ThemeLoad
   $scope.theme_selection = ->
     style = ""
     if $scope.jsonTheme && $scope.jsonTheme.settings
-      style += "pre *::selection, pre *::-moz-selection, pre *::-webkit-selection, pre::selection, pre::-moz-selection, pre::-webkit-selection {background:"
-      style += "#{$scope.get_color($scope.selection_color())};}"
+      style += "pre::selection {background:transparent}.preview pre *::selection {background:"
+      style += "#{$scope.get_color($scope.selection_color())} }"
     style
 
-  $scope.selected_rule = null
-  $scope.edit_popover_visible = false
-  $scope.new_popover_visible = false
-  $scope.popover_rule = {}
-  $scope.new_rule_pristine = {"name":"","scope":"","settings":{}}
-  $scope.new_rule = Object.clone($scope.new_rule_pristine)
+
+  # ---------------------------------------------------------------------
 
   $scope.is_selected = (rule) -> rule == $scope.selected_rule
+  $scope.is_gcolor_selected = (rule) -> rule == $scope.general_selected_rule
 
-  $scope.selected_gradient = (rule) ->
-    return "" unless $scope.is_selected(rule)
-    if $scope.light_or_dark($scope.bg()) == "light" then "selected_bglight" else "selected_bgdark"
+  # $scope.selected_gradient = (rule) ->
+  #   return "" unless $scope.is_selected(rule)
+  #   if $scope.light_or_dark($scope.bg()) == "light" then "selected_bglight" else "selected_bgdark"
 
   $scope.mark_as_selected = (rule) ->
     $scope.selected_rule = rule
     $scope.edit_popover_visible = false
+
+  $scope.mark_as_selected_gcolor = (rule) -> $scope.general_selected_rule = rule
+
+  # ---------------------------------------------------------------------
 
   $scope.toggle_edit_popover = (rule, rule_index) ->
     $scope.new_popover_visible = false
@@ -305,12 +320,17 @@ Angie.controller "editorController", ['$scope', '$http', '$location', 'ThemeLoad
       $("#edit-popover").css({
         "top": "auto"
         "bottom": win_height - row.offset().top
-      }).addClass("on-top")
+      }).removeClass("on-bottom").addClass("on-top")
+    else if row.offset().top < 160
+      $("#edit-popover").css({
+        "top": row.offset().top + row.outerHeight()
+        "bottom": "auto"
+      }).removeClass("on-top").addClass("on-bottom")
     else
       $("#edit-popover").css({
         "top": row.offset().top + (row.outerHeight()/2) - 140
         "bottom": "auto"
-      }).removeClass("on-top")
+      }).removeClass("on-top").removeClass("on-bottom")
     $("#preview, #gallery").one "click", (e) ->
       $scope.edit_popover_visible = false
       $scope.$digest()
@@ -332,12 +352,6 @@ Angie.controller "editorController", ['$scope', '$http', '$location', 'ThemeLoad
     $scope.edit_popover_visible = false
     $scope.toggle_new_rule_popover() if $scope.new_popover_visible
 
-  $scope.$watch "edit_popover_visible", (n,o) ->
-    if n
-      $(".sidebar").css("overflow-y", "hidden")
-    else
-      $(".sidebar").css("overflow-y", "scroll")
-
   $scope.delete_rule = (rule) ->
     return unless rule
     rules = $scope.jsonTheme.settings
@@ -355,28 +369,8 @@ Angie.controller "editorController", ['$scope', '$http', '$location', 'ThemeLoad
 
   $scope.reset_color = (rule, attr) -> rule.settings[attr] = undefined
 
-  $scope.sortable_options = {
-    axis: "y"
-    containment: "parent"
-    helper: (e, tr) ->
-      $originals = tr.children()
-      $helper = tr.clone()
-      $helper.children().each (index) ->
-        $(this).width $originals.eq(index).width()
-      $helper
-  }
-
-  $scope.shortcuts = {
-    "escape": "hide_all_popovers()",
-    "ctrl+n": "toggle_new_rule_popover()"
-  }
-
-
-  $scope.gallery = if $.cookie('gallery_state') && $.cookie('gallery_state') == "slide" then "slide" else null
-  $scope.toggle_gallery = ->
-    if $scope.gallery
-      $scope.gallery = null
-      $.cookie('gallery_state', "closed")
+  $scope.$watch "edit_popover_visible", (n,o) ->
+    if n
+      $(".sidebar").css("overflow-y", "hidden")
     else
-      $scope.gallery = "slide"
-      $.cookie('gallery_state', "slide")
+      $(".sidebar").css("overflow-y", "scroll")

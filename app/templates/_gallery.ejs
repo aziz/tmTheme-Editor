@@ -1,6 +1,4 @@
-<div id="gallery" class="hide"
-     ng-cloak
-     ng-controller="galleryController"
+<div id="gallery" ng-cloak ng-controller="galleryController"
      ng-style="{ 'background-color': get_color(bg()), 'color': get_color(fg()) }">
   <div ng-class="gallery" ng-cloak class="titlebar">
    <div class="title">
@@ -23,7 +21,7 @@
   <ul ng-class="gallery" ng-style="{ 'background-color': get_color(bg()), 'color': get_color(fg()) }">
     <li ng-repeat="theme in themes | filter: filter"
         ng-click="load_theme(theme)"
-        ng-class="selected_gradient(theme)">
+        ng-class="{ 'selected': is_selected_theme(theme) }">
         <span class="light_theme_icon" ng-show="theme.light"></span>
         <span class="dark_theme_icon"  ng-show="!theme.light"></span>
         <span>{{theme.name}}</span>

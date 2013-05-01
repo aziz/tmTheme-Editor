@@ -1,24 +1,31 @@
 <header id="header">
-  <a ng-click="toggle_gallery()"
-     ng-class="{'active': gallery}"
-     class="btn btn-info btn-small" href="javascript:void(0)">Gallery</a>
+  <a ng-click="toggle_gallery()" ng-class="{'active': gallery}"
+     class="btn btn-info btn-small">
+     <i class="icon-white icon-align-justify"></i> Gallery
+  </a>
   <div class="btn-toolbar new-upload">
     <div class="btn-group">
-      <a href="javascript:void(0)" id="upload-btn" class="btn btn-info btn-small">Open</a>
-      <!-- <a href="javascript:void(0)" ng-click="" class="btn btn-info btn-small">New</a> -->
+      <a id="upload-btn" class="btn btn-info btn-small">Open</a>
+      <!-- <a ng-click="" class="btn btn-info btn-small">New</a> -->
     </div>
   </div>
   <div ng-class="gallery" class="btn-toolbar dl-save">
     <div class="btn-group">
-      <a href="javascript:void(0)" ng-click="save_theme()" class="btn btn-success btn-small  save">Save</a>
-      <a href="javascript:void(0)" ng-click="download_theme()" class="btn btn-success btn-small download">Download</a>
+      <a ng-click="save_theme()" class="btn btn-success btn-small  save">Save</a>
+      <a ng-click="download_theme()" class="btn btn-success btn-small download">
+        <i class="icon-white icon-download-alt"></i> Download
+      </a>
     </div>
   </div>
-  <input type="file" id="files" class="upload" ng-model="input" onchange="angular.element(this).scope().setFiles(this)" />
+  <input type="file" id="files" class="upload"
+         ng-model="input" onchange="angular.element(this).scope().setFiles(this)" />
 
   <div ng-class="gallery" class="sep"></div>
+  <div ng-cloak ng-class="gallery" ng-show="jsonTheme" class="theme-title">
+    {{ jsonTheme.name }}
+  </div>
+  <!--
   <div ng-cloak ng-show="jsonTheme" class="languages">
-<!--
     <div class="btn-group">
       <a ng-click="" class="btn btn-small dropdown-toggle" data-toggle="dropdown">
         {{ current_lang }}
@@ -30,15 +37,10 @@
         </li>
       </ul>
     </div>
--->
   </div>
+  -->
   <div class="links">
     <%// include _social %>
-    <ul>
-      <li><a href="https://github.com/aziz/tmTheme-Editor#tmtheme-editor">About</a></li>
-      <li><a href="https://github.com/aziz/tmTheme-Editor/issues/new">Feedback</a></li>
-      <li><a href="https://github.com/aziz/tmTheme-Editor">Github</a></li>
-      <li><a href="/stats"><strong>Some Stats</strong></a></li>
-    </ul>
+    <% include _links %>
   </div>
 </header>

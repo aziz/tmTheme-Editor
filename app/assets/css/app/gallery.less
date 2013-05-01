@@ -54,6 +54,7 @@
       width: auto;
       font-weight: normal;
       font-size: 11px;
+      padding-left: 6px;
     }
     .actions {
       @width: 29px;
@@ -112,19 +113,21 @@
 
   .dark_theme_icon, .light_theme_icon {
     display: inline-block;
-    width: 6px;
-    height: 6px;
-    border:1px solid rgba(0,0,0,.4);
+    width: 8px;
+    height: 8px;
     position: relative;
     top: -1px;
     left: 2px;
+    .border-radius(3px);
   }
 
   .dark_theme_icon {
     background-color: #000;
+    border:1px solid rgba(255,255,255,.5);
   }
   .light_theme_icon {
     background-color: #fff;
+    border:1px solid rgba(0,0,0,.5);
   }
 
   .searchbar {
@@ -145,6 +148,7 @@
       height: 13px;
       width: 160px;
       padding-left: 24px;
+      border-color: #989898;
     }
 
     &:after {
@@ -160,27 +164,29 @@
       background-position: -46px 0;
       opacity: 0.8;
     }
-
-    .clear_search {
-      background-color: #bababa;
-      color: #fff;
-      .border-radius(500px);
-      z-index: 9999999;
-      position: absolute;
-      top: 8px;
-      right: 8px;
-      width: 15px;
-      height: 15px;
-      font-size: 14px;
-      line-height: 15px;
-      text-align: center;
-      font-weight: 300;
-    }
   }
 
 }
 
-.sidebar, .titlebar, .preview, .dl-save, .sep, #new-popover, #edit-popover, #gallery .titlebar, #gallery ul, #gallery .searchbar {
+.clear_search {
+  background-color: #bababa;
+  color: #fff;
+  .border-radius(500px);
+  z-index: 9999999;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 15px;
+  height: 15px;
+  font-size: 14px;
+  line-height: 15px;
+  text-align: center;
+  font-weight: 300;
+}
+
+.tabbar, .sidebar, .titlebar, .actionbar, .preview, .dl-save, .sep,
+#new-popover, #edit-popover, #gallery .titlebar,
+#gallery ul, #gallery .searchbar, .theme-title {
   -webkit-transition: -webkit-transform .4s ease;
           transition: transform .4s ease;
   -webkit-backface-visibility: hidden;
