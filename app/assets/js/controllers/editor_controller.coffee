@@ -22,11 +22,11 @@ Angie.controller "editorController", ['$scope', '$http', '$location', 'ThemeLoad
     axis: "y"
     containment: "parent"
     helper: (e, tr) ->
-      $originals = tr.children()
-      $helper = tr.clone()
-      $helper.children().each (index) ->
-        $(this).width $originals.eq(index).width()
-      $helper
+      originals = tr.children()
+      helper = tr.clone()
+      helper.children().each (index) ->
+        $(this).width originals.eq(index).width()
+      helper
   }
 
   $scope.shortcuts = {
@@ -59,15 +59,17 @@ Angie.controller "editorController", ['$scope', '$http', '$location', 'ThemeLoad
   ThemeLoader.themes.success (data) ->
     available_themes = data
     theme_obj = available_themes.find (t) -> t.name == theme
-    ThemeLoader.load(theme_obj).success (data) -> process_theme(data)
+    ThemeLoader.load(theme_obj).success (data) -> $scope.process_theme(data)
 
-  process_theme = (data) ->
+  $scope.process_theme = (data) ->
     $scope.xmlTheme  = data
     $scope.jsonTheme = plist_to_json($scope.xmlTheme)
     $scope.gcolors = []
     if $scope.jsonTheme && $scope.jsonTheme.settings
       for key, val of $scope.jsonTheme.settings[0].settings
         $scope.gcolors.push({"name": key, "color": val})
+    $scope.jsonTheme.colorSpaceName = "sRGB"
+    $scope.jsonTheme.semanticClass = "theme.#{$scope.light_or_dark($scope.bg())}.#{$scope.jsonTheme.name.underscore().replace(/[\(\)'&]/g, "")}"
 
 
   # FileSystem and Drag/Drop ----------------------------------

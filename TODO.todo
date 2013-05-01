@@ -1,20 +1,22 @@
 TODO:
- ☐ should preprocess theme and cleaned it up for presentation
-   ☐ breack into smaller controllers?
-   ☐ general/info/scope
-   ☐ format colors
-   ☐ add dark or light to the parent node of controller
-   ☐ ng-hide $first cause an issue
-   ☐ hover state for scopes #26
+ ☐ add dark or light to the parent node of controller
+ ☐ better gradient for selected rule
+ ☐ row highlight on dark bgs @v0.3
+ ☐ hover state for scopes #26
+
+ General Color:
+ ☐ selected rule
+ ☐ add, remove
+
+ ☐ drop themes /saved theme should call procesed
+ ☐ when last_theme cookie exists redirect wins and overwrtie it on reload
+ ☐ BUG: when someone drops a theme reloads are broken
 
 Gallery:
- ☐ highlight current theme does not work properly
  ☐ context specific + and -
 
  Editor:
  ☐ windows bug for color boxes @v0.2
- ☐ when last_theme cookie exists redirect wins and overwrtie it on reload
- ☐ BUG: when someone drops a theme reloads are broken
  ☐ refactor save button
  ☐ refactor drag and drop
 
@@ -24,7 +26,6 @@ Gallery:
  ☐ new button @v0.3
  ☐ set production env on heroku @v0.3
  ☐ focus state for color pickers @v0.3
- ☐ row highlight on dark bgs @v0.3
 
 Services:
  ☐ convert drag/drop and file system api to service
@@ -66,10 +67,6 @@ Services:
  ☐ webworker to do processing in bg
  ☐ upgrade bootstrap
 
-ColorScheme Info:
- ☐ semanticClass: theme.light.something
- ☐ colorSpaceName: "sRGB"
-
 TM_LANGUAGE parsing:
  ☐ for empty lines add a nbsp; for selection stuff
  ☐ check to see if the scope is already taken
@@ -97,6 +94,9 @@ DID YOU KNOW:
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ border of the color types @done (13-05-01 16:48)
+ ✔ semanticClass: theme.light.something @done (13-05-01 16:48)
+ ✔ colorSpaceName: "sRGB" @done (13-05-01 16:40)
  ✔ on file drop clear the URL @done (13-05-01 04:00)
  ✔ edit for info tab @done (13-05-01 03:38)
  ✔ put theme name as html title @done (13-05-01 03:28)

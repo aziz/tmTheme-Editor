@@ -19,8 +19,7 @@ Angie.controller "galleryController", ['$scope', '$http', '$location', 'ThemeLoa
     $location.path(theme.name)
     $scope.selected_theme = theme
     ThemeLoader.load(theme).success (data) ->
-      $scope.$parent.xmlTheme  = data
-      $scope.$parent.jsonTheme = plist_to_json($scope.xmlTheme)
+      $scope.$parent.process_theme(data)
       throbber.off()
 
   $scope.is_selected_theme = (theme) -> theme == $scope.selected_theme
