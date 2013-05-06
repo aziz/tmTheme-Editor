@@ -374,3 +374,7 @@ Angie.controller "editorController", ['$scope', '$http', '$location', 'ThemeLoad
       $(".sidebar").css("overflow-y", "hidden")
     else
       $(".sidebar").css("overflow-y", "scroll")
+
+
+  enable_trasition = -> $('body').removeClass('transition-off')
+  setTimeout(enable_trasition, 600)
