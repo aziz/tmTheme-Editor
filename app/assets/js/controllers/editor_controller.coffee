@@ -77,8 +77,8 @@ Angie.controller "editorController", ['$scope', '$http', '$location', 'ThemeLoad
     if $scope.jsonTheme && $scope.jsonTheme.settings
       for key, val of $scope.jsonTheme.settings[0].settings
         $scope.gcolors.push({"name": key, "color": val})
-    $scope.jsonTheme.colorSpaceName = "sRGB"
-    $scope.jsonTheme.semanticClass = "theme.#{$scope.light_or_dark($scope.bg())}.#{$scope.jsonTheme.name.underscore().replace(/[\(\)'&]/g, "")}"
+      $scope.jsonTheme.colorSpaceName = "sRGB"
+      $scope.jsonTheme.semanticClass = "theme.#{$scope.light_or_dark($scope.bg())}.#{$scope.jsonTheme.name.underscore().replace(/[\(\)'&]/g, "")}"
 
 
   # File System API -----------------------------------------
