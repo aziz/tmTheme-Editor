@@ -18,6 +18,7 @@ app.configure ->
   app.set 'port', settings.port
   app.set 'views', "#{__dirname}/app/templates"
   app.set 'view engine', 'ejs'
+  app.use express.compress()
   app.use express.bodyParser()
   app.use express.cookieParser()
   app.use express.methodOverride()
