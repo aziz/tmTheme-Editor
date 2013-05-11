@@ -6,7 +6,7 @@ It started as a personal experiment trying to use new HTML5 File APIs in Chrome 
 
 ### TRY IT OUT HERE: [tmtheme-editor.herokuapp.com](http://tmtheme-editor.herokuapp.com/)
 
-![](http://f.cl.ly/items/1L1u0B2R2x261H3Z401V/Screen%20Shot.png)
+![](http://f.cl.ly/items/030L0A0j1M0l2a360w3r/tmtheme-editor-screenshot.png)
 
 You can add your color scheme using the `Open` button (which does not upload anything to any server, but only allows the page to have access to the file. You can also drag and drop the file on to the page) and start tweaking the colors, add or remove rules and see the effect instantly on the preview pane. 
 
