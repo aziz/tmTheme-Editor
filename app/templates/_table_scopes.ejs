@@ -1,13 +1,13 @@
 <table ng-show="current_tab == 'scopes'" id="scope-lists" class="list">
   <thead ng-show="jsonTheme">
     <tr>
-      <th class="align-begin truncate">Scope Name</th>
+      <th class="align-begin">Scope Name</th>
       <th class="color-box">FG</th>
       <th class="color-box">BG</th>
       <th class="check-box is_bold">B</th>
       <th class="check-box is_italic">I</th>
       <th class="check-box is_underline">U</th>
-      <th class="check-box"></th>
+      <th width="10px"></th>
     </tr>
   </thead>
   <tbody ui-sortable ui-options="sortable_options" ng-model="jsonTheme.settings" ng-style="{ 'background-color': get_color(bg()), 'color': get_color(fg()) }">
@@ -17,10 +17,10 @@
         ng-dblclick="toggle_edit_popover(rule, $index)"
         ng-class="{ 'selected': is_selected(rule) }"
         class="rule-{{$index}}">
-      <td class="name-box truncate"
+      <td class="name-box"
           ng-style="{ 'color': get_color(rule.settings.foreground), 'background-color': get_color(rule.settings.background) }"
           ng-class="{'is_italic' : is('italic', rule), 'is_bold': is('bold', rule), 'is_underline': is('underline', rule)}">
-          {{ rule.name }}
+          <span class="truncate">{{ rule.name }}</span>
       </td>
       <td class="color-box">
         <div class="colorpicker-box" ng-class="has_color(rule.settings.foreground)" ng-style="{ 'background-color': get_color(rule.settings.foreground), 'border-color': border_color(get_color(bg())) }"></div>
@@ -33,7 +33,7 @@
       <td class="check-box"><input type="checkbox" ng-checked="is('bold', rule)"      ng-click="toggle('bold',rule)"     ></td>
       <td class="check-box"><input type="checkbox" ng-checked="is('italic', rule)"    ng-click="toggle('italic',rule)"   ></td>
       <td class="check-box"><input type="checkbox" ng-checked="is('underline', rule)" ng-click="toggle('underline',rule)"></td>
-      <td class="check-box"></td>
+      <td></td>
     </tr>
   </tbody>
 </table>

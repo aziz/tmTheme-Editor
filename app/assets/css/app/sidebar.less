@@ -1,6 +1,5 @@
 .sidebar {
-  min-width: @sidebarMin - 1;
-  max-width: @sidebarMax - 1;
+  width: @sidebar_width - 1;
   border-right: 1px solid #989898;
   border-left: 1px solid #989898;
   float: left;
@@ -11,11 +10,11 @@
   overflow-y: scroll;
   overflow-x: hidden;
 
-  .check-box {width: 20px; text-align: center;}
-  .color-box {width: 40px;}
+  .check-box { width: 20px; text-align: center; }
+  .color-box { width: 32px; }
   .truncate {
-    min-width: @sidebarMin - 140px;
-    max-width: @sidebarMax - 140px;
+    display: block;
+    width: 220px;
     .ellipsis();
     .prevent-text-breakouts();
   }
@@ -26,8 +25,7 @@
 
 .tabbar {
   @height : 24px;
-  min-width: @sidebarMin - 1;
-  max-width: @sidebarMax - 1;
+  width: @sidebar_width - 1;
   background: #ffffff;
   background: -moz-linear-gradient(top,  #ffffff 0%, #ffffff 23%, #f4f4f4 54%, #ececec 62%, #ededed 100%);
   background: -webkit-linear-gradient(top,  #ffffff 0%,#ffffff 23%,#f4f4f4 54%,#ececec 62%,#ededed 100%);
@@ -71,8 +69,7 @@
 
 .titlebar {
   @height : 24px;
-  min-width: @sidebarMin - 1;
-  max-width: @sidebarMax - 1;
+  width: @sidebar_width - 1;
   background: #ffffff;
   background: -moz-linear-gradient(top,  #ffffff 0%, #ffffff 23%, #f4f4f4 54%, #ececec 62%, #ededed 100%);
   background: -webkit-linear-gradient(top,  #ffffff 0%,#ffffff 23%,#f4f4f4 54%,#ececec 62%,#ededed 100%);
@@ -210,10 +207,6 @@
 
   &.general {
     thead {border-top: 0;}
-    .truncate {
-      min-width: @sidebarMin - 60px;
-      max-width: @sidebarMax - 60px;
-    }
   }
 
   &.info {
@@ -241,7 +234,6 @@
     height: 15px;
     font-size: 11px;
     line-height: 15px;
-    // border-top: 1px solid #a8a8a8;
     border-bottom: 1px solid #b6b6b6;
     .box-shadow(inset 0 -1px #f4f4f4);
 
@@ -308,7 +300,7 @@ a.reset {
   top: 1px; bottom: 1px;
   left: 1px; right: 1px;
   border: 1px solid rgba(255,255,255,.33);
-  width: 26px;
+  // width: 26px;
   position: absolute;
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAG0lEQVQIW2P4//+/EwgzMDBAMIYAjIEkgSoAAL9FHAm65CvoAAAAAElFTkSuQmCC);
   .background-clip(padding-box);

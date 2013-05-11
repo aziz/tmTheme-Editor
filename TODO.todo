@@ -5,8 +5,6 @@ TODO:
  ☐ some general settings are not colors /#/BoxUK
  Info:
  ☐ add, remove
- Editor:
- ☐ windows bug for color boxes @v0.2
 
 --- ✄ -----------------------
  ☐ allow users to delete local files
@@ -52,7 +50,7 @@ Services:
  ☐ try to make it work in other browsers
  ☐ cache the parsed theme and lang to disk (to hopefully make it faster)
  ☐ position sticky for sidebar table headers https://github.com/davist11/jQuery-Stickem
- ☐ webworker to do processing in bg
+ ☐ webworker to do processing in bg (https://github.com/ramesaliyev/EasyWebWorker)
  ☐ upgrade bootstrap
 
 TM_LANGUAGE parsing:
@@ -78,6 +76,7 @@ DID YOU KNOW:
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ bug for color boxes @v0.2 @done (13-05-11 22:56)
  ✔ refactor save button @done (13-05-01 23:22)
  ✔ refactor drag and drop @done (13-05-01 23:22)
  ✔ refactor handleFileDrop and $scope.setFiles and extract repeated code @done (13-05-01 23:22)

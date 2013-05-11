@@ -3,26 +3,31 @@
     <tr>
       <th style="width:80px" class="align-begin">Property</th>
       <th class="align-begin">Value</th>
+      <th width="10px"></th>
     </tr>
   </thead>
   <tbody ui-sortable ui-options="sortable_options" ng-style="{ 'background-color': get_color(bg()), 'color': get_color(fg()) }">
     <tr>
       <td class="name-box">UUID</td>
       <td>{{jsonTheme.uuid}}</td>
+      <td></td>
     </tr>
 
     <tr>
       <td class="name-box">Name</td>
       <td><input type="text" ng-model="jsonTheme.name"></td>
+      <td></td>
     </tr>
     <tr>
       <td class="name-box">Author</td>
       <td><input type="text" ng-model="jsonTheme.author"></td>
+      <td></td>
     </tr>
 
     <tr>
       <td class="name-box">Comment</td>
       <td><textarea type="text" ng-model="jsonTheme.comment"></textarea></td>
+      <td></td>
     </tr>
   </tbody>
 </table>
