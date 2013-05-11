@@ -33,7 +33,7 @@ written in [coffeescript](http://coffeescript.org/) using [angular.js](angularjs
 
 ## Copyright
 **TMThemeEditor**  
-&copy; Copyright 2012 Allen Bargi
+&copy; Copyright 2012-2013 Allen Bargi
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as
