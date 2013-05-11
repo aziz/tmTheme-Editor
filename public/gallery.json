@@ -103,6 +103,7 @@
 {"name": "Mreq", "url": "https://raw.github.com/mreq/mreq-theme/master/mreq.tmTheme", "light": false },
 {"name": "NaturalContrast", "url": "https://raw.github.com/daylerees/colour-schemes/master/NaturalContrast.tmTheme", "light": false },
 {"name": "NetBeans", "url": "https://raw.github.com/daylerees/colour-schemes/master/NetBeans.tmTheme", "light": true },
+{"name": "Neon", "url": "https://raw.github.com/MattDMo/Neon.tmTheme/master/Neon.tmTheme", "light": false },
 {"name": "NightLion", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/NightLion.tmTheme", "light": false },
 {"name": "Notebook", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Notebook.tmTheme", "light": true },
 {"name": "Obsidian", "url": "https://raw.github.com/mekwall/obsidian-color-scheme/master/textmate/Obsidian.tmTheme", "light": false },
