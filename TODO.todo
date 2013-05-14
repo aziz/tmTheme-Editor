@@ -6,8 +6,10 @@ TODO:
  Info:
  ☐ add, remove
 
+
 --- ✄ -----------------------
  ☐ allow users to delete local files
+ ☐ raise error when the theme in url is not found in gallery
  ☐ support for HTML,CSS,JS,Ruby,Python and other languages @v0.3
  ☐ removal and addition of general colors @v0.3
  ☐ new button @v0.3
@@ -90,6 +92,7 @@ Other Tools/Editors:
 Marketing:
  ☐ Edit Macromates WIKI and add a link
  ☐ fork people tmTheme repos on github and add a link to preview live their theme
+ ☐ textmatetheme.com
 
 
 

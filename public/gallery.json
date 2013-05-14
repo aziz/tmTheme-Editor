@@ -77,6 +77,7 @@
 {"name": "Grunge", "url": "https://raw.github.com/daylerees/colour-schemes/master/Grunge.tmTheme", "light": false },
 {"name": "HalfLife", "url": "https://raw.github.com/daylerees/colour-schemes/master/HalfLife.tmTheme", "light": false },
 {"name": "Happy happy joy joy 2", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Happy%20happy%20joy%20joy%202.tmTheme", "light": true },
+{"name": "Humane", "url": "https://raw.github.com/antlong/Textmate-Themes/master/TM1/Humane.tmTheme", "light": true },
 {"name": "HyperSpace", "url": "https://raw.github.com/koteus/HyperSpace/master/HyperSpace.tmTheme", "light": false },
 {"name": "Hyrule", "url": "https://raw.github.com/daylerees/colour-schemes/master/Hyrule.tmTheme", "light": false },
 {"name": "Iceberg", "url": "https://raw.github.com/daylerees/colour-schemes/master/Iceberg.tmTheme", "light": false },
@@ -119,6 +120,7 @@
 {"name": "Neon", "url": "https://raw.github.com/MattDMo/Neon.tmTheme/master/Neon.tmTheme", "light": false },
 {"name": "NetBeans", "url": "https://raw.github.com/daylerees/colour-schemes/master/NetBeans.tmTheme", "light": true },
 {"name": "NightLion", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/NightLion.tmTheme", "light": false },
+{"name": "NodeJS", "url": "https://raw.github.com/antlong/Textmate-Themes/master/TM1/nodejs.tmtheme", "light": false },
 {"name": "Notebook", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Notebook.tmTheme", "light": true },
 {"name": "Obsidian", "url": "https://raw.github.com/mekwall/obsidian-color-scheme/master/textmate/Obsidian.tmTheme", "light": false },
 {"name": "Oceanic Muted", "url": "https://raw.github.com/memco/Oceanic-tmTheme/master/Themes/Oceanic%20Muted.tmTheme", "light": false },
@@ -193,6 +195,7 @@
 {"name": "Vibrant Ink", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Vibrant%20Ink.tmTheme", "light": false },
 {"name": "Vibrant Tango", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Vibrant%20Tango.tmTheme", "light": false },
 {"name": "WebExPert", "url": "https://raw.github.com/matiaspub/WebExPertColorScheme/master/WebExPert.tmTheme", "light": false },
+{"name": "YellowStone", "url": "https://raw.github.com/antlong/Textmate-Themes/master/TM1/yellowStone.tmtheme", "light": true },
 {"name": "Yule", "url": "https://raw.github.com/daylerees/colour-schemes/master/Yule.tmTheme", "light": false },
 {"name": "Zenburn", "url": "https://raw.github.com/colinta/zenburn/master/zenburn.tmTheme", "light": false },
 {"name": "Zenburnesque", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Zenburnesque.tmTheme", "light": false }
