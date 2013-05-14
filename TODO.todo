@@ -59,16 +59,16 @@ TM_LANGUAGE parsing:
    ☐ adjust begin and size based on length on lb text
  ☐ support for repository and include (support for external includes)
 
-DID YOU KNOW:
- ☐ you can drag and drop and reorder scopes
- ☐ you can drag and drop your color schemes
- ☐ you can save your changes locally and come back later
- ☐ you can add scope
- ☐ shortcuts
+DID YOU KNOW YOU CAN:
+ ☐ drag and drop and reorder scopes
+ ☐ drag and drop your color schemes on the page to preview it
+ ☐ save your changes locally and come back later to continue working on it
+ ☐ add or remove scopes
+ ☐ use shortcuts
  ☐ filter by light/dark in gallery
  ☐ take look at stats and find mose popular scopes or biggest color schemes in gallery
- ☐ add you own theme to gallery
- ☐ you can see the edit panel by dbl clicking the scopes
+ ☐ add your own theme to the gallery
+ ☐ see the edit panel by dbl clicking the scopes
 
 Services:
  ☐ convert drag/drop and file system api to service
@@ -77,7 +77,7 @@ Services:
  ☐ light_or_dark method and tinycolor should be a service
 
 Other Tools/Editors:
- ☐ vim
+ ☐ vim/jEdit/Kate/KWrite: https://github.com/sickill/coloration
  ☐ Emacs
  ☐ Xcode
  ☐ IntelliJ IDEA
@@ -85,7 +85,8 @@ Other Tools/Editors:
  ☐ Coda
  ☐ TextWrangler & BBEdit
  ☐ Visual Studio
- ☐ iTerm
+ ☐ Notepad++: http://framework.lojcomm.com.br/tmTheme2nppStyler/
+ ☐ iTerm: https://gist.github.com/maxim/2903788
  ☐ Terminal
  ☐ Photoshop palette
 
@@ -93,6 +94,7 @@ Marketing:
  ☐ Edit Macromates WIKI and add a link
  ☐ fork people tmTheme repos on github and add a link to preview live their theme
  ☐ textmatetheme.com
+ ☐ http://theneum.com/sublime-text-2-color-schemes
 
 
 
