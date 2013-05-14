@@ -1,0 +1,51 @@
+Other repos:
+https://github.com/carlcalderon/sublime-color-schemes
+https://github.com/chriskempson/base16-textmate
+https://github.com/chriskempson/tomorrow-theme/tree/master/textmate
+https://github.com/imagentleman/ublime
+https://github.com/textmate/themes.tmbundle/
+
+http://textmatetheme.com:
+Barf
+Clouds Midnight
+Cool Glow
+Django Blues
+Doctrine
+EpicBlue
+ForLaTeX
+Humane
+Node JS
+Over Cast
+Rubix
+Tango Bright
+YellowStone
+Zachstronaut
+
+form wiki.macromate:
+BlackLight
+Boys & Girls
+Brilliance Black
+Brilliance Dull
+Choco
+Cool Glow
+Creeper
+Dominion Day
+Emacs
+Happydeluxe
+Midnight
+minimal Theme
+Plum Dumb
+RubyRobot
+Slate
+Starlight
+iLife 05
+Succulent Theme
+Swyphs
+Tek
+Whys Poignant Guide
+
+BUGS:
+{"name": "Raydric", "url": "https://raw.github.com/raydric/raydric-color-scheme/master/Raydric.tmTheme", "light": false},
+{"name":"Larapaste", "url": "https://raw.github.com/villimagg/Larapaste-sublime-theme/master/Larapaste.tmTheme", "light": false },
+{"name": "Brilliance Black", "url": "https://raw.github.com/textmate/themes.tmbundle/master/Themes/Brilliance%20Black.tmTheme", "light": false },
+{"name": "Brilliance Dull", "url": "https://raw.github.com/textmate/themes.tmbundle/master/Themes/Brilliance%20Dull.tmTheme", "light": false },
