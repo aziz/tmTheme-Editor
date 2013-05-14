@@ -2,7 +2,7 @@
 #= require vendors/xregexp-3.0.0pre.js
 #= require vendors/jquery-2.0.0.js
 #= require vendors/jquery.cookie-1.3.1.js
-#= require vendors/jquery-ui-1.10.2.sortable.js
+#= require vendors/jquery-ui-1.10.3.sortable-draggable.js
 #= require vendors/FileSaver-20130123.js
 #= require vendors/tinycolor-0.9.14.js
 #= require vendors/angular-1.1.4.js

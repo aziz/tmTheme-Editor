@@ -375,6 +375,43 @@ Angie.controller "editorController", ['$scope', '$http', '$location', 'ThemeLoad
 
   $scope.reset_color = (rule, attr) -> rule.settings[attr] = undefined
 
+  $scope.colors_hud_open = false
+  $scope.change_brightness = 0
+  $scope.change_saturation = 0
+
+  $scope.toggle_colors_hud = ->
+    if !$scope.colors_hud_open
+      $scope.original_colors = Object.clone($scope.jsonTheme.settings, true)
+    $scope.colors_hud_open = !$scope.colors_hud_open
+
+  $scope.close_hud = -> $scope.colors_hud_open = false
+
+  $scope.reset_color_changes = ->
+    $scope.jsonTheme.settings = Object.clone($scope.original_colors, true)
+    $scope.change_brightness = 0
+    $scope.change_saturation = 0
+
+  $scope.filter_colors = (filter) ->
+    for rule in $scope.jsonTheme.settings
+      if rule.settings
+        if rule.settings.foreground
+          rule.settings.foreground = tinycolor[filter](rule.settings.foreground).toHexString()
+        if rule.settings.background
+          rule.settings.background = tinycolor[filter](rule.settings.background).toHexString()
+    for rule in $scope.gcolors
+      rule.color = tinycolor[filter](rule.color).toHexString()
+    $scope.original_colors = Object.clone($scope.jsonTheme.settings, true)
+
+  $scope.update_colors = (->
+    for rule,i in $scope.original_colors
+      if rule.scope && rule.settings
+        if rule.settings.foreground
+          $scope.jsonTheme.settings[i].settings.foreground = tinycolor.saturate( tinycolor.lighten(rule.settings.foreground, $scope.change_brightness), $scope.change_saturation ).toHexString()
+        if rule.settings.background
+          $scope.jsonTheme.settings[i].settings.background = tinycolor.saturate( tinycolor.lighten(rule.settings.background, $scope.change_brightness), $scope.change_saturation ).toHexString()
+
+  ).throttle(50)
+
   $scope.$watch "edit_popover_visible", (n,o) ->
     if n
       $(".sidebar").css("overflow-y", "hidden")

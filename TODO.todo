@@ -1,4 +1,17 @@
 TODO:
+ ✔ hud draggable @done (13-05-14 16:11)
+ ✔ hud closable @done (13-05-14 16:18)
+ ✔ do not chage color if it's null @done (13-05-14 19:03)
+ ✔ hud update color @done (13-05-14 19:04)
+ ✔ invert @done (13-05-14 19:23)
+ ☐ better hud UI
+ ☐ reset color adjustment on theme load / and on close hud
+ ☐ hue
+ ☐ brightness/contrast: http://www.pixastic.com/lib/docs/actions/brightness/
+ ☐ Filters: invert/grayscale/sepia
+
+
+ ☐ rename Angie to Application
  ☐ hover state for scopes #26
  General Color:
  ☐ add, remove

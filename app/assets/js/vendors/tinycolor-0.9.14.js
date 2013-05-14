@@ -415,9 +415,39 @@ tinycolor.desaturate = function (color, amount) {
     hsl.s = clamp01(hsl.s);
     return tinycolor(hsl);
 };
+
+tinycolor.invert = function (color) {
+    var rgb = tinycolor(color).toRgb();
+    rgb.r = 255 - rgb.r;
+    rgb.g = 255 - rgb.g;
+    rgb.b = 255 - rgb.b;
+    return tinycolor(rgb);
+};
+
+tinycolor.solarize = function (color) {
+    var rgb = tinycolor(color).toRgb();
+    if (rgb.r>127) {rgb.r = 255 - rgb.r;}
+    if (rgb.g>127) {rgb.g = 255 - rgb.g;}
+    if (rgb.b>127) {rgb.b = 255 - rgb.b;}
+    return tinycolor(rgb);
+};
+
+
+tinycolor.sepia = function (color) {
+    var rgb = tinycolor(color).toRgb();
+    var r = (rgb.r * 0.393 + rgb.g * 0.769 + rgb.b * 0.189);
+    var g = (rgb.r * 0.349 + rgb.g * 0.686 + rgb.b * 0.168);
+    var b = (rgb.r * 0.272 + rgb.g * 0.534 + rgb.b * 0.131);
+    if (r < 0) r = 0; if (r > 255) r = 255;
+    if (g < 0) g = 0; if (g > 255) g = 255;
+    if (b < 0) b = 0; if (b > 255) b = 255;
+    return tinycolor({r:r, g:g, b:b});
+};
+
 tinycolor.saturate = function (color, amount) {
+    if ((amount === null) || (amount === undefined)) { amount = 10; }
     var hsl = tinycolor(color).toHsl();
-    hsl.s += ((amount || 10) / 100);
+    hsl.s += (amount / 100);
     hsl.s = clamp01(hsl.s);
     return tinycolor(hsl);
 };
@@ -425,8 +455,9 @@ tinycolor.greyscale = function(color) {
     return tinycolor.desaturate(color, 100);
 };
 tinycolor.lighten = function(color, amount) {
+    if ((amount === null) || (amount === undefined)) { amount = 10; }
     var hsl = tinycolor(color).toHsl();
-    hsl.l += ((amount || 10) / 100);
+    hsl.l += (amount / 100);
     hsl.l = clamp01(hsl.l);
     return tinycolor(hsl);
 };
