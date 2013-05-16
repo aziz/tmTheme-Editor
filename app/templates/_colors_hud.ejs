@@ -1,11 +1,11 @@
-<div ng-show="colors_hud_open" draggable class="hud" style="position:absolute;top: 100px; right: 180px; z-index: 9999">
+<div ng-cloak ng-show="colors_hud_open" draggable class="hud" style="position:absolute;top: 100px; right: 180px; z-index: 9999">
   <div class="hud_header">
-    Adjust Image
+    Color Adjustments
     <a ng-click="close_hud()" class="close">&times;</a>
   </div>
   <div class="hud_body">
-    Lightness  <input type="range" ng-change="update_colors()" min="-100" max="100" ng-model="change_brightness">  {{change_brightness}}
-    Saturation <input type="range" ng-change="update_colors()" min="-100" max="100" ng-model="change_saturation">  {{change_saturation}}
+    Brightness  <input type="range" ng-change="update_colors()" min="-150" max="150" ng-model="brightness">  {{brightness}}
+    Contrast <input type="range" ng-change="update_colors()" min="-100" max="300" ng-model="saturation">  {{saturation}}
     <hr>
     <a ng-click="reset_color_changes()" class="hud_btn">Reset</a> &nbsp;&nbsp;
     <a ng-click="filter_colors('invert')" class="hud_btn">Invert</a>&nbsp;&nbsp;

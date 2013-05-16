@@ -379,6 +379,9 @@ Angie.controller "editorController", ['$scope', '$http', '$location', 'ThemeLoad
   $scope.change_brightness = 0
   $scope.change_saturation = 0
 
+  $scope.brightness = 0
+  $scope.saturation = 0
+
   $scope.toggle_colors_hud = ->
     if !$scope.colors_hud_open
       $scope.original_colors = Object.clone($scope.jsonTheme.settings, true)
@@ -406,9 +409,10 @@ Angie.controller "editorController", ['$scope', '$http', '$location', 'ThemeLoad
     for rule,i in $scope.original_colors
       if rule.scope && rule.settings
         if rule.settings.foreground
-          $scope.jsonTheme.settings[i].settings.foreground = tinycolor.saturate( tinycolor.lighten(rule.settings.foreground, $scope.change_brightness), $scope.change_saturation ).toHexString()
+          # $scope.jsonTheme.settings[i].settings.foreground = tinycolor.saturate( tinycolor.lighten(rule.settings.foreground, $scope.change_brightness), $scope.change_saturation ).toHexString()
+          $scope.jsonTheme.settings[i].settings.foreground = tinycolor.brightness_contrast( rule.settings.foreground, $scope.brightness, $scope.saturation/100 ).toHexString()
         if rule.settings.background
-          $scope.jsonTheme.settings[i].settings.background = tinycolor.saturate( tinycolor.lighten(rule.settings.background, $scope.change_brightness), $scope.change_saturation ).toHexString()
+          $scope.jsonTheme.settings[i].settings.background = tinycolor.brightness_contrast( rule.settings.background, $scope.brightness, $scope.saturation/100.0 ).toHexString()
 
   ).throttle(50)
 

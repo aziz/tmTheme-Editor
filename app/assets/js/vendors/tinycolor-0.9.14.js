@@ -416,6 +416,48 @@ tinycolor.desaturate = function (color, amount) {
     return tinycolor(hsl);
 };
 
+tinycolor.brightness_contrast = function (color, brightness, contrast) {
+  var rgb = tinycolor(color).toRgb();
+  var brightMul = 1 + Math.min(150,Math.max(-150,brightness)) / 150;
+  contrast = Math.max(0, contrast+1);
+  var mul, add;
+  if (contrast != 1) {
+    mul = brightMul * contrast;
+    add = - contrast * 128 + 128;
+  } else {  // this if-then is not necessary anymore, is it?
+    mul = brightMul;
+    add = 0;
+  }
+
+  var r, g, b;
+  var new_r, new_g, new_b;
+  r = rgb.r * mul + add;
+  g = rgb.g * mul + add;
+  b = rgb.b * mul + add;
+  if (r > 255 )
+    new_r = 255;
+  else if (r < 0)
+    new_r = 0;
+  else
+    new_r = r;
+
+  if (g > 255 )
+    new_g = 255;
+  else if (g < 0)
+    new_g = 0;
+  else
+    new_g = g;
+
+  if (b > 255 )
+    new_b = 255;
+  else if (b < 0)
+    new_b = 0;
+  else
+    new_b = b;
+
+  return tinycolor({r:new_r, g:new_g, b:new_b});
+};
+
 tinycolor.invert = function (color) {
     var rgb = tinycolor(color).toRgb();
     rgb.r = 255 - rgb.r;

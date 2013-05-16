@@ -1,15 +1,14 @@
 TODO:
- ✔ hud draggable @done (13-05-14 16:11)
- ✔ hud closable @done (13-05-14 16:18)
- ✔ do not chage color if it's null @done (13-05-14 19:03)
- ✔ hud update color @done (13-05-14 19:04)
- ✔ invert @done (13-05-14 19:23)
  ☐ better hud UI
  ☐ reset color adjustment on theme load / and on close hud
  ☐ hue
- ☐ brightness/contrast: http://www.pixastic.com/lib/docs/actions/brightness/
- ☐ Filters: invert/grayscale/sepia
-
+ ✔ brightness/contrast: http://www.pixastic.com/lib/docs/actions/brightness/ @done (13-05-15 19:30)
+ ☐ color tempreture
+ ☐ color tint
+ ☐ Filters: invert/grayscale/
+ ☐ text should be there uncolored from the begining
+ ☐ extract color service
+ ☐ use infinite scroll on gallery
 
  ☐ rename Angie to Application
  ☐ hover state for scopes #26
@@ -19,7 +18,6 @@ TODO:
  Info:
  ☐ add, remove
 
-
 --- ✄ -----------------------
  ☐ allow users to delete local files
  ☐ raise error when the theme in url is not found in gallery
@@ -28,6 +26,7 @@ TODO:
  ☐ new button @v0.3
  ☐ set production env on heroku @v0.3
  ☐ focus state for color pickers @v0.3
+ ☐ event tracking
 
  low:
  ☐ update uuid
@@ -38,14 +37,8 @@ TODO:
  ☐ color picker js https://github.com/bebraw/colorjoe @v0.4
  ☐ undo delete rule @v0.4
  ☐ set some info on the server for SEO when a theme is in URL @v0.4
- ☐ download colors as photoshop color palette
-   ☐ http://www.colourlovers.com/ase.phps
-   ☐ https://github.com/nsfmc/swatch
-   ☐ http://blog.soulwire.co.uk/code/actionscript-3/as3-ase-adobe-swatch-exchange-encoder
  ☐ option: chrome app
  ☐ better readme
- ☐ event tracking
- ☐ show description of general colors on hover
  ☐ click on preview and change colors
  ☐ highlight related scopes in preview on rule select
  ☐ setting color with transparency (different alpha channel representation)
@@ -112,3 +105,14 @@ Marketing:
 
 
 
+
+
+＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
+Archive:
+ ✔ hud draggable @done (13-05-14 16:11)
+ ✔ hud closable @done (13-05-14 16:18)
+ ✔ do not chage color if it's null @done (13-05-14 19:03)
+ ✔ hud update color @done (13-05-14 19:04)
+ ✔ invert @done (13-05-14 19:23)
+ ✘ download colors as photoshop color palette @cancelled (13-05-15 10:50)
+ ✘ show description of general colors on hover @cancelled (13-05-15 10:51)
