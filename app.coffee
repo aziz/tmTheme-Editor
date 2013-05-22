@@ -8,7 +8,6 @@ less     = require 'less'
 sugar    = require 'sugar'
 
 template_engine = require 'ejs-locals'
-gzip            = require 'connect-gzip'
 assets_manager  = require 'connect-assets'
 
 app = module.exports = express()
@@ -32,7 +31,6 @@ app.configure 'development', ->
 
 app.configure 'production', ->
   log = fs.createWriteStream 'log/production.log', {flags: 'w'}
-  app.use gzip.gzip()
   app.use express.errorHandler()
   app.use express.logger(stream: log)
 

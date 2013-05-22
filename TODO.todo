@@ -1,3 +1,6 @@
+https://github.com/laertejjunior/freezeheader
+
+
 TODO:
  ☐ better hud UI
  ☐ reset color adjustment on theme load / and on close hud
@@ -9,6 +12,8 @@ TODO:
  ☐ text should be there uncolored from the begining
  ☐ extract color service
  ☐ use infinite scroll on gallery
+ ☐ show original Theme URL
+ ☐ ng-cloak on stats page
 
  ☐ rename Angie to Application
  ☐ hover state for scopes #26
@@ -29,6 +34,8 @@ TODO:
  ☐ event tracking
 
  low:
+ ☐ https://github.com/maccman/macgap
+ ☐ https://github.com/rogerwang/node-webkit
  ☐ update uuid
  ☐ being able to auto upload current theme inside sublim to a server and preview it: http://pastie.org/pastes/7745711/text
  ☐ apply filters (on colors) brightness/contract @v0.4
