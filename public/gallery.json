@@ -38,6 +38,7 @@
 {"name": "Cube2Media", "url": "https://raw.github.com/electricgraffitti/sublime-theme-Cube2/master/Cube2Media.tmTheme", "light": false },
 {"name": "DarkPastel", "url": "https://raw.github.com/jdiehl/dark-pastel/master/dark-pastel.tmTheme", "light": false},
 {"name": "Darkside", "url": "https://raw.github.com/daylerees/colour-schemes/master/Darkside.tmTheme", "light": false },
+{"name": "DarkVIM", "url": "https://raw.github.com/edgarjs/tm-themes/master/DarkVIM.tmTheme", "light": false },
 {"name": "Dawn", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Dawn.tmTheme", "light": true },
 {"name": "Dimmed", "url": "https://raw.github.com/uonick/dimmed/master/dimmed.tmTheme", "light": true },
 {"name": "Dimmed-Monokai", "url": "https://raw.github.com/uonick/dimmed/master/dimmed-monokai.tmTheme", "light": false },
