@@ -296,6 +296,7 @@ Angie.controller "editorController", ['$scope', '$http', '$location', 'ThemeLoad
   # ---------------------------------------------------------------------
 
   $scope.is_selected = (rule) -> rule == $scope.selected_rule
+  $scope.is_hovered = (rule) -> rule == $scope.hovered_rule
   $scope.is_gcolor_selected = (rule) -> rule == $scope.general_selected_rule
 
   # $scope.selected_gradient = (rule) ->
@@ -316,21 +317,26 @@ Angie.controller "editorController", ['$scope', '$http', '$location', 'ThemeLoad
     $scope.edit_popover_visible = true
     row = $("#scope-lists .rule-#{rule_index}")
     win_height = $(window).height()
+
     if (win_height - row.offset().top) < 160
       $("#edit-popover").css({
         "top": "auto"
+        "left": ""
         "bottom": win_height - row.offset().top
       }).removeClass("on-bottom").addClass("on-top")
     else if row.offset().top < 160
       $("#edit-popover").css({
+        "left": ""
         "top": row.offset().top + row.outerHeight()
         "bottom": "auto"
       }).removeClass("on-top").addClass("on-bottom")
     else
       $("#edit-popover").css({
         "top": row.offset().top + (row.outerHeight()/2) - 140
+        "left": ""
         "bottom": "auto"
       }).removeClass("on-top").removeClass("on-bottom")
+
     $("#preview, #gallery").one "click", (e) ->
       $scope.edit_popover_visible = false
       $scope.$digest()

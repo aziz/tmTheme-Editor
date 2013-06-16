@@ -15,7 +15,7 @@
         ng-hide="rule.settings.invisibles"
         ng-click="mark_as_selected(rule)"
         ng-dblclick="toggle_edit_popover(rule, $index)"
-        ng-class="{ 'selected': is_selected(rule) }"
+        ng-class="{ 'selected': is_selected(rule), 'hovered': is_hovered(rule) }"
         class="rule-{{$index}}">
       <td class="name-box"
           ng-style="{ 'color': get_color(rule.settings.foreground), 'background-color': get_color(rule.settings.background) }"
