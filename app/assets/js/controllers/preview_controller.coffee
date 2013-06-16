@@ -315,7 +315,7 @@ Angie.controller "previewController", ['$scope', '$http', '$rootScope'], ($scope
       #console.log scopes
       for scope, i in scopes
         if scope.type == "b"
-          tag = "<s class='#{scope.name?.split(".").join(" ")}'>"
+          tag = "<s class='#{scope.name?.split(".").join(" ")}' data-entity-scope='#{scope.name}'>"
         else
           tag = "</s>"
         #console.log "TAG:", tag
@@ -327,4 +327,3 @@ Angie.controller "previewController", ['$scope', '$http', '$rootScope'], ($scope
           break if j > scopes.length
       #console.log line
       $scope.parsed_code.push("<span class='l l-#{line_number} #{$scope.json_lang.scopeName.split(".").join(" ")}'>#{line}</span>")
-

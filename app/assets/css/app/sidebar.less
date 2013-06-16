@@ -264,6 +264,7 @@
   }
 
   tr {
+    .transition(160ms);
     border-top: 1px solid transparent;
     border-bottom: 1px solid transparent;
   }
@@ -497,6 +498,14 @@ a.reset {
 
 .ui-sortable-placeholder {
   height: 23px;
+}
+
+.list .hovered {
+  background: fadeout(#00aa25, 85);
+
+  td:last-child {
+    box-shadow: inset -4px 0 0 #00aa25;
+  }
 }
 
 .current_theme_light .selected {
