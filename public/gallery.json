@@ -1,4 +1,5 @@
 [
+{"name": "3024", "url": "https://github.com/idleberg/3024.tmTheme/blob/master/3024%20Night.tmTheme", "light": false },
 {"name": "All Hallow's Eve", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/All%20Hallow's%20Eve.tmTheme", "light": false },
 {"name": "Amy", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Amy.tmTheme", "light": false },
 {"name": "Argonaut", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Argonaut.tmTheme", "light": false },
@@ -7,6 +8,8 @@
 {"name": "Baby, The Code Shines Bright", "url": "https://raw.github.com/spacekat/Baby-The-Code-Shines-Bright/master/Baby,%20The%20Code%20Shines%20Bright.tmTheme", "light": false },
 {"name": "BBEdit", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/BBEdit.tmTheme", "light": true },
 {"name": "Bespin", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Bespin.tmTheme", "light": false },
+{"name": "Belafonte (Day)", "url": "https://github.com/idleberg/Zissou.tmTheme/blob/master/Belafonte-Day.tmTheme", "light": true },
+{"name": "Belafonte (Night)", "url": "https://github.com/idleberg/Zissou.tmTheme/blob/master/Belafonte-Night.tmTheme", "light": false },
 {"name": "Birds of Paradise", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Birds%20of%20Paradise.tmTheme", "light": false },
 {"name": "Black Pearl II", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Black%20Pearl%20II.tmTheme", "light": false },
 {"name": "Black Pearl", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Black%20Pearl.tmTheme", "light": false },
@@ -34,6 +37,7 @@
 {"name": "Coal Graal", "url": "https://raw.github.com/baskerville/Coal-Graal.tmTheme/master/Coal%20Graal.tmTheme", "light": false },
 {"name": "Cobalt", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Cobalt.tmTheme", "light": false },
 {"name": "Coda", "url": "https://raw.github.com/chriskempson/coda-textMate-theme/master/Coda.tmTheme", "light": true },
+{"name": "Crayon Pony Fish", "url": "https://raw.github.com/idleberg/Zissou.tmTheme/master/Crayon-Pony-Fish.tmTheme", "light": false },
 {"name": "CSSEdit", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/CSSEdit.tmTheme", "light": true },
 {"name": "Cube2Media", "url": "https://raw.github.com/electricgraffitti/sublime-theme-Cube2/master/Cube2Media.tmTheme", "light": false },
 {"name": "DarkPastel", "url": "https://raw.github.com/jdiehl/dark-pastel/master/dark-pastel.tmTheme", "light": false},
