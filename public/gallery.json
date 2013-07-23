@@ -41,6 +41,7 @@
 {"name": "Dawn", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Dawn.tmTheme", "light": true },
 {"name": "Dimmed", "url": "https://raw.github.com/uonick/dimmed/master/dimmed.tmTheme", "light": true },
 {"name": "Dimmed-Monokai", "url": "https://raw.github.com/uonick/dimmed/master/dimmed-monokai.tmTheme", "light": false },
+{"name": "Dimmed-Night","url": "https://raw.github.com/uonick/dimmed/master/dimmed-night.tmTheme","light": false},
 {"name": "Django (Smoothy)", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Django%20(Smoothy).tmTheme", "light": false },
 {"name": "Django", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Django.tmTheme", "light": false },
 {"name": "Dobdark", "url": "https://raw.github.com/charlesroper/DobDark-Theme/master/Dobdark.tmTheme", "light": false },
