@@ -6,7 +6,6 @@
   <div class="btn-toolbar new-upload">
     <div class="btn-group">
       <a id="upload-btn" class="btn btn-info btn-small">Open</a>
-      <a ng-click="toggle_colors_hud()" class="btn btn-info btn-small">Color Tools</a>
     </div>
   </div>
   <div ng-class="gallery" class="btn-toolbar dl-save">
@@ -24,21 +23,6 @@
   <div ng-cloak ng-class="gallery" ng-show="jsonTheme" class="theme-title">
     {{ jsonTheme.name }}
   </div>
-  <!--
-  <div ng-cloak ng-show="jsonTheme" class="languages">
-    <div class="btn-group">
-      <a ng-click="" class="btn btn-small dropdown-toggle" data-toggle="dropdown">
-        {{ current_lang }}
-        <span class="caret"></span>
-      </a>
-      <ul class="dropdown-menu">
-        <li ng-repeat="lang in available_langs">
-          <a ng-click="set_lang(lang)">{{lang}}</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-  -->
   <div class="links">
     <%// include _social %>
     <% include _links %>

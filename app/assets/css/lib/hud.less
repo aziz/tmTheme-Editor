@@ -65,6 +65,27 @@
     min-height: 100px;
   }
 
+  .hud_box {
+    margin-bottom: 16px;
+
+    label {
+      margin-bottom: -4px;
+      font-weight: normal;
+    }
+  }
+
+  input[type=text] {
+    background: transparent;
+    color: white;
+    width: 32px;
+    font-size: 11px;
+    line-height: 11px;
+    padding: 0 3px;
+    text-align: center;
+    border: 1px solid rgba(0,0,0,.3);
+    margin-bottom: 0;
+  }
+
   input[type=range] {
     -webkit-appearance: none;
     height: 2px;
@@ -73,6 +94,7 @@
     .box-sizing('border-box');
     background-color: #8f9387;
     border: 1px solid #fff;
+    width: 220px;
 
     &[disabled] {
       opacity: 0.5;

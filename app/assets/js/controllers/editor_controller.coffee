@@ -375,10 +375,8 @@ Angie.controller "editorController", ['$scope', '$http', '$location', 'ThemeLoad
 
   $scope.reset_color = (rule, attr) -> rule.settings[attr] = undefined
 
+  #-------------------------------------------------------------------------
   $scope.colors_hud_open = false
-  $scope.change_brightness = 0
-  $scope.change_saturation = 0
-
   $scope.brightness = 0
   $scope.saturation = 0
 
@@ -391,8 +389,8 @@ Angie.controller "editorController", ['$scope', '$http', '$location', 'ThemeLoad
 
   $scope.reset_color_changes = ->
     $scope.jsonTheme.settings = Object.clone($scope.original_colors, true)
-    $scope.change_brightness = 0
-    $scope.change_saturation = 0
+    $scope.brightness = 0
+    $scope.saturation = 0
 
   $scope.filter_colors = (filter) ->
     for rule in $scope.jsonTheme.settings
@@ -409,12 +407,12 @@ Angie.controller "editorController", ['$scope', '$http', '$location', 'ThemeLoad
     for rule,i in $scope.original_colors
       if rule.scope && rule.settings
         if rule.settings.foreground
-          # $scope.jsonTheme.settings[i].settings.foreground = tinycolor.saturate( tinycolor.lighten(rule.settings.foreground, $scope.change_brightness), $scope.change_saturation ).toHexString()
           $scope.jsonTheme.settings[i].settings.foreground = tinycolor.brightness_contrast( rule.settings.foreground, $scope.brightness, $scope.saturation/100 ).toHexString()
         if rule.settings.background
           $scope.jsonTheme.settings[i].settings.background = tinycolor.brightness_contrast( rule.settings.background, $scope.brightness, $scope.saturation/100.0 ).toHexString()
 
-  ).throttle(50)
+  ).throttle(20)
+  #-------------------------------------------------------------------------
 
   $scope.$watch "edit_popover_visible", (n,o) ->
     if n

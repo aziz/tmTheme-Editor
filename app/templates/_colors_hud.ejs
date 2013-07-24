@@ -4,11 +4,25 @@
     <a ng-click="close_hud()" class="close">&times;</a>
   </div>
   <div class="hud_body">
-    Brightness  <input type="range" ng-change="update_colors()" min="-150" max="150" ng-model="brightness">  {{brightness}}
-    Contrast <input type="range" ng-change="update_colors()" min="-100" max="300" ng-model="saturation">  {{saturation}}
+
+    <div class="hud_box">
+      <label>Brightness</label>
+      <input type="range" ng-change="update_colors()" min="-150" max="150" ng-model="brightness">
+      <input type="text" ng-change="update_colors()" min="-150" max="150" ng-model="brightness">
+    </div>
+
+    <div class="hud_box">
+      <label>Contrast</label>
+      <input type="range" ng-change="update_colors()" min="-100" max="300" ng-model="saturation">
+      <input type="text" ng-change="update_colors()" min="-150" max="150" ng-model="saturation">
+    </div>
+
+    <div class="hud_box">
+      <a ng-click="filter_colors('invert')" class="hud_btn">Invert</a> &nbsp;&nbsp;
+      <a ng-click="filter_colors('sepia')" class="hud_btn">Sepia</a>
+    </div>
+
     <hr>
     <a ng-click="reset_color_changes()" class="hud_btn">Reset</a> &nbsp;&nbsp;
-    <a ng-click="filter_colors('invert')" class="hud_btn">Invert</a>&nbsp;&nbsp;
-    <a ng-click="filter_colors('sepia')" class="hud_btn">Sepia</a>
   </div>
 </div>

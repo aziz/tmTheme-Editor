@@ -1,20 +1,20 @@
-https://github.com/laertejjunior/freezeheader
-
-
 TODO:
- ☐ better hud UI
- ☐ reset color adjustment on theme load / and on close hud
- ☐ hue
  ✔ brightness/contrast: http://www.pixastic.com/lib/docs/actions/brightness/ @done (13-05-15 19:30)
- ☐ color tempreture
- ☐ color tint
- ☐ Filters: invert/grayscale/
- ☐ text should be there uncolored from the begining
+ ✔ better grey buttons @done (13-07-24 14:00)
+ ✔ better hud UI @done (13-07-24 14:23)
+
+ ☐ invert and sepia are not resetabale
+
+
+ ☐ https://github.com/laertejjunior/freezeheader
+ ☐ preview a theme without uploading and by just providing the url
+ ☐ get an image preview to embed
+ ☐ hue/color tempreture/color tint/grayscale/ and other color adjustments
  ☐ extract color service
  ☐ use infinite scroll on gallery
  ☐ show original Theme URL
  ☐ ng-cloak on stats page
-
+ ☐ indicate that drag and drop is enabled
  ☐ rename Angie to Application
  ☐ hover state for scopes #26
  General Color:
@@ -22,6 +22,13 @@ TODO:
  ☐ some general settings are not colors /#/BoxUK
  Info:
  ☐ add, remove
+
+ TmThemeEditor Companion:
+ ☐ list all themes
+ ☐ install a new theme
+ ☐ remove a theme
+ ☐ edit current edit (open online to edit)
+ ☐ preview this code in ThemeEditor
 
 --- ✄ -----------------------
  ☐ allow users to delete local files
@@ -109,11 +116,6 @@ Marketing:
  ☐ textmatetheme.com
  ☐ http://theneum.com/sublime-text-2-color-schemes
 
-
-
-
-
-
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
  ✔ hud draggable @done (13-05-14 16:11)
@@ -123,3 +125,4 @@ Archive:
  ✔ invert @done (13-05-14 19:23)
  ✘ download colors as photoshop color palette @cancelled (13-05-15 10:50)
  ✘ show description of general colors on hover @cancelled (13-05-15 10:51)
+ ✘ text should be there uncolored from the begining @cancelled (13-07-23 21:25)
