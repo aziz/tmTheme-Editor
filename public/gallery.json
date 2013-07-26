@@ -200,5 +200,6 @@
 {"name": "YellowStone", "url": "https://raw.github.com/antlong/Textmate-Themes/master/TM1/yellowStone.tmtheme", "light": true },
 {"name": "Yule", "url": "https://raw.github.com/daylerees/colour-schemes/master/Yule.tmTheme", "light": false },
 {"name": "Zenburn", "url": "https://raw.github.com/colinta/zenburn/master/zenburn.tmTheme", "light": false },
-{"name": "Zenburnesque", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Zenburnesque.tmTheme", "light": false }
+{"name": "Zenburnesque", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Zenburnesque.tmTheme", "light": false },
+{"name": "Z-Personal", "url": "https://github.com/lloan/personaltheme/blob/master/MyPersonal.tmTheme", "light": true }
 ]
