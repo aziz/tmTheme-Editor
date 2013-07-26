@@ -8,6 +8,17 @@ It started as a personal experiment trying to use new HTML5 File APIs in Chrome 
 
 ![](http://f.cl.ly/items/030L0A0j1M0l2a360w3r/tmtheme-editor-screenshot.png)
 
+## New in Version 0.3:
+
+#### Color Adjustments
+
+![](http://f.cl.ly/items/1N0z1l2H1a2e3s3r463P/Screen%20Shot%202013-07-26%20at%202.08.11%20PM.png)
+
+#### Scope Bar and inline editing (courtesy of [@tyom](https://github.com/tyom))
+
+![](http://f.cl.ly/items/1T0B3K0t2b0t071v1w3W/Screen%20Shot%202013-07-26%20at%202.08.44%20PM.png)
+
+
 You can add your color scheme using the `Open` button (which does not upload anything to any server, but only allows the page to have access to the file. You can also drag and drop the file on to the page) and start tweaking the colors, add or remove rules and see the effect instantly on the preview pane. 
 
 As soon as you add a color scheme to the editor it saves the file using the File System API so that you can refresh the page and still have the color scheme loaded. Whenever you're happy with your changes you can save them so that editor can persist it on the disk. To get back the new tmtheme file you can click `Download` button and use it in your editor.
