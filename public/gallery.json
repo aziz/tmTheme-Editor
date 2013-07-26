@@ -48,6 +48,7 @@
 {"name": "Dreamweaver", "url": "https://raw.github.com/actarian/Dreamweaver.tmTheme/master/Dreamweaver.tmTheme", "light": true },
 {"name": "Earthsong", "url": "https://raw.github.com/daylerees/colour-schemes/master/Earthsong.tmTheme", "light": false },
 {"name": "EarthsongLight", "url": "https://raw.github.com/daylerees/colour-schemes/master/EarthsongLight.tmTheme", "light": true },
+{"name": "Eclipse", "url": "https://github.com/missedone/sublime-themes/blob/master/Eclipse.tmTheme", "light": true },
 {"name": "EditPlus", "url": "https://raw.github.com/mihdan/Editplus-Theme-for-Sublime-Text-2/master/EditPlus.tmTheme", "light": true },
 {"name": "EggplantParm", "url": "https://raw.github.com/mimshwright/sublime-eggplant-parm/master/EggplantParm.tmTheme", "light": false},
 {"name": "Eiffel", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Eiffel.tmTheme", "light": true },
