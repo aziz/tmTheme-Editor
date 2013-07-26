@@ -10,7 +10,7 @@ It started as a personal experiment trying to use new HTML5 File APIs in Chrome 
 
 ## New in Version 0.3:
 
-#### Color Adjustments
+#### Color Adjustments and filters
 
 ![](http://f.cl.ly/items/1N0z1l2H1a2e3s3r463P/Screen%20Shot%202013-07-26%20at%202.08.11%20PM.png)
 
