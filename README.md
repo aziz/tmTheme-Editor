@@ -6,7 +6,7 @@ It started as a personal experiment trying to use new HTML5 File APIs in Chrome 
 
 ### TRY IT OUT HERE: [tmtheme-editor.herokuapp.com](http://tmtheme-editor.herokuapp.com/)
 
-![](http://f.cl.ly/items/030L0A0j1M0l2a360w3r/tmtheme-editor-screenshot.png)
+![](http://f.cl.ly/items/1b0R3B180Z3y2X0d103A/ss03.png)
 
 ## New in Version 0.3:
 
