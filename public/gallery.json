@@ -78,6 +78,7 @@
 {"name": "Goldfish", "url": "https://raw.github.com/daylerees/colour-schemes/master/Goldfish.tmTheme", "light": false },
 {"name": "Grunge", "url": "https://raw.github.com/daylerees/colour-schemes/master/Grunge.tmTheme", "light": false },
 {"name": "HalfLife", "url": "https://raw.github.com/daylerees/colour-schemes/master/HalfLife.tmTheme", "light": false },
+{"name": "Hamster", "url": "https://raw.github.com/pchomik/Hamster/master/Hamster.tmTheme", "light": false },
 {"name": "Happy happy joy joy 2", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Happy%20happy%20joy%20joy%202.tmTheme", "light": true },
 {"name": "Humane", "url": "https://raw.github.com/antlong/Textmate-Themes/master/TM1/Humane.tmTheme", "light": true },
 {"name": "HyperSpace", "url": "https://raw.github.com/koteus/HyperSpace/master/HyperSpace.tmTheme", "light": false },
