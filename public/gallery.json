@@ -179,6 +179,7 @@
 {"name": "Tango", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Tango.tmTheme", "light": true },
 {"name": "TangoGedit", "url": "https://raw.github.com/dcere/SublimeThemes/master/TangoGedit.tmTheme", "light": true },
 {"name": "Text Ex Machina", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Text%20Ex%20Machina.tmTheme", "light": false },
+{"name": "Today", "url": "https://raw.github.com/cschubiner/Sublime-Text-2-Color-Schemes/master/Today.tmTheme", "light": true },
 {"name": "Tomorrow", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Tomorrow.tmTheme", "light": true },
 {"name": "Tomorrow-Night", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Tomorrow-Night.tmTheme", "light": false },
 {"name": "Tomorrow-Night-Blue", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Tomorrow-Night-Blue.tmTheme", "light": false },
