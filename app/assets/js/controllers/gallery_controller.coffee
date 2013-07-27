@@ -1,4 +1,4 @@
-Angie.controller "galleryController", ['$scope', '$http', '$location', 'ThemeLoader', 'throbber'], ($scope, $http, $location, ThemeLoader, throbber) ->
+Application.controller "galleryController", ['$scope', '$http', '$location', 'ThemeLoader', 'throbber'], ($scope, $http, $location, ThemeLoader, throbber) ->
 
   ThemeLoader.themes.success (data) ->
     for theme in data

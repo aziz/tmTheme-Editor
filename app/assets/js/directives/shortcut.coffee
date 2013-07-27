@@ -1,4 +1,4 @@
-Angie.directive "shortcut", [], ()->
+Application.directive "shortcut", [], ()->
   (scope, element, attr) ->
     element.bind "keyup", (event) ->
       shortcut_obj = scope.$eval(attr.shortcut)

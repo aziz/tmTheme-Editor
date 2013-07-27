@@ -1,4 +1,4 @@
-Angie.directive "draggable", ['$timeout'], ($timeout) ->
+Application.directive "draggable", ['$timeout'], ($timeout) ->
   restrict: "A"
   link: ($scope, element, attrs, controller) ->
     draggable = ->

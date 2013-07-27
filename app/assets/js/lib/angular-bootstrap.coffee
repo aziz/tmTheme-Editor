@@ -4,18 +4,7 @@ angular.module "ui.directives", ["ui.config"]
 angular.module "ui", ["ui.filters", "ui.directives", "ui.config"]
 
 window.Angular = angular.module('ThemeEditor', ['ui'])
-
-Angular.config(["$httpProvider", (provider) ->
-  token = $('meta[name=csrf-token]').attr('content')
-  provider.defaults.headers['post'] ||= {}
-  provider.defaults.headers.post['X-CSRF-Token'] = token
-  provider.defaults.headers['put'] ||= {}
-  provider.defaults.headers.put['X-CSRF-Token'] = token
-  provider.defaults.headers['delete'] ||= {}
-  provider.defaults.headers.delete['X-CSRF-Token'] = token
-])
-
-window.Angie = {
+window.Application = {
   controller: (name, dependencies, fn) ->
     args = dependencies
     args.push(fn)
@@ -35,5 +24,4 @@ window.Angie = {
     args = dependencies
     args.push(fn)
     Angular.directive name, args
-
 }

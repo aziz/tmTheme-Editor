@@ -1,4 +1,4 @@
-Angie.controller "StatsController", ['$scope', '$http', '$location', 'ThemeLoader'], ($scope, $http, $location, ThemeLoader) ->
+Application.controller "StatsController", ['$scope', '$http', '$location', 'ThemeLoader'], ($scope, $http, $location, ThemeLoader) ->
 
   $scope.themes = []
   $scope.scopes_data = []

@@ -1,4 +1,4 @@
-Angie.service "ThemeLoader", ['$http'], ($http) ->
+Application.service "ThemeLoader", ['$http'], ($http) ->
 
   themes = $http.get("/gallery.json")
 

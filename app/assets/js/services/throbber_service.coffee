@@ -1,4 +1,4 @@
-Angie.service "throbber", [], () ->
+Application.service "throbber", [], () ->
 
   spinner_options = {
     lines: 13,            # The number of lines to draw

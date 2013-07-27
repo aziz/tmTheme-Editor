@@ -1,4 +1,4 @@
-Angie.controller "previewController", ['$scope', '$http', '$rootScope'], ($scope, $http, $rootScope) ->
+Application.controller "previewController", ['$scope', '$http', '$rootScope'], ($scope, $http, $rootScope) ->
 
   $scope.current_lang = "coffeescript"
   $scope.lang_path = "/files/languages/#{$scope.current_lang}.tmLanguage"

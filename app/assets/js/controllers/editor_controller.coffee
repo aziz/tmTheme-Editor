@@ -1,4 +1,4 @@
-Angie.controller "editorController", ['$scope', '$http', '$location', 'ThemeLoader'], ($scope, $http, $location, ThemeLoader) ->
+Application.controller "editorController", ['$scope', '$http', '$location', 'ThemeLoader'], ($scope, $http, $location, ThemeLoader) ->
 
   $scope.is_browser_supported = window.chrome
   $scope.last_cached_theme = $.cookie('last_theme')
