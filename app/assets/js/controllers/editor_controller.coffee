@@ -56,6 +56,11 @@ Application.controller "editorController", ['$scope', '$http', '$location', 'The
   # There's theme name in URL
   if $location.path() && $location.path().replace("/","").length > 0
     theme = $location.path().replace("/","")
+  # There's a theme-url in URL
+  else if window.location.search.startsWith("?url=")
+    console.log "Loading from URL (not in the gallery)"
+    console.log window.location.search.replace(/%22/g,"").replace(/\?url=/g,"")
+    theme_url = window.location.search.replace(/%22/g,"").replace(/\?url=/g,"")
   # There's a theme locally saved
   else if $scope.last_cached_theme
     console.log "Loading from local file system"
@@ -63,11 +68,14 @@ Application.controller "editorController", ['$scope', '$http', '$location', 'The
   else
     theme = "PlasticCodeWrap"
     $location.path("PlasticCodeWrap")
+
   ThemeLoader.themes.success (data) ->
     available_themes = data
     if theme
       theme_obj = available_themes.find (t) -> t.name == theme
       ThemeLoader.load(theme_obj).success (data) -> $scope.process_theme(data)
+    else if theme_url
+      ThemeLoader.load({ url: theme_url }).success (data) -> $scope.process_theme(data)
 
   $scope.process_theme = (data) ->
     $scope.xmlTheme  = data
