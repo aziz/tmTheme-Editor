@@ -15,6 +15,7 @@ Application.controller "galleryController", ['$scope', '$http', '$location', 'Th
     return if $scope.selected_theme == theme
     throbber.on()
     $("#edit-popover, #new-popover").hide()
+    $scope.$parent.theme_type = ""
     $scope.$parent.scopes_filter.name = null
     $location.path(theme.name)
     $scope.selected_theme = theme

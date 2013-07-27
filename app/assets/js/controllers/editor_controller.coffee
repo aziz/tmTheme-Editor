@@ -18,6 +18,7 @@ Application.controller "editorController", ['$scope', '$http', '$location', 'The
   $scope.new_rule = Object.clone($scope.new_rule_pristine)
   $scope.gallery = if $.cookie('gallery_state') && $.cookie('gallery_state') == "slide" then "slide" else null
   $scope.new_property = {property: "", value: ""}
+  $scope.theme_type = ""
 
   $scope.sortable_options = {
     axis: "y"
@@ -55,14 +56,17 @@ Application.controller "editorController", ['$scope', '$http', '$location', 'The
 
   # There's theme name in URL
   if $location.path() && $location.path().replace("/","").length > 0
+    $scope.theme_type = ""
     theme = $location.path().replace("/","")
   # There's a theme-url in URL
   else if window.location.search.startsWith("?url=")
+    $scope.theme_type = "External URL"
     console.log "Loading from URL (not in the gallery)"
     console.log window.location.search.replace(/%22/g,"").replace(/\?url=/g,"")
     theme_url = window.location.search.replace(/%22/g,"").replace(/\?url=/g,"")
   # There's a theme locally saved
   else if $scope.last_cached_theme
+    $scope.theme_type = "Local Copy"
     console.log "Loading from local file system"
   # Loading Default theme
   else
@@ -94,7 +98,7 @@ Application.controller "editorController", ['$scope', '$http', '$location', 'The
     $scope.fs = fs
     $scope.$apply()
 
-    if $scope.last_cached_theme && !($location.path() && $location.path().replace("/","").length > 0)
+    if $scope.last_cached_theme && !($location.path() && $location.path().replace("/","").length > 0) && !(window.location.search.startsWith("?url="))
       $scope.files.push($scope.last_cached_theme)
       fs.root.getFile $scope.last_cached_theme, {}, ((fileEntry) ->
         fileEntry.file ((file) ->

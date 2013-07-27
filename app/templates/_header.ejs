@@ -22,6 +22,7 @@
   <div ng-class="gallery" class="sep"></div>
   <div ng-cloak ng-class="gallery" ng-show="jsonTheme" class="theme-title">
     {{ jsonTheme.name }}
+    <span class="label label-success" style="position:relative;top:-2px" ng-show="theme_type != ''">{{theme_type}}</span>
   </div>
   <div class="links">
     <%// include _social %>
