@@ -1,56 +1,41 @@
 TODO:
- ✔ brightness/contrast: http://www.pixastic.com/lib/docs/actions/brightness/ @done (13-05-15 19:30)
- ✔ better grey buttons @done (13-07-24 14:00)
- ✔ better hud UI @done (13-07-24 14:23)
-
- ☐ invert and sepia are not resetabale
-
-
- ☐ https://github.com/laertejjunior/freezeheader
- ☐ preview a theme without uploading and by just providing the url
- ☐ get an image preview to embed
- ☐ hue/color tempreture/color tint/grayscale/ and other color adjustments
- ☐ extract color service
- ☐ use infinite scroll on gallery
- ☐ show original Theme URL
- ☐ ng-cloak on stats page
- ☐ indicate that drag and drop is enabled
- ☐ rename Angie to Application
- ☐ hover state for scopes #26
- General Color:
- ☐ add, remove
- ☐ some general settings are not colors /#/BoxUK
- Info:
- ☐ add, remove
-
- TmThemeEditor Companion:
- ☐ list all themes
- ☐ install a new theme
- ☐ remove a theme
- ☐ edit current edit (open online to edit)
- ☐ preview this code in ThemeEditor
-
---- ✄ -----------------------
- ☐ allow users to delete local files
+ ☐ navigating with keyboard @v0.4
+ ☐ preview a theme without uploading and by just providing the url @v0.4
+ ☐ show original Theme URL @v0.4
+ ☐ rename Angie to Application @v.4
+ ☐ indicate that drag and drop is enabled @v0.4
+ ☐ indicate a local file and changed states @v0.4
+ ☐ ColorTools: invert and sepia are not resetabale
+ ☐ ColorTools: hue/color tempreture/color tint/grayscale/ and other color adjustments
+ ☐ Refactor: extract color service
+ ☐ Scopebar: inline-editing popover should be placed better
+ ☐ event tracking @v0.4
+ ☐ allow users to delete local files @v0.4
  ☐ raise error when the theme in url is not found in gallery
- ☐ support for HTML,CSS,JS,Ruby,Python and other languages @v0.3
- ☐ removal and addition of general colors @v0.3
- ☐ new button @v0.3
- ☐ set production env on heroku @v0.3
- ☐ focus state for color pickers @v0.3
- ☐ event tracking
+ ☐ support for HTML,CSS,JS,Ruby,Python and other languages @v0.4
+ ☐ removal and addition of general colors @v0.4
+ ☐ removal and addition of info attrs
+ ☐ some general settings are not colors /#/BoxUK
+ ☐ new button @v0.4
+ ☐ set production env on heroku @v0.4
+ ☐ focus state for color pickers @v0.4
 
- low:
+
+low:
+ ☐ ng-cloak on stats page
+ ☐ get an image preview to embed
+ ☐ use infinite scroll on gallery
+ ☐ make the table header static https://github.com/laertejjunior/freezeheader
  ☐ https://github.com/maccman/macgap
  ☐ https://github.com/rogerwang/node-webkit
  ☐ update uuid
  ☐ being able to auto upload current theme inside sublim to a server and preview it: http://pastie.org/pastes/7745711/text
- ☐ apply filters (on colors) brightness/contract @v0.4
- ☐ contrast score for bg and fg https://github.com/LeaVerou/contrast-ratio @v0.4
- ☐ use pre processed sample code for other languages @v0.4
- ☐ color picker js https://github.com/bebraw/colorjoe @v0.4
- ☐ undo delete rule @v0.4
- ☐ set some info on the server for SEO when a theme is in URL @v0.4
+ ☐ apply filters (on colors) brightness/contract @v0.5
+ ☐ contrast score for bg and fg https://github.com/LeaVerou/contrast-ratio @v0.5
+ ☐ use pre processed sample code for other languages @v0.5
+ ☐ color picker js https://github.com/bebraw/colorjoe @v0.5
+ ☐ undo delete rule @v0.5
+ ☐ set some info on the server for SEO when a theme is in URL @v0.5
  ☐ option: chrome app
  ☐ better readme
  ☐ click on preview and change colors
@@ -116,13 +101,9 @@ Marketing:
  ☐ textmatetheme.com
  ☐ http://theneum.com/sublime-text-2-color-schemes
 
-＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
-Archive:
- ✔ hud draggable @done (13-05-14 16:11)
- ✔ hud closable @done (13-05-14 16:18)
- ✔ do not chage color if it's null @done (13-05-14 19:03)
- ✔ hud update color @done (13-05-14 19:04)
- ✔ invert @done (13-05-14 19:23)
- ✘ download colors as photoshop color palette @cancelled (13-05-15 10:50)
- ✘ show description of general colors on hover @cancelled (13-05-15 10:51)
- ✘ text should be there uncolored from the begining @cancelled (13-07-23 21:25)
+TmThemeEditor Companion:
+ ☐ list all themes
+ ☐ install a new theme
+ ☐ remove a theme
+ ☐ edit current edit (open online to edit)
+ ☐ preview this code in ThemeEditor
