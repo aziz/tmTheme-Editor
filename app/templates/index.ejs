@@ -29,6 +29,18 @@
   </div>
 
   <div scope-bar></div>
+  <div class="btn-group dropup languages-dd" ng-cloak ng-show="jsonTheme">
+    <a ng-click="" class="btn btn-mac btn-small dropdown-toggle" data-toggle="dropdown">
+      {{ current_lang }}
+      <span class="icon ud-arrow"></span>
+    </a>
+    <ul class="dropdown-menu pull-right">
+      <li ng-repeat="lang in available_langs">
+        <a ng-click="set_lang(lang)">{{lang}}</a>
+      </li>
+    </ul>
+  </div>
+
 
 </div>
 <div id="loading"></div>

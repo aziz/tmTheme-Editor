@@ -89,3 +89,22 @@ body {overflow: hidden;}
     top: 50% !important;
   }
 }
+
+.btn-mac {
+  #gradient > .vertical(#eee, #c3c3c3);
+  border: 1px solid #777;
+  border-top: 1px solid #797979;
+  border-bottom: 1px solid #747474;
+  .transition(none);
+
+  &:hover {
+    background-position: 0 0;
+  }
+  &:active, &.active {
+    #gradient > .vertical(#c0c0c0, #dadada);
+  }
+}
+
+.btn-group.open .btn-mac.dropdown-toggle {
+ #gradient > .vertical(#c0c0c0, #dadada);
+}
