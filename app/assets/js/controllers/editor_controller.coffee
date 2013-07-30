@@ -61,12 +61,12 @@ Application.controller "editorController", ['$scope', '$http', '$location', 'The
   # There's a theme-url in URL
   else if window.location.search.startsWith("?url=")
     $scope.theme_type = "External URL"
-    console.log "Loading from URL (not in the gallery)"
-    console.log window.location.search.replace(/%22/g,"").replace(/\?url=/g,"")
     theme_url = window.location.search.replace(/%22/g,"").replace(/\?url=/g,"")
+    console.log "Loading from URL (not in the gallery) (#{theme_url})"
   # There's a theme locally saved
   else if $scope.last_cached_theme
-    $scope.theme_type = "Local Copy"
+    $scope.theme_type = "Local File"
+    $location.search("local", $scope.last_cached_theme)
     console.log "Loading from local file system"
   # Loading Default theme
   else
@@ -100,7 +100,7 @@ Application.controller "editorController", ['$scope', '$http', '$location', 'The
 
     if $scope.last_cached_theme && !($location.path() && $location.path().replace("/","").length > 0) && !(window.location.search.startsWith("?url="))
       $scope.files.push($scope.last_cached_theme)
-      fs.root.getFile $scope.last_cached_theme, {}, ((fileEntry) ->
+      $scope.fs.root.getFile $scope.last_cached_theme, {}, ((fileEntry) ->
         fileEntry.file ((file) ->
           reader = new FileReader()
           reader.onloadend = (e) ->
@@ -110,26 +110,7 @@ Application.controller "editorController", ['$scope', '$http', '$location', 'The
         ), FsErrorHandler
       ), FsErrorHandler
 
-  FsErrorHandler = (e) ->
-    msg = ""
-    switch e.code
-      when FileError.QUOTA_EXCEEDED_ERR
-        msg = "QUOTA_EXCEEDED_ERR"
-      when FileError.NOT_FOUND_ERR
-        msg = "NOT_FOUND_ERR"
-      when FileError.SECURITY_ERR
-        msg = "SECURITY_ERR"
-      when FileError.INVALID_MODIFICATION_ERR
-        msg = "INVALID_MODIFICATION_ERR"
-      when FileError.INVALID_STATE_ERR
-        msg = "INVALID_STATE_ERR"
-      else
-        msg = "Unknown Error"
-    console.log "Error: " + msg
-
-  window.requestFileSystem  = window.requestFileSystem || window.webkitRequestFileSystem
-  window.BlobBuilder        = window.BlobBuilder || window.WebKitBlobBuilder
-  window.requestFileSystem(window.TEMPORARY, 3*1024*1024,  FsInitHandler, FsErrorHandler)
+  window.requestFileSystem(window.TEMPORARY, 10*1024*1024,  FsInitHandler, FsErrorHandler)
 
   read_files = (files) ->
     for file in files
@@ -310,10 +291,6 @@ Application.controller "editorController", ['$scope', '$http', '$location', 'The
   $scope.is_selected = (rule) -> rule == $scope.selected_rule
   $scope.is_hovered = (rule) -> rule == $scope.hovered_rule
   $scope.is_gcolor_selected = (rule) -> rule == $scope.general_selected_rule
-
-  # $scope.selected_gradient = (rule) ->
-  #   return "" unless $scope.is_selected(rule)
-  #   if $scope.light_or_dark($scope.bg()) == "light" then "selected_bglight" else "selected_bgdark"
 
   $scope.mark_as_selected = (rule) ->
     $scope.selected_rule = rule

@@ -15,7 +15,6 @@
 #= require_tree services
 #= require_tree controllers
 
-
 $ ->
   $("[data-toggle='tooltip']").tooltip()
   uploadBtn = $("#upload-btn")

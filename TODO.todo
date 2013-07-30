@@ -1,71 +1,72 @@
+local files:
+ ☐ redirect after delete
+ ☐ highlight current theme/local file after reload
+ ☐ move theme counts to sub headers
+ ☐ delete/show url in the header
+ ☐ reset local URL http://localhost:9999/?url=https://raw.github.com/tdheff/EmoKid/master/EmoKid.tmTheme#/Amy
+ ☐ also clean up last_theme cookie in case the local file gets deleted
+ ☐ back/forward buttons are not working (IMP)
+
 TODO:
+ ✔ update url when loading local files @done (13-07-29 01:40)
  ✔ preview a theme without uploading and by just providing the url @v0.4 @done (13-07-27 20:55)
- ☐ indicate that drag and drop is enabled @v0.4
- ☐ indicate a local file and changed states @v0.4
+ ✔ indicate a local file @v0.4 @done (13-07-28 00:09)
+ ✔ list local copyies available from file API @done (13-07-29 01:08)
+ ✔ allow users to delete local files @v0.4 @done (13-07-29 14:12)
  ☐ show original Theme URL @v0.4
- ☐ navigating with keyboard @v0.4
+ ☐ navigating with keyboard shortcuts (up and down to traverse the rules, enter to open, ctrl+delete to delete, ctrl+s to save, ...)
+ ☐ Did you know and what's new panels
+ ☐ show keyboard shortcuts on ?
+ ☐ event tracking @v0.4
+ ☐ indicate dirty state @v0.4
+---- ✄ -----------------------
+ ☐ Scopebar: inline-editing popover should be placed better
+ ☐ raise error when the theme in url is not found in gallery
+ ☐ some general settings are not colors /#/BoxUK
  ☐ ColorTools: invert and sepia are not resetabale
  ☐ ColorTools: hue/color tempreture/color tint/grayscale/ and other color adjustments
  ☐ Refactor: extract color service
- ☐ Scopebar: inline-editing popover should be placed better
- ☐ event tracking @v0.4
- ☐ allow users to delete local files @v0.4
- ☐ raise error when the theme in url is not found in gallery
  ☐ support for HTML,CSS,JS,Ruby,Python and other languages @v0.4
  ☐ removal and addition of general colors @v0.4
  ☐ removal and addition of info attrs
- ☐ some general settings are not colors /#/BoxUK
  ☐ new button @v0.4
  ☐ set production env on heroku @v0.4
  ☐ focus state for color pickers @v0.4
+ ☐ indicate that drag and drop is enabled @v0.4
 
+Medium:
+ ☐ position sticky for sidebar table headers (https://github.com/davist11/jQuery-Stickem or https://github.com/laertejjunior/freezeheader)
+ ☐ highlight related scopes in preview on rule select
+ ☐ better readme
+ ☐ color picker js https://github.com/bebraw/colorjoe @v0.5
+ ☐ use pre processed sample code for other languages @v0.5
+ ☐ being able to auto upload current theme inside sublim to a server and preview it: http://pastie.org/pastes/7745711/text
 
-low:
- ☐ ng-cloak on stats page
+Low:
  ☐ get an image preview to embed
  ☐ use infinite scroll on gallery
- ☐ make the table header static https://github.com/laertejjunior/freezeheader
- ☐ https://github.com/maccman/macgap
- ☐ https://github.com/rogerwang/node-webkit
+ ☐ Macgap (https://github.com/maccman/macgap)
+ ☐ Node Webkit? (https://github.com/rogerwang/node-webkit)
  ☐ update uuid
- ☐ being able to auto upload current theme inside sublim to a server and preview it: http://pastie.org/pastes/7745711/text
- ☐ apply filters (on colors) brightness/contract @v0.5
  ☐ contrast score for bg and fg https://github.com/LeaVerou/contrast-ratio @v0.5
- ☐ use pre processed sample code for other languages @v0.5
- ☐ color picker js https://github.com/bebraw/colorjoe @v0.5
  ☐ undo delete rule @v0.5
  ☐ set some info on the server for SEO when a theme is in URL @v0.5
- ☐ option: chrome app
- ☐ better readme
- ☐ click on preview and change colors
- ☐ highlight related scopes in preview on rule select
+ ☐ chrome app?
  ☐ setting color with transparency (different alpha channel representation)
- ☐ show keyboard shortcuts on ?
  ☐ show line highlight
  ☐ angular performance enhancement
  ☐ show invisibles
- ☐ shortcuts (up and down to traverse the rules, enter to open, ctrl+delete to delete, ctrl+s to save, ...)
- ☐ list from file API
  ☐ only work with tmtheme files. reject others, error handling
  ☐ try to make it work in other browsers
  ☐ cache the parsed theme and lang to disk (to hopefully make it faster)
- ☐ position sticky for sidebar table headers https://github.com/davist11/jQuery-Stickem
  ☐ webworker to do processing in bg (https://github.com/ramesaliyev/EasyWebWorker)
  ☐ upgrade bootstrap
-
-TM_LANGUAGE parsing:
- ☐ for empty lines add a nbsp; for selection stuff
- ☐ check to see if the scope is already taken
- ☐ "patterns" in multiline
- ☐ look-behind in js
-   ☐ count the position of lookbehind in submatches array
-   ☐ calculate the length of lb text
-   ☐ adjust begin and size based on length on lb text
- ☐ support for repository and include (support for external includes)
+ ☐ ng-cloak on stats page
 
 DID YOU KNOW YOU CAN:
  ☐ drag and drop and reorder scopes
  ☐ drag and drop your color schemes on the page to preview it
+ ☐ preview a color scheme from the by just adding its path to the URL
  ☐ save your changes locally and come back later to continue working on it
  ☐ add or remove scopes
  ☐ use shortcuts
@@ -73,6 +74,7 @@ DID YOU KNOW YOU CAN:
  ☐ take look at stats and find mose popular scopes or biggest color schemes in gallery
  ☐ add your own theme to the gallery
  ☐ see the edit panel by dbl clicking the scopes
+ ☐ adjust colors (brightness and contrast)
 
 Services:
  ☐ convert drag/drop and file system api to service
@@ -106,3 +108,13 @@ TmThemeEditor Companion:
  ☐ remove a theme
  ☐ edit current edit (open online to edit)
  ☐ preview this code in ThemeEditor
+
+TM_LANGUAGE parsing:
+ ☐ for empty lines add a nbsp; for selection stuff
+ ☐ check to see if the scope is already taken
+ ☐ "patterns" in multiline
+ ☐ look-behind in js
+   ☐ count the position of lookbehind in submatches array
+   ☐ calculate the length of lb text
+   ☐ adjust begin and size based on length on lb text
+ ☐ support for repository and include (support for external includes)
