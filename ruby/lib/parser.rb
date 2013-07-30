@@ -1,3 +1,18 @@
+# TODO
+# ><& should be escaped
+# \\,\n,\t should be escaped
+# .replace(/&(?!\w+;)/g, '&amp;')
+# .replace(/</g, '&lt;')
+# .replace(/>/g, '&gt;');
+# bring back the scopebar functionality
+# js: undefined
+# ruby: too much yellow
+# css: too much yellow, border-radius
+# html: bunch of bugs, needs escaping
+# css generation out of theme (space means children)
+
+require 'textpow'
+
 class HTMLProcessor
 
   # called before parsing anything
@@ -36,34 +51,6 @@ class HTMLProcessor
 
 end
 
-syntax = Textpow.syntax('ruby') # or 'source.ruby' or 'lib/textpow/syntax/source.ruby.syntax'
-processor = HTMLProcessor.new
-syntax.parse(text, processor)
-
-require File.expand_path('../boot', __FILE__)
-
-require 'rails/all'
-
-if defined?(Bundler)
-  # If you precompile assets before deploying to production, use this line
-  Bundler.require(*Rails.groups(:assets => %w(development test)))
-  # If you want your assets lazily compiled in production, use this line
-  # Bundler.require(:default, :assets, Rails.env)
-end
-
-require 'rubygems'
-
-# Set up gems listed in the Gemfile.
-ENV['BUNDLE_GEMFILE'] ||= File.expand_path('../../Gemfile', __FILE__)
-
-require 'bundler/setup' if File.exists?(ENV['BUNDLE_GEMFILE'])
-
-
-
-
-
-
-
-
-
-
+syntax = Textpow.syntax('coffee')
+text = File.read("../../public/files/samples/coffeescript.txt")
+syntax.parse(text, HTMLProcessor.new)

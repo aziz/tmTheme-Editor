@@ -1,46 +1,71 @@
-<!doctype html>
-<html>
-<head>
-  <title>TITLE</title>
-</head>
-<body ng-app="ThemeEditor" ng-controller="editorController">
-<div ng-controller="previewController">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Bootstrap</title>
 
-<header id="header">
-  <div class="btn-toolbar">
-    <div class="btn-group">
-      <a class="btn btn-info btn-small">Upload</a>
-      <a ng-click="" class="btn btn-info btn-small">New</a>
-    </div>
-  </div>
-  <div class="btn-toolbar dl-save">
-    <div class="btn-group">
-      <a ng-click="save_theme()" class="btn btn-success btn-small  save">Save</a>
-      <a ng-click="download_theme()" class="btn btn-success btn-small download">Download</a>
-    </div>
-  </div>
-  <input type="file" id="files" class="upload" ng-model="input" onchange="angular.element(this).scope().setFiles(this)" />
+    <!-- Bootstrap core CSS -->
+    <link href="./dist/css/bootstrap.css" rel="stylesheet">
 
-  <div class="sep"></div>
-  <div class="languages">
-    <div class="btn-group">
-      <a ng-click="" class="btn btn-small dropdown-toggle" data-toggle="dropdown">
-        {{ current_lang }}
-        <span class="caret"></span>
-      </a>
-      <ul class="dropdown-menu">
-        <li ng-repeat="lang in available_langs">
-          <a ng-click="set_lang(lang)">{{lang}}</a>
-        </li>
-      </ul>
+    <!-- Documentation extras -->
+    <link href="./assets/css/docs.css" rel="stylesheet">
+    <link href="./assets/css/pygments-manni.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="./assets/ico/favicon.png">
+  </head>
+
+  <body class="bs-docs-home">
+
+  <!-- Docs master nav -->
+  <div class="navbar navbar-inverse navbar-fixed-top bs-docs-nav">
+    <div class="container">
+      <a href="./" class="navbar-brand">Bootstrap 3 RC1</a>
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <div class="nav-collapse collapse bs-navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li>
+              <a href="./getting-started">Getting started</a>
+            </li>
+            <li>
+              <a href="./css">CSS</a>
+            </li>
+            <li>
+              <a href="./components">Components</a>
+            </li>
+            <li>
+              <a href="./javascript">JavaScript</a>
+            </li>
+            <li>
+              <a href="./customize">Customize</a>
+            </li>
+          </ul>
+      </div>
     </div>
   </div>
-  <div class="links">
-    <ul>
-      <li><a href="#">About</a></li>
-      <li><a href="#">Github</a></li>
-    </ul>
+
+  <!-- Page content of course! -->
+  <div class="bs-masthead">
+    <div class="container">
+      <h1>Bootstrap 3</h1>
+      <p class="lead">Sleek, intuitive, and powerful mobile-first front-end framework for faster and easier web development.</p>
+      <p>
+        <a href="http://getbootstrap.com/bs-v3.0.0-rc1-dist.zip" class="btn btn-bs btn-large" onclick="_gaq.push(['_trackEvent', 'Jumbotron actions', 'Download', 'Download 3.0.0 RC1']);">Download Bootstrap</a>
+      </p>
+    </div>
   </div>
-</header>
+
+  <script src="./assets/js/jquery.js"></script>
+  <script src="./dist/js/bootstrap.js"></script>
+  <script src="./assets/js/holder.js"></script>
+  <script src="./assets/js/application.js"></script>
+
 </body>
 </html>

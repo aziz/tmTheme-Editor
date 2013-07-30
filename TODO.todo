@@ -44,7 +44,7 @@ Medium:
 
 Low:
  ☐ get an image preview to embed
- ☐ use infinite scroll on gallery
+ ☐ use infinite scroll on gallery (https://github.com/BinaryMuse/ngInfiniteScroll)
  ☐ Macgap (https://github.com/maccman/macgap)
  ☐ Node Webkit? (https://github.com/rogerwang/node-webkit)
  ☐ update uuid
