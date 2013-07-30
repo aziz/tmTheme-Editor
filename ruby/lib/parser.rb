@@ -5,11 +5,24 @@
 # .replace(/</g, '&lt;')
 # .replace(/>/g, '&gt;');
 # bring back the scopebar functionality
+# bring textpow inline and improve it
+
 # js: undefined
-# ruby: too much yellow
-# css: too much yellow, border-radius
-# html: bunch of bugs, needs escaping
-# css generation out of theme (space means children)
+# coffee:
+#  1. arrow in: Application.directive "scopeBar", [], -> and scope.$apply ->
+#  2. event in event.target.dataset.entityScope is not green
+#  3. is in if popover.is('.slide') should be white
+# ruby:
+#  1. block variables  |line, index|
+#  2. method names after dot are yellow
+#  3. HTMLProcessor.new
+# css:
+#  1. . & # in class and id should get the same color as name
+#  2. arial font name is not pinkish
+#  3. box-shadow, rgba, border-radius
+# html:
+#  1. needs escaping
+#  2. embedded bg should expand whole line
 
 require 'textpow'
 

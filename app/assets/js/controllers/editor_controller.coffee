@@ -74,9 +74,9 @@ Application.controller "editorController", ['$scope', '$http', '$location', 'The
     $location.path("PlasticCodeWrap")
 
   ThemeLoader.themes.success (data) ->
-    available_themes = data
+    $scope.available_themes = data
     if theme
-      theme_obj = available_themes.find (t) -> t.name == theme
+      theme_obj = $scope.available_themes.find (t) -> t.name == theme
       ThemeLoader.load(theme_obj).success (data) -> $scope.process_theme(data)
     else if theme_url
       ThemeLoader.load({ url: theme_url }).success (data) -> $scope.process_theme(data)
@@ -253,7 +253,7 @@ Application.controller "editorController", ['$scope', '$http', '$location', 'The
         italic    = $scope.is("italic", rule)
         underline = $scope.is("underline", rule)
         if rule.scope
-          rules = rule.scope.split(",").map (r) -> ".#{r.trim()}"
+          rules = rule.scope.split(",").map (r) -> r.trim().split(" ").map((x)->".#{x}").join(" ")
           rules.each (r) ->
             styles += "#{r}{"
             styles += "color:#{fg_color};" if fg_color
@@ -261,7 +261,7 @@ Application.controller "editorController", ['$scope', '$http', '$location', 'The
             styles += "font-weight:bold;" if bold
             styles += "font-style:italic;" if italic
             styles += "text-decoration:underline;" if underline
-            styles += "}"
+            styles += "}\n"
     styles
 
   $scope.theme_gutter = ->
@@ -402,6 +402,16 @@ Application.controller "editorController", ['$scope', '$http', '$location', 'The
 
   ).throttle(20)
   #-------------------------------------------------------------------------
+
+  $scope.open_theme_url = ->
+    if $scope.theme_type == "External URL"
+      url = window.location.search.replace("?url=","")
+      window.open(url)
+    else
+      theme =  $location.path().replace(/\//g,"")
+      theme_obj = $scope.available_themes.find (t) -> t.name == theme
+      window.open(theme_obj.url)
+
 
   $scope.$watch "edit_popover_visible", (n,o) ->
     if n
