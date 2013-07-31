@@ -1,10 +1,9 @@
 # TODO
 # ><& should be escaped
 # \\,\n,\t should be escaped
-# .replace(/&(?!\w+;)/g, '&amp;')
+# .replace(/&/g, '&amp;')
 # .replace(/</g, '&lt;')
 # .replace(/>/g, '&gt;');
-# bring back the scopebar functionality
 # bring textpow inline and improve it
 
 # js: undefined

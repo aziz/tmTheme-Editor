@@ -13,6 +13,7 @@ TODO:
  ✔ allow users to delete local files @v0.4 @done (13-07-29 14:12)
  ✔ support for HTML,CSS,JS,Ruby,Python and other languages @v0.4 @done (13-07-31 00:17)
  ✔ show original Theme URL @v0.4 @done (13-07-31 01:01)
+ ✔ remeber current lang @done (13-07-31 02:01)
  ☐ navigating with keyboard shortcuts (up and down to traverse the rules, enter to open, ctrl+delete to delete, ctrl+s to save, ...)
  ☐ back/forward buttons are not working (IMP)
  ☐ Did you know and what's new panels
