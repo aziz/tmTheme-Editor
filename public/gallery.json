@@ -137,6 +137,8 @@
 {"name": "Oceanic - Eighties", "url": "https://raw.github.com/memco/Oceanic-tmTheme/master/Themes/Oceanic%20-%20Eighties.tmTheme", "light": false },
 {"name": "Oceanic", "url": "https://raw.github.com/memco/Oceanic-tmTheme/master/Themes/Oceanic.tmTheme", "light": false },
 {"name": "Oscuro", "url": "https://raw.github.com/hellogrid/oscuro/master/Oscuro.tmTheme", "light": false },
+{"name": "Paraíso (Dark)", "url": "https://raw.github.com/idleberg/Paraiso.tmTheme/master/Parai%CC%81so%20(Dark).tmTheme", "light": false },
+{"name": "Paraíso (Light)", "url": "https://raw.github.com/idleberg/Paraiso.tmTheme/master/Parai%CC%81so%20(Light).tmTheme", "light": true },
 {"name": "Pastels on Dark", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Pastels%20on%20Dark.tmTheme", "light": false },
 {"name": "Pastie", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Pastie.tmTheme", "light": true },
 {"name": "Patriot", "url": "https://raw.github.com/daylerees/colour-schemes/master/Patriot.tmTheme", "light": false },
