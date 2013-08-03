@@ -1,9 +1,4 @@
 # TODO
-# ><&" should be escaped
-# \\,\n,\t should be escaped
-# .replace(/&/g, '&amp;')
-# .replace(/</g, '&lt;')
-# .replace(/>/g, '&gt;');
 # bring textpow inline and improve it
 
 # js: undefined
@@ -12,7 +7,7 @@
 #  2. event in event.target.dataset.entityScope is not green (tmlang bug)
 #  3. is in if popover.is('.slide') should be white (tmlang bug)
 # ruby:
-#  1. block variables  |line, index|
+#  1. block variables  |line, index| (css specefisity issue)
 #  2. method names after dot are yellow (tmlang bug)
 #  3. HTMLProcessor.new (tmlang bug)
 # css:
@@ -20,7 +15,6 @@
 #  2. arial font name is not pinkish (css specefisity issue)
 #  3. box-shadow, rgba, border-radius
 # html:
-#  1. needs escaping
 #  2. embedded bg should expand whole line
 
 require 'textpow'
@@ -30,43 +24,55 @@ class HTMLProcessor
 
   # called before parsing anything
   def start_parsing(scope_name)
-    @line = ""
-    @offset = 0
     @text= []
   end
 
   # called after parsing everything
   def end_parsing(scope_name)
+    if @line
+      @compiled += CGI::escapeHTML(@line[@position..-1])
+    end
+    @text << @compiled
     @text.each_with_index do |line, index|
       @text[index] = "<span class='l l-#{index+1} #{scope_name.gsub('.',' ')}'>#{line}</span>"
     end
-    puts @text.join("")
-    File.open('../../public/files/samples/pre-compiled/html.html', 'w') do |file|
+    # puts @text.join("")
+    File.open('../../public/files/samples/pre-compiled/javascript.html', 'w') do |file|
       file.write(@text.join(""))
     end
   end
 
   # called before processing a line
   def new_line(line_content)
-    @offset = 0
+    if @line
+      @compiled += CGI::escapeHTML(@line[@position..-1])
+    end
+    @text << @compiled if @compiled
     @line = line_content.clone
-    @text << @line
+    @compiled = ""
+    @position = 0
   end
 
-  def open_tag(tag_name, position_in_current_line)
-    tag = "<s class='#{tag_name.gsub("."," ")}'>"
-    @line.insert(position_in_current_line + @offset, tag)
-    @offset += tag.size
+  def open_tag(tag_name, position)
+    @compiled += CGI::escapeHTML(@line[@position...position]) if position > @position
+    @compiled += "<s class='#{tag_name.gsub("."," ")}'>"
+    # puts "OPEN => POS:  @pos #{@position},  pos: #{position}"
+    # puts @compiled
+    # puts '-----------------------------'
+    @position = position
   end
 
-  def close_tag(tag_name, position_in_current_line)
-    tag = "</s>"
-    @line.insert(position_in_current_line + @offset, tag)
-    @offset += tag.size
+  def close_tag(tag_name, position)
+    @compiled += CGI::escapeHTML(@line[@position...position]) if position > @position
+    @compiled += "</s>"
+    # puts "END  => POS:  @pos #{@position},  pos: #{position}"
+    # puts @compiled
+    # puts '-----------------------------'
+    @position = position
   end
 
 end
 
-syntax = Textpow.syntax('html')
-text = File.read("../../public/files/samples/html.txt")
+syntax = Textpow.syntax('js')
+text = File.read("../../public/files/samples/javascript.txt")
 syntax.parse(text, HTMLProcessor.new)

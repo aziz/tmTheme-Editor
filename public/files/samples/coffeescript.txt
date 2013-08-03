@@ -68,3 +68,4 @@ Application.directive "scopeBar", [], ->
           return (item_scopes_arr.subtract active_scope_arr).length < 1
 
         return item if match.length
+
