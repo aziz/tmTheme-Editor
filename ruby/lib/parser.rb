@@ -1,5 +1,5 @@
 # TODO
-# ><& should be escaped
+# ><&" should be escaped
 # \\,\n,\t should be escaped
 # .replace(/&/g, '&amp;')
 # .replace(/</g, '&lt;')
@@ -8,22 +8,23 @@
 
 # js: undefined
 # coffee:
-#  1. arrow in: Application.directive "scopeBar", [], -> and scope.$apply ->
-#  2. event in event.target.dataset.entityScope is not green
-#  3. is in if popover.is('.slide') should be white
+#  1. arrow in: Application.directive "scopeBar", [], -> and scope.$apply -> (tmlang bug)
+#  2. event in event.target.dataset.entityScope is not green (tmlang bug)
+#  3. is in if popover.is('.slide') should be white (tmlang bug)
 # ruby:
 #  1. block variables  |line, index|
-#  2. method names after dot are yellow
-#  3. HTMLProcessor.new
+#  2. method names after dot are yellow (tmlang bug)
+#  3. HTMLProcessor.new (tmlang bug)
 # css:
-#  1. . & # in class and id should get the same color as name
-#  2. arial font name is not pinkish
+#  1. . & # in class and id should get the same color as name (css specefisity issue)
+#  2. arial font name is not pinkish (css specefisity issue)
 #  3. box-shadow, rgba, border-radius
 # html:
 #  1. needs escaping
 #  2. embedded bg should expand whole line
 
 require 'textpow'
+require "cgi"
 
 class HTMLProcessor
 
@@ -40,6 +41,9 @@ class HTMLProcessor
       @text[index] = "<span class='l l-#{index+1} #{scope_name.gsub('.',' ')}'>#{line}</span>"
     end
     puts @text.join("")
+    File.open('../../public/files/samples/pre-compiled/html.html', 'w') do |file|
+      file.write(@text.join(""))
+    end
   end
 
   # called before processing a line
@@ -63,6 +67,6 @@ class HTMLProcessor
 
 end
 
-syntax = Textpow.syntax('coffee')
-text = File.read("../../public/files/samples/coffeescript.txt")
+syntax = Textpow.syntax('html')
+text = File.read("../../public/files/samples/html.txt")
 syntax.parse(text, HTMLProcessor.new)
