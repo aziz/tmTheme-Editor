@@ -75,18 +75,18 @@ Application.directive "scopeBar", ['$timeout'], ($timeout) ->
 
     # Finds the best matching rule from theme, given the current scope
     findBestMachingThemeRule = (active_scope) ->
-      # console.log active_scope
       return unless scope.$parent.jsonTheme.settings
-
-      return scope.$parent.jsonTheme.settings.find (item) ->
+      bestMatch = 0
+      candidates = scope.$parent.jsonTheme.settings.findAll (item) ->
         return unless item.scope
-
-        item_scopes = item.scope.split(', ')
-
+        item_scopes = item.scope.split(',').map((s) -> s.trim())
         match = item_scopes.filter (item_scope) ->
           item_scopes_arr = item_scope.split('.')
           active_scope_arr = active_scope.split('.')
-
-          return (item_scopes_arr.subtract active_scope_arr).length < 1
+          isMatching =  (item_scopes_arr.subtract active_scope_arr).length < 1
+          bestMatch = item_scopes_arr.length if isMatching && item_scopes_arr.length>bestMatch
+          return isMatching && item_scopes_arr.length >= bestMatch
 
         return item if match.length
+
+      candidates.last()
