@@ -1,7 +1,10 @@
 ruby parser:
- ☐ bring back scope bar
  ☐ bring textpow inline and improve it
  ☐ manually fix compiled codes
+
+Scope bar:
+ ☐ correctly find matching rule
+ ☐ inline-editing popover should be placed better
 
 local files:
  ☐ redirect after delete
@@ -9,11 +12,6 @@ local files:
  ☐ move theme counts to sub headers
  ☐ reset local URL http://localhost:9999/?url=https://raw.github.com/tdheff/EmoKid/master/EmoKid.tmTheme#/Amy
  ☐ also clean up last_theme cookie in case the local file gets deleted
-
-Scope bar:
- ☐ scroll to view
- ☐ correctly find matching rule
- ☐ inline-editing popover should be placed better
 
 TODO:
  ☐ document on wiki: how to integrate with editor
@@ -136,6 +134,9 @@ TmThemeEditor Companion:
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ scroll to view @done (13-08-04 20:54) @project(Scope bar)
+ ✔ shorten scope bar text @done (13-08-04 21:46) @project(Scope bar)
+ ✔ bring back scope bar @done (13-08-04 20:28) @project(ruby parser)
  ✔ automate compiling of all suported languages @done (13-08-04 19:11) @project(ruby parser)
  ✔ update url when loading local files @done (13-07-29 01:40) @project(TODO)
  ✔ preview a theme without uploading and by just providing the url @v0.4 @done (13-07-27 20:55) @project(TODO)

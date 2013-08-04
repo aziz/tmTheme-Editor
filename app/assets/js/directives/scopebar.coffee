@@ -1,8 +1,8 @@
-Application.directive "scopeBar", [], ->
+Application.directive "scopeBar", ['$timeout'], ($timeout) ->
   replace: true
   templateUrl: 'partials/scope_bar'
   link: (scope, element, attr) ->
-    preview = element.prev()
+    preview = $("#preview")
     preview.bind "mouseover", (event) ->
       active = {}
       active.scope = event.target.dataset.entityScope
@@ -14,6 +14,8 @@ Application.directive "scopeBar", [], ->
       scope.$apply ->
         # Highlight in sidebar
         scope.$parent.hovered_rule = active_scope_rule
+        tmp = -> $(".hovered")[0]?.scrollIntoView()
+        $timeout tmp,200
 
     preview.bind "mouseout", (event) ->
       # Unhighlight in sidebar
@@ -51,6 +53,7 @@ Application.directive "scopeBar", [], ->
       }).addClass("on-bottom")
 
 
+    # Finds the best matching rule from theme, given the current scope
     getScopeSettings = (active_scope) ->
       return unless scope.$parent.jsonTheme.settings
 
