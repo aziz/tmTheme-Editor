@@ -1,6 +1,13 @@
 Application.directive "scopeBar", ['$timeout'], ($timeout) ->
   replace: true
-  templateUrl: 'partials/scope_bar'
+  template: """
+  <div ng-cloak ng-class="gallery" class="scope-bar">
+    <div class="status-scope">
+      <span ng-show="hovered_rule.scope" class="f-scope type-entity">{{ hovered_rule.scope }}</span>
+      <span ng-show="hovered_rule.name" class="f-scope type-entity-text">({{ hovered_rule.name }})</span>
+    </div>
+  </div>
+  """
   link: (scope, element, attr) ->
     preview = $("#preview")
     preview.bind "mouseover", (event) ->

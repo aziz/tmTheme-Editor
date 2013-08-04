@@ -5,6 +5,7 @@ ruby parser:
 Scope bar:
  ☐ correctly find matching rule
  ☐ inline-editing popover should be placed better
+ ☐ enable/disable scope bar
 
 local files:
  ☐ redirect after delete
@@ -134,6 +135,7 @@ TmThemeEditor Companion:
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ no more partial loading @done (13-08-04 21:59) @project(Scope bar)
  ✔ scroll to view @done (13-08-04 20:54) @project(Scope bar)
  ✔ shorten scope bar text @done (13-08-04 21:46) @project(Scope bar)
  ✔ bring back scope bar @done (13-08-04 20:28) @project(ruby parser)
