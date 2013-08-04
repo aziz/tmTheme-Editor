@@ -3,8 +3,9 @@ ruby parser:
  ☐ manually fix compiled codes
 
 Scope bar:
- ☐ correctly find matching rule
+ ☐ auto close edit popover
  ☐ inline-editing popover should be placed better
+ ☐ correctly find matching rule
  ☐ enable/disable scope bar
 
 local files:

@@ -23,7 +23,7 @@
   <style ng-bind="theme_styles()"></style>
 
   <div ng-class="gallery" id="preview" class="preview" ng-style="{ 'background-color': get_color(bg()), 'color': get_color(fg()) }">
-    <pre class="source js" ng-show="jsonTheme"
+    <pre ng-show="jsonTheme"
          ng-bind-html-unsafe="colorized"
          ng-style="{ 'color': get_color(fg()) }"></pre>
   </div>
