@@ -1,7 +1,7 @@
 ruby parser:
- ☐ manually fix compiled codes
- ☐ rewrite html processor
  ☐ bring back scope bar
+ ☐ bring textpow inline and improve it
+ ☐ manually fix compiled codes
 
 local files:
  ☐ redirect after delete
@@ -10,15 +10,12 @@ local files:
  ☐ reset local URL http://localhost:9999/?url=https://raw.github.com/tdheff/EmoKid/master/EmoKid.tmTheme#/Amy
  ☐ also clean up last_theme cookie in case the local file gets deleted
 
+Scope bar:
+ ☐ scroll to view
+ ☐ correctly find matching rule
+ ☐ inline-editing popover should be placed better
+
 TODO:
- ✔ update url when loading local files @done (13-07-29 01:40)
- ✔ preview a theme without uploading and by just providing the url @v0.4 @done (13-07-27 20:55)
- ✔ indicate a local file @v0.4 @done (13-07-28 00:09)
- ✔ list local copyies available from file API @done (13-07-29 01:08)
- ✔ allow users to delete local files @v0.4 @done (13-07-29 14:12)
- ✔ support for HTML,CSS,JS,Ruby,Python and other languages @v0.4 @done (13-07-31 00:17)
- ✔ show original Theme URL @v0.4 @done (13-07-31 01:01)
- ✔ remeber current lang @done (13-07-31 02:01)
  ☐ document on wiki: how to integrate with editor
 ---- ✄ -----------------------
  ☐ navigating with keyboard shortcuts (up and down to traverse the rules, enter to open, ctrl+delete to delete, ctrl+s to save, ...)
@@ -30,7 +27,6 @@ TODO:
  ☐ gallery and editor controllers both load all themes (make it a service)
  ☐ add color input boxes with real color values to edit popovers
  ☐ replace B,I,U ckeckboxes with button groups
- ☐ Scopebar: inline-editing popover should be placed better
  ☐ raise error when the theme in url is not found in gallery
  ☐ some general settings are not colors /#/BoxUK
  ☐ ColorTools: invert and sepia are not resetabale
@@ -42,6 +38,24 @@ TODO:
  ☐ set production env on heroku @v0.4
  ☐ focus state for color pickers @v0.4
  ☐ indicate that drag and drop is enabled @v0.4
+
+More Languages Support:
+ ☐ Java
+ ☐ Shell
+ ☐ PHP
+ ☐ C/C++
+ ☐ Perl
+ ☐ LESS
+ ☐ Markdown
+ ☐ SCSS
+ ☐ GO
+ ☐ Erlang
+ ☐ Haskell
+ ☐ Objective-C
+ ☐ C#
+ ☐ ASP
+ ☐ Scala
+ ☐ Lua
 
 Medium:
  ☐ position sticky for sidebar table headers (https://github.com/davist11/jQuery-Stickem or https://github.com/laertejjunior/freezeheader)
@@ -120,12 +134,14 @@ TmThemeEditor Companion:
  ☐ edit current edit (open online to edit)
  ☐ preview this code in ThemeEditor
 
-TM_LANGUAGE parsing:
- ☐ for empty lines add a nbsp; for selection stuff
- ☐ check to see if the scope is already taken
- ☐ "patterns" in multiline
- ☐ look-behind in js
-   ☐ count the position of lookbehind in submatches array
-   ☐ calculate the length of lb text
-   ☐ adjust begin and size based on length on lb text
- ☐ support for repository and include (support for external includes)
+＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
+Archive:
+ ✔ automate compiling of all suported languages @done (13-08-04 19:11) @project(ruby parser)
+ ✔ update url when loading local files @done (13-07-29 01:40) @project(TODO)
+ ✔ preview a theme without uploading and by just providing the url @v0.4 @done (13-07-27 20:55) @project(TODO)
+ ✔ indicate a local file @v0.4 @done (13-07-28 00:09) @project(TODO)
+ ✔ list local copyies available from file API @done (13-07-29 01:08) @project(TODO)
+ ✔ allow users to delete local files @v0.4 @done (13-07-29 14:12) @project(TODO)
+ ✔ support for HTML,CSS,JS,Ruby,Python and other languages @v0.4 @done (13-07-31 00:17) @project(TODO)
+ ✔ show original Theme URL @v0.4 @done (13-07-31 01:01) @project(TODO)
+ ✔ remeber current lang @done (13-07-31 02:01) @project(TODO)

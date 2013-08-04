@@ -1,7 +1,6 @@
 Application.directive "scopeBar", [], ->
   replace: true
   templateUrl: 'partials/scope_bar'
-
   link: (scope, element, attr) ->
     preview = element.prev()
     preview.bind "mouseover", (event) ->
@@ -27,7 +26,6 @@ Application.directive "scopeBar", [], ->
       if active.scope
         active_scope_rule = getScopeSettings(active.scope)
         showPopover active_scope_rule, event
-
 
 
     showPopover = (rule, event) ->

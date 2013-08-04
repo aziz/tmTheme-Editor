@@ -6,7 +6,7 @@ Application.controller "previewController", ['$scope', '$http', '$rootScope','th
   $scope.set_lang = (lang) -> $scope.current_lang = lang
 
   $scope.$watch 'current_lang', (n,o) ->
-      throbber.on()
+      throbber.on(full_window: true)
       $http.get("/files/samples/pre-compiled/#{$scope.current_lang.toLowerCase()}.html").success (data) ->
         $.cookie('currnet_lang', $scope.current_lang)
         $scope.colorized = data
