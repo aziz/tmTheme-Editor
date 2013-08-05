@@ -3,9 +3,7 @@ ruby parser:
  ☐ manually fix compiled codes
 
 Scope bar:
- ☐ auto close edit popover
- ☐ inline-editing popover should be placed better
- ☐ enable/disable scope bar
+ ☐ if no scope is found open bew popover and fill it in
 
 local files:
  ☐ redirect after delete
@@ -66,7 +64,8 @@ Medium:
 
 Low:
  ☐ dropbox integration (https://github.com/AnalogJ/dropstore-ng)
- ☐ prefrences window for changing font/font-size/custom code
+ ☐ prefrences: window for changing font/font-size/custom code
+ ☐ prefrences: enable/disable scope bar and inline editing
  ☐ get an image preview to embed
  ☐ use infinite scroll on gallery (https://github.com/BinaryMuse/ngInfiniteScroll)
  ☐ Macgap (https://github.com/maccman/macgap)
@@ -135,6 +134,8 @@ TmThemeEditor Companion:
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ auto close edit popover @done (13-08-05 03:16) @project(Scope bar)
+ ✔ inline-editing popover should be placed better @done (13-08-05 03:16) @project(Scope bar)
  ✔ correctly find matching rule @done (13-08-05 00:13) @project(Scope bar)
  ✔ no more partial loading @done (13-08-04 21:59) @project(Scope bar)
  ✔ scroll to view @done (13-08-04 20:54) @project(Scope bar)

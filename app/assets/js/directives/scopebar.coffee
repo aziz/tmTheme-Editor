@@ -50,21 +50,31 @@ Application.directive "scopeBar", ['$timeout'], ($timeout) ->
         scope.$parent.popover_rule = rule
         scope.$parent.edit_popover_visible = true
 
-      popover = $("#edit-popover")
+      win_height    = $(window).height()
+      popover       = $("#edit-popover")
+      galley_offset = if popover.is('.slide') then $("#gallery").width() else 0
+      offset_left   = (popover.width() / 2) + 10 + galley_offset
+      elm           = $(event.target)
+      elm_offset    = $(event.target).offset()
 
-      if popover.is('.slide')
-        left_offset = $("#gallery").width()
+      if (win_height - elm_offset.top) < 360
+        popover.css({
+          "top": "auto"
+          "left": elm_offset.left + (elm.outerWidth()/2)  - offset_left
+          "bottom": win_height - elm_offset.top + 5
+        }).removeClass("on-bottom").addClass("on-top")
       else
-        left_offset = 0
+        popover.css({
+          "left": elm_offset.left + (elm.outerWidth()/2) - offset_left
+          "top": elm_offset.top + 30
+          "bottom": "auto"
+        }).removeClass("on-top").addClass("on-bottom")
 
-      offset =
-        left: (popover.width() / 2) + 10 + left_offset
-        top: 24
+      $("#preview, #gallery").one "click", (e) ->
+        scope.$apply ->
+          scope.$parent.new_popover_visible = false
+          scope.$parent.edit_popover_visible = false
 
-      popover.css({
-        "left": event.pageX - offset.left
-        "top": event.pageY + offset.top
-      }).addClass("on-bottom")
 
     generateElementScope = (scope, event) ->
       result = [scope]

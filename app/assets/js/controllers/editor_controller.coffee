@@ -306,21 +306,22 @@ Application.controller "editorController", ['$scope', '$http', '$location', 'The
     $scope.edit_popover_visible = true
     row = $("#scope-lists .rule-#{rule_index}")
     win_height = $(window).height()
+    popover = $("#edit-popover")
 
     if (win_height - row.offset().top) < 160
-      $("#edit-popover").css({
+      popover.css({
         "top": "auto"
         "left": ""
         "bottom": win_height - row.offset().top
       }).removeClass("on-bottom").addClass("on-top")
     else if row.offset().top < 160
-      $("#edit-popover").css({
+      popover.css({
         "left": ""
         "top": row.offset().top + row.outerHeight()
         "bottom": "auto"
       }).removeClass("on-top").addClass("on-bottom")
     else
-      $("#edit-popover").css({
+      popover.css({
         "top": row.offset().top + (row.outerHeight()/2) - 140
         "left": ""
         "bottom": "auto"
@@ -329,6 +330,7 @@ Application.controller "editorController", ['$scope', '$http', '$location', 'The
     $("#preview, #gallery").one "click", (e) ->
       $scope.edit_popover_visible = false
       $scope.$digest()
+
     if $scope.edit_popover_visible
       focus = -> $("#edit-popover .name-input").focus()
       setTimeout(focus, 0)
