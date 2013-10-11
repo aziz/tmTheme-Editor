@@ -162,6 +162,7 @@
 {"name": "Ryan Light", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Ryan%20Light.tmTheme", "light": true },
 {"name": "Shipwreck", "url": "https://raw.github.com/squidfunk/textmate-themes/master/Shipwreck.tmTheme", "light": false },
 {"name": "SidewalkChalk", "url": "https://raw.github.com/adamjt/textmate-themes/master/SidewalkChalk.tmTheme", "light": false },
+{"name": "Skittles", "url": "https://raw.github.com/konakevin/Sublime-Text-Themes/master/Skittles.tmTheme", "light": false },
 {"name": "SleeplessMind", "url": "https://raw.github.com/godbout/sleeplessmind-color-scheme/master/Sleeplessmind.tmTheme", "light": false},
 {"name": "Slime", "url": "https://raw.github.com/daylerees/colour-schemes/master/Slime.tmTheme", "light": false },
 {"name": "Slush & Poppies", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Slush%20&%20Poppies.tmTheme", "light": true },
