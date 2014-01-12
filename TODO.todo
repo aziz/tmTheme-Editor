@@ -1,3 +1,6 @@
+BUG:
+ ☐ BUG: reset color does not remove the key and produce invalid themes
+
 ruby parser:
  ☐ bring textpow inline and improve it
  ☐ manually fix compiled codes
@@ -11,6 +14,7 @@ local files:
  ☐ move theme counts to sub headers
  ☐ reset local URL http://localhost:9999/?url=https://raw.github.com/tdheff/EmoKid/master/EmoKid.tmTheme#/Amy
  ☐ also clean up last_theme cookie in case the local file gets deleted
+ ☐ remember external URL in localstorage and show it in sidebar
 
 TODO:
  ☐ document on wiki: how to integrate with editor
