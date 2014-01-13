@@ -2,6 +2,7 @@ Application.controller "StatsController", ['$scope', '$http', '$location', 'Them
 
   $scope.themes = []
   $scope.scopes_data = []
+  $scope.general_data = []
   $scope.progress = 0
   $scope.predicate = "name"
   $scope.reverse = false
@@ -20,6 +21,18 @@ Application.controller "StatsController", ['$scope', '$http', '$location', 'Them
       setTimeout(update_progress, 0)
 
   process_scopes = (settings) ->
+    for key,value of settings[0].settings
+      found_object = $scope.general_data.find((x) -> x.name == key)
+      if found_object
+        found_object.count = found_object.count + 1
+      else
+        $scope.general_data.push({ "name": key, "count" : 1, "values": [] })
+      if key.endsWith('Options')
+        current_object = $scope.general_data.find((x) -> x.name == key)
+        current_object.values.push(value)
+    for d in $scope.general_data
+      d.grouped_values = d.values.groupBy()
+
     for setting in settings
       if setting.scope
         scopes = setting.scope.split(",").map((s) -> s.trim())
