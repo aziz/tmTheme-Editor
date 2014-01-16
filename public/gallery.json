@@ -52,6 +52,7 @@
 {"name": "Django (Smoothy)", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Django%20(Smoothy).tmTheme", "light": false },
 {"name": "Django", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Django.tmTheme", "light": false },
 {"name": "Dobdark", "url": "https://raw.github.com/charlesroper/DobDark-Theme/master/Dobdark.tmTheme", "light": false },
+{"name": "Dracula", "url": "https://raw.github.com/zenorocha/dracula-theme/master/Dracula.tmTheme", "light": false },
 {"name": "Dreamweaver", "url": "https://raw.github.com/actarian/Dreamweaver.tmTheme/master/Dreamweaver.tmTheme", "light": true },
 {"name": "Earthsong", "url": "https://raw.github.com/daylerees/colour-schemes/master/Earthsong.tmTheme", "light": false },
 {"name": "EarthsongLight", "url": "https://raw.github.com/daylerees/colour-schemes/master/EarthsongLight.tmTheme", "light": true },
