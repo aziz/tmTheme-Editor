@@ -6,11 +6,11 @@ s {
   cursor: default;
 
   &:hover {
-    box-shadow: 0 0 0 2px fadeout(#1eae37, 75);
+    box-shadow: 0 2px 0 0 fadeout(#1eae37, 60);
     .user-select(none);
 
     s:hover {
-      background: fadeout(#1eae37, 92);
+      // background: fadeout(#1eae37, 92);
     }
   }
 }
@@ -71,7 +71,7 @@ pre {background-color: transparent;}
   height: 32px;
   z-index: 99;
   color: #666;
-  text-shadow: 0 1px 0 white;
+  text-shadow: 0 1px 0 rgba(255,255,255,.6);
   cursor: default;
 
   .status-scope {

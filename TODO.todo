@@ -1,5 +1,4 @@
-☐ use just underline to highlight scope
-☐ if name is empty use the scope, shortened (example https://raw2.github.com/hanakin/CodeRunner-sublime-theme/master/CodeRunner.tmTheme)
+☐ color picker issues
 ☐ add open from URL button
 ☐ db: voting/popular/trending
 
@@ -143,6 +142,8 @@ TmThemeEditor Companion:
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ if name is empty use the scope, shortened (example https://raw2.github.com/hanakin/CodeRunner-sublime-theme/master/CodeRunner.tmTheme) @done (14-01-26 22:26)
+ ✔ use just underline to highlight scope @done (14-01-26 22:22)
  ✔ load monokai by default @done (14-01-26 22:06)
  ✔ fix stats loading @done (14-01-26 22:06)
  ✔ inline-editing popover should be placed better @done (13-08-05 03:16) @project(Scope bar)
