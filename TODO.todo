@@ -1,8 +1,7 @@
-☐ color picker issues
-☐ add open from URL button
-☐ db: voting/popular/trending
 
 BUG:
+ ☐ add open from URL button
+ ☐ retina images for UI
  ☐ BUG: reset color does not remove the key and produce invalid themes
 
 ruby parser:
@@ -10,7 +9,7 @@ ruby parser:
  ☐ manually fix compiled codes
 
 Scope bar:
- ☐ if no scope is found open bew popover and fill it in
+ ☐ if no scope is found open new popover and fill it in
 
 local files:
  ☐ redirect after delete
@@ -22,7 +21,7 @@ local files:
 
 TODO:
  ☐ document on wiki: how to integrate with editor
----- ✄ -----------------------
+ ☐ db: voting/popular/trending
  ☐ navigating with keyboard shortcuts (up and down to traverse the rules, enter to open, ctrl+delete to delete, ctrl+s to save, ...)
  ☐ back/forward buttons are not working (IMP)
  ☐ Did you know and what's new panels
@@ -142,6 +141,7 @@ TmThemeEditor Companion:
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ color picker issues @done (14-01-26 23:27) @project(BUG)
  ✔ if name is empty use the scope, shortened (example https://raw2.github.com/hanakin/CodeRunner-sublime-theme/master/CodeRunner.tmTheme) @done (14-01-26 22:26)
  ✔ use just underline to highlight scope @done (14-01-26 22:22)
  ✔ load monokai by default @done (14-01-26 22:06)
