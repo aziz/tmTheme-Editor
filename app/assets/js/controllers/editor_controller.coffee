@@ -70,8 +70,8 @@ Application.controller "editorController", ['$scope', '$http', '$location', 'The
     console.log "Loading from local file system"
   # Loading Default theme
   else
-    theme = "PlasticCodeWrap"
-    $location.path("PlasticCodeWrap")
+    theme = "Monokai"
+    $location.path("Monokai")
 
   ThemeLoader.themes.success (data) ->
     $scope.available_themes = data

@@ -16,9 +16,8 @@ Application.controller "StatsController", ['$scope', '$http', '$location', 'Them
       theme.bgcolor = theme.jsonTheme.settings.first().settings.background
       theme.is_light = light_or_dark(theme.bgcolor.to(7)) == "light"
       process = -> process_scopes(theme.jsonTheme.settings)
-      update_progress = -> $scope.progress += progress_unit
       setTimeout(process, 0)
-      setTimeout(update_progress, 0)
+
 
   process_scopes = (settings) ->
     for key,value of settings[0].settings
@@ -42,6 +41,7 @@ Application.controller "StatsController", ['$scope', '$http', '$location', 'Them
             found_object.count = found_object.count + 1
           else
             $scope.scopes_data.push({ "name": scope, "count" : 1})
+    $scope.update_progress()
 
   light_or_dark = (bgcolor) ->
     c = tinycolor(bgcolor)
@@ -52,7 +52,12 @@ Application.controller "StatsController", ['$scope', '$http', '$location', 'Them
   ThemeLoader.themes.success (data) ->
     $scope.themes = data
     progress_unit = 100.0/data.length
-    load_theme(theme) for theme in $scope.themes
+    for theme in $scope.themes
+      load_theme(theme)
+
+  $scope.update_progress = ->
+    $scope.$apply ->
+      $scope.progress += progress_unit
 
   $scope.gallery = ->
     $scope.themes.map (theme) ->

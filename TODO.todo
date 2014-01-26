@@ -1,3 +1,8 @@
+☐ use just underline to highlight scope
+☐ if name is empty use the scope, shortened (example https://raw2.github.com/hanakin/CodeRunner-sublime-theme/master/CodeRunner.tmTheme)
+☐ add open from URL button
+☐ db: voting/popular/trending
+
 BUG:
  ☐ BUG: reset color does not remove the key and produce invalid themes
 
@@ -138,19 +143,21 @@ TmThemeEditor Companion:
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
- ✔ auto close edit popover @done (13-08-05 03:16) @project(Scope bar)
+ ✔ load monokai by default @done (14-01-26 22:06)
+ ✔ fix stats loading @done (14-01-26 22:06)
  ✔ inline-editing popover should be placed better @done (13-08-05 03:16) @project(Scope bar)
+ ✔ auto close edit popover @done (13-08-05 03:16) @project(Scope bar)
  ✔ correctly find matching rule @done (13-08-05 00:13) @project(Scope bar)
  ✔ no more partial loading @done (13-08-04 21:59) @project(Scope bar)
- ✔ scroll to view @done (13-08-04 20:54) @project(Scope bar)
  ✔ shorten scope bar text @done (13-08-04 21:46) @project(Scope bar)
+ ✔ scroll to view @done (13-08-04 20:54) @project(Scope bar)
  ✔ bring back scope bar @done (13-08-04 20:28) @project(ruby parser)
  ✔ automate compiling of all suported languages @done (13-08-04 19:11) @project(ruby parser)
- ✔ update url when loading local files @done (13-07-29 01:40) @project(TODO)
- ✔ preview a theme without uploading and by just providing the url @v0.4 @done (13-07-27 20:55) @project(TODO)
- ✔ indicate a local file @v0.4 @done (13-07-28 00:09) @project(TODO)
- ✔ list local copyies available from file API @done (13-07-29 01:08) @project(TODO)
- ✔ allow users to delete local files @v0.4 @done (13-07-29 14:12) @project(TODO)
- ✔ support for HTML,CSS,JS,Ruby,Python and other languages @v0.4 @done (13-07-31 00:17) @project(TODO)
- ✔ show original Theme URL @v0.4 @done (13-07-31 01:01) @project(TODO)
  ✔ remeber current lang @done (13-07-31 02:01) @project(TODO)
+ ✔ show original Theme URL @v0.4 @done (13-07-31 01:01) @project(TODO)
+ ✔ support for HTML,CSS,JS,Ruby,Python and other languages @v0.4 @done (13-07-31 00:17) @project(TODO)
+ ✔ allow users to delete local files @v0.4 @done (13-07-29 14:12) @project(TODO)
+ ✔ update url when loading local files @done (13-07-29 01:40) @project(TODO)
+ ✔ list local copyies available from file API @done (13-07-29 01:08) @project(TODO)
+ ✔ indicate a local file @v0.4 @done (13-07-28 00:09) @project(TODO)
+ ✔ preview a theme without uploading and by just providing the url @v0.4 @done (13-07-27 20:55) @project(TODO)
