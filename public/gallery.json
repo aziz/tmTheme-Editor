@@ -154,6 +154,7 @@
 {"name": "Monokai", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Monokai.tmTheme", "light": false },
 {"name": "Monokai-FannonEdition", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Monokai-FannonEdition.tmTheme", "light": false },
 {"name": "Monokai-sublime", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Monokai-sublime.tmTheme", "light": false },
+{"name": "Morrowmind", "url": "https://raw.github.com/natestedman/morrowind/master/Morrowind.tmTheme", "light": false},
 {"name": "Mreq", "url": "https://raw.github.com/mreq/mreq-theme/master/mreq.tmTheme", "light": false },
 {"name": "NaturalContrast", "url": "https://raw.github.com/daylerees/colour-schemes/master/NaturalContrast.tmTheme", "light": false },
 {"name": "Neon", "url": "https://raw.github.com/MattDMo/Neon.tmTheme/master/Neon.tmTheme", "light": false },
