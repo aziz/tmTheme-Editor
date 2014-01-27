@@ -186,6 +186,7 @@
 {"name": "Swyphs II", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Swyphs%20II.tmTheme", "light": false },
 {"name": "Tango", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Tango.tmTheme", "light": true },
 {"name": "TangoGedit", "url": "https://raw.github.com/dcere/SublimeThemes/master/TangoGedit.tmTheme", "light": true },
+{"name": "Tech 49", "url": "https://raw.github.com/oliverseal/tech49-theme/master/Tech49.tmTheme", "light": false },
 {"name": "Text Ex Machina", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Text%20Ex%20Machina.tmTheme", "light": false },
 {"name": "Today", "url": "https://raw.github.com/cschubiner/Sublime-Text-2-Color-Schemes/master/Today.tmTheme", "light": true },
 {"name": "Tomorrow", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Tomorrow.tmTheme", "light": true },
