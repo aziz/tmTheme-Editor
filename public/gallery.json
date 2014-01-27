@@ -146,6 +146,7 @@
 {"name": "Mellow", "url": "https://raw.github.com/daylerees/colour-schemes/master/Mellow.tmTheme", "light": false },
 {"name": "Merbivore Soft", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Merbivore%20Soft.tmTheme", "light": false },
 {"name": "Merbivore", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Merbivore.tmTheme", "light": false },
+{"name": "Milky Way", "url": "https://raw.github.com/rogatec/project/master/milky_way.tmTheme", "light": true},
 {"name": "Mirodark High Contrast", "url": "https://raw.github.com/djjcast/mirodark-st2/master/MirodarkHighContrast.tmTheme", "light": false},
 {"name": "Mirodark", "url": "https://raw.github.com/djjcast/mirodark-st2/master/Mirodark.tmTheme", "light": false},
 {"name": "MonoIndustrial", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/MonoIndustrial.tmTheme", "light": false },
