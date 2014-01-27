@@ -14,6 +14,7 @@ Application.controller "StatsController", ['$scope', '$http', '$location', 'Them
       theme.xmlTheme  = theme_data
       theme.jsonTheme = plist_to_json(theme.xmlTheme)
       theme.bgcolor = theme.jsonTheme.settings.first().settings.background
+      console.log theme unless theme.bgcolor
       theme.is_light = light_or_dark(theme.bgcolor.to(7)) == "light"
       process = -> process_scopes(theme.jsonTheme.settings)
       setTimeout(process, 0)
