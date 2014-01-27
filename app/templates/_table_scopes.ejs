@@ -20,7 +20,7 @@
       <td class="name-box"
           ng-style="{ 'color': get_color(rule.settings.foreground), 'background-color': get_color(rule.settings.background) }"
           ng-class="{'is_italic' : is('italic', rule), 'is_bold': is('bold', rule), 'is_underline': is('underline', rule)}">
-          <span class="truncate">{{ rule.name }}</span>
+          <span class="truncate">{{ rule.name || rule.scope }}</span>
       </td>
       <td class="color-box">
         <div class="colorpicker-box" ng-class="has_color(rule.settings.foreground)" ng-style="{ 'background-color': get_color(rule.settings.foreground), 'border-color': border_color(get_color(bg())) }"></div>

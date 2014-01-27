@@ -14,13 +14,9 @@
     <a href="/" class="btn btn-info btn-small"><i class="icon-white icon-arrow-left"></i> Back to editor</a>
 
     <div ng-hide="progress > 99" class="progress progress-striped active">
-      <div class="bar" style="width: {{ progress }}%;"></div>
+      <div class="bar" style="width: {{progress}}%"></div>
     </div>
 
-    <div class="links">
-      <%// include _social %>
-      <% include _links %>
-    </div>
   </header>
 
   <ul id="stats-tabs" class="nav nav-tabs">
@@ -30,6 +26,9 @@
     <li ng-class="{'active': current_tab == 'scopes'}">
       <a ng-click="current_tab = 'scopes'">Scopes Stats</a>
     </li>
+    <li ng-class="{'active': current_tab == 'general'}">
+      <a ng-click="current_tab = 'general'">General Scope Stats</a>
+    </li>
   </ul>
 
   <div id="stats-tables">
@@ -38,10 +37,10 @@
 
         <table ng-show="current_tab=='scopes'" class="table table-striped table-condensed">
           <thead>
-            <th>#</th>
-            <th>Scope</th>
-            <th style="width: 50px">Count</th>
-            <th style="width: 300px"></th>
+            <th style="width: 30px">#</th>
+            <th style="width: 400px">Scope</th>
+            <th style="width: 50px"></th>
+            <th>Count</th>
           </thead>
           <tbody>
             <tr ng-repeat="scope in scopes_data | orderBy:'count':true">
@@ -49,7 +48,7 @@
               <td>{{ scope.name }}</td>
               <td style="text-align: right;">{{ scope.count }}</td>
               <td>
-                <span style="position: relative;top:3px;background-color: #20B2C5; width: {{scope.count}}px; height: 16px; display: inline-block;"></span>
+                <span style="position: relative;top:3px;background-color: #3CA3C1; width: {{scope.count}}px; height: 16px; display: inline-block;"></span>
               </td>
             </tr>
           </tbody>
@@ -58,22 +57,22 @@
         <table ng-show="current_tab=='themes'" class="table table-striped table-condensed">
           <thead>
             <th style="width:30px">#</th>
-            <th ng-class="{'active': predicate == 'name' }" ng-click="predicate = 'name'; reverse=!reverse" style="width:200px">
+            <th style="width:200px" ng-class="{'active': predicate == 'name' }" ng-click="predicate = 'name'; reverse=!reverse">
               Name
               <span ng-show="predicate == 'name' && reverse == true">▼</span>
               <span ng-show="predicate == 'name' && reverse == false">▲</span>
             </th>
-            <th ng-class="{'active': predicate == 'jsonTheme.author' }" ng-click="predicate = 'jsonTheme.author'; reverse=!reverse" style="width:200px">
+            <th style="width:240px" ng-class="{'active': predicate == 'jsonTheme.author' }" ng-click="predicate = 'jsonTheme.author'; reverse=!reverse">
               Author
               <span ng-show="predicate == 'jsonTheme.author' && reverse == true">▼</span>
               <span ng-show="predicate == 'jsonTheme.author' && reverse == false">▲</span>
             </th>
-            <th ng-class="{'active': predicate == 'jsonTheme.settings.length' }" ng-click="predicate = 'jsonTheme.settings.length'; reverse=!reverse" style="width:80px" >
+            <th style="width:80px" ng-class="{'active': predicate == 'jsonTheme.settings.length' }" ng-click="predicate = 'jsonTheme.settings.length'; reverse=!reverse">
               Scopes
               <span ng-show="predicate == 'jsonTheme.settings.length' && reverse == true">▼</span>
               <span ng-show="predicate == 'jsonTheme.settings.length' && reverse == false">▲</span>
             </th>
-            <th ng-class="{'active': predicate == 'bgcolor' }" ng-click="predicate = 'bgcolor'; reverse=!reverse">
+            <th style="width:140px" ng-class="{'active': predicate == 'bgcolor' }" ng-click="predicate = 'bgcolor'; reverse=!reverse">
               BG
               <span ng-show="predicate == 'bgcolor' && reverse == true">▼</span>
               <span ng-show="predicate == 'bgcolor' && reverse == false">▲</span>
@@ -101,6 +100,32 @@
             </tr>
           </tbody>
         </table>
+
+        <table ng-show="current_tab=='general'" class="table table-striped table-condensed">
+          <thead>
+            <th style="width: 30px">#</th>
+            <th style="width: 200px">Key</th>
+            <th style="width: 300px">Values</th>
+            <th style="width: 50px"></th>
+            <th>Count</th>
+          </thead>
+          <tbody>
+            <tr ng-repeat="scope in general_data | orderBy:'count':true">
+              <td>{{ $index+1 }}</td>
+              <td>{{ scope.name }}</td>
+              <td>
+                <div ng-repeat="(val,repeats) in scope.grouped_values">
+                  "{{ val }}"[{{ repeats.length }}]
+                </div>
+              </td>
+              <td style="text-align: right;">{{ scope.count }}</td>
+              <td>
+                <span style="position: relative;top:3px;background-color: #3CA3C1; width: {{scope.count}}px; height: 16px; display: inline-block;"></span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
       </div>
     </div>
   </div>

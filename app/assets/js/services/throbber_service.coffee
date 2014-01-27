@@ -22,8 +22,13 @@ Application.service "throbber", [], () ->
   element = $("#loading")
   throbber = {}
 
-  throbber.on = -> element.show().addClass("show")
+  throbber.on = (opt) ->
+    if opt && opt.full_window
+      element.show().addClass("show full_window")
+    else
+      element.show().addClass("show")
 
-  throbber.off = -> element.removeClass("show").hide()
+  throbber.off = ->
+    element.removeClass("show").hide().removeClass("full_window")
 
   return throbber

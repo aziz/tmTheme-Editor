@@ -1,38 +1,65 @@
+
+BUG:
+ ☐ add open from URL button
+ ☐ retina images for UI
+ ☐ BUG: reset color does not remove the key and produce invalid themes
+
+ruby parser:
+ ☐ bring textpow inline and improve it
+ ☐ manually fix compiled codes
+
+Scope bar:
+ ☐ if no scope is found open new popover and fill it in
+
 local files:
  ☐ redirect after delete
  ☐ highlight current theme/local file after reload
  ☐ move theme counts to sub headers
- ☐ delete/show url in the header
  ☐ reset local URL http://localhost:9999/?url=https://raw.github.com/tdheff/EmoKid/master/EmoKid.tmTheme#/Amy
  ☐ also clean up last_theme cookie in case the local file gets deleted
- ☐ back/forward buttons are not working (IMP)
+ ☐ remember external URL in localstorage and show it in sidebar
 
 TODO:
- ✔ update url when loading local files @done (13-07-29 01:40)
- ✔ preview a theme without uploading and by just providing the url @v0.4 @done (13-07-27 20:55)
- ✔ indicate a local file @v0.4 @done (13-07-28 00:09)
- ✔ list local copyies available from file API @done (13-07-29 01:08)
- ✔ allow users to delete local files @v0.4 @done (13-07-29 14:12)
- ☐ show original Theme URL @v0.4
+ ☐ document on wiki: how to integrate with editor
+ ☐ db: voting/popular/trending
  ☐ navigating with keyboard shortcuts (up and down to traverse the rules, enter to open, ctrl+delete to delete, ctrl+s to save, ...)
+ ☐ back/forward buttons are not working (IMP)
  ☐ Did you know and what's new panels
  ☐ show keyboard shortcuts on ?
  ☐ event tracking @v0.4
  ☐ indicate dirty state @v0.4
----- ✄ -----------------------
- ☐ Scopebar: inline-editing popover should be placed better
+ ☐ gallery and editor controllers both load all themes (make it a service)
+ ☐ add color input boxes with real color values to edit popovers
+ ☐ replace B,I,U ckeckboxes with button groups
  ☐ raise error when the theme in url is not found in gallery
  ☐ some general settings are not colors /#/BoxUK
  ☐ ColorTools: invert and sepia are not resetabale
  ☐ ColorTools: hue/color tempreture/color tint/grayscale/ and other color adjustments
  ☐ Refactor: extract color service
- ☐ support for HTML,CSS,JS,Ruby,Python and other languages @v0.4
  ☐ removal and addition of general colors @v0.4
  ☐ removal and addition of info attrs
  ☐ new button @v0.4
  ☐ set production env on heroku @v0.4
  ☐ focus state for color pickers @v0.4
  ☐ indicate that drag and drop is enabled @v0.4
+
+More Languages Support:
+ ☐ Java
+ ☐ Shell
+ ☐ PHP
+ ☐ C/C++
+ ☐ Perl
+ ☐ LESS
+ ☐ Markdown
+ ☐ SCSS
+ ☐ GO
+ ☐ Erlang
+ ☐ Haskell
+ ☐ Objective-C
+ ☐ C#
+ ☐ ASP
+ ☐ Scala
+ ☐ Lua
 
 Medium:
  ☐ position sticky for sidebar table headers (https://github.com/davist11/jQuery-Stickem or https://github.com/laertejjunior/freezeheader)
@@ -43,8 +70,11 @@ Medium:
  ☐ being able to auto upload current theme inside sublim to a server and preview it: http://pastie.org/pastes/7745711/text
 
 Low:
+ ☐ dropbox integration (https://github.com/AnalogJ/dropstore-ng)
+ ☐ prefrences: window for changing font/font-size/custom code
+ ☐ prefrences: enable/disable scope bar and inline editing
  ☐ get an image preview to embed
- ☐ use infinite scroll on gallery
+ ☐ use infinite scroll on gallery (https://github.com/BinaryMuse/ngInfiniteScroll)
  ☐ Macgap (https://github.com/maccman/macgap)
  ☐ Node Webkit? (https://github.com/rogerwang/node-webkit)
  ☐ update uuid
@@ -94,7 +124,7 @@ Other Tools/Editors:
  ☐ Notepad++: http://framework.lojcomm.com.br/tmTheme2nppStyler/
  ☐ iTerm: https://gist.github.com/maxim/2903788
  ☐ Terminal
- ☐ Photoshop palette
+ ☐ Photoshop palette (https://github.com/layervault/ase.rb)
 
 Marketing:
  ☐ Edit Macromates WIKI and add a link
@@ -109,12 +139,26 @@ TmThemeEditor Companion:
  ☐ edit current edit (open online to edit)
  ☐ preview this code in ThemeEditor
 
-TM_LANGUAGE parsing:
- ☐ for empty lines add a nbsp; for selection stuff
- ☐ check to see if the scope is already taken
- ☐ "patterns" in multiline
- ☐ look-behind in js
-   ☐ count the position of lookbehind in submatches array
-   ☐ calculate the length of lb text
-   ☐ adjust begin and size based on length on lb text
- ☐ support for repository and include (support for external includes)
+＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
+Archive:
+ ✔ color picker issues @done (14-01-26 23:27) @project(BUG)
+ ✔ if name is empty use the scope, shortened (example https://raw2.github.com/hanakin/CodeRunner-sublime-theme/master/CodeRunner.tmTheme) @done (14-01-26 22:26)
+ ✔ use just underline to highlight scope @done (14-01-26 22:22)
+ ✔ load monokai by default @done (14-01-26 22:06)
+ ✔ fix stats loading @done (14-01-26 22:06)
+ ✔ inline-editing popover should be placed better @done (13-08-05 03:16) @project(Scope bar)
+ ✔ auto close edit popover @done (13-08-05 03:16) @project(Scope bar)
+ ✔ correctly find matching rule @done (13-08-05 00:13) @project(Scope bar)
+ ✔ no more partial loading @done (13-08-04 21:59) @project(Scope bar)
+ ✔ shorten scope bar text @done (13-08-04 21:46) @project(Scope bar)
+ ✔ scroll to view @done (13-08-04 20:54) @project(Scope bar)
+ ✔ bring back scope bar @done (13-08-04 20:28) @project(ruby parser)
+ ✔ automate compiling of all suported languages @done (13-08-04 19:11) @project(ruby parser)
+ ✔ remeber current lang @done (13-07-31 02:01) @project(TODO)
+ ✔ show original Theme URL @v0.4 @done (13-07-31 01:01) @project(TODO)
+ ✔ support for HTML,CSS,JS,Ruby,Python and other languages @v0.4 @done (13-07-31 00:17) @project(TODO)
+ ✔ allow users to delete local files @v0.4 @done (13-07-29 14:12) @project(TODO)
+ ✔ update url when loading local files @done (13-07-29 01:40) @project(TODO)
+ ✔ list local copyies available from file API @done (13-07-29 01:08) @project(TODO)
+ ✔ indicate a local file @v0.4 @done (13-07-28 00:09) @project(TODO)
+ ✔ preview a theme without uploading and by just providing the url @v0.4 @done (13-07-27 20:55) @project(TODO)

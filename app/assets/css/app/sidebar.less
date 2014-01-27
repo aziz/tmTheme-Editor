@@ -115,7 +115,7 @@
 }
 
 .actionbar {
-  #gradient > .vertical(#e8e8ea, #dcdddf);
+  #gradient > .vertical(#e8e8e8, #c2c2c2);
   border: 1px solid #969696;
   border-bottom: 0px;
   .box-shadow(inset 0 1px 0 #f5f5f5);
@@ -264,7 +264,6 @@
   }
 
   tr {
-    .transition(160ms);
     border-top: 1px solid transparent;
     border-bottom: 1px solid transparent;
   }
@@ -301,7 +300,6 @@ a.reset {
   top: 1px; bottom: 1px;
   left: 1px; right: 1px;
   border: 1px solid rgba(255,255,255,.33);
-  // width: 26px;
   position: absolute;
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAG0lEQVQIW2P4//+/EwgzMDBAMIYAjIEkgSoAAL9FHAm65CvoAAAAAElFTkSuQmCC);
   .background-clip(padding-box);
@@ -312,15 +310,24 @@ a.reset {
   }
 }
 
-.colorpicker-input {
-  position: absolute;
-  top: 1px; bottom: 1px;
-  left: 1px; right: 1px;
+.sidebar .colorpicker-input {
   opacity: 0;
-  width: auto;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
   margin:0 !important;
   padding:0 !important;
-  cursor: pointer;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: none !important;
+  .transition(none);
+}
+
+::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+::-webkit-color-swatch {
+  border: none;
 }
 
 .edit-popover {

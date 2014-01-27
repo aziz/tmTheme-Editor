@@ -15,10 +15,6 @@ routes.stats = (req, res) ->
   view = {}
   res.render 'stats', view
 
-routes.partials = (req, res) ->
-  view = {}
-  res.render "_#{req.params.partialName}", view
-
 module.exports = routes
 
 

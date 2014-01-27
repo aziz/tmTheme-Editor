@@ -23,6 +23,7 @@
   <div ng-cloak ng-class="gallery" ng-show="jsonTheme" class="theme-title">
     {{ jsonTheme.name }}
     <span class="label label-success" style="position:relative;top:-2px" ng-show="theme_type != ''">{{theme_type}}</span>
+    <a ng-hide="theme_type == 'Local File'" ng-click="open_theme_url()"><i class="icon-globe" data-toggle="tooltip" data-placement="bottom" title="View Original file URL"></i></a>
   </div>
   <div class="links">
     <%// include _social %>

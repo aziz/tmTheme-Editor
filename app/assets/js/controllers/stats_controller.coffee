@@ -2,6 +2,7 @@ Application.controller "StatsController", ['$scope', '$http', '$location', 'Them
 
   $scope.themes = []
   $scope.scopes_data = []
+  $scope.general_data = []
   $scope.progress = 0
   $scope.predicate = "name"
   $scope.reverse = false
@@ -15,11 +16,22 @@ Application.controller "StatsController", ['$scope', '$http', '$location', 'Them
       theme.bgcolor = theme.jsonTheme.settings.first().settings.background
       theme.is_light = light_or_dark(theme.bgcolor.to(7)) == "light"
       process = -> process_scopes(theme.jsonTheme.settings)
-      update_progress = -> $scope.progress += progress_unit
       setTimeout(process, 0)
-      setTimeout(update_progress, 0)
+
 
   process_scopes = (settings) ->
+    for key,value of settings[0].settings
+      found_object = $scope.general_data.find((x) -> x.name == key)
+      if found_object
+        found_object.count = found_object.count + 1
+      else
+        $scope.general_data.push({ "name": key, "count" : 1, "values": [] })
+      if key.endsWith('Options')
+        current_object = $scope.general_data.find((x) -> x.name == key)
+        current_object.values.push(value)
+    for d in $scope.general_data
+      d.grouped_values = d.values.groupBy()
+
     for setting in settings
       if setting.scope
         scopes = setting.scope.split(",").map((s) -> s.trim())
@@ -29,6 +41,7 @@ Application.controller "StatsController", ['$scope', '$http', '$location', 'Them
             found_object.count = found_object.count + 1
           else
             $scope.scopes_data.push({ "name": scope, "count" : 1})
+    $scope.update_progress()
 
   light_or_dark = (bgcolor) ->
     c = tinycolor(bgcolor)
@@ -39,7 +52,12 @@ Application.controller "StatsController", ['$scope', '$http', '$location', 'Them
   ThemeLoader.themes.success (data) ->
     $scope.themes = data
     progress_unit = 100.0/data.length
-    load_theme(theme) for theme in $scope.themes
+    for theme in $scope.themes
+      load_theme(theme)
+
+  $scope.update_progress = ->
+    $scope.$apply ->
+      $scope.progress += progress_unit
 
   $scope.gallery = ->
     $scope.themes.map (theme) ->

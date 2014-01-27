@@ -70,13 +70,13 @@ Application.controller "editorController", ['$scope', '$http', '$location', 'The
     console.log "Loading from local file system"
   # Loading Default theme
   else
-    theme = "PlasticCodeWrap"
-    $location.path("PlasticCodeWrap")
+    theme = "Monokai"
+    $location.path("Monokai")
 
   ThemeLoader.themes.success (data) ->
-    available_themes = data
+    $scope.available_themes = data
     if theme
-      theme_obj = available_themes.find (t) -> t.name == theme
+      theme_obj = $scope.available_themes.find (t) -> t.name == theme
       ThemeLoader.load(theme_obj).success (data) -> $scope.process_theme(data)
     else if theme_url
       ThemeLoader.load({ url: theme_url }).success (data) -> $scope.process_theme(data)
@@ -253,7 +253,7 @@ Application.controller "editorController", ['$scope', '$http', '$location', 'The
         italic    = $scope.is("italic", rule)
         underline = $scope.is("underline", rule)
         if rule.scope
-          rules = rule.scope.split(",").map (r) -> ".#{r.trim()}"
+          rules = rule.scope.split(",").map (r) -> r.trim().split(" ").map((x)->".#{x}").join(" ")
           rules.each (r) ->
             styles += "#{r}{"
             styles += "color:#{fg_color};" if fg_color
@@ -261,7 +261,7 @@ Application.controller "editorController", ['$scope', '$http', '$location', 'The
             styles += "font-weight:bold;" if bold
             styles += "font-style:italic;" if italic
             styles += "text-decoration:underline;" if underline
-            styles += "}"
+            styles += "}\n"
     styles
 
   $scope.theme_gutter = ->
@@ -306,21 +306,22 @@ Application.controller "editorController", ['$scope', '$http', '$location', 'The
     $scope.edit_popover_visible = true
     row = $("#scope-lists .rule-#{rule_index}")
     win_height = $(window).height()
+    popover = $("#edit-popover")
 
     if (win_height - row.offset().top) < 160
-      $("#edit-popover").css({
+      popover.css({
         "top": "auto"
         "left": ""
         "bottom": win_height - row.offset().top
       }).removeClass("on-bottom").addClass("on-top")
     else if row.offset().top < 160
-      $("#edit-popover").css({
+      popover.css({
         "left": ""
         "top": row.offset().top + row.outerHeight()
         "bottom": "auto"
       }).removeClass("on-top").addClass("on-bottom")
     else
-      $("#edit-popover").css({
+      popover.css({
         "top": row.offset().top + (row.outerHeight()/2) - 140
         "left": ""
         "bottom": "auto"
@@ -329,6 +330,7 @@ Application.controller "editorController", ['$scope', '$http', '$location', 'The
     $("#preview, #gallery").one "click", (e) ->
       $scope.edit_popover_visible = false
       $scope.$digest()
+
     if $scope.edit_popover_visible
       focus = -> $("#edit-popover .name-input").focus()
       setTimeout(focus, 0)
@@ -402,6 +404,16 @@ Application.controller "editorController", ['$scope', '$http', '$location', 'The
 
   ).throttle(20)
   #-------------------------------------------------------------------------
+
+  $scope.open_theme_url = ->
+    if $scope.theme_type == "External URL"
+      url = window.location.search.replace("?url=","")
+      window.open(url)
+    else
+      theme =  $location.path().replace(/\//g,"")
+      theme_obj = $scope.available_themes.find (t) -> t.name == theme
+      window.open(theme_obj.url)
+
 
   $scope.$watch "edit_popover_visible", (n,o) ->
     if n

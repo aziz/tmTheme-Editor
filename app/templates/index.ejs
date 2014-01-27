@@ -22,13 +22,25 @@
   <style ng-bind="theme_selection()"></style>
   <style ng-bind="theme_styles()"></style>
 
-  <div ng-class="gallery" class="preview" ng-style="{ 'background-color': get_color(bg()), 'color': get_color(fg()) }">
-    <pre class="source js" ng-show="jsonTheme"
+  <div ng-class="gallery" id="preview" class="preview" ng-style="{ 'background-color': get_color(bg()), 'color': get_color(fg()) }">
+    <pre ng-show="jsonTheme"
          ng-bind-html-unsafe="colorized"
          ng-style="{ 'color': get_color(fg()) }"></pre>
   </div>
 
   <div scope-bar></div>
+  <div class="btn-group dropup languages-dd" ng-cloak ng-show="jsonTheme">
+    <a ng-click="" class="btn btn-mac btn-small dropdown-toggle" data-toggle="dropdown">
+      {{ current_lang }}
+      <span class="icon ud-arrow"></span>
+    </a>
+    <ul class="dropdown-menu pull-right">
+      <li ng-repeat="lang in available_langs">
+        <a ng-click="set_lang(lang)">{{lang}}</a>
+      </li>
+    </ul>
+  </div>
+
 
 </div>
 <div id="loading"></div>

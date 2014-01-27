@@ -1,143 +1,69 @@
-# encoding: utf-8
+class HTMLProcessor
 
-class ApplicationController < ActionController::Base
-  include ApplicationHelper
-
-  protect_from_forgery
-
-  before_filter :ensure_burt_id!
-
-  helper_method :current_user
-  helper_method :current_account
-
-  def index
+  # called before parsing anything
+  def start_parsing(scope_name)
+    @line = ""
+    @offset = 0
+    @text= []
   end
 
-protected
-
-  def json(obj)
-    render json: obj.as_json(root: false)
-  end
-
-  def error(message, status=400)
-    render json: {error: message}, status: status
-  end
-
-  def log(msg)
-    Rails.logger.info(msg)
-  end
-
-  def debug(o)
-    Rails.logger.info(o.inspect)
-  end
-
-  def burt_id_client
-    options = {}
-    options[:burt_id] = session[burt_id_cookie] || cookies[burt_id_cookie]
-    @burt_id_client ||= BurtID::Client.default(options)
-  end
-
-  # This should only be used for actions where a user is not logged in
-  def no_auth_burt_id_client
-    @no_auth_burt_id_client ||= BurtID::Client.default(no_auth: true)
-  end
-
-  def ensure_burt_id!
-    return if params[:controller] == 'application' && params[:action] == 'index'
-    value = cookies[burt_id_cookie]
-    unauthorized! and return unless value
-  end
-
-  def authenticate_burt_admin!
-    value = cookies[burt_id_cookie]
-    unauthorized! and return unless value
-    unauthorized! and return unless current_user.email.end_with?('@burtcorp.com')
-  rescue BurtID::Error::Unauthorized
-    unauthorized!
-  end
-
-  def authenticate_site!
-    @site ||= current_account.sites.find(params[:id])
-    if @site
-      @site.aliases = {} unless @site.aliases
+  # called after parsing everything
+  def end_parsing(scope_name)
+    @text.each_with_index do |line, index|
+      @text[index] = "<span class='l l-#{index+1} #{scope_name.gsub('.',' ')}'>#{line}</span>"
     end
-    unauthorized! unless admin_signed_in? || current_user.full_access?(current_account, current_app) || current_user.sites.include?({account: current_media_key, app: current_app, id: site.id})
+    puts @text.join("")
   end
 
-  def current_user
-    @current_user ||= User.new(burt_id_client, burt_id_client.authenticate(cookies[burt_id_cookie]))
-  rescue BurtID::Error::Unauthorized
-    nil
+  # called before processing a line
+  def new_line(line_content)
+    @offset = 0
+    @line = line_content.clone
+    @text << @line
   end
 
-  def user_signed_in?
-    !!current_user
+  def open_tag(tag_name, position_in_current_line)
+    tag = "<s class='#{tag_name.gsub("."," ")}'>"
+    @line.insert(position_in_current_line + @offset, tag)
+    @offset += tag.size
   end
 
-  def admin_signed_in?
-    user_signed_in? && (burt_admin_signed_in? || current_user.admins && current_user.admins.include?(current_media_key))
-  end
-
-  def burt_admin_signed_in?
-    user_signed_in? && current_user.burt_admin?
-  end
-
-  def current_media_key
-    @current_media_key ||= session[burt_context] || current_user.accounts.first
-  end
-
-  def current_account
-    return nil unless current_media_key
-    @current_account ||= Account.find(burt_id_client, current_media_key)
-  end
-
-  def current_app
-    app = app_from_url
-    return 'site_campaigns' if app == 'campaign_reporting' && current_account && current_account.type == 'site_analytics'
-    app
-  end
-
-  def no_content!
-    render nothing:true, status: 204
-  end
-
-  def not_found!
-    raise ActionController::RoutingError.new('Not Found')
-  end
-
-  def burt_app_environment
-    case Rails.env
-      when 'development'                  then 'development'
-      when 'staging'                      then 'staging'
-      when 'accept'                       then 'accept'
-      when 'production'                   then 'production'
-    end
-  end
-
-  def burt_id_cookie
-    case Rails.env
-      # when 'development'  then 'burt_id_dev'
-      when 'development', 'staging'       then 'burt_id_staging'
-      when 'accept'                       then 'burt_id_accept'
-      when 'production'                   then 'burt_id'
-    end
-  end
-
-  def burt_context
-    case Rails.env
-      # when 'development'  then 'burt_id_dev'
-      when 'development', 'staging'       then 'burt_context_staging'
-      when 'accept'                       then 'burt_context_accept'
-      when 'production'                   then 'burt_context'
-    end
-  end
-
-  def unauthorized!
-    if request.xhr?
-      render nothing: true, status: 401
-    else
-      redirect_to logout_path
-    end
+  def close_tag(tag_name, position_in_current_line)
+    tag = "</s>"
+    @line.insert(position_in_current_line + @offset, tag)
+    @offset += tag.size
   end
 
 end
+
+syntax = Textpow.syntax('ruby') # or 'source.ruby' or 'lib/textpow/syntax/source.ruby.syntax'
+processor = HTMLProcessor.new
+syntax.parse(text, processor)
+
+require File.expand_path('../boot', __FILE__)
+
+require 'rails/all'
+
+if defined?(Bundler)
+  # If you precompile assets before deploying to production, use this line
+  Bundler.require(*Rails.groups(:assets => %w(development test)))
+  # If you want your assets lazily compiled in production, use this line
+  # Bundler.require(:default, :assets, Rails.env)
+end
+
+require 'rubygems'
+
+# Set up gems listed in the Gemfile.
+ENV['BUNDLE_GEMFILE'] ||= File.expand_path('../../Gemfile', __FILE__)
+
+require 'bundler/setup' if File.exists?(ENV['BUNDLE_GEMFILE'])
+
+
+
+
+
+
+
+
+
+
