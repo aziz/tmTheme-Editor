@@ -1,4 +1,5 @@
 {"name": "Dracula", "url": "https://raw.github.com/zenorocha/dracula-theme/master/Dracula.tmTheme", "light": false },
+{"name": "Userscape", "url": "https://raw.github.com/daylerees/colour-schemes/master/Userscape.tmTheme", "light": true },
 
 BUG:
  ☐ add open from URL button
