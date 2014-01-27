@@ -143,6 +143,7 @@
 {"name": "Made by phunky", "url": "https://raw.github.com/Phunky/madebyphunky/master/madebyphunky.tmTheme", "light": true},
 {"name": "Made of Code", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Made%20of%20Code.tmTheme", "light": false },
 {"name": "MagicWB (Amiga)", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/MagicWB%20(Amiga).tmTheme", "light": true },
+{"name": "Mbo", "url": "https://raw.github.com/mbonaci/global/master/Mbo.tmTheme", "light": false },
 {"name": "Mellow", "url": "https://raw.github.com/daylerees/colour-schemes/master/Mellow.tmTheme", "light": false },
 {"name": "Merbivore Soft", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Merbivore%20Soft.tmTheme", "light": false },
 {"name": "Merbivore", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Merbivore.tmTheme", "light": false },
