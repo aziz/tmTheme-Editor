@@ -165,6 +165,7 @@
 {"name": "NightLion", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/NightLion.tmTheme", "light": false },
 {"name": "NodeJS", "url": "https://raw.github.com/antlong/Textmate-Themes/master/TM1/nodejs.tmtheme", "light": false },
 {"name": "Notebook", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Notebook.tmTheme", "light": true },
+{"name": "Oblivion", "url": "https://raw.github.com/jbrooksuk/Oblivion/master/Oblivion.tmTheme", "light": false},
 {"name": "Obsidian", "url": "https://raw.github.com/mekwall/obsidian-color-scheme/master/textmate/Obsidian.tmTheme", "light": false },
 {"name": "Oceanic - Eighties", "url": "https://raw.github.com/memco/Oceanic-tmTheme/master/Themes/Oceanic%20-%20Eighties.tmTheme", "light": false },
 {"name": "Oceanic", "url": "https://raw.github.com/memco/Oceanic-tmTheme/master/Themes/Oceanic.tmTheme", "light": false },
