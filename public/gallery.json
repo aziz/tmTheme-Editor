@@ -204,6 +204,7 @@
 {"name": "SpaceCadet", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/SpaceCadet.tmTheme", "light": false },
 {"name": "Spearmint", "url": "https://raw.github.com/daylerees/colour-schemes/master/Spearmint.tmTheme", "light": true },
 {"name": "Spectacular", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Spectacular.tmTheme", "light": false },
+{"name": "Splunk", "url": "https://raw.github.com/f33dy0urhe4d/splunk-syntax-sublimetext/master/Splunk.tmTheme", "light": false }
 {"name": "Stark", "url": "https://raw.github.com/daylerees/colour-schemes/master/Stark.tmTheme", "light": false },
 {"name": "Summer Sun", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Summer%20Sun.tmTheme", "light": false },
 {"name": "Summerfruit", "url": "https://raw.github.com/thgie/Summerfruit/master/Summerfruit.tmTheme", "light": true },
