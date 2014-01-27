@@ -240,6 +240,7 @@
 {"name": "Tyrann Blue", "url": "https://raw.github.com/carlcalderon/sublime-color-schemes/master/Tyrann/Tyrann%20Blue.tmTheme", "light": false },
 {"name": "Tyrann Kim", "url": "https://raw.github.com/carlcalderon/sublime-color-schemes/master/Tyrann/Tyrann%20Kim.tmTheme", "light": true },
 {"name": "Tyrann", "url": "https://raw.github.com/carlcalderon/sublime-color-schemes/master/Tyrann/Tyrann.tmTheme", "light": false },
+{"name": "Underscore", "url": "https://raw.github.com/channingwalton/sublime_underscore/master/underscore.tmTheme", "light": false },
 {"name": "Upstream Sunburst", "url": "https://raw.github.com/mediaupstream/Upstream-Textmate-Themes/master/Upstream%20Sunburst/Upstream%20Sunburst.tmTheme", "light": false },
 {"name": "Upstream Vibrant", "url": "https://raw.github.com/mediaupstream/Upstream-Textmate-Themes/master/Upstream%20Vibrant/Upstream%20Vibrant.tmTheme", "light": false },
 {"name": "Upstream", "url": "https://raw.github.com/mediaupstream/Upstream-Textmate-Themes/master/Upstream/Upstream.tmTheme", "light": false },
