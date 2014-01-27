@@ -1,5 +1,4 @@
 #= require vendors/sugar-1.3.9.js
-#= require vendors/angular-1.1.4.js
 #= require vendors/xregexp-3.0.0pre.js
 #= require vendors/jquery-2.0.0.js
 #= require vendors/jquery.cookie-1.3.1.js
@@ -9,6 +8,7 @@
 #= require vendors/spin-1.3.js
 #= require vendors/bootstrap/bootstrap-dropdown.js
 #= require vendors/bootstrap/bootstrap-tooltip.js
+#= require vendors/angular-1.1.4.js
 
 #= require_tree lib
 #= require_tree directives
