@@ -1,5 +1,5 @@
+Others:
 https://raw.github.com/ctruett/monokai-blueberry/master/Monokai%20Blueberry.tmTheme , dark
-https://raw.github.com/mimshwright/sublime-eggplant-parm/master/EggplantParm.tmTheme, dark
 https://raw.github.com/justindmartin1/superman-color-scheme/master/Superman.tmTheme, light
 https://raw.github.com/jfromaniello/Grandson-of-Obsidian/master/GrandsonOfObsidian.tmTheme, dark
 https://raw.github.com/sheerun/sublime-wombat-theme/master/Wombat.tmTheme, dark
@@ -10,7 +10,6 @@ https://raw.github.com/MarkMichos/firecode-theme/master/FireCode.tmTheme, dark
 https://raw.github.com/swartzrock/tully-sublime-schemes/master/TullyLight.tmTheme
 https://raw.github.com/swartzrock/tully-sublime-schemes/master/TullyDark.tmTheme
 https://raw.github.com/kdar/color-schemes/master/Luscious.tmTheme, dark
-
 https://raw.github.com/jolleyjoe/sublime-amycable-theme/master/Amycable.tmTheme, dark
 https://raw.github.com/jared-christensen/sublime-2-color-scheme-hammer/master/Hammer.tmTheme, dark
 
@@ -22,7 +21,6 @@ https://github.com/l4ci/Br4ckets-Theme
 https://github.com/saulhudson/saulhudson-color-schemes
 https://github.com/jonschlinkert/sublime-monokai-extended
 https://raw.github.com/tdheff/EmoKid/master/EmoKid.tmTheme
-https://github.com/chriskempson/base16
 
 Other repos:
 https://github.com/carlcalderon/sublime-color-schemes
@@ -74,3 +72,6 @@ BUGYY THEMES:
 {"name": "Larapaste", "url": "https://raw.github.com/villimagg/Larapaste-sublime-theme/master/Larapaste.tmTheme", "light": false },
 {"name": "Brilliance Black", "url": "https://raw.github.com/textmate/themes.tmbundle/master/Themes/Brilliance%20Black.tmTheme", "light": false },
 {"name": "Brilliance Dull", "url": "https://raw.github.com/textmate/themes.tmbundle/master/Themes/Brilliance%20Dull.tmTheme", "light": false },
+{"name": "Dracula", "url": "https://raw.github.com/zenorocha/dracula-theme/master/Dracula.tmTheme", "light": false },
+{"name": "Userscape", "url": "https://raw.github.com/daylerees/colour-schemes/master/Userscape.tmTheme", "light": true },
+{"name": "Obsidian", "url": "https://raw.github.com/mekwall/obsidian-color-scheme/master/textmate/Obsidian.tmTheme", "light": false },

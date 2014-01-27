@@ -1,10 +1,21 @@
-{"name": "Dracula", "url": "https://raw.github.com/zenorocha/dracula-theme/master/Dracula.tmTheme", "light": false },
-{"name": "Userscape", "url": "https://raw.github.com/daylerees/colour-schemes/master/Userscape.tmTheme", "light": true },
 
-BUG:
+TODO v. 0.5:
  ☐ add open from URL button
  ☐ retina images for UI
  ☐ BUG: reset color does not remove the key and produce invalid themes
+ ☐ add color input boxes with real color values to edit popovers
+ ☐ more lang support (Java PHP Perl GO LESS SCSS)
+ ☐ ng-cloak on stats page
+ ☐ back/forward buttons are not working (IMP)
+ ☐ show keyboard shortcuts on ?
+ ☐ raise error when the theme in url is not found in gallery
+ ☐ gallery and editor controllers both load all themes (make it a service)
+ ☐ some general settings are not colors /#/BoxUK
+ ☐ position sticky for sidebar table headers (https://github.com/davist11/jQuery-Stickem or https://github.com/laertejjunior/freezeheader)
+ ☐ new button
+ ☐ use infinite scroll on gallery (https://github.com/BinaryMuse/ngInfiniteScroll)
+ ☐ setting color with transparency (different alpha channel representation)
+ ☐ sample column in general tab (caret, line highlight, invisible ...)
 
 ruby parser:
  ☐ bring textpow inline and improve it
@@ -25,75 +36,56 @@ TODO:
  ☐ document on wiki: how to integrate with editor
  ☐ db: voting/popular/trending
  ☐ navigating with keyboard shortcuts (up and down to traverse the rules, enter to open, ctrl+delete to delete, ctrl+s to save, ...)
- ☐ back/forward buttons are not working (IMP)
  ☐ Did you know and what's new panels
- ☐ show keyboard shortcuts on ?
- ☐ event tracking @v0.4
- ☐ indicate dirty state @v0.4
- ☐ gallery and editor controllers both load all themes (make it a service)
- ☐ add color input boxes with real color values to edit popovers
- ☐ replace B,I,U ckeckboxes with button groups
- ☐ raise error when the theme in url is not found in gallery
- ☐ some general settings are not colors /#/BoxUK
+ ☐ event tracking
+ ☐ indicate dirty state
  ☐ ColorTools: invert and sepia are not resetabale
  ☐ ColorTools: hue/color tempreture/color tint/grayscale/ and other color adjustments
  ☐ Refactor: extract color service
- ☐ removal and addition of general colors @v0.4
- ☐ removal and addition of info attrs
- ☐ new button @v0.4
- ☐ set production env on heroku @v0.4
- ☐ focus state for color pickers @v0.4
- ☐ indicate that drag and drop is enabled @v0.4
-
-More Languages Support:
- ☐ Java
- ☐ Shell
- ☐ PHP
- ☐ C/C++
- ☐ Perl
- ☐ LESS
- ☐ Markdown
- ☐ SCSS
- ☐ GO
- ☐ Erlang
- ☐ Haskell
- ☐ Objective-C
- ☐ C#
- ☐ ASP
- ☐ Scala
- ☐ Lua
-
-Medium:
- ☐ position sticky for sidebar table headers (https://github.com/davist11/jQuery-Stickem or https://github.com/laertejjunior/freezeheader)
- ☐ highlight related scopes in preview on rule select
- ☐ better readme
- ☐ color picker js https://github.com/bebraw/colorjoe @v0.5
- ☐ use pre processed sample code for other languages @v0.5
- ☐ being able to auto upload current theme inside sublim to a server and preview it: http://pastie.org/pastes/7745711/text
+ ☐ removal and addition of general colors
+ ☐ set production env on heroku
+ ☐ focus state for color pickers
+ ☐ indicate that drag and drop is enabled
 
 Low:
+ ☐ better readme
+ ☐ color picker js https://github.com/bebraw/colorjoe
+ ☐ being able to auto upload current theme inside sublim to a server and preview it: http://pastie.org/pastes/7745711/text
  ☐ dropbox integration (https://github.com/AnalogJ/dropstore-ng)
  ☐ prefrences: window for changing font/font-size/custom code
  ☐ prefrences: enable/disable scope bar and inline editing
  ☐ get an image preview to embed
- ☐ use infinite scroll on gallery (https://github.com/BinaryMuse/ngInfiniteScroll)
  ☐ Macgap (https://github.com/maccman/macgap)
  ☐ Node Webkit? (https://github.com/rogerwang/node-webkit)
  ☐ update uuid
- ☐ contrast score for bg and fg https://github.com/LeaVerou/contrast-ratio @v0.5
- ☐ undo delete rule @v0.5
- ☐ set some info on the server for SEO when a theme is in URL @v0.5
+ ☐ contrast score for bg and fg https://github.com/LeaVerou/contrast-ratio
+ ☐ undo delete rule
+ ☐ set some info on the server for SEO when a theme is in URL
  ☐ chrome app?
- ☐ setting color with transparency (different alpha channel representation)
- ☐ show line highlight
  ☐ angular performance enhancement
- ☐ show invisibles
  ☐ only work with tmtheme files. reject others, error handling
  ☐ try to make it work in other browsers
  ☐ cache the parsed theme and lang to disk (to hopefully make it faster)
  ☐ webworker to do processing in bg (https://github.com/ramesaliyev/EasyWebWorker)
  ☐ upgrade bootstrap
- ☐ ng-cloak on stats page
+
+More Languages Support:
+ ☐ Java
+ ☐ PHP
+ ☐ Perl
+ ☐ GO
+ ☐ LESS
+ ☐ SCSS
+ ☐ Shell
+ ☐ Markdown
+ ☐ C/C++
+ ☐ C#
+ ☐ Objective-C
+ ☐ Haskell
+ ☐ Erlang
+ ☐ ASP
+ ☐ Scala
+ ☐ Lua
 
 DID YOU KNOW YOU CAN:
  ☐ drag and drop and reorder scopes
@@ -143,24 +135,4 @@ TmThemeEditor Companion:
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
- ✔ color picker issues @done (14-01-26 23:27) @project(BUG)
- ✔ if name is empty use the scope, shortened (example https://raw2.github.com/hanakin/CodeRunner-sublime-theme/master/CodeRunner.tmTheme) @done (14-01-26 22:26)
- ✔ use just underline to highlight scope @done (14-01-26 22:22)
- ✔ load monokai by default @done (14-01-26 22:06)
- ✔ fix stats loading @done (14-01-26 22:06)
- ✔ inline-editing popover should be placed better @done (13-08-05 03:16) @project(Scope bar)
- ✔ auto close edit popover @done (13-08-05 03:16) @project(Scope bar)
- ✔ correctly find matching rule @done (13-08-05 00:13) @project(Scope bar)
- ✔ no more partial loading @done (13-08-04 21:59) @project(Scope bar)
- ✔ shorten scope bar text @done (13-08-04 21:46) @project(Scope bar)
- ✔ scroll to view @done (13-08-04 20:54) @project(Scope bar)
- ✔ bring back scope bar @done (13-08-04 20:28) @project(ruby parser)
- ✔ automate compiling of all suported languages @done (13-08-04 19:11) @project(ruby parser)
- ✔ remeber current lang @done (13-07-31 02:01) @project(TODO)
- ✔ show original Theme URL @v0.4 @done (13-07-31 01:01) @project(TODO)
- ✔ support for HTML,CSS,JS,Ruby,Python and other languages @v0.4 @done (13-07-31 00:17) @project(TODO)
- ✔ allow users to delete local files @v0.4 @done (13-07-29 14:12) @project(TODO)
- ✔ update url when loading local files @done (13-07-29 01:40) @project(TODO)
- ✔ list local copyies available from file API @done (13-07-29 01:08) @project(TODO)
- ✔ indicate a local file @v0.4 @done (13-07-28 00:09) @project(TODO)
- ✔ preview a theme without uploading and by just providing the url @v0.4 @done (13-07-27 20:55) @project(TODO)
+ ✘ replace B,I,U ckeckboxes with button groups @cancelled (14-01-27 13:29) @project(TODO)
