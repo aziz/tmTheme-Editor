@@ -42,6 +42,19 @@ As a side project I started to write a tmLanguage parser in javascript to be abl
 written in [coffeescript](http://coffeescript.org/) using [angular.js](angularjs.org)
 
 
+## Install
+
+```bash
+git clone git@github.com:aziz/tmTheme-Editor.git
+cd tmTheme-editor
+./start.sh
+```
+
+The `start` script will:
+
+- Run `npm install` if *node_modules* is missing;
+- Bring up the express server at [http://localhost:9999](http://localhost:9999)
+
 ## Copyright
 **TMThemeEditor**  
 &copy; Copyright 2012-2013 Allen Bargi
