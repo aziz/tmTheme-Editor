@@ -13,10 +13,10 @@
     "express": "3.2.5",
     "connect-assets": "2.4.3",
     "less": "1.3.3",
-    "ejs-locals": "*",
-    "coffee-script": "*",
-    "sugar": "*",
-    "request": "*"
+    "ejs-locals": "1.0.2",
+    "coffee-script": "1.6.3",
+    "sugar": "1.3.8",
+    "request": "2.25.0"
   },
   "devDependencies": {
     "nodemon": "*"
