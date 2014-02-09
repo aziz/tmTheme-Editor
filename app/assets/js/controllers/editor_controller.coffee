@@ -1,4 +1,4 @@
-Application.controller "editorController", ['$scope', '$http', '$location', 'ThemeLoader'], ($scope, $http, $location, ThemeLoader) ->
+Application.controller "editorController", ['$scope', '$http', '$location', 'ThemeLoader', 'throbber'], ($scope, $http, $location, ThemeLoader, throbber) ->
 
   $scope.is_browser_supported = window.chrome
   $scope.last_cached_theme = $.cookie('last_theme')
@@ -53,33 +53,39 @@ Application.controller "editorController", ['$scope', '$http', '$location', 'The
   clamp = (val) -> Math.min(1, Math.max(0, val))
 
   # -- Initializing ----------------------------------------------
+  $scope.$on "$locationChangeStart", (event, nextLocation, currentLocation) ->
 
-  # There's theme name in URL
-  if $location.path() && $location.path().replace("/","").length > 0
-    $scope.theme_type = ""
-    theme = $location.path().replace("/","")
-  # There's a theme-url in URL
-  else if window.location.search.startsWith("?url=")
-    $scope.theme_type = "External URL"
-    theme_url = window.location.search.replace(/%22/g,"").replace(/\?url=/g,"")
-    console.log "Loading from URL (not in the gallery) (#{theme_url})"
-  # There's a theme locally saved
-  else if $scope.last_cached_theme
-    $scope.theme_type = "Local File"
-    $location.search("local", $scope.last_cached_theme)
-    console.log "Loading from local file system"
-  # Loading Default theme
-  else
-    theme = "Monokai"
-    $location.path("Monokai")
+    # There's theme name in URL
+    if $location.path() && $location.path().startsWith("/theme/")
+      $scope.theme_type = ""
+      theme = $location.path().replace("/theme/","")
+    # There's a theme-url in URL
+    else if $location.path() && $location.path().startsWith("/url/")
+      $scope.theme_type = "External URL"
+      theme_url = $location.path().replace("/url/","")
+      console.log "Loading from URL (not in the gallery) (#{theme_url})"
+    # There's a theme locally saved
+    else if $location.path() && $location.path().startsWith("/local/")
+      $scope.theme_type = "Local File"
+      console.log "Loading from local file system"
+    # Loading Default theme
+    else
+      theme = "Monokai"
+      $location.path("Monokai")
 
-  ThemeLoader.themes.success (data) ->
-    $scope.available_themes = data
-    if theme
-      theme_obj = $scope.available_themes.find (t) -> t.name == theme
-      ThemeLoader.load(theme_obj).success (data) -> $scope.process_theme(data)
-    else if theme_url
-      ThemeLoader.load({ url: theme_url }).success (data) -> $scope.process_theme(data)
+    throbber.on()
+    ThemeLoader.themes.success (data) ->
+      $scope.available_themes = data
+      if theme
+        theme_obj = $scope.available_themes.find (t) -> t.name == theme
+        ThemeLoader.load(theme_obj).success (data) ->
+          $scope.process_theme(data)
+          throbber.off()
+      else if theme_url
+        ThemeLoader.load({ url: theme_url }).success (data) ->
+          $scope.process_theme(data)
+          throbber.off()
+
 
   $scope.process_theme = (data) ->
     $scope.xmlTheme  = data
@@ -98,7 +104,7 @@ Application.controller "editorController", ['$scope', '$http', '$location', 'The
     $scope.fs = fs
     $scope.$apply()
 
-    if $scope.last_cached_theme && !($location.path() && $location.path().replace("/","").length > 0) && !(window.location.search.startsWith("?url="))
+    if $scope.last_cached_theme && $location.path().startsWith("/local/")
       $scope.files.push($scope.last_cached_theme)
       $scope.fs.root.getFile $scope.last_cached_theme, {}, ((fileEntry) ->
         fileEntry.file ((file) ->
@@ -240,6 +246,10 @@ Application.controller "editorController", ['$scope', '$http', '$location', 'The
 
       , FsErrorHandler
     , FsErrorHandler
+
+  $scope.open_from_url = ->
+    url = prompt("Enter the URL of the color scheme: ", "https://raw.github.com/aziz/tmTheme-Editor/master/themes/PlasticCodeWrap.tmTheme")
+    $location.path("/url/#{url}")
 
   # Theme Stylesheet Generator ------------------------------------------
 

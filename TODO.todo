@@ -1,21 +1,31 @@
 
 TODO v. 0.5:
+ ☐ load from url should be done with angular
+ ☐ clear after loading from URL
+ ☐ Error report if can not load from external URL
+
+
  ☐ add open from URL button
- ☐ retina images for UI
+ ☐ sample column in general tab (caret, line highlight, invisible ...)
+ ☐ some general settings are not colors /#/BoxUK
  ☐ BUG: reset color does not remove the key and produce invalid themes
+ ☐ BUG: invert with alpha channel
+ ☐ BUG: reverse the order of scope bar values, match with what is reported in sublime
  ☐ add color input boxes with real color values to edit popovers
+
+ ☐ On-Hover highlight for scopes and galley
+ ☐ use multiple colors for underlining
  ☐ more lang support (Java PHP Perl GO LESS SCSS)
  ☐ ng-cloak on stats page
  ☐ back/forward buttons are not working (IMP)
- ☐ show keyboard shortcuts on ?
  ☐ raise error when the theme in url is not found in gallery
  ☐ gallery and editor controllers both load all themes (make it a service)
- ☐ some general settings are not colors /#/BoxUK
  ☐ position sticky for sidebar table headers (https://github.com/davist11/jQuery-Stickem or https://github.com/laertejjunior/freezeheader)
  ☐ new button
  ☐ use infinite scroll on gallery (https://github.com/BinaryMuse/ngInfiniteScroll)
  ☐ setting color with transparency (different alpha channel representation)
- ☐ sample column in general tab (caret, line highlight, invisible ...)
+ ☐ scroll scope into view with animation when hovering over code
+ ☐ show keyboard shortcuts on ?
 
 ruby parser:
  ☐ bring textpow inline and improve it
@@ -25,6 +35,7 @@ Scope bar:
  ☐ if no scope is found open new popover and fill it in
 
 local files:
+ ☐ redirect after upload
  ☐ redirect after delete
  ☐ highlight current theme/local file after reload
  ☐ move theme counts to sub headers
@@ -33,6 +44,7 @@ local files:
  ☐ remember external URL in localstorage and show it in sidebar
 
 TODO:
+ ☐ retina images for UI
  ☐ document on wiki: how to integrate with editor
  ☐ db: voting/popular/trending
  ☐ navigating with keyboard shortcuts (up and down to traverse the rules, enter to open, ctrl+delete to delete, ctrl+s to save, ...)

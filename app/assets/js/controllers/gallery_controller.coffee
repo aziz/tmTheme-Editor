@@ -13,16 +13,12 @@ Application.controller "galleryController", ['$scope', '$http', '$location', '$t
 
   $scope.load_theme = (theme) ->
     return if $scope.selected_theme == theme
-    throbber.on()
     $("#edit-popover, #new-popover").hide()
     $scope.$parent.theme_type = ""
     $scope.$parent.scopes_filter.name = null
     $location.search("local", null)
-    $location.path(theme.name)
+    $location.path("/theme/#{theme.name}")
     $scope.selected_theme = theme
-    ThemeLoader.load(theme).success (data) ->
-      $scope.$parent.process_theme(data)
-      throbber.off()
 
   $scope.is_selected_theme = (theme) -> theme == $scope.selected_theme
 
@@ -47,8 +43,7 @@ Application.controller "galleryController", ['$scope', '$http', '$location', '$t
         reader = new FileReader()
         reader.onloadend = (e) ->
           $scope.$parent.process_theme(this.result.trim())
-          $location.search("local",theme.name)
-          $location.path("/")
+          $location.path("/local/#{theme.name}")
           $scope.$parent.$apply()
           throbber.off()
         reader.readAsText file

@@ -5,7 +5,19 @@
   </a>
   <div class="btn-toolbar new-upload">
     <div class="btn-group">
-      <a id="upload-btn" class="btn btn-info btn-small">Open</a>
+      <a class="btn btn-small btn-info dropdown-toggle" data-toggle="dropdown" href="#">
+        Open
+        <span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu">
+        <li>
+          <a href="#">
+            from local file…
+            <input type="file" id="files" class="upload" ng-model="input" onchange="angular.element(this).scope().setFiles(this)" />
+          </a>
+        </li>
+        <li><a ng-click="open_from_url()">from URL…</a></li>
+      </ul>
     </div>
   </div>
   <div ng-class="gallery" class="btn-toolbar dl-save">
@@ -16,8 +28,9 @@
       </a>
     </div>
   </div>
-  <input type="file" id="files" class="upload"
-         ng-model="input" onchange="angular.element(this).scope().setFiles(this)" />
+<!--   <input type="file" id="files" class="upload"
+         ng-model="input" onchange="angular.element(this).scope().setFiles(this)" /> -->
+
 
   <div ng-class="gallery" class="sep"></div>
   <div ng-cloak ng-class="gallery" ng-show="jsonTheme" class="theme-title">

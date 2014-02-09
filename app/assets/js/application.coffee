@@ -19,12 +19,3 @@
 
 $ ->
   $("[data-toggle='tooltip']").tooltip()
-  uploadBtn = $("#upload-btn")
-  uploadInput = $("#files")
-  uploadInput.mouseenter -> uploadBtn.addClass("hover")
-  uploadInput.mouseleave -> uploadBtn.removeClass("hover")
-  uploadInput.click ->
-    uploadBtn.addClass("active")
-    delayed = ->
-      uploadBtn.removeClass("hover").removeClass("active")
-    setTimeout(delayed,1200)
