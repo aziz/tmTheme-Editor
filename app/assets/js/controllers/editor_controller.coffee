@@ -62,11 +62,11 @@ Application.controller "editorController", ['$scope', '$http', '$location', 'The
     else if $location.path() && $location.path().startsWith("/url/")
       $scope.theme_type = "External URL"
       theme_url = $location.path().replace("/url/","")
-      console.log "Loading from URL (not in the gallery) (#{theme_url})"
+      # console.log "Loading from URL (not in the gallery) (#{theme_url})"
     # There's a theme locally saved
     else if $location.path() && $location.path().startsWith("/local/")
       $scope.theme_type = "Local File"
-      console.log "Loading from local file system"
+      # console.log "Loading from local file system"
     # Loading Default theme
     else
       theme = "Monokai"
@@ -166,6 +166,34 @@ Application.controller "editorController", ['$scope', '$http', '$location', 'The
 
   $timeout(list_local_files, 500)
 
+  $scope.open_from_url = (theme) ->
+    if theme
+      return if $scope.selected_theme == theme
+      $scope.selected_theme = theme
+      $location.path("/url/#{theme.url}")
+    else
+      url = prompt("Enter the URL of the color scheme: ", "https://raw.github.com/aziz/tmTheme-Editor/master/themes/PlasticCodeWrap.tmTheme")
+      if url
+        $location.path("/url/#{url}")
+        # saving to localStorage
+        name = url.split("/").last()
+        current_theme_obj = {name: name, url: url}
+        unless $scope.external_themes.find(current_theme_obj)
+          $scope.external_themes.push(current_theme_obj)
+          localStorage.setItem("external_themes", JSON.stringify($scope.external_themes))
+
+  $scope.remove_external_theme = (theme) ->
+      $scope.external_themes.remove(theme)
+      localStorage.setItem("external_themes", JSON.stringify($scope.external_themes))
+      if $location.path() == "/url/#{theme.url}"
+        $location.path("/")
+
+  $scope.external_themes = JSON.parse(localStorage.getItem("external_themes")) or []
+  $scope.isThereExternalThemes = -> $scope.external_themes.length > 0
+
+
+  $scope.selected_theme = null
+  $scope.is_selected_theme = (theme) -> theme == $scope.selected_theme
 
   # Drag & Drop ---------------------------------------------
   dropZone = document.getElementById('drop_zone')
@@ -272,10 +300,6 @@ Application.controller "editorController", ['$scope', '$http', '$location', 'The
 
       , FsErrorHandler
     , FsErrorHandler
-
-  $scope.open_from_url = ->
-    url = prompt("Enter the URL of the color scheme: ", "https://raw.github.com/aziz/tmTheme-Editor/master/themes/PlasticCodeWrap.tmTheme")
-    $location.path("/url/#{url}") if url
 
   # Theme Stylesheet Generator ------------------------------------------
 

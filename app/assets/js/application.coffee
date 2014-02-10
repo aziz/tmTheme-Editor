@@ -1,4 +1,3 @@
-# require vendors/xregexp-3.0.0pre.js
 #= require vendors/sugar-1.3.9.js
 #= require vendors/jquery-2.0.0.js
 #= require vendors/jquery.cookie-1.3.1.js

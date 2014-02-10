@@ -1,7 +1,6 @@
 
 TODO v. 0.5:
- ☐ remember external URL in localstorage and show it in sidebar
- ☐ highlight current theme/local file after reload
+ ☐ highlight current theme/local file/external after reload
  ☐ Error report if can not load from external URL or local
 
  ☐ some general settings are not colors /#/BoxUK
@@ -136,6 +135,7 @@ TmThemeEditor Companion:
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ remember external URL in localstorage and show it in sidebar @done (14-02-10 22:18) @project(TODO v. 0.5)
  ✔ update path after delete local file? @done (14-02-10 12:19) @project(TODO v. 0.5)
  ✔ also clean up last_theme cookie in case the local file gets deleted @done (14-02-10 12:17) @project(TODO v. 0.5)
  ✔ update path after loading local files @done (14-02-10 11:58) @project(TODO v. 0.5)
