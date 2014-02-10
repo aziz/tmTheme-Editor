@@ -53,27 +53,11 @@ Application.controller "galleryController", ['$scope', '$http', '$location', '$t
   $scope.remove_local_theme = (theme) ->
     $scope.$parent.fs.root.getFile theme.name, {create: false}, ((fileEntry) ->
       fileEntry.remove (->
-        console.log "File removed."
+        # console.log "File removed."
         $scope.localFiles.remove(theme)
+        if $location.path() == "/local/#{theme.name}"
+          # console.log "removing deleted theme from path"
+          $location.path("/")
         $scope.$apply()
       ), FsErrorHandler
     ), FsErrorHandler
-
-  $scope.isThereLocalFiles = -> $scope.localFiles.length > 0
-  $scope.localFiles = []
-  toArray = (list) -> Array::slice.call list or [], 0
-  list_local_files = ->
-    dirReader = $scope.$parent.fs.root.createReader()
-    # Call the reader.readEntries() until no more results are returned.
-    readEntries = ->
-      dirReader.readEntries ((results) ->
-        if results.length
-          $scope.localFiles = $scope.localFiles.concat(toArray(results))
-          readEntries()
-        else
-          $scope.$apply()
-      ), FsErrorHandler
-    readEntries() # Start reading dirs.
-
-
-  $timeout(list_local_files, 1000)

@@ -1,7 +1,6 @@
-Application.controller "editorController", ['$scope', '$http', '$location', 'ThemeLoader', 'throbber'], ($scope, $http, $location, ThemeLoader, throbber) ->
+Application.controller "editorController", ['$scope', '$http', '$location', 'ThemeLoader', 'throbber', '$timeout'], ($scope, $http, $location, ThemeLoader, throbber, $timeout) ->
 
   $scope.is_browser_supported = window.chrome
-  $scope.last_cached_theme = $.cookie('last_theme')
   $scope.fs = null
 
   $scope.current_tab   = 'scopes'
@@ -54,7 +53,7 @@ Application.controller "editorController", ['$scope', '$http', '$location', 'The
 
   # -- Initializing ----------------------------------------------
   $scope.$on "$locationChangeStart", (event, nextLocation, currentLocation) ->
-
+    # console.log "locationChangeStart"
     # There's theme name in URL
     if $location.path() && $location.path().startsWith("/theme/")
       $scope.theme_type = ""
@@ -71,9 +70,9 @@ Application.controller "editorController", ['$scope', '$http', '$location', 'The
     # Loading Default theme
     else
       theme = "Monokai"
-      $location.path("Monokai")
+      $location.path("/theme/Monokai")
 
-    throbber.on()
+    throbber.on() unless $scope.theme_type == "Local File"
     ThemeLoader.themes.success (data) ->
       $scope.available_themes = data
       if theme
@@ -104,13 +103,15 @@ Application.controller "editorController", ['$scope', '$http', '$location', 'The
     $scope.fs = fs
     $scope.$apply()
 
-    if $scope.last_cached_theme && $location.path().startsWith("/local/")
-      $scope.files.push($scope.last_cached_theme)
-      $scope.fs.root.getFile $scope.last_cached_theme, {}, ((fileEntry) ->
+    if $location.path().startsWith("/local/")
+      local_theme = $location.path().replace("/local/", "").replace(/%20/g," ")
+      $scope.files.push(local_theme)
+      $scope.fs.root.getFile local_theme, {}, ((fileEntry) ->
         fileEntry.file ((file) ->
           reader = new FileReader()
           reader.onloadend = (e) ->
             $scope.process_theme(this.result.trim())
+            throbber.off()
             $scope.$apply()
           reader.readAsText file
         ), FsErrorHandler
@@ -119,6 +120,7 @@ Application.controller "editorController", ['$scope', '$http', '$location', 'The
   window.requestFileSystem(window.TEMPORARY, 10*1024*1024,  FsInitHandler, FsErrorHandler)
 
   read_files = (files) ->
+    throbber.on()
     for file in files
       #continue unless f.type.match("tmtheme")
       reader = new FileReader()
@@ -129,17 +131,41 @@ Application.controller "editorController", ['$scope', '$http', '$location', 'The
           $scope.fs && $scope.fs.root.getFile file.name, {create: true}, (fileEntry) ->
             fileEntry.createWriter (fileWriter) ->
               fileWriter.onwriteend = (e) ->
-                $.cookie('last_theme', file.name)
-                $scope.last_cached_theme = file.name
+                $scope.$apply ->
+                  $location.path("/local/#{file.name}")
+                  list_local_files()
               blob = new Blob([xml_data], {type: "text/plain"})
               fileWriter.write(blob)
           $scope.process_theme(xml_data)
-          $location.path("")
           $scope.$apply()
+          throbber.off()
 
   $scope.setFiles = (element) ->
     $scope.files.push(file) for file in element.files
     read_files($scope.files)
+
+  $scope.isThereLocalFiles = -> $scope.localFiles.length > 0
+  $scope.localFiles = []
+  toArray = (list) -> Array::slice.call list or [], 0
+
+  list_local_files = ->
+    localFiles = []
+    dirReader = $scope.fs.root.createReader()
+    # Call the reader.readEntries() until no more results are returned.
+    readEntries = ->
+      dirReader.readEntries ((results) ->
+        if results.length
+          localFiles = localFiles.concat(toArray(results))
+          readEntries()
+        else
+          $scope.$apply ->
+            $scope.localFiles = localFiles
+      ), FsErrorHandler
+    readEntries() # Start reading dirs.
+
+
+  $timeout(list_local_files, 500)
+
 
   # Drag & Drop ---------------------------------------------
   dropZone = document.getElementById('drop_zone')
@@ -249,7 +275,7 @@ Application.controller "editorController", ['$scope', '$http', '$location', 'The
 
   $scope.open_from_url = ->
     url = prompt("Enter the URL of the color scheme: ", "https://raw.github.com/aziz/tmTheme-Editor/master/themes/PlasticCodeWrap.tmTheme")
-    $location.path("/url/#{url}")
+    $location.path("/url/#{url}") if url
 
   # Theme Stylesheet Generator ------------------------------------------
 

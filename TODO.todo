@@ -1,13 +1,11 @@
 
 TODO v. 0.5:
- ☐ load from url should be done with angular
- ☐ clear after loading from URL
- ☐ Error report if can not load from external URL
+ ☐ remember external URL in localstorage and show it in sidebar
+ ☐ highlight current theme/local file after reload
+ ☐ Error report if can not load from external URL or local
 
-
- ☐ add open from URL button
- ☐ sample column in general tab (caret, line highlight, invisible ...)
  ☐ some general settings are not colors /#/BoxUK
+ ☐ sample column in general tab (caret, line highlight, invisible ...)
  ☐ BUG: reset color does not remove the key and produce invalid themes
  ☐ BUG: invert with alpha channel
  ☐ BUG: reverse the order of scope bar values, match with what is reported in sublime
@@ -33,15 +31,6 @@ ruby parser:
 
 Scope bar:
  ☐ if no scope is found open new popover and fill it in
-
-local files:
- ☐ redirect after upload
- ☐ redirect after delete
- ☐ highlight current theme/local file after reload
- ☐ move theme counts to sub headers
- ☐ reset local URL http://localhost:9999/?url=https://raw.github.com/tdheff/EmoKid/master/EmoKid.tmTheme#/Amy
- ☐ also clean up last_theme cookie in case the local file gets deleted
- ☐ remember external URL in localstorage and show it in sidebar
 
 TODO:
  ☐ retina images for UI
@@ -147,4 +136,9 @@ TmThemeEditor Companion:
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ update path after delete local file? @done (14-02-10 12:19) @project(TODO v. 0.5)
+ ✔ also clean up last_theme cookie in case the local file gets deleted @done (14-02-10 12:17) @project(TODO v. 0.5)
+ ✔ update path after loading local files @done (14-02-10 11:58) @project(TODO v. 0.5)
+ ✔ load local files @done (14-02-10 11:58) @project(TODO v. 0.5)
+ ✔ add open from URL button @done (14-02-09 20:40) @project(TODO v. 0.5)
  ✘ replace B,I,U ckeckboxes with button groups @cancelled (14-01-27 13:29) @project(TODO)
