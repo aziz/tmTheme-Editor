@@ -27,22 +27,26 @@
 
       .local_theme_title {
         .ellipsis();
-        display: inline-block;
+        display: block;
         width: 165px;
       }
 
       li {
+        position: relative;
+
         .remove_theme {
           display: none;
-          float: right;
           font-size: 21px;
           padding: 0 5px 0 0;
           opacity: .5;
+          position: absolute;
+          top: 0;
+          right: 0;
         }
 
         &:hover {
           .remove_theme {
-            display: inline-block;
+            display: block;
 
             &:hover {
               opacity: 1;
@@ -74,8 +78,8 @@
     line-height: 16px;
     font-size: 11px;
     border-bottom: 1px solid #b6b6b6;
-    border-top: 1px solid transparent;
-    .box-shadow(inset 0 -1px #f4f4f4);
+    border-top: 1px solid #fff;
+    // .box-shadow(inset 0 -1px #f4f4f4);
     text-transform: uppercase;
     font-weight: 600;
     color: #333 !important;
@@ -122,12 +126,15 @@
     .actions {
       @width: 29px;
       @height : 24px;
-      .add { right: 0;}
+      .add {
+        right: 0;
+        border-left: 1px solid #989898;
+      }
 
       .dark_filter, .light_filter  {
         position: absolute;
         top:0;
-        border-left: 1px solid #b6b6b6;
+        border-left: 1px solid #989898;
         width: @width;
         height: @height;
         text-align: center;
@@ -160,13 +167,13 @@
 
       .light_filter {
         right: @width + 1;
-        border-left: 1px solid #b6b6b6;
+        border-left: 1px solid #989898;
         &:before { background-color: #FFF;}
       }
 
       .dark_filter {
         right: @width*2 + 2;
-        border-left: 1px solid #b6b6b6;
+        border-left: 1px solid #989898;
         &:before { background-color: #000;}
       }
     }
