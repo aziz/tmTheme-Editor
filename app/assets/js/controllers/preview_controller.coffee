@@ -1,7 +1,15 @@
 Application.controller "previewController", ['$scope', '$http', '$rootScope','throbber'], ($scope, $http, $rootScope, throbber) ->
 
   $scope.colorized = ''
-  $scope.available_langs = ['Javascript', 'CoffeeScript', 'HTML', 'CSS', 'Ruby', 'Python']
+  $scope.available_langs = [
+    'CoffeeScript',
+    'CSS',
+    'HTML',
+    'Java'
+    'Javascript',
+    'Python',
+    'Ruby',
+  ]
   $scope.current_lang = $.cookie('currnet_lang') || $scope.available_langs.first()
   $scope.set_lang = (lang) -> $scope.current_lang = lang
 

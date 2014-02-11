@@ -49,7 +49,7 @@ TODO:
 
 Low:
  ☐ better readme
- ☐ color picker js https://github.com/bebraw/colorjoe
+ ☐ color picker js https://github.com/bebraw/colorjoe or https://github.com/Jimdo/angular-spectrum-colorpicker
  ☐ being able to auto upload current theme inside sublim to a server and preview it: http://pastie.org/pastes/7745711/text
  ☐ dropbox integration (https://github.com/AnalogJ/dropstore-ng)
  ☐ prefrences: window for changing font/font-size/custom code
