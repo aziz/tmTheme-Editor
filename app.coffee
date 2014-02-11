@@ -37,6 +37,7 @@ app.configure 'production', ->
 app.get '/', routes.index
 app.get '/get_uri', routes.get_uri
 app.get '/stats', routes.stats
+app.post '/parse', routes.parse
 
 http.createServer(app).listen settings.port, ->
   console.log "Express server listening on port #{settings.port} in '#{app.get('env')}' environment"

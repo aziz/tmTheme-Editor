@@ -15,6 +15,13 @@ routes.stats = (req, res) ->
   view = {}
   res.render 'stats', view
 
+routes.parse = (req, res) ->
+  request  = require 'request'
+  parserURI = 'http://localhost:4567/'
+  request.post parserURI, {form: {text: req.body.text, syntax: req.body.syntax} }, (error, response, body) ->
+    res.set 'Content-Type', 'text/plain'
+    res.send body
+
 module.exports = routes
 
 

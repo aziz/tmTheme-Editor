@@ -29,9 +29,16 @@
   </div>
 
   <div ng-class="gallery" ng-show="custom_code_editor_visible" id="custom_code" class="preview custom_code_edtior" >
-    <textarea ng-model="custom_code" ng-focus="custom_code_editor_visible"></textarea>
+    <textarea spellcheck='false' ng-model="custom_code" focus-me="custom_code_editor_visible"></textarea>
+    <div class="cc_header">
+      <p class="pull-left">Paste your code below and press save</p>
+    </div>
   </div>
-
+  <a class="btn btn-small btn-success save_custom_code"
+     ng-show="custom_code_editor_visible"
+     ng-click="update_preview()">
+     &nbsp;&nbsp;Save&nbsp;&nbsp;
+  </a>
 
   <div scope-bar></div>
   <div class="btn-group custom_code_toggle_btn" ng-cloak ng-show="jsonTheme">

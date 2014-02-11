@@ -116,18 +116,41 @@ pre {background-color: transparent;}
     display: block;
     box-sizing: border-box;
     width: 100%;
-    height: 100%;
+    height: ~"calc(100% - 42px)";
     border: 0;
     margin: 0;
-    padding: 5px 10px;
+    top: 42px;
+    padding: 10px;
+    .border-radius(0);
+    resize: none;
   }
 
+  .cc_header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    border-bottom: 1px dotted #bbb;
+    color: #bbb;
+    padding: 8px 10px;
+    background-color: #FFF;
+
+    p {
+      margin-bottom: 0;
+      line-height: 26px;
+    }
+  }
+}
+.save_custom_code {
+  position: fixed;
+  top: 45px;
+  right: 12px;
 }
 
 .custom_code_toggle_btn {
   position: fixed;
   bottom: 3px;
-  right: 180px;
+  right: 175px;
   z-index: 999999;
 }
 
