@@ -12,7 +12,7 @@ TODO v. 0.5:
 
  ☐ On-Hover highlight for scopes and galley
  ☐ use multiple colors for underlining
- ☐ more lang support (Java PHP Perl GO LESS SCSS)
+ ☐ more lang support (PHP Perl GO LESS SCSS)
  ☐ ng-cloak on stats page
  ☐ back/forward buttons are not working (IMP)
  ☐ raise error when the theme in url is not found in gallery

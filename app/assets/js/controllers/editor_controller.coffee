@@ -4,7 +4,7 @@ Application.controller "editorController", ['$scope', '$http', '$location', 'The
   $scope.fs = null
 
   $scope.current_tab   = 'scopes'
-  $scope.scopes_filter = { name: null }
+  $scope.scopes_filter = { name: '' }
   $scope.xmlTheme = ""
   $scope.jsonTheme = ""
   $scope.files = []

@@ -5,23 +5,20 @@ Application.controller "galleryController", ['$scope', '$http', '$location', '$t
       theme.type = if theme.light then "light" else "dark"
     $scope.themes = data
 
-  $scope.filter = {
-    type: null
-    name: null
-  }
+  $scope.filter = {name: ""}
 
   $scope.load_theme = (theme) ->
     return if $scope.selected_theme == theme
     $("#edit-popover, #new-popover").hide()
     $scope.$parent.theme_type = ""
-    $scope.$parent.scopes_filter.name = null
+    $scope.$parent.scopes_filter.name = ''
     $location.search("local", null)
     $location.path("/theme/#{theme.name}")
     $scope.$parent.selected_theme = theme
 
   $scope.toggle_type_filter = (type) ->
     if $scope.filter.type == type
-      $scope.filter.type = null
+      $scope.filter.type = undefined
     else
       $scope.filter.type = type
 
@@ -31,7 +28,7 @@ Application.controller "galleryController", ['$scope', '$http', '$location', '$t
     throbber.on()
     $("#edit-popover, #new-popover").hide()
     $scope.$parent.theme_type = "Local File"
-    $scope.$parent.scopes_filter.name = null
+    $scope.$parent.scopes_filter.name = ''
     $scope.$parent.selected_theme = theme
     $scope.$parent.files.push(theme.name)
     $scope.$parent.fs.root.getFile theme.name, {}, ((fileEntry) ->

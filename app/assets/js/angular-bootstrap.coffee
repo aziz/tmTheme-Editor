@@ -3,7 +3,7 @@ angular.module "ui.filters", ["ui.config"]
 angular.module "ui.directives", ["ui.config"]
 angular.module "ui", ["ui.filters", "ui.directives", "ui.config"]
 
-window.Angular = angular.module('ThemeEditor', ['ui'])
+window.Angular = angular.module('ThemeEditor', ['ngSanitize', 'ui'])
 window.Application = {
   controller: (name, dependencies, fn) ->
     args = dependencies

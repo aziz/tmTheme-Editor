@@ -19,3 +19,7 @@ Application.controller "previewController", ['$scope', '$http', '$rootScope','th
         $.cookie('currnet_lang', $scope.current_lang)
         $scope.colorized = data
         throbber.off()
+
+  # Custom Code
+  $scope.custom_code = ""
+  $scope.custom_code_editor_visible = false

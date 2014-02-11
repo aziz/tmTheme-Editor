@@ -2,7 +2,7 @@
   <div ng-show="current_tab == 'scopes'" >
     <div class="search">
       <input type="search" ng-model="scopes_filter.name">
-      <div ng-show="scopes_filter.name" ng-click="scopes_filter.name = null" class="clear_search">&times;</div>
+      <div ng-show="scopes_filter.name" ng-click="scopes_filter.name = ''" class="clear_search">&times;</div>
     </div>
     <div class="actions">
       <div ng-click="toggle_new_rule_popover()"
