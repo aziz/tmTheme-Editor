@@ -20,7 +20,7 @@
   </div>
 
   <div ng-class="gallery" class="scrollbox" ng-style="{ 'background-color': get_color(bg()), 'color': get_color(fg()) }">
-    <div class="local_themes_list" ng-class="{ 'visible': isThereLocalFiles() }">
+    <div class="local_themes_list" ng-class="{ 'visible': localFiles.length > 0 }">
       <h5>Local Files</h5>
       <ul>
         <li ng-repeat="theme in localFiles | orderBy:'name' | filter: filter"
@@ -32,7 +32,7 @@
       </ul>
     </div>
 
-    <div class="local_themes_list" ng-class="{ 'visible': isThereExternalThemes() }">
+    <div class="local_themes_list" ng-class="{ 'visible': external_themes.length > 0 }">
       <h5>External URLs</h5>
       <ul>
         <li ng-repeat="theme in external_themes | orderBy:'name' | filter: filter"

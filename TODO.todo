@@ -2,9 +2,9 @@
 TODO v. 0.5:
  ☐ language mapper
  ☐ deploy parser to heroku
- ☐ favorites
  ☐ test save
  ☐ test download
+ ☐ favorites
 
  ☐ highlight current theme/local file/external after reload
  ☐ Error report if can not load from external URL or local

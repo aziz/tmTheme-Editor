@@ -144,13 +144,12 @@ Application.controller "editorController", ['$scope', '$http', '$location', 'The
     $scope.files.push(file) for file in element.files
     read_files($scope.files)
 
-  $scope.isThereLocalFiles = -> $scope.localFiles.length > 0
   $scope.localFiles = []
-  toArray = (list) -> Array::slice.call list or [], 0
 
   list_local_files = ->
     localFiles = []
     dirReader = $scope.fs.root.createReader()
+    toArray = (list) -> Array::slice.call list or [], 0
     # Call the reader.readEntries() until no more results are returned.
     readEntries = ->
       dirReader.readEntries ((results) ->
@@ -189,8 +188,6 @@ Application.controller "editorController", ['$scope', '$http', '$location', 'The
         $location.path("/")
 
   $scope.external_themes = JSON.parse(localStorage.getItem("external_themes")) or []
-  $scope.isThereExternalThemes = -> $scope.external_themes.length > 0
-
 
   $scope.selected_theme = null
   $scope.is_selected_theme = (theme) -> theme == $scope.selected_theme
