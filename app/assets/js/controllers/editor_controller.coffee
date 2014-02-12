@@ -1,4 +1,4 @@
-Application.controller "editorController", ['$scope', '$http', '$location', 'ThemeLoader', 'throbber', '$timeout'], ($scope, $http, $location, ThemeLoader, throbber, $timeout) ->
+Application.controller "editorController", ['$scope', '$http', '$location', 'ThemeLoader', 'throbber', '$timeout', '$window'], ($scope, $http, $location, ThemeLoader, throbber, $timeout, $window) ->
 
   $scope.is_browser_supported = window.chrome
   $scope.fs = null
@@ -467,12 +467,12 @@ Application.controller "editorController", ['$scope', '$http', '$location', 'The
 
   $scope.open_theme_url = ->
     if $scope.theme_type == "External URL"
-      url = window.location.search.replace("?url=","")
-      window.open(url)
+      url = $location.path().replace("/url/","")
+      $window.open(url)
     else
-      theme =  $location.path().replace(/\//g,"")
+      theme =  $location.path().replace("/theme/","")
       theme_obj = $scope.available_themes.find (t) -> t.name == theme
-      window.open(theme_obj.url)
+      $window.open(theme_obj.url)
 
 
   $scope.$watch "edit_popover_visible", (n,o) ->

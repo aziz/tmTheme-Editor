@@ -1,9 +1,18 @@
 
 TODO v. 0.5:
+ ☐ BUG: edit popovers after loading new theme does not work
+ ☐ open original theme url is broken
+ ☐ language mapper
+ ☐ deploy parser to heroku
+ ☐ favorites
+ ☐ stop animation on scrollintoview when adding new scroll
+ ☐ test save
+ ☐ test download
+
  ☐ highlight current theme/local file/external after reload
  ☐ Error report if can not load from external URL or local
 
- ☐ some general settings are not colors /#/BoxUK
+ ☐ some general settings are not colors /#/BoxUK (3 end with options and are text)
  ☐ sample column in general tab (caret, line highlight, invisible ...)
  ☐ BUG: reset color does not remove the key and produce invalid themes
  ☐ BUG: invert with alpha channel
@@ -13,16 +22,14 @@ TODO v. 0.5:
  ☐ On-Hover highlight for scopes and galley
  ☐ use multiple colors for underlining
  ☐ more lang support (PHP Perl GO LESS SCSS)
- ☐ ng-cloak on stats page
  ☐ back/forward buttons are not working (IMP)
  ☐ raise error when the theme in url is not found in gallery
  ☐ gallery and editor controllers both load all themes (make it a service)
- ☐ position sticky for sidebar table headers (https://github.com/davist11/jQuery-Stickem or https://github.com/laertejjunior/freezeheader)
+ ☐ position sticky for sidebar table headers (https://github.com/davist11/jQuery-Stickem or https://github.com/laertejjunior/freezeheader or http://mkoryak.github.io/floatThead/)
  ☐ new button
  ☐ use infinite scroll on gallery (https://github.com/BinaryMuse/ngInfiniteScroll)
  ☐ setting color with transparency (different alpha channel representation)
- ☐ scroll scope into view with animation when hovering over code
- ☐ show keyboard shortcuts on ?
+
 
 ruby parser:
  ☐ bring textpow inline and improve it
@@ -135,6 +142,10 @@ TmThemeEditor Companion:
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ ng-cloak on stats page @done (14-02-12 04:13) @project(TODO v. 0.5)
+ ✔ scroll scope into view with animation when hovering over code @done (14-02-12 04:03) @project(TODO v. 0.5)
+ ✔ slide in animation for headers in gallery! @done (14-02-12 03:11) @project(TODO v. 0.5)
+ ✔ scope bar is broken @done (14-02-12 03:09) @project(TODO v. 0.5)
  ✔ remember external URL in localstorage and show it in sidebar @done (14-02-10 22:18) @project(TODO v. 0.5)
  ✔ update path after delete local file? @done (14-02-10 12:19) @project(TODO v. 0.5)
  ✔ also clean up last_theme cookie in case the local file gets deleted @done (14-02-10 12:17) @project(TODO v. 0.5)

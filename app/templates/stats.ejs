@@ -8,7 +8,7 @@
 
 <body ng-app="ThemeEditor">
 
-<div ng-controller="StatsController">
+<div ng-cloak ng-controller="StatsController">
 
   <header id="header">
     <a href="/" class="btn btn-info btn-small"><i class="icon-white icon-arrow-left"></i> Back to editor</a>
@@ -86,7 +86,7 @@
           <tbody>
             <tr ng-repeat="theme in themes | orderBy:predicate:reverse">
               <td>{{ $index + 1 }}</td>
-              <td><a ng-href="/#/{{ theme.name }}">{{ theme.name }}</a></td>
+              <td><a ng-href="/#/theme/{{ theme.name }}">{{ theme.name }}</a></td>
               <td>{{ theme.jsonTheme.author.truncate(22) }}</td>
               <td>{{ theme.jsonTheme.settings.length }}</td>
               <td>

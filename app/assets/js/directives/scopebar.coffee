@@ -25,8 +25,8 @@ Application.directive "scopeBar", ['$timeout'], ($timeout) ->
         # Highlight in sidebar
         scope.$parent.hovered_element_scope = final_element_scope
         scope.$parent.hovered_rule = active_scope_rule
-        tmp = -> $(".hovered")[0]?.scrollIntoView()
-        $timeout tmp, 200
+        tmp = -> $(".hovered").scrollintoview({duration: 600, direction: "vertical"})
+        $timeout tmp, 20
 
     # MOUSE OUT ----------------------------
     preview.bind "mouseout", (event) ->
