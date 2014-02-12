@@ -20,7 +20,8 @@
 
 	var settings = {
 		duration: "fast",
-		direction: "both"
+		direction: "both",
+		viewPadding: 0
 	};
 
 	var rootrx = /^(?:html)$/i;
@@ -46,27 +47,25 @@
 	};
 
 	var dimensions = function ($element) {
-		var win = $(window);
-		var isRoot = rootrx.test($element[0].nodeName);
+		var elem = $element[0],
+			isRoot = rootrx.test(elem.nodeName),
+			$elem = isRoot ? $(window) : $element;
 		return {
-			border: isRoot ? { top: 0, left: 0, bottom: 0, right: 0} : borders($element[0]),
+			border: isRoot ? { top: 0, left: 0, bottom: 0, right: 0} : borders(elem),
 			scroll: {
-				top: (isRoot ? win : $element).scrollTop(),
-				left: (isRoot ? win : $element).scrollLeft()
+				top: $elem.scrollTop(),
+				left: $elem.scrollLeft(),
+				maxtop: elem.scrollHeight - elem.clientHeight,
+				maxleft: elem.scrollWidth - elem.clientWidth
 			},
-			scrollbar: {
-				right: isRoot ? 0 : $element.innerWidth() - $element[0].clientWidth,
-				bottom: isRoot ? 0 : $element.innerHeight() - $element[0].clientHeight
-			},
-			rect: (function () {
-				var r = $element[0].getBoundingClientRect();
-				return {
-					top: isRoot ? 0 : r.top,
-					left: isRoot ? 0 : r.left,
-					bottom: isRoot ? $element[0].clientHeight : r.bottom,
-					right: isRoot ? $element[0].clientWidth : r.right
-				};
-			})()
+			scrollbar: isRoot
+				? { right: 0, bottom: 0 }
+				: {
+					right: $elem.innerWidth() - elem.clientWidth,
+					bottom: $elem.innerHeight() - elem.clientHeight
+				}
+			,
+			rect: isRoot ? { top: 0, left: 0, bottom: elem.clientHeight, right: elem.clientWidth } : elem.getBoundingClientRect()
 		};
 	};
 
@@ -83,12 +82,23 @@
 			options = $.extend({}, settings, options);
 			options.direction = converter[typeof (options.direction) === "string" && options.direction.toLowerCase()] || converter.both;
 
+			if (typeof options.viewPadding == "number") {
+				options.viewPadding = { x: options.viewPadding , y: options.viewPadding };
+			} else if (typeof options.viewPadding == "object") {
+				if (options.viewPadding.x == undefined) {
+					options.viewPadding.x = 0;
+				}
+				if (options.viewPadding.y == undefined) {
+					options.viewPadding.y = 0;
+				}
+			}
+
 			var dirStr = "";
 			if (options.direction.x === true) dirStr = "horizontal";
 			if (options.direction.y === true) dirStr = dirStr ? "both" : "vertical";
 
 			var el = this.eq(0);
-			var scroller = el.closest(":scrollable(" + dirStr + ")");
+			var scroller = el.parent().closest(":scrollable(" + dirStr + ")");
 
 			// check if there's anything to scroll in the first place
 			if (scroller.length > 0)
@@ -107,18 +117,18 @@
 					right: dim.s.rect.right - dim.s.border.right - dim.s.scrollbar.right - dim.e.rect.right
 				};
 
-				var animOptions = {};
+				var animProperties = {};
 
 				// vertical scroll
 				if (options.direction.y === true)
 				{
 					if (rel.top < 0)
 					{
-						animOptions.scrollTop = dim.s.scroll.top + rel.top;
+						animProperties.scrollTop = Math.max(0, dim.s.scroll.top + rel.top - options.viewPadding.y);
 					}
 					else if (rel.top > 0 && rel.bottom < 0)
 					{
-						animOptions.scrollTop = dim.s.scroll.top + Math.min(rel.top, -rel.bottom);
+						animProperties.scrollTop = Math.min(dim.s.scroll.top + Math.min(rel.top, -rel.bottom) + options.viewPadding.y, dim.s.scroll.maxtop);
 					}
 				}
 
@@ -127,28 +137,49 @@
 				{
 					if (rel.left < 0)
 					{
-						animOptions.scrollLeft = dim.s.scroll.left + rel.left;
+						animProperties.scrollLeft = Math.max(0, dim.s.scroll.left + rel.left - options.viewPadding.x);
 					}
 					else if (rel.left > 0 && rel.right < 0)
 					{
-						animOptions.scrollLeft = dim.s.scroll.left + Math.min(rel.left, -rel.right);
+						animProperties.scrollLeft = Math.min(dim.s.scroll.left + Math.min(rel.left, -rel.right) +  options.viewPadding.x, dim.s.scroll.maxleft);
 					}
 				}
 
 				// scroll if needed
-				if (!$.isEmptyObject(animOptions))
+				if (!$.isEmptyObject(animProperties))
 				{
-					if (rootrx.test(scroller[0].nodeName))
-					{
+					var scrollExpect = {},
+						scrollListener = scroller;
+
+					if (rootrx.test(scroller[0].nodeName)) {
 						scroller = $("html,body");
+						scrollListener = $(window);
 					}
+
+					function animateStep(now, tween) {
+						scrollExpect[tween.prop] = Math.floor(now);
+					};
+					function onscroll(event) {
+						$.each(scrollExpect, function(key, value) {
+							if (scrollListener[key]() != value) {
+								options.complete = null;	// don't run complete function if the scrolling was interrupted
+								scroller.stop('scrollintoview');
+							}
+						});
+					}
+					scrollListener.on('scroll', onscroll);
+
 					scroller
-						.animate(animOptions, options.duration)
+						.stop('scrollintoview')
+						.animate(animProperties, { duration: options.duration, step: animateStep, queue: 'scrollintoview' })
 						.eq(0) // we want function to be called just once (ref. "html,body")
-						.queue(function (next) {
+						.queue('scrollintoview', function (next) {
+							scrollListener.off('scroll', onscroll);
 							$.isFunction(options.complete) && options.complete.call(scroller[0]);
 							next();
-						});
+						})
+
+					scroller.dequeue('scrollintoview');
 				}
 				else
 				{
