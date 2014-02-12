@@ -99,7 +99,9 @@
       cursor: pointer;
       background-position: center center;
       background-repeat: no-repeat;
-      .hide-text();
+      color: #333;
+      font-size: 8px;
+      line-height: @height + 2px;
 
       &:active, &.active {
         background-color: rgba(0,0,0,.2);
@@ -108,7 +110,6 @@
     }
     .add {
       right: @width + 1;
-      background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAOElEQVQYV6WNsQnAQBDDbhnL+0+oVA/XPCGkUCEj8KhzAGzr3mZLEoGPAWCSK9NWwB0eB3y/+B08ToaTzd0fv1MAAAAASUVORK5CYII=);
       border-left: 1px solid #b6b6b6;
     }
   }
@@ -127,17 +128,28 @@
 
   .search {
     &:after {
-      content: "";
+      content: "\e002";
       display: block;
       position: absolute;
-      top: 8px;
-      left: 8px;
+      top: 9px;
+      left: 10px;
       z-index: 999999;
       width: 16px;
       height: 16px;
-      background: url(/images/glyphicons-halflings.png) no-repeat;
-      background-position: -46px 0;
-      opacity: 0.8;
+      font-size: 13px;
+      opacity: 0.75;
+      font-family: "tmthemeeditor" !important;
+      font-style: normal !important;
+      font-weight: normal !important;
+      font-variant: normal !important;
+      text-transform: none !important;
+      speak: none;
+      line-height: 1;
+      color: #333;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      .scale(1.25);
+      display: inline-block;
     }
 
     .clear_search {
@@ -175,7 +187,10 @@
       cursor: pointer;
       background-position: center center;
       background-repeat: no-repeat;
-      .hide-text();
+      color: #333;
+      font-size: 8px;
+      line-height: @height + 2px;
+      // .hide-text();
 
       &:active:not(.disabled), &.active:not(.disabled) {
         background-color: rgba(0,0,0,.2);
@@ -184,13 +199,13 @@
     }
     .add {
       right:0;
-      background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAOElEQVQYV6WNsQnAQBDDbhnL+0+oVA/XPCGkUCEj8KhzAGzr3mZLEoGPAWCSK9NWwB0eB3y/+B08ToaTzd0fv1MAAAAASUVORK5CYII=);
+      // background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAOElEQVQYV6WNsQnAQBDDbhnL+0+oVA/XPCGkUCEj8KhzAGzr3mZLEoGPAWCSK9NWwB0eB3y/+B08ToaTzd0fv1MAAAAASUVORK5CYII=);
       border-left: 1px solid #b6b6b6;
     }
     .remove {
       right: @width + 1;
       border-left: 1px solid #b6b6b6;
-      background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAACCAIAAADq9gq6AAAAFElEQVQIHWMKDg4OxAaYgIARGwAAICwHvtVSQl4AAAAASUVORK5CYII=);
+      // background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAACCAIAAADq9gq6AAAAFElEQVQIHWMKDg4OxAaYgIARGwAAICwHvtVSQl4AAAAASUVORK5CYII=);
 
       &.disabled {
         opacity: 0.3;

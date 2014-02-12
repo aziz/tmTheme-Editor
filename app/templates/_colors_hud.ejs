@@ -6,13 +6,19 @@
   <div class="hud_body">
 
     <div class="hud_box">
-      <label>Brightness</label>
+      <label>
+        <i class="icon-brightness"></i>&nbsp;
+        Brightness
+      </label>
       <input type="range" ng-change="update_colors()" min="-150" max="150" ng-model="brightness">
       <input type="text" ng-change="update_colors()" min="-150" max="150" ng-model="brightness">
     </div>
 
     <div class="hud_box">
-      <label>Contrast</label>
+      <label>
+        <i class="icon-contrast"></i>&nbsp;
+        Contrast
+      </label>
       <input type="range" ng-change="update_colors()" min="-100" max="300" ng-model="saturation">
       <input type="text" ng-change="update_colors()" min="-150" max="150" ng-model="saturation">
     </div>

@@ -1,5 +1,8 @@
 
 TODO v. 0.5:
+ ☐ test external file from url
+ ☐ external file remove %20
+ ☐ do not store hashkey to localstorge
  ☐ language mapper
  ☐ deploy parser to heroku
  ☐ test save
@@ -139,6 +142,7 @@ TmThemeEditor Companion:
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ using custom fonts for UI @done (14-02-12 20:48) @project(TODO v. 0.5)
  ✔ stop animation on scrollintoview when adding new scroll @done (14-02-12 15:18) @project(TODO v. 0.5)
  ✔ BUG: color adjust hud goes under bottom bottons @done (14-02-12 15:02) @project(TODO v. 0.5)
  ✔ open original theme url is broken @done (14-02-12 15:01) @project(TODO v. 0.5)

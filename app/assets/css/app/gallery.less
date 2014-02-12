@@ -215,17 +215,28 @@
     }
 
     &:after {
-      content: "";
+      content: "\e002";
       display: block;
       position: absolute;
-      top: 8px;
-      left: 8px;
+      top: 9px;
+      left: 10px;
       z-index: 999999;
       width: 16px;
       height: 16px;
-      background: url(/images/glyphicons-halflings.png) no-repeat;
-      background-position: -46px 0;
-      opacity: 0.8;
+      font-size: 13px;
+      opacity: 0.75;
+      font-family: "tmthemeeditor" !important;
+      font-style: normal !important;
+      font-weight: normal !important;
+      font-variant: normal !important;
+      text-transform: none !important;
+      speak: none;
+      line-height: 1;
+      color: #333;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      .scale(1.25);
+      display: inline-block;
     }
   }
 

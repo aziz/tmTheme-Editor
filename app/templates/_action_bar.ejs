@@ -7,10 +7,14 @@
     <div class="actions">
       <div ng-click="toggle_new_rule_popover()"
            ng-class="{'active': new_popover_visible }" class="add"
-           data-toggle="tooltip" data-placement="top" title="Add">+</div>
+           data-toggle="tooltip" data-placement="top" title="Add">
+        <i class="icon-plus"></i>
+      </div>
       <div ng-click="delete_rule(selected_rule)"
            ng-class="{'disabled': !selected_rule }" class="remove"
-           data-toggle="tooltip" data-placement="top" title="Remove">-</div>
+           data-toggle="tooltip" data-placement="top" title="Remove">
+        <i class="icon-minus"></i>
+      </div>
     </div>
   </div>
 
