@@ -361,8 +361,8 @@ Application.controller "editorController", ['$scope', '$http', '$location', 'The
   # ---------------------------------------------------------------------
 
   $scope.toggle_edit_popover = (rule, rule_index) ->
-    $scope.new_popover_visible = false
     $scope.popover_rule = rule
+    $scope.new_popover_visible = false
     $scope.edit_popover_visible = true
     row = $("#scope-lists .rule-#{rule_index}")
     win_height = $(window).height()
@@ -388,20 +388,15 @@ Application.controller "editorController", ['$scope', '$http', '$location', 'The
       }).removeClass("on-top").removeClass("on-bottom")
 
     $("#preview, #gallery").one "click", (e) ->
-      $scope.edit_popover_visible = false
-      $scope.$digest()
+      $scope.$apply ->
+        $scope.edit_popover_visible = false
 
-    if $scope.edit_popover_visible
-      focus = -> $("#edit-popover .name-input").focus()
-      setTimeout(focus, 0)
+    return
 
   $scope.toggle_new_rule_popover = ->
     $scope.edit_popover_visible = false
     $scope.new_rule = Object.clone($scope.new_rule_pristine, true)
     $scope.new_popover_visible = !$scope.new_popover_visible
-    if $scope.new_popover_visible
-      focus = -> $("#new-popover .name-input").focus()
-      setTimeout(focus, 0)
 
   $scope.close_popover = -> $scope.edit_popover_visible = false
 
@@ -473,6 +468,8 @@ Application.controller "editorController", ['$scope', '$http', '$location', 'The
       theme =  $location.path().replace("/theme/","")
       theme_obj = $scope.available_themes.find (t) -> t.name == theme
       $window.open(theme_obj.url)
+
+    return
 
 
   $scope.$watch "edit_popover_visible", (n,o) ->

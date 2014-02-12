@@ -9,7 +9,8 @@ Application.controller "galleryController", ['$scope', '$http', '$location', '$t
 
   $scope.load_theme = (theme) ->
     return if $scope.selected_theme == theme
-    $("#edit-popover, #new-popover").hide()
+    $scope.$parent.new_popover_visible = false
+    $scope.$parent.edit_popover_visible = false
     $scope.$parent.theme_type = ""
     $scope.$parent.scopes_filter.name = ''
     $location.search("local", null)

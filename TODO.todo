@@ -1,7 +1,5 @@
 
 TODO v. 0.5:
- ☐ BUG: edit popovers after loading new theme does not work
- ☐ open original theme url is broken
  ☐ language mapper
  ☐ deploy parser to heroku
  ☐ favorites
@@ -18,12 +16,12 @@ TODO v. 0.5:
  ☐ BUG: invert with alpha channel
  ☐ BUG: reverse the order of scope bar values, match with what is reported in sublime
  ☐ add color input boxes with real color values to edit popovers
+ ☐ more lang support (PHP Perl GO LESS SCSS)
 
+ Later:
  ☐ On-Hover highlight for scopes and galley
  ☐ use multiple colors for underlining
- ☐ more lang support (PHP Perl GO LESS SCSS)
  ☐ back/forward buttons are not working (IMP)
- ☐ raise error when the theme in url is not found in gallery
  ☐ gallery and editor controllers both load all themes (make it a service)
  ☐ position sticky for sidebar table headers (https://github.com/davist11/jQuery-Stickem or https://github.com/laertejjunior/freezeheader or http://mkoryak.github.io/floatThead/)
  ☐ new button
@@ -142,6 +140,9 @@ TmThemeEditor Companion:
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ BUG: edit popovers after loading new theme does not work @done (14-02-12 15:00) @project(TODO v. 0.5)
+ ✔ open original theme url is broken @done (14-02-12 15:01) @project(TODO v. 0.5)
+ ✔ BUG: color adjust hud goes under bottom bottons @done (14-02-12 15:02) @project(TODO v. 0.5)
  ✔ ng-cloak on stats page @done (14-02-12 04:13) @project(TODO v. 0.5)
  ✔ scroll scope into view with animation when hovering over code @done (14-02-12 04:03) @project(TODO v. 0.5)
  ✔ slide in animation for headers in gallery! @done (14-02-12 03:11) @project(TODO v. 0.5)
