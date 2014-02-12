@@ -20,3 +20,4 @@
 
 $ ->
   $("[data-toggle='tooltip']").tooltip()
+  $("#loading").remove() unless window.chrome

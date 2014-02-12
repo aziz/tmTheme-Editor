@@ -1,12 +1,14 @@
 
 TODO v. 0.5:
- ☐ test external file from url
- ☐ external file remove %20
+ ☐ test external file directly from url
  ☐ do not store hashkey to localstorge
+
  ☐ language mapper
  ☐ deploy parser to heroku
+
  ☐ test save
  ☐ test download
+
  ☐ favorites
 
  ☐ highlight current theme/local file/external after reload
@@ -14,9 +16,11 @@ TODO v. 0.5:
 
  ☐ some general settings are not colors /#/BoxUK (3 end with options and are text)
  ☐ sample column in general tab (caret, line highlight, invisible ...)
+
  ☐ BUG: reset color does not remove the key and produce invalid themes
  ☐ BUG: invert with alpha channel
  ☐ BUG: reverse the order of scope bar values, match with what is reported in sublime
+
  ☐ add color input boxes with real color values to edit popovers
  ☐ more lang support (PHP Perl GO LESS SCSS)
 
@@ -142,6 +146,7 @@ TmThemeEditor Companion:
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ external file remove %20 @done (14-02-12 21:03) @project(TODO v. 0.5)
  ✔ using custom fonts for UI @done (14-02-12 20:48) @project(TODO v. 0.5)
  ✔ stop animation on scrollintoview when adding new scroll @done (14-02-12 15:18) @project(TODO v. 0.5)
  ✔ BUG: color adjust hud goes under bottom bottons @done (14-02-12 15:02) @project(TODO v. 0.5)

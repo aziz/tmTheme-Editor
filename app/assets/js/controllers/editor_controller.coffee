@@ -175,7 +175,7 @@ Application.controller "editorController", ['$scope', '$http', '$location', 'The
       if url
         $location.path("/url/#{url}")
         # saving to localStorage
-        name = url.split("/").last()
+        name = url.split("/").last().replace(/%20/g, ' ')
         current_theme_obj = {name: name, url: url}
         unless $scope.external_themes.find(current_theme_obj)
           $scope.external_themes.push(current_theme_obj)
