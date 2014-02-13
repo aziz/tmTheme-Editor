@@ -1,3 +1,0 @@
-- load custom tmLanguage
-- load sample text from file
-- custom sample texts in editor using sublime companion
