@@ -11,9 +11,10 @@
       </a>
       <ul class="dropdown-menu">
         <li>
-          <a href="#">
+          <a href="javascript:void(0)">
             from local file…
-            <input type="file" id="files" class="upload" ng-model="input" onchange="angular.element(this).scope().setFiles(this)" />
+            <input type="file" id="files" class="upload" ng-model="input"
+                   onchange="angular.element(this).scope().setFiles(this)" />
           </a>
         </li>
         <li><a ng-click="open_from_url()">from URL…</a></li>
@@ -28,15 +29,14 @@
       </a>
     </div>
   </div>
-<!--   <input type="file" id="files" class="upload"
-         ng-model="input" onchange="angular.element(this).scope().setFiles(this)" /> -->
-
 
   <div ng-class="gallery" class="sep"></div>
   <div ng-cloak ng-class="gallery" ng-show="jsonTheme" class="theme-title">
     {{ jsonTheme.name }}
-    <span class="label label-success" style="position:relative;top:-2px" ng-show="theme_type != ''">{{theme_type}}</span>
-    <a ng-hide="theme_type == 'Local File'" ng-click="open_theme_url()"><i class="icon-globe" data-toggle="tooltip" data-placement="bottom" title="View Original file URL"></i></a>
+    <span ng-show="theme_type != ''" class="label label-success" style="position:relative;top:-2px">{{theme_type}}</span>
+    <a ng-hide="theme_type == 'Local File'" ng-click="open_theme_url()">
+      <i class="icon-globe" data-toggle="tooltip" data-placement="bottom" title="View Original file URL"></i>
+    </a>
   </div>
   <div class="links">
     <%// include _social %>

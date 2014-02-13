@@ -14,14 +14,18 @@
       <td>
         <label>Foreground</label>
         <div class="fg-box" ng-class="has_color(new_rule.settings.foreground)">
-          <div class="colorpicker-box" ng-class="has_color(new_rule.settings.foreground)" ng-style="{ 'background-color': get_color(new_rule.settings.foreground) }"></div>
+          <div class="colorpicker-box"
+               ng-class="has_color(new_rule.settings.foreground)"
+               ng-style="{ 'background-color': get_color(new_rule.settings.foreground) }"></div>
           <a ng-click="reset_color(new_rule, 'foreground')" class="reset">Reset</a>
           <input class="colorpicker-input" type="color" title="{{new_rule.settings.foreground}}" ng-model="new_rule.settings.foreground">
         </div>
 
         <label>Background</label>
         <div class="bg-box" ng-class="has_color(new_rule.settings.background)">
-          <div class="colorpicker-box" ng-class="has_color(new_rule.settings.background)" ng-style="{ 'background-color': get_color(new_rule.settings.background) }"></div>
+          <div class="colorpicker-box"
+               ng-class="has_color(new_rule.settings.background)"
+               ng-style="{ 'background-color': get_color(new_rule.settings.background) }"></div>
           <a ng-click="reset_color(new_rule, 'background')" class="reset">Reset</a>
           <input class="colorpicker-input" type="color" title="{{new_rule.settings.background}}" ng-model="new_rule.settings.background">
         </div>

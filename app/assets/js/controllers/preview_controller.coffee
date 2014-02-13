@@ -14,14 +14,14 @@ Application.controller 'previewController', ['$scope', '$http', '$rootScope','th
   $scope.set_lang = (lang) -> $scope.current_lang = lang
 
   # Custom Code
-  $scope.custom_code = localStorage.getItem("custom_code") || ""
+  $scope.custom_code = localStorage.getItem('custom_code') || ''
   $scope.custom_code_editor_visible = false
   $scope.update_preview = ->
     throbber.on(full_window: true)
     $.cookie('currnet_lang', $scope.current_lang)
     if $scope.custom_code.length > 0
-      localStorage.setItem("custom_code", $scope.custom_code)
-      $http.post("/parse", {text: $scope.custom_code, syntax: $scope.current_lang}).success (data) ->
+      localStorage.setItem('custom_code', $scope.custom_code)
+      $http.post('/parse', {text: $scope.custom_code, syntax: $scope.current_lang}).success (data) ->
         $scope.colorized = $sce.trustAsHtml(data)
         $scope.custom_code_editor_visible = false
         throbber.off()

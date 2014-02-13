@@ -1,27 +1,26 @@
-Application.controller "editorController", ['$scope', '$http', '$location', 'ThemeLoader', 'throbber', '$timeout', '$window'], ($scope, $http, $location, ThemeLoader, throbber, $timeout, $window) ->
+Application.controller 'editorController', ['$scope', '$http', '$location', 'ThemeLoader', 'throbber', '$timeout', '$window'], ($scope, $http, $location, ThemeLoader, throbber, $timeout, $window) ->
 
   $scope.is_browser_supported = window.chrome
   $scope.fs = null
-
   $scope.current_tab   = 'scopes'
   $scope.scopes_filter = { name: '' }
-  $scope.xmlTheme = ""
-  $scope.jsonTheme = ""
+  $scope.xmlTheme = ''
+  $scope.jsonTheme = ''
   $scope.files = []
   $scope.gcolors = []
   $scope.selected_rule = null
   $scope.popover_rule = {}
   $scope.edit_popover_visible = false
   $scope.new_popover_visible = false
-  $scope.new_rule_pristine = {"name":"","scope":"","settings":{}}
+  $scope.new_rule_pristine = {'name':'','scope':'','settings':{}}
   $scope.new_rule = Object.clone($scope.new_rule_pristine)
-  $scope.gallery = if $.cookie('gallery_state') && $.cookie('gallery_state') == "slide" then "slide" else null
-  $scope.new_property = {property: "", value: ""}
-  $scope.theme_type = ""
+  $scope.gallery = if $.cookie('gallery_state') && $.cookie('gallery_state') == 'slide' then 'slide' else null
+  $scope.new_property = {property: '', value: ''}
+  $scope.theme_type = ''
 
   $scope.sortable_options = {
-    axis: "y"
-    containment: "parent"
+    axis: 'y'
+    containment: 'parent'
     helper: (e, tr) ->
       originals = tr.children()
       helper = tr.clone()
@@ -31,8 +30,8 @@ Application.controller "editorController", ['$scope', '$http', '$location', 'The
   }
 
   $scope.shortcuts = {
-    "escape": "hide_all_popovers()",
-    "ctrl+n": "toggle_new_rule_popover()"
+    'escape': 'hide_all_popovers()',
+    'ctrl+n': 'toggle_new_rule_popover()'
   }
 
   $scope.page_title = ->
@@ -44,35 +43,35 @@ Application.controller "editorController", ['$scope', '$http', '$location', 'The
   $scope.toggle_gallery = ->
     if $scope.gallery
       $scope.gallery = null
-      $.cookie('gallery_state', "closed")
+      $.cookie('gallery_state', 'closed')
     else
-      $scope.gallery = "slide"
-      $.cookie('gallery_state', "slide")
+      $scope.gallery = 'slide'
+      $.cookie('gallery_state', 'slide')
 
   clamp = (val) -> Math.min(1, Math.max(0, val))
 
   # -- Initializing ----------------------------------------------
-  $scope.$on "$locationChangeStart", (event, nextLocation, currentLocation) ->
-    # console.log "locationChangeStart"
+  $scope.$on '$locationChangeStart', (event, nextLocation, currentLocation) ->
+    # console.log 'locationChangeStart'
     # There's theme name in URL
-    if $location.path() && $location.path().startsWith("/theme/")
-      $scope.theme_type = ""
-      theme = $location.path().replace("/theme/","")
+    if $location.path() && $location.path().startsWith('/theme/')
+      $scope.theme_type = ''
+      theme = $location.path().replace('/theme/','')
     # There's a theme-url in URL
-    else if $location.path() && $location.path().startsWith("/url/")
-      $scope.theme_type = "External URL"
-      theme_url = $location.path().replace("/url/","")
-      # console.log "Loading from URL (not in the gallery) (#{theme_url})"
+    else if $location.path() && $location.path().startsWith('/url/')
+      $scope.theme_type = 'External URL'
+      theme_url = $location.path().replace('/url/','')
+      # console.log 'Loading from URL (not in the gallery) (#{theme_url})'
     # There's a theme locally saved
-    else if $location.path() && $location.path().startsWith("/local/")
-      $scope.theme_type = "Local File"
-      # console.log "Loading from local file system"
+    else if $location.path() && $location.path().startsWith('/local/')
+      $scope.theme_type = 'Local File'
+      # console.log 'Loading from local file system'
     # Loading Default theme
     else
-      theme = "Monokai"
-      $location.path("/theme/Monokai")
+      theme = 'Monokai'
+      $location.path('/theme/Monokai')
 
-    throbber.on() unless $scope.theme_type == "Local File"
+    throbber.on() unless $scope.theme_type == 'Local File'
     ThemeLoader.themes.success (data) ->
       $scope.available_themes = data
       if theme
@@ -93,9 +92,9 @@ Application.controller "editorController", ['$scope', '$http', '$location', 'The
     $scope.selected_rule = null
     if $scope.jsonTheme && $scope.jsonTheme.settings
       for key, val of $scope.jsonTheme.settings[0].settings
-        $scope.gcolors.push({"name": key, "color": val})
-      $scope.jsonTheme.colorSpaceName = "sRGB"
-      $scope.jsonTheme.semanticClass = "theme.#{$scope.light_or_dark($scope.bg())}.#{$scope.jsonTheme.name.underscore().replace(/[\(\)'&]/g, "")}"
+        $scope.gcolors.push({'name': key, 'color': val})
+      $scope.jsonTheme.colorSpaceName = 'sRGB'
+      $scope.jsonTheme.semanticClass = "theme.#{$scope.light_or_dark($scope.bg())}.#{$scope.jsonTheme.name.underscore().replace(/[\(\)'&]/g, '')}"
 
 
   # File System API -----------------------------------------
@@ -103,8 +102,8 @@ Application.controller "editorController", ['$scope', '$http', '$location', 'The
     $scope.fs = fs
     $scope.$apply()
 
-    if $location.path().startsWith("/local/")
-      local_theme = $location.path().replace("/local/", "").replace(/%20/g," ")
+    if $location.path().startsWith('/local/')
+      local_theme = $location.path().replace('/local/', '').replace(/%20/g,' ')
       $scope.files.push(local_theme)
       $scope.fs.root.getFile local_theme, {}, ((fileEntry) ->
         fileEntry.file ((file) ->
@@ -122,7 +121,7 @@ Application.controller "editorController", ['$scope', '$http', '$location', 'The
   read_files = (files) ->
     throbber.on()
     for file in files
-      #continue unless f.type.match("tmtheme")
+      #continue unless f.type.match('tmtheme')
       reader = new FileReader()
       reader.readAsText(file) # Read in the tmtheme file
       reader.onload = do (file) ->
@@ -134,7 +133,7 @@ Application.controller "editorController", ['$scope', '$http', '$location', 'The
                 $scope.$apply ->
                   $location.path("/local/#{file.name}")
                   list_local_files()
-              blob = new Blob([xml_data], {type: "text/plain"})
+              blob = new Blob([xml_data], {type: 'text/plain'})
               fileWriter.write(blob)
           $scope.process_theme(xml_data)
           $scope.$apply()
@@ -171,21 +170,21 @@ Application.controller "editorController", ['$scope', '$http', '$location', 'The
       $scope.selected_theme = theme
       $location.path("/url/#{theme.url}")
     else
-      url = prompt("Enter the URL of the color scheme: ", "https://raw.github.com/aziz/tmTheme-Editor/master/themes/PlasticCodeWrap.tmTheme")
+      url = prompt('Enter the URL of the color scheme: ', 'https://raw.github.com/aziz/tmTheme-Editor/master/themes/PlasticCodeWrap.tmTheme')
       if url
         $location.path("/url/#{url}")
         # saving to localStorage
-        name = url.split("/").last().replace(/%20/g, ' ')
+        name = url.split('/').last().replace(/%20/g, ' ')
         current_theme_obj = {name: name, url: url}
         unless $scope.external_themes.find(current_theme_obj)
           $scope.external_themes.push(current_theme_obj)
-          localStorage.setItem("external_themes", JSON.stringify($scope.external_themes))
+          localStorage.setItem('external_themes', JSON.stringify($scope.external_themes))
 
   $scope.remove_external_theme = (theme) ->
       $scope.external_themes.remove(theme)
-      localStorage.setItem("external_themes", JSON.stringify($scope.external_themes))
+      localStorage.setItem('external_themes', JSON.stringify($scope.external_themes))
       if $location.path() == "/url/#{theme.url}"
-        $location.path("/")
+        $location.path('/')
 
   $scope.external_themes = JSON.parse(localStorage.getItem("external_themes")) or []
 
@@ -205,7 +204,7 @@ Application.controller "editorController", ['$scope', '$http', '$location', 'The
   handleDragOver = (evt) ->
     evt.stopPropagation()
     evt.preventDefault()
-    evt.dataTransfer.dropEffect = "copy"
+    evt.dataTransfer.dropEffect = 'copy'
 
   dropZone.addEventListener 'dragover', handleDragOver, false
   dropZone.addEventListener 'drop', handleFileDrop, false
@@ -213,30 +212,30 @@ Application.controller "editorController", ['$scope', '$http', '$location', 'The
 
   # COLOR ----------------------------------------------------
 
-  $scope.bg = -> $scope.gcolors.length > 0 && $scope.gcolors.find((gc)-> gc.name == "background").color
-  $scope.fg = -> $scope.gcolors.length > 0 && $scope.gcolors.find((gc)-> gc.name == "foreground").color
-  $scope.selection_color = -> $scope.gcolors.length > 0 && $scope.gcolors.find((gc)-> gc.name == "selection")?.color
-  $scope.gutter_fg = -> $scope.gcolors.length > 0 && $scope.gcolors.find((gc)-> gc.name == "gutterForeground")?.color
+  $scope.bg = -> $scope.gcolors.length > 0 && $scope.gcolors.find((gc)-> gc.name == 'background').color
+  $scope.fg = -> $scope.gcolors.length > 0 && $scope.gcolors.find((gc)-> gc.name == 'foreground').color
+  $scope.selection_color = -> $scope.gcolors.length > 0 && $scope.gcolors.find((gc)-> gc.name == 'selection')?.color
+  $scope.gutter_fg = -> $scope.gcolors.length > 0 && $scope.gcolors.find((gc)-> gc.name == 'gutterForeground')?.color
 
   $scope.get_color = (color) ->
     if color && color.length > 7
       hex_color = color.to(7)
       rgba = tinycolor(hex_color).toRgb()
-      opacity = parseInt(color.at(7,8).join(""), 16)/256
+      opacity = parseInt(color.at(7,8).join(''), 16)/256
       rgba.a = opacity
       new_rgba = tinycolor(rgba)
       new_rgba.toRgbString()
     else
       color
 
-  $scope.has_color = (color) -> if $scope.get_color(color) then "has_color" else false
-  $scope.border_color = (bgcolor) -> if $scope.light_or_dark(bgcolor) == "light" then "rgba(0,0,0,.33)" else "rgba(255,255,255,.33)"
+  $scope.has_color = (color) -> if $scope.get_color(color) then 'has_color' else false
+  $scope.border_color = (bgcolor) -> if $scope.light_or_dark(bgcolor) == 'light' then 'rgba(0,0,0,.33)' else 'rgba(255,255,255,.33)'
 
   $scope.light_or_dark = (bgcolor) ->
     c = tinycolor(bgcolor)
     d = c.toRgb()
     yiq = ((d.r*299)+(d.g*587)+(d.b*114))/1000
-    if yiq >= 128 then "light" else "dark"
+    if yiq >= 128 then 'light' else 'dark'
 
   $scope.darken = (color, percent) ->
     c = tinycolor(color)
@@ -255,14 +254,14 @@ Application.controller "editorController", ['$scope', '$http', '$location', 'The
   # ----------------------------------------------
 
   $scope.is = (fontStyle, rule) ->
-    fs_array = rule.settings?.fontStyle?.split(" ") || []
+    fs_array = rule.settings?.fontStyle?.split(' ') || []
     fs_array.any(fontStyle)
 
   $scope.toggle = (fontStyle, rule) ->
     rule.settings = {} unless rule.settings
-    rule.settings.fontStyle = "" unless rule.settings.fontStyle
+    rule.settings.fontStyle = '' unless rule.settings.fontStyle
     if $scope.is(fontStyle, rule)
-      rule.settings.fontStyle = rule.settings.fontStyle.split(" ").remove(fontStyle).join(" ")
+      rule.settings.fontStyle = rule.settings.fontStyle.split(' ').remove(fontStyle).join(' ')
     else
       rule.settings.fontStyle += " #{fontStyle}"
 
@@ -276,7 +275,7 @@ Application.controller "editorController", ['$scope', '$http', '$location', 'The
   $scope.download_theme = ->
     update_general_colors()
     plist = json2plist($scope.jsonTheme)
-    blob = new Blob([plist], {type: "text/plain"})
+    blob = new Blob([plist], {type: 'text/plain'})
     saveAs blob, "#{$scope.jsonTheme.name}.tmTheme"
 
   $scope.save_theme = ->
@@ -288,9 +287,9 @@ Application.controller "editorController", ['$scope', '$http', '$location', 'The
         #console.log('File removed.')
         $scope.fs && $scope.fs.root.getFile $scope.files.first(), {create: true}, (fileEntry) ->
           fileEntry.createWriter (fileWriter) ->
-            fileWriter.onwriteend = (e) -> console.log "File Saved"
-            fileWriter.onerror = (e) -> console.log "Error in writing"
-            blob = new Blob([plist], {type: "text/plain"})
+            fileWriter.onwriteend = (e) -> console.log 'File Saved'
+            fileWriter.onerror = (e) -> console.log 'Error in writing'
+            blob = new Blob([plist], {type: 'text/plain'})
             fileWriter.write(blob)
           , FsErrorHandler
         , FsErrorHandler
@@ -301,16 +300,16 @@ Application.controller "editorController", ['$scope', '$http', '$location', 'The
   # Theme Stylesheet Generator ------------------------------------------
 
   $scope.theme_styles = ->
-    styles = ""
+    styles = ''
     if $scope.jsonTheme && $scope.jsonTheme.settings
       for rule in $scope.jsonTheme.settings.compact()
         fg_color  = if rule?.settings?.foreground then $scope.get_color(rule.settings.foreground) else null
         bg_color  = if rule?.settings?.background then $scope.get_color(rule.settings.background) else null
-        bold      = $scope.is("bold", rule)
-        italic    = $scope.is("italic", rule)
-        underline = $scope.is("underline", rule)
+        bold      = $scope.is('bold', rule)
+        italic    = $scope.is('italic', rule)
+        underline = $scope.is('underline', rule)
         if rule.scope
-          rules = rule.scope.split(",").map (r) -> r.trim().split(" ").map((x)->".#{x}").join(" ")
+          rules = rule.scope.split(',').map (r) -> r.trim().split(' ').map((x)->".#{x}").join(' ')
           rules.each (r) ->
             styles += "#{r}{"
             styles += "color:#{fg_color};" if fg_color
@@ -322,10 +321,10 @@ Application.controller "editorController", ['$scope', '$http', '$location', 'The
     styles
 
   $scope.theme_gutter = ->
-    style = ""
+    style = ''
     if $scope.jsonTheme && $scope.jsonTheme.settings && $scope.bg()
       bgcolor = $scope.get_color($scope.bg())
-      if $scope.light_or_dark(bgcolor) == "light"
+      if $scope.light_or_dark(bgcolor) == 'light'
         style = "pre .l:before { background-color: #{$scope.darken(bgcolor, 2)};"
         gutter_foreground = $scope.get_color($scope.gutter_fg()) || $scope.darken(bgcolor, 18)
         style += "color: #{gutter_foreground}};"
@@ -336,7 +335,7 @@ Application.controller "editorController", ['$scope', '$http', '$location', 'The
     style
 
   $scope.theme_selection = ->
-    style = ""
+    style = ''
     if $scope.jsonTheme && $scope.jsonTheme.settings
       style += "pre::selection {background:transparent}.preview pre *::selection {background:"
       style += "#{$scope.get_color($scope.selection_color())} }"
@@ -363,28 +362,28 @@ Application.controller "editorController", ['$scope', '$http', '$location', 'The
     $scope.edit_popover_visible = true
     row = $("#scope-lists .rule-#{rule_index}")
     win_height = $(window).height()
-    popover = $("#edit-popover")
+    popover = $('#edit-popover')
 
     if (win_height - row.offset().top) < 160
       popover.css({
-        "top": "auto"
-        "left": ""
-        "bottom": win_height - row.offset().top
-      }).removeClass("on-bottom").addClass("on-top")
+        'top': 'auto'
+        'left': ''
+        'bottom': win_height - row.offset().top
+      }).removeClass('on-bottom').addClass('on-top')
     else if row.offset().top < 160
       popover.css({
-        "left": ""
-        "top": row.offset().top + row.outerHeight()
-        "bottom": "auto"
-      }).removeClass("on-top").addClass("on-bottom")
+        'left': ''
+        'top': row.offset().top + row.outerHeight()
+        'bottom': 'auto'
+      }).removeClass('on-top').addClass('on-bottom')
     else
       popover.css({
-        "top": row.offset().top + (row.outerHeight()/2) - 140
-        "left": ""
-        "bottom": "auto"
-      }).removeClass("on-top").removeClass("on-bottom")
+        'top': row.offset().top + (row.outerHeight()/2) - 140
+        'left': ''
+        'bottom': 'auto'
+      }).removeClass('on-top').removeClass('on-bottom')
 
-    $("#preview, #gallery").one "click", (e) ->
+    $('#preview, #gallery').one 'click', (e) ->
       $scope.$apply ->
         $scope.edit_popover_visible = false
 
@@ -412,9 +411,9 @@ Application.controller "editorController", ['$scope', '$http', '$location', 'The
   $scope.add_rule = (new_rule) ->
     $scope.jsonTheme.settings.push(new_rule)
     $scope.toggle_new_rule_popover()
-    sidebar = $(".sidebar")
+    sidebar = $('.sidebar')
     max_scroll_height = sidebar[0].scrollHeight
-    sidebar.animate {"scrollTop": max_scroll_height}, 500, "swing"
+    sidebar.animate {'scrollTop': max_scroll_height}, 500, 'swing'
 
   $scope.reset_color = (rule, attr) -> rule.settings[attr] = undefined
 
@@ -458,22 +457,22 @@ Application.controller "editorController", ['$scope', '$http', '$location', 'The
   #-------------------------------------------------------------------------
 
   $scope.open_theme_url = ->
-    if $scope.theme_type == "External URL"
-      url = $location.path().replace("/url/","")
+    if $scope.theme_type == 'External URL'
+      url = $location.path().replace('/url/','')
       $window.open(url)
     else
-      theme =  $location.path().replace("/theme/","")
+      theme =  $location.path().replace('/theme/','')
       theme_obj = $scope.available_themes.find (t) -> t.name == theme
       $window.open(theme_obj.url)
 
     return
 
 
-  $scope.$watch "edit_popover_visible", (n,o) ->
+  $scope.$watch 'edit_popover_visible', (n,o) ->
     if n
-      $(".sidebar").css("overflow-y", "hidden")
+      $('.sidebar').css('overflow-y', 'hidden')
     else
-      $(".sidebar").css("overflow-y", "scroll")
+      $('.sidebar').css('overflow-y', 'scroll')
 
 
   enable_trasition = -> $('body').removeClass('transition-off')
