@@ -1,5 +1,8 @@
 
 TODO v. 0.5:
+ ☐ update readme
+ ☐ add changelog
+
  ☐ BUG: save does not work (gallery/local/external)
  ☐ BUG: deleting from local/external does not trun off loading
  ☐ do not store hashkey to localstorge
@@ -15,7 +18,7 @@ TODO v. 0.5:
  ☐ BUG: reverse the order of scope bar values, match with what is reported in sublime
 
  ☐ add color input boxes with real color values to edit popovers
- ☐ more lang support (PHP Perl GO LESS SCSS)
+ ☐ more lang support (PHP Perl GO LESS SCSS C C++ Lua XML Markdown Latex)
 
 Later:
  ☐ favorites
@@ -26,9 +29,9 @@ Later:
  ☐ new button
  ☐ use infinite scroll on gallery (https://github.com/BinaryMuse/ngInfiniteScroll)
  ☐ setting color with transparency (different alpha channel representation)
+ ☐ BUG: multi-line scopes like comments or css rules
+ ☐ if no scope is found open new popover and fill it in?
 
-Scope bar:
- ☐ if no scope is found open new popover and fill it in
 
 TODO:
  ☐ document on wiki: how to integrate with editor
@@ -68,20 +71,22 @@ Low:
  ☐ upgrade bootstrap
 
 More Languages Support:
- ☐ PHP
- ☐ Perl
+ ☐ C#
+ ☐ C/C++
+ ☐ Erlang
  ☐ GO
+ ☐ Haskell
+ ☐ Latex
  ☐ LESS
+ ☐ Lua
+ ☐ Markdown
+ ☐ Objective-C
+ ☐ Perl
+ ☐ PHP
+ ☐ Scala
  ☐ SCSS
  ☐ Shell
- ☐ Markdown
- ☐ C/C++
- ☐ C#
- ☐ Objective-C
- ☐ Haskell
- ☐ Erlang
- ☐ Scala
- ☐ Lua
+ ☐ E XML
 
 DID YOU KNOW YOU CAN:
  ☐ drag and drop and reorder scopes
@@ -131,28 +136,4 @@ TmThemeEditor Companion:
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
- ✔ deploy parser to heroku @done (14-02-13 19:56) @project(TODO v. 0.5)
- ✔ language mapper @done (14-02-13 19:05) @project(TODO v. 0.5)
- ✔ BUG: reset color does not remove the key and produce invalid themes @done (14-02-13 16:31) @project(TODO v. 0.5)
- ✔ retina images for UI @done (14-02-13 15:59) @project(TODO)
- ✔ bring textpow inline and improve it @done (14-02-13 15:58) @project(ruby parser)
- ✔ save external file directly from url @done (14-02-13 15:46) @project(TODO v. 0.5)
- ✔ smarter link to open themes in non-raw mode @done (14-02-13 14:54) @project(TODO v. 0.5)
- ✔ back/forward buttons are not working (IMP) @done (14-02-12 21:31) @project(TODO v. 0.5)
- ✔ external file remove %20 @done (14-02-12 21:03) @project(TODO v. 0.5)
- ✔ using custom fonts for UI @done (14-02-12 20:48) @project(TODO v. 0.5)
- ✔ stop animation on scrollintoview when adding new scroll @done (14-02-12 15:18) @project(TODO v. 0.5)
- ✔ BUG: color adjust hud goes under bottom bottons @done (14-02-12 15:02) @project(TODO v. 0.5)
- ✔ open original theme url is broken @done (14-02-12 15:01) @project(TODO v. 0.5)
- ✔ BUG: edit popovers after loading new theme does not work @done (14-02-12 15:00) @project(TODO v. 0.5)
- ✔ ng-cloak on stats page @done (14-02-12 04:13) @project(TODO v. 0.5)
- ✔ scroll scope into view with animation when hovering over code @done (14-02-12 04:03) @project(TODO v. 0.5)
- ✔ slide in animation for headers in gallery! @done (14-02-12 03:11) @project(TODO v. 0.5)
- ✔ scope bar is broken @done (14-02-12 03:09) @project(TODO v. 0.5)
- ✔ remember external URL in localstorage and show it in sidebar @done (14-02-10 22:18) @project(TODO v. 0.5)
- ✔ update path after delete local file? @done (14-02-10 12:19) @project(TODO v. 0.5)
- ✔ also clean up last_theme cookie in case the local file gets deleted @done (14-02-10 12:17) @project(TODO v. 0.5)
- ✔ update path after loading local files @done (14-02-10 11:58) @project(TODO v. 0.5)
- ✔ load local files @done (14-02-10 11:58) @project(TODO v. 0.5)
- ✔ add open from URL button @done (14-02-09 20:40) @project(TODO v. 0.5)
- ✘ replace B,I,U ckeckboxes with button groups @cancelled (14-01-27 13:29) @project(TODO)
+ ✔ delete custom code localStorage on save @done (14-02-13 23:24) @project(TODO v. 0.5)

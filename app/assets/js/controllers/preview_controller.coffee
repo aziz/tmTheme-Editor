@@ -26,6 +26,7 @@ Application.controller 'previewController', ['$scope', '$http', '$rootScope','th
         $scope.custom_code_editor_visible = false
         throbber.off()
     else
+      localStorage.removeItem('custom_code')
       $http.get("/files/samples/pre-compiled/#{$scope.current_lang.toLowerCase()}.html").success (data) ->
         $scope.colorized = $sce.trustAsHtml(data)
         $scope.custom_code_editor_visible = false
