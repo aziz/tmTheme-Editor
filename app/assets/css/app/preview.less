@@ -38,6 +38,15 @@ pre {background-color: transparent;}
     margin:0;
     overflow-x: scroll;
     width: 10000px;
+    padding-bottom: 4px;
+
+    &:before {
+      content: "";
+      position: absolute;
+      height: 100%;
+      width: 48px;
+      z-index: -1;
+    }
 
     .l {
       counter-increment: line_numbers;

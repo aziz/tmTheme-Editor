@@ -328,13 +328,13 @@ Application.controller 'editorController', ['$scope', '$http', '$location', 'The
     if $scope.jsonTheme && $scope.jsonTheme.settings && $scope.bg()
       bgcolor = $scope.get_color($scope.bg())
       if $scope.light_or_dark(bgcolor) == 'light'
-        style = "pre .l:before { background-color: #{$scope.darken(bgcolor, 2)};"
+        style = ".preview pre:before { background-color: #{$scope.darken(bgcolor, 2)}; }\n"
         gutter_foreground = $scope.get_color($scope.gutter_fg()) || $scope.darken(bgcolor, 18)
-        style += "color: #{gutter_foreground}};"
+        style += ".preview pre .l:before { color: #{gutter_foreground}; }"
       else
-        style = "pre .l:before { background-color: #{$scope.lighten(bgcolor, 2)};"
+        style = ".preview pre:before { background-color: #{$scope.lighten(bgcolor, 2)}; }\n"
         gutter_foreground = $scope.get_color($scope.gutter_fg()) || $scope.lighten(bgcolor, 12)
-        style += "color: #{gutter_foreground}};"
+        style += ".preview pre .l:before { color: #{gutter_foreground}; }"
     style
 
   $scope.theme_selection = ->
