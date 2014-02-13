@@ -1,14 +1,10 @@
 
 TODO v. 0.5:
- ☐ test external file directly from url
- ☐ do not store hashkey to localstorge
-
- ☐ language mapper
- ☐ deploy parser to heroku
-
  ☐ test save
  ☐ test download
-
+ ☐ do not store hashkey to localstorge
+ ☐ language mapper
+ ☐ deploy parser to heroku
  ☐ favorites
 
  ☐ highlight current theme/local file/external after reload
@@ -27,7 +23,6 @@ TODO v. 0.5:
  Later:
  ☐ On-Hover highlight for scopes and galley
  ☐ use multiple colors for underlining
- ☐ back/forward buttons are not working (IMP)
  ☐ gallery and editor controllers both load all themes (make it a service)
  ☐ position sticky for sidebar table headers (https://github.com/davist11/jQuery-Stickem or https://github.com/laertejjunior/freezeheader or http://mkoryak.github.io/floatThead/)
  ☐ new button
@@ -146,6 +141,9 @@ TmThemeEditor Companion:
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ save external file directly from url @done (14-02-13 15:46) @project(TODO v. 0.5)
+ ✔ smarter link to open themes in non-raw mode @done (14-02-13 14:54) @project(TODO v. 0.5)
+ ✔ back/forward buttons are not working (IMP) @done (14-02-12 21:31) @project(TODO v. 0.5)
  ✔ external file remove %20 @done (14-02-12 21:03) @project(TODO v. 0.5)
  ✔ using custom fonts for UI @done (14-02-12 20:48) @project(TODO v. 0.5)
  ✔ stop animation on scrollintoview when adding new scroll @done (14-02-12 15:18) @project(TODO v. 0.5)

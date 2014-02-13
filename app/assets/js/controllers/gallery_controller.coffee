@@ -8,7 +8,7 @@ Application.controller 'galleryController', ['$scope', '$http', '$location', '$t
   $scope.filter = {name: ''}
 
   $scope.load_theme = (theme) ->
-    return if $scope.selected_theme == theme_type
+    return if $scope.selected_theme == theme
     $scope.$parent.new_popover_visible = false
     $scope.$parent.edit_popover_visible = false
     $scope.$parent.theme_type = ''

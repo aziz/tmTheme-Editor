@@ -82,6 +82,7 @@ Application.controller 'editorController', ['$scope', '$http', '$location', 'The
       else if theme_url
         ThemeLoader.load({ url: theme_url }).success (data) ->
           $scope.process_theme(data)
+          save_external_to_local_storage(theme_url)
           throbber.off()
 
 
@@ -173,12 +174,14 @@ Application.controller 'editorController', ['$scope', '$http', '$location', 'The
       url = prompt('Enter the URL of the color scheme: ', 'https://raw.github.com/aziz/tmTheme-Editor/master/themes/PlasticCodeWrap.tmTheme')
       if url
         $location.path("/url/#{url}")
-        # saving to localStorage
-        name = url.split('/').last().replace(/%20/g, ' ')
-        current_theme_obj = {name: name, url: url}
-        unless $scope.external_themes.find(current_theme_obj)
-          $scope.external_themes.push(current_theme_obj)
-          localStorage.setItem('external_themes', JSON.stringify($scope.external_themes))
+
+  save_external_to_local_storage = (url) ->
+    name = url.split('/').last().replace(/%20/g, ' ')
+    current_theme_obj = {name: name, url: url}
+    unless $scope.external_themes.find(current_theme_obj)
+      $scope.external_themes.push(current_theme_obj)
+      localStorage.setItem('external_themes', JSON.stringify($scope.external_themes))
+
 
   $scope.remove_external_theme = (theme) ->
       $scope.external_themes.remove(theme)
@@ -457,13 +460,24 @@ Application.controller 'editorController', ['$scope', '$http', '$location', 'The
   #-------------------------------------------------------------------------
 
   $scope.open_theme_url = ->
+    gh_pattern = /https?:\/\/raw2?\.github\.com\/(.+?)\/(.+?)\/(.+?)\/(.+)/
     if $scope.theme_type == 'External URL'
       url = $location.path().replace('/url/','')
-      $window.open(url)
+      gh_match = url.match(gh_pattern)
+      if gh_match
+        web_url = "https://github.com/#{gh_match[1]}/#{gh_match[2]}/blob/#{gh_match[3]}/#{gh_match[4]}"
+        $window.open(web_url)
+      else
+        $window.open(url)
     else
       theme =  $location.path().replace('/theme/','')
       theme_obj = $scope.available_themes.find (t) -> t.name == theme
-      $window.open(theme_obj.url)
+      gh_match = theme_obj.url.match(gh_pattern)
+      if gh_match
+        web_url = "https://github.com/#{gh_match[1]}/#{gh_match[2]}/blob/#{gh_match[3]}/#{gh_match[4]}"
+        $window.open(web_url)
+      else
+        $window.open(theme_obj.url)
 
     return
 
