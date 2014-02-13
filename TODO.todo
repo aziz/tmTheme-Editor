@@ -1,11 +1,12 @@
 
 TODO v. 0.5:
- ☐ test save
- ☐ test download
- ☐ do not store hashkey to localstorge
- ☐ language mapper
  ☐ deploy parser to heroku
- ☐ favorites
+ ☐ language mapper
+ ☐ BUG: save does not work (gallery/local/external)
+ ☐ BUG: deleting from local/external does not trun off loading
+ ☐ do not store hashkey to localstorge
+ ☐ test download
+
 
  ☐ highlight current theme/local file/external after reload
  ☐ Error report if can not load from external URL or local
@@ -13,14 +14,14 @@ TODO v. 0.5:
  ☐ some general settings are not colors /#/BoxUK (3 end with options and are text)
  ☐ sample column in general tab (caret, line highlight, invisible ...)
 
- ☐ BUG: reset color does not remove the key and produce invalid themes
  ☐ BUG: invert with alpha channel
  ☐ BUG: reverse the order of scope bar values, match with what is reported in sublime
 
  ☐ add color input boxes with real color values to edit popovers
  ☐ more lang support (PHP Perl GO LESS SCSS)
 
- Later:
+Later:
+ ☐ favorites
  ☐ On-Hover highlight for scopes and galley
  ☐ use multiple colors for underlining
  ☐ gallery and editor controllers both load all themes (make it a service)
@@ -29,16 +30,10 @@ TODO v. 0.5:
  ☐ use infinite scroll on gallery (https://github.com/BinaryMuse/ngInfiniteScroll)
  ☐ setting color with transparency (different alpha channel representation)
 
-
-ruby parser:
- ☐ bring textpow inline and improve it
- ☐ manually fix compiled codes
-
 Scope bar:
  ☐ if no scope is found open new popover and fill it in
 
 TODO:
- ☐ retina images for UI
  ☐ document on wiki: how to integrate with editor
  ☐ db: voting/popular/trending
  ☐ navigating with keyboard shortcuts (up and down to traverse the rules, enter to open, ctrl+delete to delete, ctrl+s to save, ...)
@@ -76,7 +71,6 @@ Low:
  ☐ upgrade bootstrap
 
 More Languages Support:
- ☐ Java
  ☐ PHP
  ☐ Perl
  ☐ GO
@@ -89,7 +83,6 @@ More Languages Support:
  ☐ Objective-C
  ☐ Haskell
  ☐ Erlang
- ☐ ASP
  ☐ Scala
  ☐ Lua
 
@@ -141,6 +134,9 @@ TmThemeEditor Companion:
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ BUG: reset color does not remove the key and produce invalid themes @done (14-02-13 16:31) @project(TODO v. 0.5)
+ ✔ retina images for UI @done (14-02-13 15:59) @project(TODO)
+ ✔ bring textpow inline and improve it @done (14-02-13 15:58) @project(ruby parser)
  ✔ save external file directly from url @done (14-02-13 15:46) @project(TODO v. 0.5)
  ✔ smarter link to open themes in non-raw mode @done (14-02-13 14:54) @project(TODO v. 0.5)
  ✔ back/forward buttons are not working (IMP) @done (14-02-12 21:31) @project(TODO v. 0.5)

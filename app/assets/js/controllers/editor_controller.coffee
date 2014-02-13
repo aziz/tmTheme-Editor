@@ -418,7 +418,8 @@ Application.controller 'editorController', ['$scope', '$http', '$location', 'The
     max_scroll_height = sidebar[0].scrollHeight
     sidebar.animate {'scrollTop': max_scroll_height}, 500, 'swing'
 
-  $scope.reset_color = (rule, attr) -> rule.settings[attr] = undefined
+  $scope.reset_color = (rule, attr) ->
+    delete rule.settings[attr]
 
   #-------------------------------------------------------------------------
   $scope.colors_hud_open = false
