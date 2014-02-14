@@ -1,5 +1,5 @@
 <table ng-show="current_tab == 'scopes'" id="scope-lists" class="list">
-  <thead ng-show="jsonTheme">
+  <thead ng-show="Theme.json">
     <tr>
       <th class="align-begin">Scope Name</th>
       <th class="color-box">FG</th>
@@ -12,10 +12,10 @@
   </thead>
 
   <tbody ui-sortable ui-options="sortable_options"
-         ng-model="jsonTheme.settings"
-         ng-style="{ 'background-color': Color.parse(bg()), 'color': Color.parse(fg()) }">
+         ng-model="Theme.json.settings"
+         ng-style="{ 'background-color': Color.parse(Theme.bg()), 'color': Color.parse(Theme.fg()) }">
 
-    <tr ng-repeat="rule in jsonTheme.settings.compact() | filter: scopes_filter"
+    <tr ng-repeat="rule in Theme.json.settings.compact() | filter: scopes_filter"
         ng-hide="rule.settings.invisibles"
         ng-click="mark_as_selected(rule)"
         ng-dblclick="toggle_edit_popover(rule, $index)"
@@ -24,14 +24,14 @@
 
       <td class="name-box"
           ng-style="{ 'color': Color.parse(rule.settings.foreground), 'background-color': Color.parse(rule.settings.background) }"
-          ng-class="{'is_italic' : is('italic', rule), 'is_bold': is('bold', rule), 'is_underline': is('underline', rule)}">
+          ng-class="{'is_italic' : Theme.is('italic', rule), 'is_bold': Theme.is('bold', rule), 'is_underline': Theme.is('underline', rule)}">
           <span class="truncate">{{ rule.name || rule.scope }}</span>
       </td>
 
       <td class="color-box">
         <div class="colorpicker-box"
              ng-class="has_color(rule.settings.foreground)"
-             ng-style="{ 'background-color': Color.parse(rule.settings.foreground), 'border-color': border_color(Color.parse(bg())) }"></div>
+             ng-style="{ 'background-color': Color.parse(rule.settings.foreground), 'border-color': border_color(Color.parse(Theme.bg())) }"></div>
         <input class="colorpicker-input" type="color" title="{{rule.settings.foreground}}" ng-model="rule.settings.foreground">
       </td>
 
@@ -42,9 +42,9 @@
         <input class="colorpicker-input" type="color" title="{{rule.settings.background}}" ng-model="rule.settings.background">
       </td>
 
-      <td class="check-box"><input type="checkbox" ng-checked="is('bold', rule)"      ng-click="toggle('bold',rule)"     ></td>
-      <td class="check-box"><input type="checkbox" ng-checked="is('italic', rule)"    ng-click="toggle('italic',rule)"   ></td>
-      <td class="check-box"><input type="checkbox" ng-checked="is('underline', rule)" ng-click="toggle('underline',rule)"></td>
+      <td class="check-box"><input type="checkbox" ng-checked="Theme.is('bold', rule)"      ng-click="toggle('bold',rule)"     ></td>
+      <td class="check-box"><input type="checkbox" ng-checked="Theme.is('italic', rule)"    ng-click="toggle('italic',rule)"   ></td>
+      <td class="check-box"><input type="checkbox" ng-checked="Theme.is('underline', rule)" ng-click="toggle('underline',rule)"></td>
       <td></td>
     </tr>
   </tbody>

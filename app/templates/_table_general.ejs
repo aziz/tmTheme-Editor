@@ -1,5 +1,5 @@
 <table ng-show="current_tab == 'general'" class="list general">
-  <thead ng-hide="gcolors.length==0">
+  <thead ng-hide="Theme.gcolors.length==0">
     <tr>
       <th class="align-begin truncate">General Colors</th>
       <th class="big-color-box">Color</th>
@@ -8,17 +8,17 @@
   </thead>
 
   <tbody ui-sortable ui-options="sortable_options"
-         ng-model="gcolors"
-         ng-style="{ 'background-color': Color.parse(bg()), 'color': Color.parse(fg()) }">
+         ng-model="Theme.gcolors"
+         ng-style="{ 'background-color': Color.parse(Theme.bg()), 'color': Color.parse(Theme.fg()) }">
 
-    <tr ng-repeat="gcolor in gcolors"
+    <tr ng-repeat="gcolor in Theme.gcolors"
         ng-click="mark_as_selected_gcolor(gcolor)"
         ng-class="{ 'selected': is_gcolor_selected(gcolor) }">
       <td class="name-box truncate">{{gcolor.name}}</td>
       <td>
         <div class="colorpicker-box"
              ng-class="has_color(gcolor.color)"
-             ng-style="{ 'background-color': Color.parse(gcolor.color), 'border-color': border_color(Color.parse(bg())) }"></div>
+             ng-style="{ 'background-color': Color.parse(gcolor.color), 'border-color': border_color(Color.parse(Theme.bg())) }"></div>
         <input type="color" class="colorpicker-input"
                title="{{gcolor.color}}"
                ng-model="gcolor.color"

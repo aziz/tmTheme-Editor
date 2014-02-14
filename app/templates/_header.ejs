@@ -33,10 +33,10 @@
 
   <div class="sep" ng-class="gallery"></div>
 
-  <div class="theme-title" ng-cloak ng-class="gallery" ng-show="jsonTheme">
-    {{ jsonTheme.name }}
-    <span ng-show="theme_type != ''" class="label label-success" style="position:relative;top:-2px">{{theme_type}}</span>
-    <a ng-hide="theme_type == 'Local File'" ng-click="open_theme_url()">
+  <div class="theme-title" ng-cloak ng-class="gallery" ng-show="Theme.json">
+    {{ Theme.json.name }}
+    <span ng-show="Theme.type != ''" class="label label-success" style="position:relative;top:-2px">{{Theme.type}}</span>
+    <a ng-hide="Theme.type == 'Local File'" ng-click="open_theme_url()">
       <i class="icon-globe" data-toggle="tooltip" data-placement="bottom" title="View Original file URL"></i>
     </a>
   </div>

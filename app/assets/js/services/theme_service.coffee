@@ -1,0 +1,79 @@
+Application.service "Theme", ['Color'], (Color) ->
+  theme = {}
+
+  theme.xml  = ''
+  theme.json = ''
+  theme.type = ''
+  theme.gcolors = []
+
+  theme.process = (data) ->
+    @xml = data
+    @json = plist_to_json(data)
+    @gcolors = []
+    # TODO: reset selected_rule
+    # $scope.selected_rule = null
+    if @json && @json.settings
+      for key, val of @json.settings[0].settings
+        @gcolors.push({'name': key, 'color': val})
+      @json.colorSpaceName = 'sRGB'
+      @json.semanticClass = "theme.#{Color.light_or_dark(@bg())}.#{@json.name.underscore().replace(/[\(\)'&]/g, '')}"
+
+  theme.update_general_colors = ->
+    globals = @json.settings[0]
+    globals.settings = {}
+    globals.settings[gc.name] = gc.color for gc in @gcolors
+
+  theme.bg = -> @gcolors.length > 0 && @gcolors.find((gc)-> gc.name == 'background').color
+  theme.fg = -> @gcolors.length > 0 && @gcolors.find((gc)-> gc.name == 'foreground').color
+  theme.selection_color = -> @gcolors.length > 0 && @gcolors.find((gc)-> gc.name == 'selection')?.color
+  theme.gutter_fg = -> @gcolors.length > 0 && @gcolors.find((gc)-> gc.name == 'gutterForeground')?.color
+
+  theme.is = (fontStyle, rule) ->
+    fs_array = rule.settings?.fontStyle?.split(' ') || []
+    fs_array.any(fontStyle)
+
+  # Theme Stylesheet Generator ------------------------------------------
+
+  theme.css_scopes = ->
+    styles = ''
+    if @json && @json.settings
+      for rule in @json.settings.compact()
+        fg_color  = if rule?.settings?.foreground then Color.parse(rule.settings.foreground) else null
+        bg_color  = if rule?.settings?.background then Color.parse(rule.settings.background) else null
+        bold      = @is('bold', rule)
+        italic    = @is('italic', rule)
+        underline = @is('underline', rule)
+        if rule.scope
+          rules = rule.scope.split(',').map (r) -> r.trim().split(' ').map((x)->".#{x}").join(' ')
+          rules.each (r) ->
+            styles += "#{r}{"
+            styles += "color:#{fg_color};" if fg_color
+            styles += "background-color:#{bg_color};" if bg_color
+            styles += "font-weight:bold;" if bold
+            styles += "font-style:italic;" if italic
+            styles += "text-decoration:underline;" if underline
+            styles += "}\n"
+    styles
+
+  theme.css_gutter = ->
+    style = ''
+    if @json && @json.settings && @bg()
+      bgcolor = Color.parse(@bg())
+      if Color.light_or_dark(bgcolor) == 'light'
+        style = ".preview pre:before { background-color: #{Color.darken(bgcolor, 2)}; }\n"
+        gutter_foreground = Color.parse(@gutter_fg()) || Color.darken(bgcolor, 18)
+        style += ".preview pre .l:before { color: #{gutter_foreground}; }"
+      else
+        style = ".preview pre:before { background-color: #{Color.lighten(bgcolor, 2)}; }\n"
+        gutter_foreground = Color.parse(@gutter_fg()) || Color.lighten(bgcolor, 12)
+        style += ".preview pre .l:before { color: #{gutter_foreground}; }"
+    style
+
+  theme.css_selection = ->
+    style = ''
+    if @json && @json.settings
+      style += "pre::selection {background:transparent}.preview pre *::selection {background:"
+      style += "#{Color.parse(@selection_color())} }"
+    style
+
+  return theme

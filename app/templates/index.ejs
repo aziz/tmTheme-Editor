@@ -8,7 +8,7 @@
 
 <body id="drop_zone"
       shortcut='shortcuts'
-      ng-class="'current_theme_' + Color.light_or_dark(Color.parse(bg()))"
+      ng-class="'current_theme_' + Color.light_or_dark(Color.parse(Theme.bg()))"
       class="transition-off">
   <% include _browser_support %>
   <% include _gallery %>
@@ -18,14 +18,14 @@
   <% include _header %>
   <% include _sidebar %>
 
-  <style ng-bind="theme_gutter()"></style>
-  <style ng-bind="theme_selection()"></style>
-  <style ng-bind="theme_styles()"></style>
+  <style ng-bind="Theme.css_gutter()"></style>
+  <style ng-bind="Theme.css_selection()"></style>
+  <style ng-bind="Theme.css_scopes()"></style>
 
-  <div ng-class="gallery" id="preview" class="preview" ng-style="{ 'background-color': Color.parse(bg()), 'color': Color.parse(fg()) }">
-    <pre ng-show="jsonTheme"
+  <div ng-class="gallery" id="preview" class="preview" ng-style="{ 'background-color': Color.parse(Theme.bg()), 'color': Color.parse(Theme.fg()) }">
+    <pre ng-show="Theme.json"
          ng-bind-html="colorized"
-         ng-style="{ 'color': Color.parse(fg()) }"></pre>
+         ng-style="{ 'color': Color.parse(Theme.fg()) }"></pre>
   </div>
 
   <div ng-cloak  ng-class="gallery" ng-show="custom_code_editor_visible" id="custom_code" class="preview custom_code_edtior" >
@@ -41,14 +41,14 @@
   </a>
 
   <div scope-bar></div>
-  <div class="btn-group custom_code_toggle_btn" ng-cloak ng-show="jsonTheme">
+  <div class="btn-group custom_code_toggle_btn" ng-cloak ng-show="Theme.json">
     <a class="btn btn-mac btn-small"
        ng-click="custom_code_editor_visible = !custom_code_editor_visible"
        ng-class="{'active': custom_code_editor_visible }">
       Customize Preview Code
     </a>
   </div>
-  <div class="btn-group dropup languages-dd" ng-cloak ng-show="jsonTheme">
+  <div class="btn-group dropup languages-dd" ng-cloak ng-show="Theme.json">
     <a ng-click="" class="btn btn-mac btn-small dropdown-toggle" data-toggle="dropdown">
       {{ current_lang }}
       <span class="icon-arrow-combo ud-arrow"></span>

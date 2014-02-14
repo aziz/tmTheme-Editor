@@ -1,5 +1,5 @@
 <div id="gallery" ng-cloak ng-controller="galleryController"
-     ng-style="{ 'background-color': Color.parse(bg()), 'color': Color.parse(fg()) }">
+     ng-style="{ 'background-color': Color.parse(Theme.bg()), 'color': Color.parse(Theme.fg()) }">
   <div ng-class="gallery" ng-cloak class="titlebar">
    <div class="title">
       {{ themes.length }} Themes
@@ -21,7 +21,7 @@
    </div>
   </div>
 
-  <div ng-class="gallery" class="scrollbox" ng-style="{ 'background-color': Color.parse(bg()), 'color': Color.parse(fg()) }">
+  <div ng-class="gallery" class="scrollbox" ng-style="{ 'background-color': Color.parse(Theme.bg()), 'color': Color.parse(Theme.fg()) }">
     <div class="local_themes_list" ng-class="{ 'visible': localFiles.length > 0 }">
       <h5>Local Files</h5>
       <ul>

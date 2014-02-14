@@ -1,4 +1,6 @@
-Application.controller 'galleryController', ['$scope', '$http', '$location', '$timeout', 'ThemeLoader', 'throbber'], ($scope, $http, $location, $timeout, ThemeLoader, throbber) ->
+Application.controller 'galleryController',
+['Theme', 'ThemeLoader', 'throbber', '$scope', '$http', '$location', '$timeout'],
+( Theme,   ThemeLoader,   throbber ,  $scope,   $http,   $location,   $timeout ) ->
 
   ThemeLoader.themes.success (data) ->
     for theme in data
@@ -11,7 +13,7 @@ Application.controller 'galleryController', ['$scope', '$http', '$location', '$t
     return if $scope.selected_theme == theme
     $scope.$parent.new_popover_visible = false
     $scope.$parent.edit_popover_visible = false
-    $scope.$parent.theme_type = ''
+    Theme.theme_type = ''
     $scope.$parent.scopes_filter.name = ''
     $location.search('local', null)
     $location.path("/theme/#{theme.name}")
@@ -28,7 +30,7 @@ Application.controller 'galleryController', ['$scope', '$http', '$location', '$t
     return if $scope.selected_theme == theme
     throbber.on()
     $('#edit-popover, #new-popover').hide()
-    $scope.$parent.theme_type = 'Local File'
+    Theme.theme_type = 'Local File'
     $scope.$parent.scopes_filter.name = ''
     $scope.$parent.selected_theme = theme
     $scope.$parent.files.push(theme.name)
@@ -36,7 +38,7 @@ Application.controller 'galleryController', ['$scope', '$http', '$location', '$t
       fileEntry.file ((file) ->
         reader = new FileReader()
         reader.onloadend = (e) ->
-          $scope.$parent.process_theme(this.result.trim())
+          Theme.process(@result.trim())
           $location.path("/local/#{theme.name}")
           $scope.$parent.$apply()
           throbber.off()
