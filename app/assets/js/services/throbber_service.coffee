@@ -1,5 +1,6 @@
-Application.service "throbber", [], () ->
+Application.factory "throbber", [], () ->
 
+  throbber = {}
   spinner_options = {
     lines: 13,            # The number of lines to draw
     length: 10,           # The length of each line
@@ -19,8 +20,8 @@ Application.service "throbber", [], () ->
     left: 'auto'          # Left position relative to parent in px
   }
   spinner = new Spinner(spinner_options).spin($("#loading")[0])
-  element = $("#loading")
-  throbber = {}
+  element = angular.element("#loading")
+
 
   throbber.on = (opt) ->
     if opt && opt.full_window

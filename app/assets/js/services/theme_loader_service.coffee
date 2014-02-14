@@ -1,4 +1,4 @@
-Application.service "ThemeLoader", ['$http'], ($http) ->
+Application.factory "ThemeLoader", ['$http'], ($http) ->
 
   themes = $http.get("/gallery.json")
 

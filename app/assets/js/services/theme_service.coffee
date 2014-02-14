@@ -1,4 +1,4 @@
-Application.service "Theme", ['Color'], (Color) ->
+Application.factory "Theme", ['Color'], (Color) ->
   theme = {}
 
   theme.xml  = ''
@@ -23,15 +23,15 @@ Application.service "Theme", ['Color'], (Color) ->
     globals.settings = {}
     globals.settings[gc.name] = gc.color for gc in @gcolors
 
+  theme.is = (fontStyle, rule) ->
+    fs_array = rule.settings?.fontStyle?.split(' ') || []
+    fs_array.any(fontStyle)
+
   theme.bg = -> @gcolors.length > 0 && @gcolors.find((gc) -> gc.name == 'background').color
   theme.fg = -> @gcolors.length > 0 && @gcolors.find((gc) -> gc.name == 'foreground').color
   theme.selection_color = -> @gcolors.length > 0 && @gcolors.find((gc) -> gc.name == 'selection')?.color
   theme.gutter_fg = -> @gcolors.length > 0 && @gcolors.find((gc) -> gc.name == 'gutterForeground')?.color
   theme.border_color = -> if Color.light_or_dark(Color.parse(@bg())) == 'light' then 'rgba(0,0,0,.33)' else 'rgba(255,255,255,.33)'
-
-  theme.is = (fontStyle, rule) ->
-    fs_array = rule.settings?.fontStyle?.split(' ') || []
-    fs_array.any(fontStyle)
 
   # Theme Stylesheet Generator ------------------------------------------
 

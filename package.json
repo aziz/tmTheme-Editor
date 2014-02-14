@@ -1,13 +1,13 @@
 {
   "name": "tmtheme-editor",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "private": true,
   "scripts": {
-    "start": "coffee app.coffee"
+    "start": "./node_modules/.bin/coffee app/app.coffee"
   },
   "engines": {
-    "node": "0.8.x",
-    "npm":  "1.1.x"
+    "node": "0.10.x",
+    "npm":  "1.4.x"
   },
   "dependencies": {
     "express": "3.2.5",

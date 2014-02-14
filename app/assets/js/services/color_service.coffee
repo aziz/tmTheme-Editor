@@ -1,4 +1,4 @@
-Application.service "Color", [], () ->
+Application.factory "Color", [], () ->
   color = {}
   clamp = (val) -> Math.min(1, Math.max(0, val))
 

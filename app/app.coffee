@@ -1,21 +1,20 @@
-express  = require 'express'
-settings = require './config'
-routes   = require './app/routes'
-http     = require 'http'
-fs       = require 'fs'
-path     = require 'path'
-less     = require 'less'
-sugar    = require 'sugar'
-
+express         = require 'express'
+http            = require 'http'
+fs              = require 'fs'
+path            = require 'path'
+less            = require 'less'
+sugar           = require 'sugar'
 template_engine = require 'ejs-locals'
 assets_manager  = require 'connect-assets'
+settings        = require './config'
+routes          = require './routes'
 
 app = module.exports = express()
 
 app.configure ->
   app.engine 'ejs', template_engine
   app.set 'port', settings.port
-  app.set 'views', "#{__dirname}/app/templates"
+  app.set 'views', "#{__dirname}/templates"
   app.set 'view engine', 'ejs'
   app.use express.compress()
   app.use express.bodyParser()
@@ -23,7 +22,7 @@ app.configure ->
   app.use express.methodOverride()
   app.use assets_manager("buildDir": "public", "src": "app/assets/")
   app.use app.router
-  app.use express.static "#{__dirname}/public"
+  app.use express.static "#{__dirname}/../public"
 
 app.configure 'development', ->
   app.use express.logger('dev')
