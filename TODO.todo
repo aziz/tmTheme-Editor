@@ -96,7 +96,6 @@ Services:
  ☐ convert drag/drop and file system api to service
  ☐ do not use file api, use localstorage
  ☐ plis_to_json should be a service
- ☐ light_or_dark method and tinycolor should be a service
 
 Other Tools/Editors:
  ☐ vim/jEdit/Kate/KWrite: https://github.com/sickill/coloration

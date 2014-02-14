@@ -1,7 +1,10 @@
-Application.controller 'editorController', ['$scope', '$http', '$location', 'ThemeLoader', 'throbber', '$timeout', '$window'], ($scope, $http, $location, ThemeLoader, throbber, $timeout, $window) ->
+Application.controller 'editorController',
+['Color', 'ThemeLoader', 'throbber', '$scope', '$http', '$location', '$timeout', '$window'],
+( Color,   ThemeLoader,   throbber,   $scope,   $http,   $location,   $timeout,   $window) ->
 
   $scope.is_browser_supported = window.chrome
   $scope.fs = null
+  $scope.Color = Color
   $scope.current_tab   = 'scopes'
   $scope.scopes_filter = { name: '' }
   $scope.xmlTheme = ''
@@ -48,7 +51,6 @@ Application.controller 'editorController', ['$scope', '$http', '$location', 'The
       $scope.gallery = 'slide'
       $.cookie('gallery_state', 'slide')
 
-  clamp = (val) -> Math.min(1, Math.max(0, val))
 
   # -- Initializing ----------------------------------------------
   $scope.$on '$locationChangeStart', (event, nextLocation, currentLocation) ->
@@ -95,7 +97,7 @@ Application.controller 'editorController', ['$scope', '$http', '$location', 'The
       for key, val of $scope.jsonTheme.settings[0].settings
         $scope.gcolors.push({'name': key, 'color': val})
       $scope.jsonTheme.colorSpaceName = 'sRGB'
-      $scope.jsonTheme.semanticClass = "theme.#{$scope.light_or_dark($scope.bg())}.#{$scope.jsonTheme.name.underscore().replace(/[\(\)'&]/g, '')}"
+      $scope.jsonTheme.semanticClass = "theme.#{Color.light_or_dark($scope.bg())}.#{$scope.jsonTheme.name.underscore().replace(/[\(\)'&]/g, '')}"
 
 
   # File System API -----------------------------------------
@@ -184,10 +186,10 @@ Application.controller 'editorController', ['$scope', '$http', '$location', 'The
 
 
   $scope.remove_external_theme = (theme) ->
-      $scope.external_themes.remove(theme)
-      localStorage.setItem('external_themes', JSON.stringify($scope.external_themes))
-      if $location.path() == "/url/#{theme.url}"
-        $location.path('/')
+    $scope.external_themes.remove(theme)
+    localStorage.setItem('external_themes', JSON.stringify($scope.external_themes))
+    if $location.path() == "/url/#{theme.url}"
+      $location.path('/')
 
   $scope.external_themes = JSON.parse(localStorage.getItem("external_themes")) or []
 
@@ -220,39 +222,8 @@ Application.controller 'editorController', ['$scope', '$http', '$location', 'The
   $scope.selection_color = -> $scope.gcolors.length > 0 && $scope.gcolors.find((gc)-> gc.name == 'selection')?.color
   $scope.gutter_fg = -> $scope.gcolors.length > 0 && $scope.gcolors.find((gc)-> gc.name == 'gutterForeground')?.color
 
-  $scope.get_color = (color) ->
-    if color && color.length > 7
-      hex_color = color.to(7)
-      rgba = tinycolor(hex_color).toRgb()
-      opacity = parseInt(color.at(7,8).join(''), 16)/256
-      rgba.a = opacity
-      new_rgba = tinycolor(rgba)
-      new_rgba.toRgbString()
-    else
-      color
-
-  $scope.has_color = (color) -> if $scope.get_color(color) then 'has_color' else false
-  $scope.border_color = (bgcolor) -> if $scope.light_or_dark(bgcolor) == 'light' then 'rgba(0,0,0,.33)' else 'rgba(255,255,255,.33)'
-
-  $scope.light_or_dark = (bgcolor) ->
-    c = tinycolor(bgcolor)
-    d = c.toRgb()
-    yiq = ((d.r*299)+(d.g*587)+(d.b*114))/1000
-    if yiq >= 128 then 'light' else 'dark'
-
-  $scope.darken = (color, percent) ->
-    c = tinycolor(color)
-    hsl = c.toHsl()
-    hsl.l -= percent/100
-    hsl.l = clamp(hsl.l)
-    tinycolor(hsl).toHslString()
-
-  $scope.lighten = (color, percent) ->
-    c = tinycolor(color)
-    hsl = c.toHsl()
-    hsl.l += percent/100
-    hsl.l = clamp(hsl.l)
-    tinycolor(hsl).toHslString()
+  $scope.has_color = (color) -> if Color.parse(color) then 'has_color' else false
+  $scope.border_color = (bgcolor) -> if Color.light_or_dark(bgcolor) == 'light' then 'rgba(0,0,0,.33)' else 'rgba(255,255,255,.33)'
 
   # ----------------------------------------------
 
@@ -306,8 +277,8 @@ Application.controller 'editorController', ['$scope', '$http', '$location', 'The
     styles = ''
     if $scope.jsonTheme && $scope.jsonTheme.settings
       for rule in $scope.jsonTheme.settings.compact()
-        fg_color  = if rule?.settings?.foreground then $scope.get_color(rule.settings.foreground) else null
-        bg_color  = if rule?.settings?.background then $scope.get_color(rule.settings.background) else null
+        fg_color  = if rule?.settings?.foreground then Color.parse(rule.settings.foreground) else null
+        bg_color  = if rule?.settings?.background then Color.parse(rule.settings.background) else null
         bold      = $scope.is('bold', rule)
         italic    = $scope.is('italic', rule)
         underline = $scope.is('underline', rule)
@@ -326,14 +297,14 @@ Application.controller 'editorController', ['$scope', '$http', '$location', 'The
   $scope.theme_gutter = ->
     style = ''
     if $scope.jsonTheme && $scope.jsonTheme.settings && $scope.bg()
-      bgcolor = $scope.get_color($scope.bg())
-      if $scope.light_or_dark(bgcolor) == 'light'
-        style = ".preview pre:before { background-color: #{$scope.darken(bgcolor, 2)}; }\n"
-        gutter_foreground = $scope.get_color($scope.gutter_fg()) || $scope.darken(bgcolor, 18)
+      bgcolor = Color.parse($scope.bg())
+      if Color.light_or_dark(bgcolor) == 'light'
+        style = ".preview pre:before { background-color: #{Color.darken(bgcolor, 2)}; }\n"
+        gutter_foreground = Color.parse($scope.gutter_fg()) || Color.darken(bgcolor, 18)
         style += ".preview pre .l:before { color: #{gutter_foreground}; }"
       else
-        style = ".preview pre:before { background-color: #{$scope.lighten(bgcolor, 2)}; }\n"
-        gutter_foreground = $scope.get_color($scope.gutter_fg()) || $scope.lighten(bgcolor, 12)
+        style = ".preview pre:before { background-color: #{Color.lighten(bgcolor, 2)}; }\n"
+        gutter_foreground = Color.parse($scope.gutter_fg()) || Color.lighten(bgcolor, 12)
         style += ".preview pre .l:before { color: #{gutter_foreground}; }"
     style
 
@@ -341,9 +312,8 @@ Application.controller 'editorController', ['$scope', '$http', '$location', 'The
     style = ''
     if $scope.jsonTheme && $scope.jsonTheme.settings
       style += "pre::selection {background:transparent}.preview pre *::selection {background:"
-      style += "#{$scope.get_color($scope.selection_color())} }"
+      style += "#{Color.parse($scope.selection_color())} }"
     style
-
 
   # ---------------------------------------------------------------------
 
@@ -488,7 +458,3 @@ Application.controller 'editorController', ['$scope', '$http', '$location', 'The
       $('.sidebar').css('overflow-y', 'hidden')
     else
       $('.sidebar').css('overflow-y', 'scroll')
-
-
-  enable_trasition = -> $('body').removeClass('transition-off')
-  setTimeout(enable_trasition, 600)

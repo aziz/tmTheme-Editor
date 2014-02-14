@@ -8,7 +8,7 @@
 
 <body id="drop_zone"
       shortcut='shortcuts'
-      ng-class="'current_theme_' + light_or_dark(get_color(bg()))"
+      ng-class="'current_theme_' + Color.light_or_dark(Color.parse(bg()))"
       class="transition-off">
   <% include _browser_support %>
   <% include _gallery %>
@@ -22,10 +22,10 @@
   <style ng-bind="theme_selection()"></style>
   <style ng-bind="theme_styles()"></style>
 
-  <div ng-class="gallery" id="preview" class="preview" ng-style="{ 'background-color': get_color(bg()), 'color': get_color(fg()) }">
+  <div ng-class="gallery" id="preview" class="preview" ng-style="{ 'background-color': Color.parse(bg()), 'color': Color.parse(fg()) }">
     <pre ng-show="jsonTheme"
          ng-bind-html="colorized"
-         ng-style="{ 'color': get_color(fg()) }"></pre>
+         ng-style="{ 'color': Color.parse(fg()) }"></pre>
   </div>
 
   <div ng-cloak  ng-class="gallery" ng-show="custom_code_editor_visible" id="custom_code" class="preview custom_code_edtior" >

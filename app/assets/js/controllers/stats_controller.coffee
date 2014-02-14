@@ -1,4 +1,6 @@
-Application.controller 'StatsController', ['$scope', '$http', '$location', 'ThemeLoader'], ($scope, $http, $location, ThemeLoader) ->
+Application.controller 'StatsController',
+[ 'Color', 'ThemeLoader', '$scope', '$http', '$location'],
+(  Color,   ThemeLoader ,  $scope,   $http,   $location) ->
 
   $scope.themes = []
   $scope.scopes_data = []
@@ -15,7 +17,7 @@ Application.controller 'StatsController', ['$scope', '$http', '$location', 'Them
       theme.jsonTheme = plist_to_json(theme.xmlTheme)
       theme.bgcolor = theme.jsonTheme.settings.first().settings.background
       console.log theme unless theme.bgcolor
-      theme.is_light = light_or_dark(theme.bgcolor.to(7)) == 'light'
+      theme.is_light = Color.light_or_dark(theme.bgcolor.to(7)) == 'light'
       process = -> process_scopes(theme.jsonTheme.settings)
       setTimeout(process, 0)
 
@@ -44,11 +46,6 @@ Application.controller 'StatsController', ['$scope', '$http', '$location', 'Them
             $scope.scopes_data.push({ name: scope, count: 1})
     $scope.update_progress()
 
-  light_or_dark = (bgcolor) ->
-    c = tinycolor(bgcolor)
-    d = c.toRgb()
-    yiq = ((d.r*299)+(d.g*587)+(d.b*114))/1000
-    if yiq >= 128 then 'light' else 'dark'
 
   ThemeLoader.themes.success (data) ->
     $scope.themes = data

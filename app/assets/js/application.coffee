@@ -21,3 +21,6 @@
 $ ->
   $("[data-toggle='tooltip']").tooltip()
   $("#loading").remove() unless window.chrome
+
+  enable_trasition = -> $('body').removeClass('transition-off')
+  setTimeout(enable_trasition, 600)

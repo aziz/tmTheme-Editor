@@ -9,7 +9,7 @@
 
   <tbody ui-sortable ui-options="sortable_options"
          ng-model="gcolors"
-         ng-style="{ 'background-color': get_color(bg()), 'color': get_color(fg()) }">
+         ng-style="{ 'background-color': Color.parse(bg()), 'color': Color.parse(fg()) }">
 
     <tr ng-repeat="gcolor in gcolors"
         ng-click="mark_as_selected_gcolor(gcolor)"
@@ -18,7 +18,7 @@
       <td>
         <div class="colorpicker-box"
              ng-class="has_color(gcolor.color)"
-             ng-style="{ 'background-color': get_color(gcolor.color), 'border-color': border_color(get_color(bg())) }"></div>
+             ng-style="{ 'background-color': Color.parse(gcolor.color), 'border-color': border_color(Color.parse(bg())) }"></div>
         <input type="color" class="colorpicker-input"
                title="{{gcolor.color}}"
                ng-model="gcolor.color"
