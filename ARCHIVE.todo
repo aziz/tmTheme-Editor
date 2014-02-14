@@ -48,6 +48,8 @@ Archive:
  ✔ indicate a local file @v0.4 @done (13-07-28 00:09) @project(TODO)
  ✔ preview a theme without uploading and by just providing the url @v0.4 @done (13-07-27 20:55) @project(TODO)
  ✔ ---- v. 0.3 -------------------- @done
+ ✔ Color Adjustments and filters
+ ✔ Scope Bar and inline editing (courtesy of @tyom)
  ✔ bug for color boxes @v0.2 @done (13-05-11 22:56)
  ✔ refactor save button @done (13-05-01 23:22)
  ✔ refactor drag and drop @done (13-05-01 23:22)
