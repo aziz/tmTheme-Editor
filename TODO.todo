@@ -1,41 +1,31 @@
 
-TODO v. 0.5:
- ☐ update readme/screenshots
- ☐ add changelog
-
+TODO v.0.6:
+ ☐ more lang support (PHP Perl GO LESS SCSS C C++ Lua XML Markdown Latex)
+ ☐ imrove scope bar and inline editing (when clicking on a specefic scope that's not on the list open a new popover)
  ☐ BUG: save does not work (gallery/local/external)
  ☐ BUG: deleting from local/external does not trun off loading
- ☐ do not store hashkey to localstorge
- ☐ test download
-
- ☐ highlight current theme/local file/external after reload
- ☐ Error report if can not load from external URL or local
-
- ☐ some general settings are not colors /#/BoxUK (3 end with options and are text)
- ☐ sample column in general tab (caret, line highlight, invisible ...)
-
  ☐ BUG: invert with alpha channel
  ☐ BUG: reverse the order of scope bar values, match with what is reported in sublime
-
+ ☐ BUG: do not store hashkey to localstorge for external themes
+ ☐ Error report if can not load from external URL or local
+ ☐ highlight current theme/local file/external after reload
  ☐ add color input boxes with real color values to edit popovers
- ☐ more lang support (PHP Perl GO LESS SCSS C C++ Lua XML Markdown Latex)
-
-Later:
+ ☐ some general settings are not colors /#/BoxUK (3 end with options and are text)
+ ☐ sample column in general tab (caret, line highlight, invisible ...)?
  ☐ favorites
+ ☐ setting color with transparency (different alpha channel representation)
+
+TODO:
  ☐ On-Hover highlight for scopes and galley
  ☐ use multiple colors for underlining
+ ☐ multi-line scopes like comments or css rules
+ ☐ if no scope is found open new popover and fill it in?
+ ☐ document on wiki: how to integrate with editor
+ ☐ db: voting/popular/trending
  ☐ gallery and editor controllers both load all themes (make it a service)
  ☐ position sticky for sidebar table headers (https://github.com/davist11/jQuery-Stickem or https://github.com/laertejjunior/freezeheader or http://mkoryak.github.io/floatThead/)
  ☐ new button
  ☐ use infinite scroll on gallery (https://github.com/BinaryMuse/ngInfiniteScroll)
- ☐ setting color with transparency (different alpha channel representation)
- ☐ BUG: multi-line scopes like comments or css rules
- ☐ if no scope is found open new popover and fill it in?
-
-
-TODO:
- ☐ document on wiki: how to integrate with editor
- ☐ db: voting/popular/trending
  ☐ navigating with keyboard shortcuts (up and down to traverse the rules, enter to open, ctrl+delete to delete, ctrl+s to save, ...)
  ☐ Did you know and what's new panels
  ☐ event tracking
@@ -49,7 +39,6 @@ TODO:
  ☐ indicate that drag and drop is enabled
 
 Low:
- ☐ better readme
  ☐ color picker js https://github.com/bebraw/colorjoe or https://github.com/Jimdo/angular-spectrum-colorpicker
  ☐ being able to auto upload current theme inside sublim to a server and preview it: http://pastie.org/pastes/7745711/text
  ☐ dropbox integration (https://github.com/AnalogJ/dropstore-ng)
@@ -69,6 +58,8 @@ Low:
  ☐ cache the parsed theme and lang to disk (to hopefully make it faster)
  ☐ webworker to do processing in bg (https://github.com/ramesaliyev/EasyWebWorker)
  ☐ upgrade bootstrap
+ ☐ update release page on github
+ ☐ add changelog link to menu
 
 More Languages Support:
  ☐ C#
@@ -91,7 +82,7 @@ More Languages Support:
 DID YOU KNOW YOU CAN:
  ☐ drag and drop and reorder scopes
  ☐ drag and drop your color schemes on the page to preview it
- ☐ preview a color scheme from the by just adding its path to the URL
+ ☐ preview a color scheme from the web by just adding its path to the URL
  ☐ save your changes locally and come back later to continue working on it
  ☐ add or remove scopes
  ☐ use shortcuts
@@ -136,4 +127,6 @@ TmThemeEditor Companion:
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ test download @done (14-02-14 02:03) @project(TODO v. 0.5)
+ ✔ update readme/screenshots @done (14-02-14 01:50) @project(TODO v. 0.5)
  ✔ delete custom code localStorage on save @done (14-02-13 23:24) @project(TODO v. 0.5)
