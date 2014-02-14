@@ -12,18 +12,18 @@
       </td>
       <td>
         <label>Foreground</label>
-        <div class="fg-box" ng-class="has_color(popover_rule.settings.foreground)">
+        <div class="fg-box" ng-class="{ 'has_color': Color.is_color(popover_rule.settings.foreground) }">
           <div class="colorpicker-box"
-               ng-class="has_color(popover_rule.settings.foreground)"
+               ng-class="{ 'has_color': Color.is_color(popover_rule.settings.foreground) }"
                ng-style="{ 'background-color': Color.parse(popover_rule.settings.foreground) }"></div>
           <a ng-click="reset_color(popover_rule, 'foreground')" class="reset">Reset</a>
           <input class="colorpicker-input" type="color" title="{{popover_rule.settings.foreground}}" ng-model="popover_rule.settings.foreground">
         </div>
 
         <label>Background</label>
-        <div class="bg-box" ng-class="has_color(popover_rule.settings.background)">
+        <div class="bg-box" ng-class="{ 'has_color': Color.is_color(popover_rule.settings.background) }">
           <div class="colorpicker-box"
-               ng-class="has_color(popover_rule.settings.background)"
+               ng-class="{ 'has_color': Color.is_color(popover_rule.settings.background) }"
                ng-style="{ 'background-color': Color.parse(popover_rule.settings.background) }"></div>
           <a ng-click="reset_color(popover_rule, 'background')" class="reset">Reset</a>
           <input class="colorpicker-input" type="color" title="{{popover_rule.settings.background}}" ng-model="popover_rule.settings.background">

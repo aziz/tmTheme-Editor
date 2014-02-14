@@ -30,15 +30,15 @@
 
       <td class="color-box">
         <div class="colorpicker-box"
-             ng-class="has_color(rule.settings.foreground)"
-             ng-style="{ 'background-color': Color.parse(rule.settings.foreground), 'border-color': border_color(Color.parse(Theme.bg())) }"></div>
+             ng-class="{ 'has_color': Color.is_color(rule.settings.foreground) }"
+             ng-style="{ 'background-color': Color.parse(rule.settings.foreground), 'border-color': Theme.border_color() }"></div>
         <input class="colorpicker-input" type="color" title="{{rule.settings.foreground}}" ng-model="rule.settings.foreground">
       </td>
 
       <td class="color-box">
         <div class="colorpicker-box"
-             ng-class="has_color(rule.settings.background)"
-             ng-style="{ 'background-color': Color.parse(rule.settings.background), 'border-color': border_color(Color.parse(bg())) }"></div>
+             ng-class="{ 'has_color': Color.is_color(rule.settings.background) }"
+             ng-style="{ 'background-color': Color.parse(rule.settings.background), 'border-color': Theme.border_color() }"></div>
         <input class="colorpicker-input" type="color" title="{{rule.settings.background}}" ng-model="rule.settings.background">
       </td>
 

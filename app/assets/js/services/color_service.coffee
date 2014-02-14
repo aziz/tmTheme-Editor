@@ -33,4 +33,6 @@ Application.service "Color", [], () ->
     hsl.l  = clamp(hsl.l)
     tinycolor(hsl).toHslString()
 
+  color.is_color = (color) -> if @parse(color) then true else false
+
   return color

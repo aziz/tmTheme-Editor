@@ -1,4 +1,4 @@
-Application.directive "scopeBar", ['$timeout'], ($timeout) ->
+Application.directive "scopeBar", ['$timeout', 'Theme'], ($timeout, Theme) ->
   replace: true
   template: """
   <div ng-cloak ng-class="gallery" class="scope-bar">
@@ -85,9 +85,9 @@ Application.directive "scopeBar", ['$timeout'], ($timeout) ->
 
     # Finds the best matching rule from theme, given the current scope
     findBestMachingThemeRule = (active_scope) ->
-      return unless scope.$parent.jsonTheme.settings
+      return unless Theme.json.settings
       bestMatch = 0
-      candidates = scope.$parent.jsonTheme.settings.findAll (item) ->
+      candidates = Theme.json.settings.findAll (item) ->
         return unless item.scope
         item_scopes = item.scope.split(',').map((s) -> s.trim())
         match = item_scopes.filter (item_scope) ->

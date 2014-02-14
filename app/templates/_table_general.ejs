@@ -17,8 +17,8 @@
       <td class="name-box truncate">{{gcolor.name}}</td>
       <td>
         <div class="colorpicker-box"
-             ng-class="has_color(gcolor.color)"
-             ng-style="{ 'background-color': Color.parse(gcolor.color), 'border-color': border_color(Color.parse(Theme.bg())) }"></div>
+             ng-class="{ 'has_color': Color.is_color(gcolor.color) }"
+             ng-style="{ 'background-color': Color.parse(gcolor.color), 'border-color': Theme.border_color() }"></div>
         <input type="color" class="colorpicker-input"
                title="{{gcolor.color}}"
                ng-model="gcolor.color"

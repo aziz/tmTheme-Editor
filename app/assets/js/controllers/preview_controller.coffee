@@ -1,4 +1,6 @@
-Application.controller 'previewController', ['$scope', '$http', '$rootScope','throbber', '$sce'], ($scope, $http, $rootScope, throbber, $sce) ->
+Application.controller 'previewController',
+['$scope', '$http', 'throbber', '$sce'],
+( $scope,   $http,   throbber,   $sce) ->
 
   $scope.colorized = ''
   $scope.available_langs = [

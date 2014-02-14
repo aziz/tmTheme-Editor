@@ -23,10 +23,11 @@ Application.service "Theme", ['Color'], (Color) ->
     globals.settings = {}
     globals.settings[gc.name] = gc.color for gc in @gcolors
 
-  theme.bg = -> @gcolors.length > 0 && @gcolors.find((gc)-> gc.name == 'background').color
-  theme.fg = -> @gcolors.length > 0 && @gcolors.find((gc)-> gc.name == 'foreground').color
-  theme.selection_color = -> @gcolors.length > 0 && @gcolors.find((gc)-> gc.name == 'selection')?.color
-  theme.gutter_fg = -> @gcolors.length > 0 && @gcolors.find((gc)-> gc.name == 'gutterForeground')?.color
+  theme.bg = -> @gcolors.length > 0 && @gcolors.find((gc) -> gc.name == 'background').color
+  theme.fg = -> @gcolors.length > 0 && @gcolors.find((gc) -> gc.name == 'foreground').color
+  theme.selection_color = -> @gcolors.length > 0 && @gcolors.find((gc) -> gc.name == 'selection')?.color
+  theme.gutter_fg = -> @gcolors.length > 0 && @gcolors.find((gc) -> gc.name == 'gutterForeground')?.color
+  theme.border_color = -> if Color.light_or_dark(Color.parse(@bg())) == 'light' then 'rgba(0,0,0,.33)' else 'rgba(255,255,255,.33)'
 
   theme.is = (fontStyle, rule) ->
     fs_array = rule.settings?.fontStyle?.split(' ') || []
@@ -44,7 +45,7 @@ Application.service "Theme", ['Color'], (Color) ->
         italic    = @is('italic', rule)
         underline = @is('underline', rule)
         if rule.scope
-          rules = rule.scope.split(',').map (r) -> r.trim().split(' ').map((x)->".#{x}").join(' ')
+          rules = rule.scope.split(',').map (r) -> r.trim().split(' ').map((x) -> ".#{x}").join(' ')
           rules.each (r) ->
             styles += "#{r}{"
             styles += "color:#{fg_color};" if fg_color

@@ -16,11 +16,11 @@ Application.controller 'editorController',
   $scope.popover_rule = {}
   $scope.edit_popover_visible = false
   $scope.new_popover_visible = false
-  $scope.new_rule_pristine = {'name':'','scope':'','settings':{}}
+  $scope.new_rule_pristine = {'name': '','scope': '','settings': {}}
   $scope.new_rule = Object.clone($scope.new_rule_pristine)
   $scope.new_property = {property: '', value: ''}
 
-  $scope.gallery = if $.cookie('gallery_state') && $.cookie('gallery_state') == 'slide' then 'slide' else null
+  $scope.gallery = if $.cookie('gallery_state') and $.cookie('gallery_state') == 'slide' then 'slide' else null
 
   $scope.sortable_options = {
     axis: 'y'
@@ -64,11 +64,9 @@ Application.controller 'editorController',
     else if $location.path() && $location.path().startsWith('/url/')
       Theme.type = 'External URL'
       theme_url = $location.path().replace('/url/','')
-      # console.log 'Loading from URL (not in the gallery) (#{theme_url})'
     # There's a theme locally saved
     else if $location.path() && $location.path().startsWith('/local/')
       Theme.type = 'Local File'
-      # console.log 'Loading from local file system'
     # Loading Default theme
     else
       theme = 'Monokai'
@@ -87,7 +85,6 @@ Application.controller 'editorController',
           Theme.process(data)
           save_external_to_local_storage(theme_url)
           throbber.off()
-
 
   # File System API -----------------------------------------
   FsInitHandler = (fs) ->
@@ -153,7 +150,6 @@ Application.controller 'editorController',
       ), FsErrorHandler
     readEntries() # Start reading dirs.
 
-
   $timeout(list_local_files, 500)
 
   $scope.open_from_url = (theme) ->
@@ -162,7 +158,7 @@ Application.controller 'editorController',
       $scope.selected_theme = theme
       $location.path("/url/#{theme.url}")
     else
-      url = prompt('Enter the URL of the color scheme: ', 'https://raw.github.com/aziz/tmTheme-Editor/master/themes/PlasticCodeWrap.tmTheme')
+      url = prompt 'Enter the URL of the color scheme: ', 'https://raw.github.com/aziz/tmTheme-Editor/master/themes/PlasticCodeWrap.tmTheme'
       if url
         $location.path("/url/#{url}")
 
@@ -172,7 +168,6 @@ Application.controller 'editorController',
     unless $scope.external_themes.find(current_theme_obj)
       $scope.external_themes.push(current_theme_obj)
       localStorage.setItem('external_themes', JSON.stringify($scope.external_themes))
-
 
   $scope.remove_external_theme = (theme) ->
     $scope.external_themes.remove(theme)
@@ -202,17 +197,6 @@ Application.controller 'editorController',
 
   dropZone.addEventListener 'dragover', handleDragOver, false
   dropZone.addEventListener 'drop', handleFileDrop, false
-
-
-  # COLOR ----------------------------------------------------
-
-  $scope.border_color = (bgcolor) -> if Color.light_or_dark(bgcolor) == 'light' then 'rgba(0,0,0,.33)' else 'rgba(255,255,255,.33)'
-
-  # move this to color servcie
-  $scope.has_color = (color) -> if Color.parse(color) then 'has_color' else false
-
-
-  # ----------------------------------------------
 
   $scope.toggle = (fontStyle, rule) ->
     rule.settings = {} unless rule.settings
@@ -249,8 +233,6 @@ Application.controller 'editorController',
 
       , FsErrorHandler
     , FsErrorHandler
-
-
 
   # ---------------------------------------------------------------------
 
@@ -365,6 +347,7 @@ Application.controller 'editorController',
           Theme.json.settings[i].settings.background = tinycolor.brightness_contrast( rule.settings.background, $scope.brightness, $scope.saturation/100.0 ).toHexString()
 
   ).throttle(20)
+
   #-------------------------------------------------------------------------
 
   $scope.open_theme_url = ->
@@ -388,7 +371,6 @@ Application.controller 'editorController',
         $window.open(theme_obj.url)
 
     return
-
 
   $scope.$watch 'edit_popover_visible', (n,o) ->
     if n
