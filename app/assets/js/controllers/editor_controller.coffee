@@ -2,8 +2,9 @@ Application.controller 'editorController',
 ['Color', 'Theme', 'ThemeLoader', 'throbber', '$scope', '$http', '$location', '$timeout', '$window'],
 ( Color,   Theme,   ThemeLoader,   throbber,   $scope,   $http,   $location,   $timeout,   $window) ->
 
-  $scope.is_browser_supported = window.chrome
+  $scope.is_browser_supported = $window.chrome
   $scope.fs = null
+
   $scope.Color = Color
   $scope.Theme = Theme
 
@@ -105,7 +106,7 @@ Application.controller 'editorController',
         ), FsErrorHandler
       ), FsErrorHandler
 
-  window.requestFileSystem(window.TEMPORARY, 10*1024*1024,  FsInitHandler, FsErrorHandler)
+  $window.requestFileSystem($window.TEMPORARY, 10*1024*1024,  FsInitHandler, FsErrorHandler)
 
   read_files = (files) ->
     throbber.on()
@@ -206,18 +207,11 @@ Application.controller 'editorController',
     else
       rule.settings.fontStyle += " #{fontStyle}"
 
-  # Download and Save ---------------------------------------------------
-
-  # TODO: move to Theme Service?
-  $scope.download_theme = ->
-    Theme.update_general_colors()
-    plist = json2plist(Theme.json)
-    blob = new Blob([plist], {type: 'text/plain'})
-    saveAs blob, "#{Theme.json.name}.tmTheme"
+  # Save ---------------------------------------------------
 
   $scope.save_theme = ->
     Theme.update_general_colors()
-    plist = json2plist(Theme.json)
+    plist = json_to_plist(Theme.json)
     $scope.fs && $scope.fs.root.getFile $scope.files.first(), {create: false}, (fileEntry) ->
 
       fileEntry.remove ->

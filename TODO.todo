@@ -1,8 +1,12 @@
 
 TODO v.0.6:
+ ☐ HUD controller
+ ☐ popover directive
+ ☐ saveAs/tinyColor service wrappers
+
  ☐ more lang support (PHP Perl GO LESS SCSS C C++ Lua XML Markdown Latex)
- ☐ imrove scope bar and inline editing (when clicking on a specefic scope that's not on the list open a new popover)
  ☐ BUG: save does not work (gallery/local/external)
+ ☐ imrove scope bar and inline editing (when clicking on a specefic scope that's not on the list open a new popover)
  ☐ BUG: deleting from local/external does not trun off loading
  ☐ BUG: invert with alpha channel
  ☐ BUG: reverse the order of scope bar values, match with what is reported in sublime
@@ -14,6 +18,9 @@ TODO v.0.6:
  ☐ sample column in general tab (caret, line highlight, invisible ...)?
  ☐ favorites
  ☐ setting color with transparency (different alpha channel representation)
+ ☐ ColorTools: invert and sepia are not resetabale
+ ☐ ColorTools: hue/color tempreture/color tint/grayscale/ and other color adjustments
+ ☐ ngAnimate
 
 TODO:
  ☐ On-Hover highlight for scopes and galley
@@ -22,7 +29,6 @@ TODO:
  ☐ if no scope is found open new popover and fill it in?
  ☐ document on wiki: how to integrate with editor
  ☐ db: voting/popular/trending
- ☐ gallery and editor controllers both load all themes (make it a service)
  ☐ position sticky for sidebar table headers (https://github.com/davist11/jQuery-Stickem or https://github.com/laertejjunior/freezeheader or http://mkoryak.github.io/floatThead/)
  ☐ new button
  ☐ use infinite scroll on gallery (https://github.com/BinaryMuse/ngInfiniteScroll)
@@ -30,9 +36,6 @@ TODO:
  ☐ Did you know and what's new panels
  ☐ event tracking
  ☐ indicate dirty state
- ☐ ColorTools: invert and sepia are not resetabale
- ☐ ColorTools: hue/color tempreture/color tint/grayscale/ and other color adjustments
- ☐ Refactor: extract color service
  ☐ removal and addition of general colors
  ☐ set production env on heroku
  ☐ focus state for color pickers
@@ -57,9 +60,10 @@ Low:
  ☐ try to make it work in other browsers
  ☐ cache the parsed theme and lang to disk (to hopefully make it faster)
  ☐ webworker to do processing in bg (https://github.com/ramesaliyev/EasyWebWorker)
- ☐ upgrade bootstrap
  ☐ update release page on github
  ☐ add changelog link to menu
+ ☐ convert drag/drop and file system api to service
+ ☐ do not use file api, use localstorage
 
 More Languages Support:
  ☐ C#
@@ -77,7 +81,7 @@ More Languages Support:
  ☐ Scala
  ☐ SCSS
  ☐ Shell
- ☐ E XML
+ ☐ XML
 
 DID YOU KNOW YOU CAN:
  ☐ drag and drop and reorder scopes
@@ -91,11 +95,6 @@ DID YOU KNOW YOU CAN:
  ☐ add your own theme to the gallery
  ☐ see the edit panel by dbl clicking the scopes
  ☐ adjust colors (brightness and contrast)
-
-Services:
- ☐ convert drag/drop and file system api to service
- ☐ do not use file api, use localstorage
- ☐ plis_to_json should be a service
 
 Other Tools/Editors:
  ☐ vim/jEdit/Kate/KWrite: https://github.com/sickill/coloration
@@ -126,6 +125,8 @@ TmThemeEditor Companion:
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ Refactor: extract color service @done (14-02-15 14:11) @project(TODO)
+ ✔ gallery and editor controllers both load all themes (make it a service) @done (14-02-15 14:09) @project(TODO)
  ✔ test download @done (14-02-14 02:03) @project(TODO v. 0.5)
  ✔ update readme/screenshots @done (14-02-14 01:50) @project(TODO v. 0.5)
  ✔ delete custom code localStorage on save @done (14-02-13 23:24) @project(TODO v. 0.5)

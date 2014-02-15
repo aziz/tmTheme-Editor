@@ -3,25 +3,27 @@ angular.module "ui.filters", ["ui.config"]
 angular.module "ui.directives", ["ui.config"]
 angular.module "ui", ["ui.filters", "ui.directives", "ui.config"]
 
-window.Angular = angular.module('ThemeEditor', ['ngSanitize', 'ui'])
+window.app_module = angular.module('ThemeEditor', ['ngSanitize', 'ui'])
 window.Application = {
   controller: (name, dependencies, fn) ->
     args = dependencies
     args.push(fn)
-    Angular.controller name, args
+    app_module.controller name, args
 
   factory: (name, dependencies, fn) ->
     args = dependencies
     args.push(fn)
-    Angular.factory name, args
+    app_module.factory name, args
 
   service: (name, dependencies, fn) ->
     args = dependencies
     args.push(fn)
-    Angular.service name, args
+    app_module.service name, args
 
   directive: (name, dependencies, fn) ->
     args = dependencies
     args.push(fn)
-    Angular.directive name, args
+    app_module.directive name, args
+
+  value: (name, val) -> app_module.value name, val
 }

@@ -20,10 +20,7 @@ Application.controller 'galleryController',
     $scope.$parent.selected_theme = theme
 
   $scope.toggle_type_filter = (type) ->
-    if $scope.filter.type == type
-      $scope.filter.type = undefined
-    else
-      $scope.filter.type = type
+    $scope.filter.type = if $scope.filter.type == type then undefined else type
 
   # -- Loading Local Files -------------------------------------------
   $scope.load_local_theme = (theme) ->

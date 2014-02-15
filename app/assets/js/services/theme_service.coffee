@@ -1,4 +1,4 @@
-Application.factory "Theme", ['Color'], (Color) ->
+Application.factory "Theme", ['Color', 'json_to_plist', 'plist_to_json'], (Color, json_to_plist, plist_to_json) ->
   theme = {}
 
   theme.xml  = ''
@@ -10,8 +10,6 @@ Application.factory "Theme", ['Color'], (Color) ->
     @xml = data
     @json = plist_to_json(data)
     @gcolors = []
-    # TODO: reset selected_rule
-    # $scope.selected_rule = null
     if @json && @json.settings
       for key, val of @json.settings[0].settings
         @gcolors.push({'name': key, 'color': val})
@@ -76,5 +74,11 @@ Application.factory "Theme", ['Color'], (Color) ->
       style += "pre::selection {background:transparent}.preview pre *::selection {background:"
       style += "#{Color.parse(@selection_color())} }"
     style
+
+  theme.download = ->
+    @update_general_colors()
+    plist = json_to_plist(@json)
+    blob = new Blob([plist], {type: 'text/plain'})
+    saveAs blob, "#{@json.name}.tmTheme"
 
   return theme
