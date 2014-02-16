@@ -3,10 +3,11 @@ Application.factory "Color", [], () ->
   clamp = (val) -> Math.min(1, Math.max(0, val))
 
   color.parse = (color) ->
-    if color && color.length > 7
+    return null unless color && color.startsWith("#") && color.length >= 4
+    if color.length > 7
       hex_color = color.to(7)
       rgba      = tinycolor(hex_color).toRgb()
-      opacity   = parseInt(color.at(7,8).join(''), 16)/256
+      opacity   = parseInt(color.at(7,8).join(''), 16)/255
       rgba.a    = opacity
       new_rgba  = tinycolor(rgba)
       new_rgba.toRgbString()
