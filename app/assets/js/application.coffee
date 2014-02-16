@@ -24,3 +24,8 @@ $ ->
 
   enable_trasition = -> $('body').removeClass('transition-off')
   setTimeout(enable_trasition, 600)
+
+
+  # <script src="https://cdn.firebase.com/v0/firebase.js"></script>
+  # var dataRef = new Firebase("https://theme-editor.firebaseio.com");
+  # dataRef.set("I am now writing data into Firebase!")
