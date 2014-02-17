@@ -2,7 +2,7 @@ window.requestFileSystem  = window.requestFileSystem || window.webkitRequestFile
 window.BlobBuilder        = window.BlobBuilder || window.WebKitBlobBuilder
 window.FsErrorHandler = (e) -> console.error "Error [#{e.name}] - #{e.message}"
 
-window.app_module = angular.module('ThemeEditor', ['ngSanitize', 'ui.sortable'])
+window.app_module = angular.module('ThemeEditor', ['ngSanitize', 'ui.sortable', 'ui.bootstrap'])
 
 # TODO: get rid of this layer of abstraction
 window.Application = {

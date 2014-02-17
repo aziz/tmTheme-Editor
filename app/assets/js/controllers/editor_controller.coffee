@@ -1,6 +1,6 @@
 Application.controller 'editorController',
-['Color', 'Theme', 'ThemeLoader', 'EditPopover', 'NewPopover', 'HUDEffects', 'throbber', '$scope', '$http', '$location', '$timeout', '$window'],
-( Color,   Theme,   ThemeLoader,   EditPopover,   NewPopover,   HUDEffects,   throbber,   $scope,   $http,   $location,   $timeout,   $window) ->
+['Color', 'Theme', 'ThemeLoader', 'EditPopover', 'NewPopover', 'HUDEffects', 'throbber', '$filter', '$scope', '$http', '$location', '$timeout', '$window'],
+( Color,   Theme,   ThemeLoader,   EditPopover,   NewPopover,   HUDEffects,   throbber,   $filter,   $scope,   $http,   $location,   $timeout,   $window) ->
 
   $scope.is_browser_supported = $window.chrome
   $scope.themes = []
@@ -11,7 +11,11 @@ Application.controller 'editorController',
   $scope.NewPopover  = NewPopover
 
   $scope.current_tab   = 'scopes'
+
   $scope.scopes_filter = { name: '' }
+  update_scopes_filter = -> $scope.scopes_filtered = $filter('filter')(Theme.json.settings, $scope.scopes_filter)
+  $scope.$watchCollection 'Theme.json', update_scopes_filter
+  $scope.$watchCollection 'scopes_filter', update_scopes_filter
 
   $scope.fs = null
   $scope.files = []

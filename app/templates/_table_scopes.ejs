@@ -11,11 +11,11 @@
     </tr>
   </thead>
 
-  <tbody ui-sortable="sortable_options" ng-model="Theme.json.settings"
+  <tbody ui-sortable="sortable_options" ng-model="scopes_filtered"
          ng-style="{ 'background-color': Color.parse(Theme.bg()), 'color': Color.parse(Theme.fg()) }">
 
-    <tr ng-repeat="rule in Theme.json.settings | filter: scopes_filter"
-        ng-hide="rule.settings.caret"
+    <tr ng-repeat="rule in scopes_filtered"
+        ng-show="rule.scope"
         ng-click="mark_as_selected(rule)"
         ng-dblclick="EditPopover.show(rule, $index)"
         ng-class="{ 'selected': is_selected(rule), 'hovered': is_hovered(rule) }"

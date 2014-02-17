@@ -1,9 +1,6 @@
 
 TODO v.0.6:
- ☐ BUG: sortable filter issue
  ☐ use ngCookies
- ☐ bootstrap dropdown directive
- ☐ bootstrap tooltip directive
  ☐ prod mode
 
  ☐ more lang support (PHP Perl GO LESS SCSS C C++ Lua XML Markdown Latex)
@@ -140,8 +137,11 @@ Test:
  ☐ download theme
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
- ✔ remove lib folder @done (14-02-17 10:35) @project(TODO v.0.6)
+ ✔ bootstrap tooltip directive @done (14-02-17 20:12) @project(TODO v.0.6)
+ ✔ bootstrap dropdown directive @done (14-02-17 20:12) @project(TODO v.0.6)
+ ✔ BUG: sortable filter issue @done (14-02-17 11:32) @project(TODO v.0.6)
  ✔ sortable is broken @done (14-02-17 10:35) @project(TODO v.0.6)
+ ✔ remove lib folder @done (14-02-17 10:35) @project(TODO v.0.6)
  ✔ use real draggable @done (14-02-17 08:11) @project(TODO v.0.6)
  ✔ refactor scope bar @done (14-02-17 04:32) @project(TODO v.0.6)
  ✔ preview popover does not work @done (14-02-17 04:31) @project(TODO v.0.6)
