@@ -1,12 +1,13 @@
 Application.controller 'editorController',
-['Color', 'Theme', 'ThemeLoader', 'EditPopover', 'throbber', '$scope', '$http', '$location', '$timeout', '$window'],
-( Color,   Theme,   ThemeLoader,   EditPopover,   throbber,   $scope,   $http,   $location,   $timeout,   $window) ->
+['Color', 'Theme', 'ThemeLoader', 'EditPopover', 'NewPopover', 'throbber', '$scope', '$http', '$location', '$timeout', '$window'],
+( Color,   Theme,   ThemeLoader,   EditPopover,   NewPopover,   throbber,   $scope,   $http,   $location,   $timeout,   $window) ->
 
   $scope.is_browser_supported = $window.chrome
 
   $scope.Color = Color
   $scope.Theme = Theme
   $scope.EditPopover = EditPopover
+  $scope.NewPopover  = NewPopover
 
   $scope.current_tab   = 'scopes'
   $scope.scopes_filter = { name: '' }
@@ -14,11 +15,6 @@ Application.controller 'editorController',
   $scope.fs = null
   $scope.files = []
   $scope.selected_rule = null
-
-  $scope.new_popover_visible = false
-  $scope.new_rule_pristine = {'name': '','scope': '','settings': {}}
-  $scope.new_rule = Object.clone($scope.new_rule_pristine)
-  $scope.new_property = {property: '', value: ''}
 
   $scope.sortable_options = {
     axis: 'y'
@@ -197,15 +193,6 @@ Application.controller 'editorController',
   dropZone.addEventListener 'dragover', handleDragOver, false
   dropZone.addEventListener 'drop', handleFileDrop, false
 
-  # TODO move it to theme service
-  $scope.toggle = (fontStyle, rule) ->
-    rule.settings = {} unless rule.settings
-    rule.settings.fontStyle = '' unless rule.settings.fontStyle
-    if $scope.is(fontStyle, rule)
-      rule.settings.fontStyle = rule.settings.fontStyle.split(' ').remove(fontStyle).join(' ')
-    else
-      rule.settings.fontStyle += " #{fontStyle}"
-
   # Save ---------------------------------------------------
 
   # TODO: this is broken
@@ -248,16 +235,11 @@ Application.controller 'editorController',
         $scope.$apply ->
           EditPopover.visible = false
 
-  $scope.toggle_new_rule_popover = ->
-    $scope.edit_popover_visible = false
-    $scope.new_rule = Object.clone($scope.new_rule_pristine, true)
-    $scope.new_popover_visible = !$scope.new_popover_visible
-
-  # TODO move it to service
   $scope.hide_all_popovers = ->
-    $scope.edit_popover_visible = false
-    $scope.toggle_new_rule_popover() if $scope.new_popover_visible
+    $scope.EditPopover.hide()
+    $scope.NewPopover.hide()
 
+  # TODO move it theme service, make a rule service
   $scope.delete_rule = (rule) ->
     return unless rule
     rules = Theme.json.settings
@@ -266,6 +248,7 @@ Application.controller 'editorController',
     $scope.selected_rule = rules[index]
     $scope.edit_popover_visible = false
 
+  # TODO move it theme service, make a rule service
   $scope.add_rule = (new_rule) ->
     Theme.json.settings.push(new_rule)
     $scope.toggle_new_rule_popover()
@@ -273,6 +256,7 @@ Application.controller 'editorController',
     max_scroll_height = sidebar[0].scrollHeight
     sidebar.animate {'scrollTop': max_scroll_height}, 500, 'swing'
 
+  # TODO move it theme service, make a rule service
   $scope.reset_color = (rule, attr) ->
     delete rule.settings[attr]
 
@@ -335,5 +319,4 @@ Application.controller 'editorController',
         $window.open(web_url)
       else
         $window.open(theme_obj.url)
-
     return

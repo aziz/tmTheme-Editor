@@ -21,9 +21,17 @@ Application.factory "Theme", ['Color', 'json_to_plist', 'plist_to_json'], (Color
     globals.settings = {}
     globals.settings[gc.name] = gc.color for gc in @gcolors
 
-  theme.is = (fontStyle, rule) ->
+  theme.fontStyleIs = (fontStyle, rule) ->
     fs_array = rule.settings?.fontStyle?.split(' ') || []
     fs_array.any(fontStyle)
+
+  theme.fontStyleToggle = (fontStyle, rule) ->
+    rule.settings = {} unless rule.settings
+    rule.settings.fontStyle = '' unless rule.settings.fontStyle
+    if @fontStyleIs(fontStyle, rule)
+      rule.settings.fontStyle = rule.settings.fontStyle.split(' ').remove(fontStyle).join(' ')
+    else
+      rule.settings.fontStyle += " #{fontStyle}"
 
   theme.bg = -> @gcolors.length > 0 && @gcolors.find((gc) -> gc.name == 'background').color
   theme.fg = -> @gcolors.length > 0 && @gcolors.find((gc) -> gc.name == 'foreground').color
@@ -39,9 +47,9 @@ Application.factory "Theme", ['Color', 'json_to_plist', 'plist_to_json'], (Color
       for rule in @json.settings.compact()
         fg_color  = if rule?.settings?.foreground then Color.parse(rule.settings.foreground) else null
         bg_color  = if rule?.settings?.background then Color.parse(rule.settings.background) else null
-        bold      = @is('bold', rule)
-        italic    = @is('italic', rule)
-        underline = @is('underline', rule)
+        bold      = @fontStyleIs('bold', rule)
+        italic    = @fontStyleIs('italic', rule)
+        underline = @fontStyleIs('underline', rule)
         if rule.scope
           rules = rule.scope.split(',').map (r) -> r.trim().split(' ').map((x) -> ".#{x}").join(' ')
           rules.each (r) ->
