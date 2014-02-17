@@ -1,29 +1,30 @@
-<div ng-cloak ng-show="colors_hud_open" draggable class="hud" style="position:absolute;top: 100px; right: 180px; z-index: 9999">
+
+<div ng-cloak ng-show="HUD.visible" draggable class="hud" style="position:absolute;top: 100px; right: 180px; z-index: 9999">
   <div class="hud_header">
     Color Adjustments
-    <a ng-click="close_hud()" class="close">&times;</a>
+    <a ng-click="HUD.hide()" class="close">&times;</a>
   </div>
   <div class="hud_body">
 
     <div class="hud_box">
       <label> <i class="icon-brightness"></i>&nbsp; Brightness </label>
-      <input type="range" ng-change="update_colors()" min="-150" max="150" ng-model="brightness">
-      <input type="text" ng-change="update_colors()" min="-150" max="150" ng-model="brightness">
+      <input type="range" ng-change="HUD.update_colors()" min="-150" max="150" ng-model="HUD.brightness">
+      <input type="text"  ng-change="HUD.update_colors()" min="-150" max="150" ng-model="HUD.brightness">
     </div>
 
     <div class="hud_box">
       <label> <i class="icon-contrast"></i>&nbsp; Contrast </label>
-      <input type="range" ng-change="update_colors()" min="-100" max="300" ng-model="saturation">
-      <input type="text" ng-change="update_colors()" min="-150" max="150" ng-model="saturation">
+      <input type="range" ng-change="HUD.update_colors()" min="-100" max="300" ng-model="HUD.saturation">
+      <input type="text"  ng-change="HUD.update_colors()" min="-150" max="150" ng-model="HUD.saturation">
     </div>
 
     <div class="hud_box">
-      <a ng-click="filter_colors('invert')" class="hud_btn">Invert</a> &nbsp;&nbsp;
-      <a ng-click="filter_colors('sepia')" class="hud_btn">Sepia</a>
+      <a ng-click="HUD.filter_colors('invert')" class="hud_btn">Invert</a> &nbsp;&nbsp;
+      <a ng-click="HUD.filter_colors('sepia')" class="hud_btn">Sepia</a>
     </div>
 
     <hr>
 
-    <a ng-click="reset_color_changes()" class="hud_btn">Reset</a>
+    <a ng-click="HUD.reset_changes()" class="hud_btn">Reset</a>
   </div>
 </div>

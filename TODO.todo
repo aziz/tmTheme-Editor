@@ -1,10 +1,12 @@
 
 TODO v.0.6:
- ☐ preview popover does not work
-
- ☐ New Popover service
- ☐ HUD service
- ☐ saveAs/tinyColor service wrappers
+ ☐ sortable is broken (remove jqUI)
+ ☐ use real draggable
+ ☐ remove lib folder
+ ☐ use ngCookies
+ ☐ bootstrap dropdown directive
+ ☐ bootstrap tooltip directive
+ ☐ prod mode
 
  ☐ more lang support (PHP Perl GO LESS SCSS C C++ Lua XML Markdown Latex)
  ☐ BUG: save does not work (gallery/local/external)
@@ -23,6 +25,12 @@ TODO v.0.6:
  ☐ ColorTools: invert and sepia are not resetabale
  ☐ ColorTools: hue/color tempreture/color tint/grayscale/ and other color adjustments
  ☐ ngAnimate
+ ☐ undo delete rule or even more full featured undo
+
+improve HUD:
+ ☐ reset filters
+ ☐ parse alpha colors
+ ☐ move functions from tiny color to color service
 
 TODO:
  ☐ On-Hover highlight for scopes and galley
@@ -125,8 +133,18 @@ TmThemeEditor Companion:
  ☐ edit current edit (open online to edit)
  ☐ preview this code in ThemeEditor
 
+Test:
+ ☐ load theme
+ ☐ add rule
+ ☐ edit rule
+ ☐ delete rule
+ ☐ download theme
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ refactor scope bar @done (14-02-17 04:32) @project(TODO v.0.6)
+ ✔ preview popover does not work @done (14-02-17 04:31) @project(TODO v.0.6)
+ ✔ hud service @done (14-02-17 03:26) @project(TODO v.0.6)
+ ✔ New Popover service @done (14-02-17 02:30) @project(TODO v.0.6)
  ✔ Edit popover service @done (14-02-17 01:48) @project(TODO v.0.6)
  ✔ Refactor: extract color service @done (14-02-15 14:11) @project(TODO)
  ✔ gallery and editor controllers both load all themes (make it a service) @done (14-02-15 14:09) @project(TODO)

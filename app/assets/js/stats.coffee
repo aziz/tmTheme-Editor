@@ -4,8 +4,7 @@
 #= require vendors/angular-1.2.12/angular-sanitize.js
 #= require vendors/tinycolor-0.9.14.js
 #= require vendors/spin-1.3.js
-#= require_tree lib
-#= require angular-bootstrap
+#= require boot
 #= require_tree directives
 #= require_tree services
 #= require controllers/stats_controller.coffee

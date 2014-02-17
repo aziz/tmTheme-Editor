@@ -9,10 +9,10 @@ Application.directive "scopeBar", ['$timeout', 'Theme'], ($timeout, Theme) ->
   </div>
   """
   link: (scope, element, attr) ->
-    preview = $("#preview")
+    preview_el = $("#preview")
 
     # MOUSE OVER ----------------------------
-    preview.bind "mouseover", (event) ->
+    preview_el.bind "mouseover", (event) ->
       active = {}
       active.scope = event.target.dataset.entityScope
 
@@ -29,12 +29,12 @@ Application.directive "scopeBar", ['$timeout', 'Theme'], ($timeout, Theme) ->
         $timeout tmp, 20
 
     # MOUSE OUT ----------------------------
-    preview.bind "mouseout", (event) ->
+    preview_el.bind "mouseout", (event) ->
       # Unhighlight in sidebar
       scope.$parent.hovered_rule = null
 
     # DBL CLICK ----------------------------
-    preview.bind "dblclick", (event) ->
+    preview_el.bind "dblclick", (event) ->
       active = {}
       active.scope = event.target.dataset.entityScope
 
@@ -46,16 +46,16 @@ Application.directive "scopeBar", ['$timeout', 'Theme'], ($timeout, Theme) ->
 
     showPopover = (rule, event) ->
       scope.$apply ->
-        scope.$parent.new_popover_visible = false
-        scope.$parent.popover_rule = rule
-        scope.$parent.edit_popover_visible = true
+        scope.$parent.NewPopover.visible = false
+        scope.$parent.EditPopover.rule = rule
+        scope.$parent.EditPopover.visible = true
 
       win_height    = $(window).height()
       popover       = $("#edit-popover")
       galley_offset = if popover.is('.slide') then $("#gallery").width() else 0
       offset_left   = (popover.width() / 2) + 10 + galley_offset
       elm           = $(event.target)
-      elm_offset    = $(event.target).offset()
+      elm_offset    = elm.offset()
 
       if (win_height - elm_offset.top) < 360
         popover.css({
@@ -69,12 +69,6 @@ Application.directive "scopeBar", ['$timeout', 'Theme'], ($timeout, Theme) ->
           "top": elm_offset.top + 30
           "bottom": "auto"
         }).removeClass("on-top").addClass("on-bottom")
-
-      $("#preview, #gallery").one "click", (e) ->
-        scope.$apply ->
-          scope.$parent.new_popover_visible = false
-          scope.$parent.edit_popover_visible = false
-
 
     generateElementScope = (scope, event) ->
       result = [scope]

@@ -1,11 +1,12 @@
 Application.controller 'editorController',
-['Color', 'Theme', 'ThemeLoader', 'EditPopover', 'NewPopover', 'throbber', '$scope', '$http', '$location', '$timeout', '$window'],
-( Color,   Theme,   ThemeLoader,   EditPopover,   NewPopover,   throbber,   $scope,   $http,   $location,   $timeout,   $window) ->
+['Color', 'Theme', 'ThemeLoader', 'EditPopover', 'NewPopover', 'HUDEffects', 'throbber', '$scope', '$http', '$location', '$timeout', '$window'],
+( Color,   Theme,   ThemeLoader,   EditPopover,   NewPopover,   HUDEffects,   throbber,   $scope,   $http,   $location,   $timeout,   $window) ->
 
   $scope.is_browser_supported = $window.chrome
-
+  $scope.themes = []
   $scope.Color = Color
   $scope.Theme = Theme
+  $scope.HUD   = HUDEffects
   $scope.EditPopover = EditPopover
   $scope.NewPopover  = NewPopover
 
@@ -29,8 +30,14 @@ Application.controller 'editorController',
 
   $scope.shortcuts = {
     'escape': 'hide_all_popovers()',
-    'ctrl+n': 'toggle_new_rule_popover()'
+    'ctrl+n': 'NewPopover.show()'
   }
+
+  ThemeLoader.themes.success (data) ->
+    for theme in data
+      theme.type = if theme.light then 'light' else 'dark'
+    $scope.themes = data
+
 
   $scope.page_title = ->
     if Theme.json
@@ -246,57 +253,20 @@ Application.controller 'editorController',
     index = rules.findIndex(rule)
     rules.remove(rule)
     $scope.selected_rule = rules[index]
-    $scope.edit_popover_visible = false
+    EditPopover.hide()
 
   # TODO move it theme service, make a rule service
   $scope.add_rule = (new_rule) ->
     Theme.json.settings.push(new_rule)
-    $scope.toggle_new_rule_popover()
+    NewPopover.hide()
     sidebar = $('.sidebar')
     max_scroll_height = sidebar[0].scrollHeight
     sidebar.animate {'scrollTop': max_scroll_height}, 500, 'swing'
+    return
 
   # TODO move it theme service, make a rule service
   $scope.reset_color = (rule, attr) ->
     delete rule.settings[attr]
-
-  #-------------------------------------------------------------------------
-  $scope.colors_hud_open = false
-  $scope.brightness = 0
-  $scope.saturation = 0
-
-  $scope.toggle_colors_hud = ->
-    if !$scope.colors_hud_open
-      $scope.original_colors = Object.clone(Theme.json.settings, true)
-    $scope.colors_hud_open = !$scope.colors_hud_open
-
-  $scope.close_hud = -> $scope.colors_hud_open = false
-
-  $scope.reset_color_changes = ->
-    Theme.json.settings = Object.clone($scope.original_colors, true)
-    $scope.brightness = 0
-    $scope.saturation = 0
-
-  $scope.filter_colors = (filter) ->
-    for rule in Theme.json.settings
-      if rule.settings
-        if rule.settings.foreground
-          rule.settings.foreground = tinycolor[filter](rule.settings.foreground).toHexString()
-        if rule.settings.background
-          rule.settings.background = tinycolor[filter](rule.settings.background).toHexString()
-    for rule in Theme.gcolors
-      rule.color = tinycolor[filter](rule.color).toHexString()
-    $scope.original_colors = Object.clone(Theme.json.settings, true)
-
-  $scope.update_colors = (->
-    for rule,i in $scope.original_colors
-      if rule.scope && rule.settings
-        if rule.settings.foreground
-          Theme.json.settings[i].settings.foreground = tinycolor.brightness_contrast( rule.settings.foreground, $scope.brightness, $scope.saturation/100 ).toHexString()
-        if rule.settings.background
-          Theme.json.settings[i].settings.background = tinycolor.brightness_contrast( rule.settings.background, $scope.brightness, $scope.saturation/100.0 ).toHexString()
-
-  ).throttle(20)
 
   #-------------------------------------------------------------------------
 
@@ -320,3 +290,51 @@ Application.controller 'editorController',
       else
         $window.open(theme_obj.url)
     return
+
+  # ----- from gallery controller ------------------------------------
+  $scope.filter = {name: ''}
+
+  $scope.load_theme = (theme) ->
+    return if $scope.selected_theme == theme
+    $scope.hide_all_popovers()
+    Theme.theme_type = ''
+    $scope.scopes_filter.name = ''
+    $location.search('local', null)
+    $location.path("/theme/#{theme.name}")
+    $scope.selected_theme = theme
+
+  $scope.toggle_type_filter = (type) ->
+    $scope.filter.type = if $scope.filter.type == type then undefined else type
+
+  # -- Loading Local Files -------------------------------------------
+  $scope.load_local_theme = (theme) ->
+    return if $scope.selected_theme == theme
+    throbber.on()
+    $scope.hide_all_popovers()
+    Theme.theme_type = 'Local File'
+    $scope.scopes_filter.name = ''
+    $scope.selected_theme = theme
+    $scope.files.push(theme.name)
+    $scope.fs.root.getFile theme.name, {}, ((fileEntry) ->
+      fileEntry.file ((file) ->
+        reader = new FileReader()
+        reader.onloadend = (e) ->
+          Theme.process(@result.trim())
+          $location.path("/local/#{theme.name}")
+          $scope.$apply()
+          throbber.off()
+        reader.readAsText file
+      ), FsErrorHandler
+    ), FsErrorHandler
+
+  $scope.remove_local_theme = (theme) ->
+    $scope.fs.root.getFile theme.name, {create: false}, ((fileEntry) ->
+      fileEntry.remove (->
+        # console.log 'File removed.'
+        $scope.localFiles.remove(theme)
+        if $location.path() == "/local/#{theme.name}"
+          # console.log 'removing deleted theme from path'
+          $location.path('/')
+        $scope.$apply()
+      ), FsErrorHandler
+    ), FsErrorHandler

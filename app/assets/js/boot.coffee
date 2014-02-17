@@ -1,9 +1,16 @@
+window.requestFileSystem  = window.requestFileSystem || window.webkitRequestFileSystem
+window.BlobBuilder        = window.BlobBuilder || window.WebKitBlobBuilder
+window.FsErrorHandler = (e) -> console.error "Error [#{e.name}] - #{e.message}"
+
+# TODO: get rid of this shit
 angular.module("ui.config", []).value "ui.config", {}
 angular.module "ui.filters", ["ui.config"]
 angular.module "ui.directives", ["ui.config"]
 angular.module "ui", ["ui.filters", "ui.directives", "ui.config"]
 
 window.app_module = angular.module('ThemeEditor', ['ngSanitize', 'ui'])
+
+# TODO: get rid of this layer of abstraction
 window.Application = {
   controller: (name, dependencies, fn) ->
     args = dependencies

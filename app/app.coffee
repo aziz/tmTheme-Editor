@@ -29,9 +29,9 @@ app.configure 'development', ->
   app.use express.errorHandler('dumpExceptions': true, 'showStack': true)
 
 app.configure 'production', ->
-  log = fs.createWriteStream 'log/production.log', {flags: 'w'}
+  # log = fs.createWriteStream 'log/production.log', {flags: 'w'}
   app.use express.errorHandler()
-  app.use express.logger(stream: log)
+  # app.use express.logger(stream: log)
 
 app.get '/', routes.index
 app.get '/get_uri', routes.get_uri

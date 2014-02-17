@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "./node_modules/.bin/coffee app/app.coffee",
+    "prod": "NODE_ENV=production PORT=9090 ./node_modules/.bin/coffee app/app.coffee",
     "test": "./node_modules/.bin/testem -f testem.json"
   },
   "engines": {
