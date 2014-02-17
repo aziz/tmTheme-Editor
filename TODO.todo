@@ -1,6 +1,8 @@
 
 TODO v.0.6:
+ ☐ draggable needs a handle
  ☐ use ngCookies
+ ☐ update less/connect assets (less in dev tools)
  ☐ prod mode
 
  ☐ more lang support (PHP Perl GO LESS SCSS C C++ Lua XML Markdown Latex)
@@ -25,7 +27,7 @@ TODO v.0.6:
 improve HUD:
  ☐ reset filters
  ☐ parse alpha colors
- ☐ move functions from tiny color to color service
+ ☐ draggable broken
 
 TODO:
  ☐ On-Hover highlight for scopes and galley
@@ -137,6 +139,8 @@ Test:
  ☐ download theme
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ tiny color and hud @done (14-02-17 21:12) @project(TODO v.0.6)
+ ✔ move functions from tiny color to color service @done (14-02-17 21:12) @project(improve HUD)
  ✔ bootstrap tooltip directive @done (14-02-17 20:12) @project(TODO v.0.6)
  ✔ bootstrap dropdown directive @done (14-02-17 20:12) @project(TODO v.0.6)
  ✔ BUG: sortable filter issue @done (14-02-17 11:32) @project(TODO v.0.6)

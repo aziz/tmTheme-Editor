@@ -1,8 +1,8 @@
-// TinyColor v0.9.14+
+// TinyColor v0.9.17
 // https://github.com/bgrins/TinyColor
-// 2013-02-24, Brian Grinstead, MIT License
+// 2013-08-10, Brian Grinstead, MIT License
 
-(function(root) {
+(function() {
 
 var trimLeft = /^[\s,#]+/,
     trimRight = /\s+$/,
@@ -44,6 +44,13 @@ function tinycolor (color, opts) {
         format: format,
         _tc_id: tinyCounter++,
         alpha: a,
+        getAlpha: function() {
+            return a;
+        },
+        setAlpha: function(value) {
+            a = boundAlpha(value);
+            roundA = mathRound(100*a) / 100;
+        },
         toHsv: function() {
             var hsv = rgbToHsv(r, g, b);
             return { h: hsv.h * 360, s: hsv.s, v: hsv.v, a: a };
@@ -70,7 +77,13 @@ function tinycolor (color, opts) {
             return rgbToHex(r, g, b, allow3Char);
         },
         toHexString: function(allow3Char) {
-            return '#' + rgbToHex(r, g, b, allow3Char);
+            return '#' + this.toHex(allow3Char);
+        },
+        toHex8: function() {
+            return rgbaToHex(r, g, b, a);
+        },
+        toHex8String: function() {
+            return '#' + this.toHex8();
         },
         toRgb: function() {
             return { r: mathRound(r), g: mathRound(g), b: mathRound(b), a: a };
@@ -96,23 +109,25 @@ function tinycolor (color, opts) {
             return hexNames[rgbToHex(r, g, b, true)] || false;
         },
         toFilter: function(secondColor) {
-            var hex = rgbToHex(r, g, b);
-            var secondHex = hex;
-            var alphaHex = Math.round(parseFloat(a) * 255).toString(16);
-            var secondAlphaHex = alphaHex;
+            var hex8String = '#' + rgbaToHex(r, g, b, a);
+            var secondHex8String = hex8String;
             var gradientType = opts && opts.gradientType ? "GradientType = 1, " : "";
 
             if (secondColor) {
                 var s = tinycolor(secondColor);
-                secondHex = s.toHex();
-                secondAlphaHex = Math.round(parseFloat(s.alpha) * 255).toString(16);
+                secondHex8String = s.toHex8String();
             }
 
-            return "progid:DXImageTransform.Microsoft.gradient("+gradientType+"startColorstr=#" + pad2(alphaHex) + hex + ",endColorstr=#" + pad2(secondAlphaHex) + secondHex + ")";
+            return "progid:DXImageTransform.Microsoft.gradient("+gradientType+"startColorstr="+hex8String+",endColorstr="+secondHex8String+")";
         },
         toString: function(format) {
+            var formatSet = !!format;
             format = format || this.format;
+
             var formattedString = false;
+            var hasAlphaAndFormatNotSet = !formatSet && a < 1 && a > 0;
+            var formatWithAlpha = hasAlphaAndFormatNotSet && (format === "hex" || format === "hex6" || format === "hex3" || format === "name");
+
             if (format === "rgb") {
                 formattedString = this.toRgbString();
             }
@@ -125,6 +140,9 @@ function tinycolor (color, opts) {
             if (format === "hex3") {
                 formattedString = this.toHexString(true);
             }
+            if (format === "hex8") {
+                formattedString = this.toHex8String();
+            }
             if (format === "name") {
                 formattedString = this.toName();
             }
@@ -133,6 +151,10 @@ function tinycolor (color, opts) {
             }
             if (format === "hsv") {
                 formattedString = this.toHsvString();
+            }
+
+            if (formatWithAlpha) {
+                return this.toRgbString();
             }
 
             return formattedString || this.toHexString();
@@ -167,6 +189,7 @@ tinycolor.fromRatio = function(color, opts) {
 //     "red"
 //     "#f00" or "f00"
 //     "#ff0000" or "ff0000"
+//     "#ff000000" or "ff000000"
 //     "rgb 255 0 0" or "rgb (255, 0, 0)"
 //     "rgb 1.0 0 0" or "rgb (1, 0, 0)"
 //     "rgba (255, 0, 0, 1)" or "rgba 255, 0, 0, 1"
@@ -212,12 +235,7 @@ function inputToRGB(color) {
         }
     }
 
-    a = parseFloat(a);
-
-    // Handle invalid alpha characters by setting to 1
-    if (isNaN(a) || a < 0 || a > 1) {
-        a = 1;
-    }
+    a = boundAlpha(a);
 
     return {
         ok: ok,
@@ -228,7 +246,6 @@ function inputToRGB(color) {
         a: a
     };
 }
-
 
 
 // Conversion Functions
@@ -387,6 +404,21 @@ function rgbToHex(r, g, b, allow3Char) {
 
     return hex.join("");
 }
+    // `rgbaToHex`
+    // Converts an RGBA color plus alpha transparency to hex
+    // Assumes r, g, b and a are contained in the set [0, 255]
+    // Returns an 8 character hex
+    function rgbaToHex(r, g, b, a) {
+
+        var hex = [
+            pad2(convertDecimalToHex(a)),
+            pad2(mathRound(r).toString(16)),
+            pad2(mathRound(g).toString(16)),
+            pad2(mathRound(b).toString(16))
+        ];
+
+        return hex.join("");
+    }
 
 // `equals`
 // Can be called with any tinycolor input
@@ -408,88 +440,17 @@ tinycolor.random = function() {
 // Thanks to less.js for some of the basics here
 // <https://github.com/cloudhead/less.js/blob/master/lib/less/functions.js>
 
-
 tinycolor.desaturate = function (color, amount) {
+    amount = (amount === 0) ? 0 : (amount || 10);
     var hsl = tinycolor(color).toHsl();
-    hsl.s -= ((amount || 10) / 100);
+    hsl.s -= amount / 100;
     hsl.s = clamp01(hsl.s);
     return tinycolor(hsl);
 };
-
-tinycolor.brightness_contrast = function (color, brightness, contrast) {
-  var rgb = tinycolor(color).toRgb();
-  var brightMul = 1 + Math.min(150,Math.max(-150,brightness)) / 150;
-  contrast = Math.max(0, contrast+1);
-  var mul, add;
-  if (contrast != 1) {
-    mul = brightMul * contrast;
-    add = - contrast * 128 + 128;
-  } else {  // this if-then is not necessary anymore, is it?
-    mul = brightMul;
-    add = 0;
-  }
-
-  var r, g, b;
-  var new_r, new_g, new_b;
-  r = rgb.r * mul + add;
-  g = rgb.g * mul + add;
-  b = rgb.b * mul + add;
-  if (r > 255 )
-    new_r = 255;
-  else if (r < 0)
-    new_r = 0;
-  else
-    new_r = r;
-
-  if (g > 255 )
-    new_g = 255;
-  else if (g < 0)
-    new_g = 0;
-  else
-    new_g = g;
-
-  if (b > 255 )
-    new_b = 255;
-  else if (b < 0)
-    new_b = 0;
-  else
-    new_b = b;
-
-  return tinycolor({r:new_r, g:new_g, b:new_b});
-};
-
-tinycolor.invert = function (color) {
-    var rgb = tinycolor(color).toRgb();
-    rgb.r = 255 - rgb.r;
-    rgb.g = 255 - rgb.g;
-    rgb.b = 255 - rgb.b;
-    return tinycolor(rgb);
-};
-
-tinycolor.solarize = function (color) {
-    var rgb = tinycolor(color).toRgb();
-    if (rgb.r>127) {rgb.r = 255 - rgb.r;}
-    if (rgb.g>127) {rgb.g = 255 - rgb.g;}
-    if (rgb.b>127) {rgb.b = 255 - rgb.b;}
-    return tinycolor(rgb);
-};
-
-
-tinycolor.sepia = function (color) {
-    var rgb = tinycolor(color).toRgb();
-    var r = (rgb.r * 0.393 + rgb.g * 0.769 + rgb.b * 0.189);
-    var g = (rgb.r * 0.349 + rgb.g * 0.686 + rgb.b * 0.168);
-    var b = (rgb.r * 0.272 + rgb.g * 0.534 + rgb.b * 0.131);
-    if (r < 0) r = 0; if (r > 255) r = 255;
-    if (g < 0) g = 0; if (g > 255) g = 255;
-    if (b < 0) b = 0; if (b > 255) b = 255;
-    return tinycolor({r:r, g:g, b:b});
-};
-
 tinycolor.saturate = function (color, amount) {
-    if ((amount === null) || (amount === undefined)) { amount = 10; }
+    amount = (amount === 0) ? 0 : (amount || 10);
     var hsl = tinycolor(color).toHsl();
-    hsl.s += (amount / 100);
+    hsl.s += amount / 100;
     hsl.s = clamp01(hsl.s);
     return tinycolor(hsl);
 };
@@ -497,15 +458,16 @@ tinycolor.greyscale = function(color) {
     return tinycolor.desaturate(color, 100);
 };
 tinycolor.lighten = function(color, amount) {
-    if ((amount === null) || (amount === undefined)) { amount = 10; }
+    amount = (amount === 0) ? 0 : (amount || 10);
     var hsl = tinycolor(color).toHsl();
-    hsl.l += (amount / 100);
+    hsl.l += amount / 100;
     hsl.l = clamp01(hsl.l);
     return tinycolor(hsl);
 };
 tinycolor.darken = function (color, amount) {
+    amount = (amount === 0) ? 0 : (amount || 10);
     var hsl = tinycolor(color).toHsl();
-    hsl.l -= ((amount || 10) / 100);
+    hsl.l -= amount / 100;
     hsl.l = clamp01(hsl.l);
     return tinycolor(hsl);
 };
@@ -577,6 +539,7 @@ tinycolor.monochromatic = function(color, results) {
 
     return ret;
 };
+
 
 // Readability Functions
 // ---------------------
@@ -815,6 +778,17 @@ function flip(o) {
     return flipped;
 }
 
+// Return a valid alpha value [0,1] with all invalid values being set to 1
+function boundAlpha(a) {
+    a = parseFloat(a);
+
+    if (isNaN(a) || a < 0 || a > 1) {
+        a = 1;
+    }
+
+    return a;
+}
+
 // Take input from [0, n] and return it as [0, 1]
 function bound01(n, max) {
     if (isOnePointZero(n)) { n = "100%"; }
@@ -841,8 +815,8 @@ function clamp01(val) {
     return mathMin(1, mathMax(0, val));
 }
 
-// Parse an integer into hex
-function parseHex(val) {
+// Parse a base-16 hex value into a base-10 integer
+function parseIntFromHex(val) {
     return parseInt(val, 16);
 }
 
@@ -871,6 +845,15 @@ function convertToPercentage(n) {
     return n;
 }
 
+// Converts a decimal to a hex value
+function convertDecimalToHex(d) {
+    return Math.round(parseFloat(d) * 255).toString(16);
+}
+// Converts a hex value to a decimal
+function convertHexToDecimal(h) {
+    return (parseIntFromHex(h) / 255);
+}
+
 var matchers = (function() {
 
     // <http://www.w3.org/TR/css3-values/#integers>
@@ -895,7 +878,8 @@ var matchers = (function() {
         hsla: new RegExp("hsla" + PERMISSIVE_MATCH4),
         hsv: new RegExp("hsv" + PERMISSIVE_MATCH3),
         hex3: /^([0-9a-fA-F]{1})([0-9a-fA-F]{1})([0-9a-fA-F]{1})$/,
-        hex6: /^([0-9a-fA-F]{2})([0-9a-fA-F]{2})([0-9a-fA-F]{2})$/
+        hex6: /^([0-9a-fA-F]{2})([0-9a-fA-F]{2})([0-9a-fA-F]{2})$/,
+        hex8: /^([0-9a-fA-F]{2})([0-9a-fA-F]{2})([0-9a-fA-F]{2})([0-9a-fA-F]{2})$/
     };
 })();
 
@@ -934,19 +918,28 @@ function stringInputToObject(color) {
     if ((match = matchers.hsv.exec(color))) {
         return { h: match[1], s: match[2], v: match[3] };
     }
+    if ((match = matchers.hex8.exec(color))) {
+        return {
+            a: convertHexToDecimal(match[1]),
+            r: parseIntFromHex(match[2]),
+            g: parseIntFromHex(match[3]),
+            b: parseIntFromHex(match[4]),
+            format: named ? "name" : "hex8"
+        };
+    }
     if ((match = matchers.hex6.exec(color))) {
         return {
-            r: parseHex(match[1]),
-            g: parseHex(match[2]),
-            b: parseHex(match[3]),
+            r: parseIntFromHex(match[1]),
+            g: parseIntFromHex(match[2]),
+            b: parseIntFromHex(match[3]),
             format: named ? "name" : "hex"
         };
     }
     if ((match = matchers.hex3.exec(color))) {
         return {
-            r: parseHex(match[1] + '' + match[1]),
-            g: parseHex(match[2] + '' + match[2]),
-            b: parseHex(match[3] + '' + match[3]),
+            r: parseIntFromHex(match[1] + '' + match[1]),
+            g: parseIntFromHex(match[2] + '' + match[2]),
+            b: parseIntFromHex(match[3] + '' + match[3]),
             format: named ? "name" : "hex"
         };
     }
@@ -964,7 +957,7 @@ else if (typeof define !== "undefined") {
 }
 // Browser: Expose to window
 else {
-    root.tinycolor = tinycolor;
+    window.tinycolor = tinycolor;
 }
 
-})(this);
+})();

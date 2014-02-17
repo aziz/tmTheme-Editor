@@ -5,7 +5,7 @@
 #= require vendors/angular-1.2.12/angular-sanitize.js
 #= require vendors/ui-bootstrap-popover-tooltip-tpls-0.10.0.js
 #= require vendors/ui-sortable.js
-#= require vendors/tinycolor-0.9.14.js
+#= require vendors/tinycolor-0.9.17.js
 #= require vendors/spin-1.3.3.js
 
 #= require boot

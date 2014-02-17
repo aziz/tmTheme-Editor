@@ -30,3 +30,6 @@ describe 'Service: Color', ->
     expect(Color.is_color('#aaaaaa')).toBeTruthy()
     expect(Color.is_color('#aaaaaaff')).toBeTruthy()
 
+  xit 'brightness_contrast', ->
+  xit 'invert, sepia, solarize', ->
+
