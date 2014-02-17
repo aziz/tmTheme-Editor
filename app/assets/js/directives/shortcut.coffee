@@ -1,4 +1,4 @@
-Application.directive "shortcut", [], () ->
+Application.directive "shortcut", [ ->
   (scope, element, attr) ->
     element.bind "keyup", (event) ->
       shortcut_obj = scope.$eval(attr.shortcut)
@@ -11,3 +11,4 @@ Application.directive "shortcut", [], () ->
           scope.$apply shortcut_obj[string]
         # else
         #   console.log "no match"
+]

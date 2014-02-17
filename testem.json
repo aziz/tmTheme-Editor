@@ -4,21 +4,25 @@
 "before_tests": "coffee -c test/**/*.coffee app/assets/js/services/*.coffee app/assets/js/*.coffee",
 "on_exit": "rm test/**/*.js app/assets/js/services/*.js app/assets/js/*.js",
 "src_files": [
-  "app/assets/js/vendors/sugar-1.3.9.js",
+  "app/assets/js/vendors/sugar-1.4.1-custom.js",
   "app/assets/js/vendors/tinycolor-0.9.14.js",
   "app/assets/js/vendors/angular-1.2.12/angular.js",
   "app/assets/js/vendors/angular-1.2.12/angular-mocks.js",
   "app/assets/js/vendors/angular-1.2.12/angular-sanitize.js",
+  "app/assets/js/vendors/ui-sortable.js",
+  "app/assets/js/vendors/ui-bootstrap-popover-tooltip-tpls-0.10.0.js",
   "app/assets/js/boot.coffee",
   "app/assets/js/services/*.coffee",
   "test/**/*.coffee"
 ],
 "serve_files": [
-  "app/assets/js/vendors/sugar-1.3.9.js",
+  "app/assets/js/vendors/sugar-1.4.1-custom.js",
   "app/assets/js/vendors/tinycolor-0.9.14.js",
   "app/assets/js/vendors/angular-1.2.12/angular.js",
   "app/assets/js/vendors/angular-1.2.12/angular-mocks.js",
   "app/assets/js/vendors/angular-1.2.12/angular-sanitize.js",
+  "app/assets/js/vendors/ui-sortable.js",
+  "app/assets/js/vendors/ui-bootstrap-popover-tooltip-tpls-0.10.0.js",
   "app/assets/js/boot.js",
   "app/assets/js/services/*.js",
   "test/**/*.js"

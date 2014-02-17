@@ -1,4 +1,4 @@
-Application.factory "ThemeLoader", ['$http'], ($http) ->
+Application.factory "ThemeLoader", ['$http', ($http) ->
 
   themes = $http.get("/gallery.json")
 
@@ -8,3 +8,5 @@ Application.factory "ThemeLoader", ['$http'], ($http) ->
     themes: themes
     load: load
   }
+
+]

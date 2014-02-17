@@ -1,8 +1,9 @@
-Application.directive "focusMe", ['$timeout'], ($timeout) ->
+Application.directive "focusMe", ['$timeout', ($timeout) ->
   link: (scope, element, attrs) ->
     scope.$watch attrs.focusMe, (value) ->
-      if value is true
-        # console.log "value=", value
-        $timeout( ->
-          element[0].focus()
-        , 0)
+      return unless value
+      set_focus = -> element[0].focus()
+      $timeout(set_focus, 0)
+      return
+    return
+]

@@ -1,4 +1,4 @@
-Application.factory "Theme", ['Color', 'json_to_plist', 'plist_to_json'], (Color, json_to_plist, plist_to_json) ->
+Application.factory "Theme", ['Color', 'json_to_plist', 'plist_to_json', (Color, json_to_plist, plist_to_json) ->
   theme = {}
 
   theme.xml  = ''
@@ -90,3 +90,4 @@ Application.factory "Theme", ['Color', 'json_to_plist', 'plist_to_json'], (Color
     saveAs blob, "#{@json.name}.tmTheme"
 
   return theme
+]

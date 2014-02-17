@@ -1,5 +1,5 @@
 Application.controller 'previewController',
-['$scope', '$http', 'throbber', '$sce'],
+['$scope', '$http', 'throbber', '$sce',
 ( $scope,   $http,   throbber,   $sce) ->
 
   $scope.colorized = ''
@@ -36,3 +36,5 @@ Application.controller 'previewController',
 
 
   $scope.$watch 'current_lang', $scope.update_preview
+
+]

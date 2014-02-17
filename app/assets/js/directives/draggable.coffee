@@ -50,4 +50,4 @@ DragDirective = ($document) ->
           right: 'auto'
 
 
-Application.directive 'draggable', ['$document'], DragDirective
+Application.directive 'draggable', ['$document', DragDirective]

@@ -1,5 +1,5 @@
 Application.controller 'editorController',
-['Color', 'Theme', 'ThemeLoader', 'EditPopover', 'NewPopover', 'HUDEffects', 'throbber', '$filter', '$scope', '$http', '$location', '$timeout', '$window'],
+['Color', 'Theme', 'ThemeLoader', 'EditPopover', 'NewPopover', 'HUDEffects', 'throbber', '$filter', '$scope', '$http', '$location', '$timeout', '$window',
 ( Color,   Theme,   ThemeLoader,   EditPopover,   NewPopover,   HUDEffects,   throbber,   $filter,   $scope,   $http,   $location,   $timeout,   $window) ->
 
   $scope.is_browser_supported = $window.chrome
@@ -343,3 +343,5 @@ Application.controller 'editorController',
         $scope.$apply()
       ), FsErrorHandler
     ), FsErrorHandler
+
+]

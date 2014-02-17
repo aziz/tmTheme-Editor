@@ -1,4 +1,4 @@
-Application.directive "scopeBar", ['$timeout', 'Theme'], ($timeout, Theme) ->
+Application.directive "scopeBar", ['$timeout', 'Theme', ($timeout, Theme) ->
   replace: true
   template: """
   <div ng-cloak ng-class="{ 'slide' : gallery_visible }" class="scope-bar">
@@ -94,3 +94,4 @@ Application.directive "scopeBar", ['$timeout', 'Theme'], ($timeout, Theme) ->
         return item if match.length
 
       candidates.last()
+]

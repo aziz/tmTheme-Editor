@@ -1,4 +1,4 @@
-Application.factory "EditPopover", [], () ->
+Application.factory "EditPopover", [ ->
 
   popover_el = $('#edit-popover')
 
@@ -43,3 +43,5 @@ Application.factory "EditPopover", [], () ->
     return true
 
   return popover
+
+]

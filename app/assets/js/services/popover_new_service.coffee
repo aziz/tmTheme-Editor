@@ -1,4 +1,4 @@
-Application.factory "NewPopover", [], () ->
+Application.factory "NewPopover", [ ->
 
   rule_pristine = {'name': '','scope': '','settings': {}}
   popover = {}
@@ -13,3 +13,4 @@ Application.factory "NewPopover", [], () ->
     @visible = true
 
   return popover
+]

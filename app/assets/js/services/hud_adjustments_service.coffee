@@ -1,4 +1,4 @@
-Application.factory "HUDEffects", ['Theme'], (Theme) ->
+Application.factory "HUDEffects", ['Theme', (Theme) ->
   hud = {}
   original_colors = {}
 
@@ -42,3 +42,4 @@ Application.factory "HUDEffects", ['Theme'], (Theme) ->
   ).throttle(20)
 
   return hud
+]

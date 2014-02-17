@@ -1,4 +1,4 @@
-Application.factory "Color", [], () ->
+Application.factory "Color", [ ->
   color = {}
   clamp = (val) -> Math.min(1, Math.max(0, val))
 
@@ -37,3 +37,5 @@ Application.factory "Color", [], () ->
   color.is_color = (color) -> if @parse(color) then true else false
 
   return color
+
+]

@@ -1,5 +1,5 @@
 Application.controller 'StatsController',
-['Color', 'ThemeLoader', 'plist_to_json', '$scope', '$http', '$location'],
+['Color', 'ThemeLoader', 'plist_to_json', '$scope', '$http', '$location',
 ( Color,   ThemeLoader ,  plist_to_json,   $scope,   $http,   $location) ->
 
   $scope.themes = []
@@ -64,3 +64,5 @@ Application.controller 'StatsController',
         url: theme.url
         light: theme.is_light
       }
+
+]

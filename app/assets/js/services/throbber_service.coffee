@@ -1,4 +1,4 @@
-Application.factory "throbber", [], () ->
+Application.factory "throbber", [ ->
 
   throbber = {}
   spinner_options = {
@@ -32,3 +32,4 @@ Application.factory "throbber", [], () ->
     element.removeClass("show").hide().removeClass("full_window")
 
   return throbber
+]
