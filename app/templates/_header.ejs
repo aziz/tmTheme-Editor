@@ -1,5 +1,5 @@
 <header id="header">
-  <a ng-click="toggle_gallery()" ng-class="{'active': gallery}"
+  <a ng-click="toggle_gallery()" ng-class="{'active': gallery_visible}"
      class="btn btn-info btn-small">
      <i class="icon-menu"></i> Gallery
   </a>
@@ -22,7 +22,7 @@
     </div>
   </div>
 
-  <div class="btn-toolbar dl-save" ng-class="gallery">
+  <div class="btn-toolbar dl-save" ng-class="{ 'slide' : gallery_visible }">
     <div class="btn-group">
       <a ng-click="save_theme()" class="btn btn-success btn-small  save">Save</a>
       <a ng-click="Theme.download()" class="btn btn-success btn-small download">
@@ -31,9 +31,9 @@
     </div>
   </div>
 
-  <div class="sep" ng-class="gallery"></div>
+  <div class="sep" ng-class="{ 'slide' : gallery_visible }"></div>
 
-  <div class="theme-title" ng-cloak ng-class="gallery" ng-show="Theme.json">
+  <div class="theme-title" ng-cloak ng-class="{ 'slide' : gallery_visible }" ng-show="Theme.json">
     {{ Theme.json.name }}
     <span ng-show="Theme.type != ''" class="label label-success" style="position:relative;top:-2px">{{Theme.type}}</span>
     <a ng-hide="Theme.type == 'Local File'" ng-click="open_theme_url()">

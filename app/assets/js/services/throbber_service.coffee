@@ -22,7 +22,6 @@ Application.factory "throbber", [], () ->
   spinner = new Spinner(spinner_options).spin($("#loading")[0])
   element = angular.element("#loading")
 
-
   throbber.on = (opt) ->
     if opt && opt.full_window
       element.show().addClass("show full_window")

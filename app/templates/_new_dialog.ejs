@@ -1,5 +1,5 @@
 <div id="new-popover" class="edit-popover new-popover"
-     ng-cloak  ng-class="gallery" ng-show="new_popover_visible">
+     ng-cloak  ng-class="{ 'slide' : gallery_visible }" ng-show="new_popover_visible">
   <label>Name</label>
   <textarea class="name-input" ng-model="new_rule.name" focus-me="new_popover_visible"></textarea>
 

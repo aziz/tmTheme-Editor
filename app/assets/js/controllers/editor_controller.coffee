@@ -1,27 +1,24 @@
 Application.controller 'editorController',
-['Color', 'Theme', 'ThemeLoader', 'throbber', '$scope', '$http', '$location', '$timeout', '$window'],
-( Color,   Theme,   ThemeLoader,   throbber,   $scope,   $http,   $location,   $timeout,   $window) ->
+['Color', 'Theme', 'ThemeLoader', 'EditPopover', 'throbber', '$scope', '$http', '$location', '$timeout', '$window'],
+( Color,   Theme,   ThemeLoader,   EditPopover,   throbber,   $scope,   $http,   $location,   $timeout,   $window) ->
 
   $scope.is_browser_supported = $window.chrome
-  $scope.fs = null
 
   $scope.Color = Color
   $scope.Theme = Theme
+  $scope.EditPopover = EditPopover
 
   $scope.current_tab   = 'scopes'
   $scope.scopes_filter = { name: '' }
 
+  $scope.fs = null
   $scope.files = []
   $scope.selected_rule = null
 
-  $scope.popover_rule = {}
-  $scope.edit_popover_visible = false
   $scope.new_popover_visible = false
   $scope.new_rule_pristine = {'name': '','scope': '','settings': {}}
   $scope.new_rule = Object.clone($scope.new_rule_pristine)
   $scope.new_property = {property: '', value: ''}
-
-  $scope.gallery = if $.cookie('gallery_state') and $.cookie('gallery_state') == 'slide' then 'slide' else null
 
   $scope.sortable_options = {
     axis: 'y'
@@ -45,14 +42,18 @@ Application.controller 'editorController',
     else
       'TmTheme Editor'
 
+  $scope.gallery_visible = if $.cookie('gallery_state') and $.cookie('gallery_state') == 'slide' then true else false
   $scope.toggle_gallery = ->
-    if $scope.gallery
-      $scope.gallery = null
+    if $scope.gallery_visible
+      $scope.gallery_visible = false
       $.cookie('gallery_state', 'closed')
     else
-      $scope.gallery = 'slide'
+      $scope.gallery_visible = true
       $.cookie('gallery_state', 'slide')
 
+  # TODO make sure selected theme is always set when loading in different modes
+  $scope.selected_theme = null
+  $scope.is_selected_theme = (theme) -> theme == $scope.selected_theme
 
   # -- Initializing ----------------------------------------------
   $scope.$on '$locationChangeStart', (event, nextLocation, currentLocation) ->
@@ -178,9 +179,6 @@ Application.controller 'editorController',
 
   $scope.external_themes = JSON.parse(localStorage.getItem("external_themes")) or []
 
-  $scope.selected_theme = null
-  $scope.is_selected_theme = (theme) -> theme == $scope.selected_theme
-
   # Drag & Drop ---------------------------------------------
   dropZone = document.getElementById('drop_zone')
 
@@ -199,6 +197,7 @@ Application.controller 'editorController',
   dropZone.addEventListener 'dragover', handleDragOver, false
   dropZone.addEventListener 'drop', handleFileDrop, false
 
+  # TODO move it to theme service
   $scope.toggle = (fontStyle, rule) ->
     rule.settings = {} unless rule.settings
     rule.settings.fontStyle = '' unless rule.settings.fontStyle
@@ -209,6 +208,7 @@ Application.controller 'editorController',
 
   # Save ---------------------------------------------------
 
+  # TODO: this is broken
   $scope.save_theme = ->
     Theme.update_general_colors()
     plist = json_to_plist(Theme.json)
@@ -236,52 +236,24 @@ Application.controller 'editorController',
 
   $scope.mark_as_selected = (rule) ->
     $scope.selected_rule = rule
-    $scope.edit_popover_visible = false
+    EditPopover.hide()
 
   $scope.mark_as_selected_gcolor = (rule) -> $scope.general_selected_rule = rule
 
   # ---------------------------------------------------------------------
 
-  $scope.toggle_edit_popover = (rule, rule_index) ->
-    $scope.popover_rule = rule
-    $scope.new_popover_visible = false
-    $scope.edit_popover_visible = true
-    row = $("#scope-lists .rule-#{rule_index}")
-    win_height = $(window).height()
-    popover = $('#edit-popover')
-
-    if (win_height - row.offset().top) < 160
-      popover.css({
-        'top': 'auto'
-        'left': ''
-        'bottom': win_height - row.offset().top
-      }).removeClass('on-bottom').addClass('on-top')
-    else if row.offset().top < 160
-      popover.css({
-        'left': ''
-        'top': row.offset().top + row.outerHeight()
-        'bottom': 'auto'
-      }).removeClass('on-top').addClass('on-bottom')
-    else
-      popover.css({
-        'top': row.offset().top + (row.outerHeight()/2) - 140
-        'left': ''
-        'bottom': 'auto'
-      }).removeClass('on-top').removeClass('on-bottom')
-
-    $('#preview, #gallery').one 'click', (e) ->
-      $scope.$apply ->
-        $scope.edit_popover_visible = false
-
-    return
+  $scope.$watch 'EditPopover.visible', (visible) ->
+    if visible
+      $('#preview, #gallery').one 'click', (e) ->
+        $scope.$apply ->
+          EditPopover.visible = false
 
   $scope.toggle_new_rule_popover = ->
     $scope.edit_popover_visible = false
     $scope.new_rule = Object.clone($scope.new_rule_pristine, true)
     $scope.new_popover_visible = !$scope.new_popover_visible
 
-  $scope.close_popover = -> $scope.edit_popover_visible = false
-
+  # TODO move it to service
   $scope.hide_all_popovers = ->
     $scope.edit_popover_visible = false
     $scope.toggle_new_rule_popover() if $scope.new_popover_visible
@@ -365,9 +337,3 @@ Application.controller 'editorController',
         $window.open(theme_obj.url)
 
     return
-
-  $scope.$watch 'edit_popover_visible', (n,o) ->
-    if n
-      $('.sidebar').css('overflow-y', 'hidden')
-    else
-      $('.sidebar').css('overflow-y', 'scroll')

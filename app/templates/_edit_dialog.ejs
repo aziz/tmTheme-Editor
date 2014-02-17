@@ -1,42 +1,42 @@
-<div id="edit-popover" class="edit-popover" ng-cloak ng-class="gallery" ng-show="edit_popover_visible">
+<div id="edit-popover" class="edit-popover" ng-cloak ng-class="{ 'slide' : gallery_visible }" ng-show="EditPopover.visible">
   <label>Name</label>
-  <textarea class="name-input" ng-model="popover_rule.name" focus-me="edit_popover_visible"></textarea>
+  <textarea class="name-input" ng-model="EditPopover.rule.name" focus-me="EditPopover.visible"></textarea>
 
   <table>
     <tr>
       <td>
         <label>Font Styles</label>
-        <label class="small"><input type="checkbox" ng-checked="Theme.is('bold', popover_rule)"      ng-click="toggle('bold',popover_rule)"     > <b>Bold</b></label>
-        <label class="small"><input type="checkbox" ng-checked="Theme.is('italic', popover_rule)"    ng-click="toggle('italic',popover_rule)"   > <i>Italic</i></label>
-        <label class="small"><input type="checkbox" ng-checked="Theme.is('underline', popover_rule)" ng-click="toggle('underline',popover_rule)"> <u>Underline</u></label>
+        <label class="small"><input type="checkbox" ng-checked="Theme.is('bold', EditPopover.rule)"      ng-click="toggle('bold',EditPopover.rule)"     > <b>Bold</b></label>
+        <label class="small"><input type="checkbox" ng-checked="Theme.is('italic', EditPopover.rule)"    ng-click="toggle('italic',EditPopover.rule)"   > <i>Italic</i></label>
+        <label class="small"><input type="checkbox" ng-checked="Theme.is('underline', EditPopover.rule)" ng-click="toggle('underline',EditPopover.rule)"> <u>Underline</u></label>
       </td>
       <td>
         <label>Foreground</label>
-        <div class="fg-box" ng-class="{ 'has_color': Color.is_color(popover_rule.settings.foreground) }">
+        <div class="fg-box" ng-class="{ 'has_color': Color.is_color(EditPopover.rule.settings.foreground) }">
           <div class="colorpicker-box"
-               ng-class="{ 'has_color': Color.is_color(popover_rule.settings.foreground) }"
-               ng-style="{ 'background-color': Color.parse(popover_rule.settings.foreground) }"></div>
-          <a ng-click="reset_color(popover_rule, 'foreground')" class="reset">Reset</a>
-          <input class="colorpicker-input" type="color" title="{{popover_rule.settings.foreground}}" ng-model="popover_rule.settings.foreground">
+               ng-class="{ 'has_color': Color.is_color(EditPopover.rule.settings.foreground) }"
+               ng-style="{ 'background-color': Color.parse(EditPopover.rule.settings.foreground) }"></div>
+          <a ng-click="reset_color(EditPopover.rule, 'foreground')" class="reset">Reset</a>
+          <input class="colorpicker-input" type="color" title="{{EditPopover.rule.settings.foreground}}" ng-model="EditPopover.rule.settings.foreground">
         </div>
 
         <label>Background</label>
-        <div class="bg-box" ng-class="{ 'has_color': Color.is_color(popover_rule.settings.background) }">
+        <div class="bg-box" ng-class="{ 'has_color': Color.is_color(EditPopover.rule.settings.background) }">
           <div class="colorpicker-box"
-               ng-class="{ 'has_color': Color.is_color(popover_rule.settings.background) }"
-               ng-style="{ 'background-color': Color.parse(popover_rule.settings.background) }"></div>
-          <a ng-click="reset_color(popover_rule, 'background')" class="reset">Reset</a>
-          <input class="colorpicker-input" type="color" title="{{popover_rule.settings.background}}" ng-model="popover_rule.settings.background">
+               ng-class="{ 'has_color': Color.is_color(EditPopover.rule.settings.background) }"
+               ng-style="{ 'background-color': Color.parse(EditPopover.rule.settings.background) }"></div>
+          <a ng-click="reset_color(EditPopover.rule, 'background')" class="reset">Reset</a>
+          <input class="colorpicker-input" type="color" title="{{EditPopover.rule.settings.background}}" ng-model="EditPopover.rule.settings.background">
         </div>
       </td>
     </tr>
   </table>
 
   <label>Scope</label>
-  <textarea ng-model="popover_rule.scope"></textarea>
+  <textarea ng-model="EditPopover.rule.scope"></textarea>
 
   <div class="btn-sep">
-    <a ng-click="delete_rule(popover_rule)" class="btn btn-small btn-danger pull-left">Delete</a>
-    <a ng-click="close_popover()" class="btn btn-small btn-primary transparent pull-right">Close</a>
+    <a ng-click="delete_rule(EditPopover.rule)" class="btn btn-small btn-danger pull-left">Delete</a>
+    <a ng-click="EditPopover.hide()" class="btn btn-small btn-primary transparent pull-right">Close</a>
   </div>
 </div>

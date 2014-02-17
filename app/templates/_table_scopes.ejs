@@ -18,7 +18,7 @@
     <tr ng-repeat="rule in Theme.json.settings.compact() | filter: scopes_filter"
         ng-hide="rule.settings.invisibles"
         ng-click="mark_as_selected(rule)"
-        ng-dblclick="toggle_edit_popover(rule, $index)"
+        ng-dblclick="EditPopover.show(rule, $index)"
         ng-class="{ 'selected': is_selected(rule), 'hovered': is_hovered(rule) }"
         class="rule-{{$index}}">
 

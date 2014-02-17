@@ -1,7 +1,9 @@
 
 TODO v.0.6:
- ☐ HUD controller
- ☐ popover directive
+ ☐ preview popover does not work
+
+ ☐ New Popover service
+ ☐ HUD service
  ☐ saveAs/tinyColor service wrappers
 
  ☐ more lang support (PHP Perl GO LESS SCSS C C++ Lua XML Markdown Latex)
@@ -125,6 +127,7 @@ TmThemeEditor Companion:
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ Edit popover service @done (14-02-17 01:48) @project(TODO v.0.6)
  ✔ Refactor: extract color service @done (14-02-15 14:11) @project(TODO)
  ✔ gallery and editor controllers both load all themes (make it a service) @done (14-02-15 14:09) @project(TODO)
  ✔ test download @done (14-02-14 02:03) @project(TODO v. 0.5)

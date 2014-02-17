@@ -1,4 +1,4 @@
-<div ng-class="gallery" class="tabbar">
+<div ng-class="{ 'slide' : gallery_visible }" class="tabbar">
   <a ng-click="current_tab = 'scopes'"  ng-class="{'active': current_tab == 'scopes'}">Scopes</a>
   <a ng-click="current_tab = 'general'" ng-class="{'active': current_tab == 'general'}">General</a>
   <a ng-click="current_tab = 'info'"    ng-class="{'active': current_tab == 'info'}">Info</a>
@@ -6,7 +6,7 @@
 
 <% include _action_bar %>
 
-<div ng-cloak ng-class="gallery" class="sidebar" ng-style="{ 'background-color': Color.parse(Theme.bg())}">
+<div ng-cloak ng-class="{ 'slide': gallery_visible, 'no-scroll': EditPopover.visible  }" class="sidebar" ng-style="{ 'background-color': Color.parse(Theme.bg())}">
   <% include _table_general %>
   <% include _table_scopes %>
   <% include _table_info %>
