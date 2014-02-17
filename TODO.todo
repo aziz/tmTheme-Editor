@@ -1,8 +1,6 @@
 
 TODO v.0.6:
- ☐ sortable is broken (remove jqUI)
- ☐ use real draggable
- ☐ remove lib folder
+ ☐ BUG: sortable filter issue
  ☐ use ngCookies
  ☐ bootstrap dropdown directive
  ☐ bootstrap tooltip directive
@@ -50,6 +48,7 @@ TODO:
  ☐ set production env on heroku
  ☐ focus state for color pickers
  ☐ indicate that drag and drop is enabled
+ ☐ better shortcut management https://github.com/mgonto/mgo-mousetrap
 
 Low:
  ☐ color picker js https://github.com/bebraw/colorjoe or https://github.com/Jimdo/angular-spectrum-colorpicker
@@ -141,6 +140,9 @@ Test:
  ☐ download theme
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ remove lib folder @done (14-02-17 10:35) @project(TODO v.0.6)
+ ✔ sortable is broken @done (14-02-17 10:35) @project(TODO v.0.6)
+ ✔ use real draggable @done (14-02-17 08:11) @project(TODO v.0.6)
  ✔ refactor scope bar @done (14-02-17 04:32) @project(TODO v.0.6)
  ✔ preview popover does not work @done (14-02-17 04:31) @project(TODO v.0.6)
  ✔ hud service @done (14-02-17 03:26) @project(TODO v.0.6)

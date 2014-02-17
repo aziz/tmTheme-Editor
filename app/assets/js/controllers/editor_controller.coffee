@@ -20,9 +20,10 @@ Application.controller 'editorController',
   $scope.sortable_options = {
     axis: 'y'
     containment: 'parent'
+    stop: (event, ui) -> $("#sortableHelper").remove()
     helper: (e, tr) ->
       originals = tr.children()
-      helper = tr.clone()
+      helper = tr.clone().attr("id", "sortableHelper")
       helper.children().each (index) ->
         $(this).width originals.eq(index).width()
       helper

@@ -62,15 +62,15 @@
               <span ng-show="predicate == 'name' && reverse == true">▼</span>
               <span ng-show="predicate == 'name' && reverse == false">▲</span>
             </th>
-            <th style="width:240px" ng-class="{'active': predicate == 'Theme.json.author' }" ng-click="predicate = 'Theme.json.author'; reverse=!reverse">
+            <th style="width:240px" ng-class="{'active': predicate == 'jsonTheme.author' }" ng-click="predicate = 'jsonTheme.author'; reverse=!reverse">
               Author
-              <span ng-show="predicate == 'Theme.json.author' && reverse == true">▼</span>
-              <span ng-show="predicate == 'Theme.json.author' && reverse == false">▲</span>
+              <span ng-show="predicate == 'jsonTheme.author' && reverse == true">▼</span>
+              <span ng-show="predicate == 'jsonTheme.author' && reverse == false">▲</span>
             </th>
-            <th style="width:80px" ng-class="{'active': predicate == 'Theme.json.settings.length' }" ng-click="predicate = 'Theme.json.settings.length'; reverse=!reverse">
+            <th style="width:80px" ng-class="{'active': predicate == 'jsonTheme.settings.length' }" ng-click="predicate = 'jsonTheme.settings.length'; reverse=!reverse">
               Scopes
-              <span ng-show="predicate == 'Theme.json.settings.length' && reverse == true">▼</span>
-              <span ng-show="predicate == 'Theme.json.settings.length' && reverse == false">▲</span>
+              <span ng-show="predicate == 'jsonTheme.settings.length' && reverse == true">▼</span>
+              <span ng-show="predicate == 'jsonTheme.settings.length' && reverse == false">▲</span>
             </th>
             <th style="width:140px" ng-class="{'active': predicate == 'bgcolor' }" ng-click="predicate = 'bgcolor'; reverse=!reverse">
               BG
@@ -87,8 +87,8 @@
             <tr ng-repeat="theme in themes | orderBy:predicate:reverse">
               <td>{{ $index + 1 }}</td>
               <td><a ng-href="/#/theme/{{ theme.name }}">{{ theme.name }}</a></td>
-              <td>{{ theme.Theme.json.author.truncate(22) }}</td>
-              <td>{{ theme.Theme.json.settings.length }}</td>
+              <td>{{ theme.jsonTheme.author.truncate(22) }}</td>
+              <td>{{ theme.jsonTheme.settings.length }}</td>
               <td>
                 <span style="display: inline-block;width: 32px; height: 16px; border:1px solid #000; background-color: {{ theme.bgcolor.to(7) }}"></span>
                 {{ theme.bgcolor }}

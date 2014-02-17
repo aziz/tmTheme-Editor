@@ -1,6 +1,6 @@
 Application.controller 'StatsController',
-['Color', 'ThemeLoader', '$scope', '$http', '$location'],
-( Color,   ThemeLoader ,  $scope,   $http,   $location) ->
+['Color', 'ThemeLoader', 'plist_to_json', '$scope', '$http', '$location'],
+( Color,   ThemeLoader ,  plist_to_json,   $scope,   $http,   $location) ->
 
   $scope.themes = []
   $scope.scopes_data = []
