@@ -20,7 +20,7 @@ app.configure ->
   app.use express.bodyParser()
   app.use express.cookieParser()
   app.use express.methodOverride()
-  app.use assets_manager("buildDir": "public", "src": "app/assets/")
+  app.use assets_manager("buildDir": "public/assets/", "paths": ["app/assets/js","app/assets/css"])
   app.use app.router
   app.use express.static "#{__dirname}/../public"
 
