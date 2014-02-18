@@ -1,6 +1,6 @@
 Application.controller 'previewController',
-['$scope', '$http', 'throbber', '$sce',
-( $scope,   $http,   throbber,   $sce) ->
+['$scope', '$http', 'throbber', '$sce', '$cookies'
+( $scope,   $http,   throbber,   $sce,   $cookies) ->
 
   $scope.colorized = ''
   $scope.available_langs = [
@@ -12,7 +12,7 @@ Application.controller 'previewController',
     'Python',
     'Ruby',
   ]
-  $scope.current_lang = $.cookie('currnet_lang') || $scope.available_langs.first()
+  $scope.current_lang = $cookies.currnet_lang || $scope.available_langs.first()
   $scope.set_lang = (lang) -> $scope.current_lang = lang
 
   # Custom Code
@@ -20,7 +20,7 @@ Application.controller 'previewController',
   $scope.custom_code_editor_visible = false
   $scope.update_preview = ->
     throbber.on(full_window: true)
-    $.cookie('currnet_lang', $scope.current_lang)
+    $cookies.currnet_lang = $scope.current_lang
     if $scope.custom_code.length > 0
       localStorage.setItem('custom_code', $scope.custom_code)
       $http.post('/parse', {text: $scope.custom_code, syntax: $scope.current_lang}).success (data) ->

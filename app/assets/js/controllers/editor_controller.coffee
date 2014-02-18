@@ -1,6 +1,6 @@
 Application.controller 'editorController',
-['Color', 'Theme', 'ThemeLoader', 'EditPopover', 'NewPopover', 'HUDEffects', 'throbber', '$filter', '$scope', '$http', '$location', '$timeout', '$window',
-( Color,   Theme,   ThemeLoader,   EditPopover,   NewPopover,   HUDEffects,   throbber,   $filter,   $scope,   $http,   $location,   $timeout,   $window) ->
+['Color', 'Theme', 'ThemeLoader', 'EditPopover', 'NewPopover', 'HUDEffects', 'throbber', '$cookies', '$filter', '$scope', '$http', '$location', '$timeout', '$window',
+( Color,   Theme,   ThemeLoader,   EditPopover,   NewPopover,   HUDEffects,   throbber,   $cookies,   $filter,   $scope,   $http,   $location,   $timeout,   $window) ->
 
   $scope.is_browser_supported = $window.chrome
   $scope.themes = []
@@ -50,14 +50,14 @@ Application.controller 'editorController',
     else
       'TmTheme Editor'
 
-  $scope.gallery_visible = if $.cookie('gallery_state') and $.cookie('gallery_state') == 'slide' then true else false
+  $scope.gallery_visible = if $cookies.gallery_state and $cookies.gallery_state == 'slide' then true else false
   $scope.toggle_gallery = ->
     if $scope.gallery_visible
       $scope.gallery_visible = false
-      $.cookie('gallery_state', 'closed')
+      $cookies.gallery_state = 'closed'
     else
       $scope.gallery_visible = true
-      $.cookie('gallery_state', 'slide')
+      $cookies.gallery_state = 'slide'
 
   # TODO make sure selected theme is always set when loading in different modes
   $scope.selected_theme = null
@@ -168,7 +168,8 @@ Application.controller 'editorController',
       $scope.selected_theme = theme
       $location.path("/url/#{theme.url}")
     else
-      url = prompt 'Enter the URL of the color scheme: ', 'https://raw.github.com/aziz/tmTheme-Editor/master/themes/PlasticCodeWrap.tmTheme'
+      url = prompt('Enter the URL of the color scheme: ',
+                   'https://raw.github.com/aziz/tmTheme-Editor/master/themes/PlasticCodeWrap.tmTheme')
       if url
         $location.path("/url/#{url}")
 

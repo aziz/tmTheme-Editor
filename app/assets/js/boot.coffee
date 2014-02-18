@@ -2,4 +2,4 @@ window.requestFileSystem  = window.requestFileSystem || window.webkitRequestFile
 window.BlobBuilder        = window.BlobBuilder || window.WebKitBlobBuilder
 window.FsErrorHandler = (e) -> console.error "Error [#{e.name}] - #{e.message}"
 
-window.Application = angular.module('ThemeEditor', ['ngSanitize', 'ui.sortable', 'ui.bootstrap'])
+window.Application = angular.module('ThemeEditor', ['ngSanitize', 'ngCookies', 'ui.sortable', 'ui.bootstrap'])

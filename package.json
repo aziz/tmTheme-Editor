@@ -21,7 +21,7 @@
     "request": "2.33.0"
   },
   "devDependencies": {
-    "nodemon": "*",
+    "supervisor": "*",
     "testem": "*"
   }
 }
