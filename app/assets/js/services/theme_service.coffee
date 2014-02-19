@@ -6,6 +6,8 @@ Application.factory "Theme", ['Color', 'json_to_plist', 'plist_to_json', (Color,
   theme.type = ''
   theme.gcolors = []
 
+  border_color = null
+
   theme.process = (data) ->
     @xml = data
     @json = plist_to_json(data)
@@ -13,6 +15,8 @@ Application.factory "Theme", ['Color', 'json_to_plist', 'plist_to_json', (Color,
     if @json && @json.settings
       for key, val of @json.settings[0].settings
         @gcolors.push({'name': key, 'color': val})
+      border_color = null
+      @border_color()
       @json.colorSpaceName = 'sRGB'
       @json.semanticClass = "theme.#{Color.light_or_dark(@bg())}.#{@json.name.underscore().replace(/[\(\)'&]/g, '')}"
 
@@ -37,11 +41,14 @@ Application.factory "Theme", ['Color', 'json_to_plist', 'plist_to_json', (Color,
   theme.fg = -> @gcolors.length > 0 && @gcolors.find((gc) -> gc.name == 'foreground').color
   theme.selection_color = -> @gcolors.length > 0 && @gcolors.find((gc) -> gc.name == 'selection')?.color
   theme.gutter_fg = -> @gcolors.length > 0 && @gcolors.find((gc) -> gc.name == 'gutterForeground')?.color
-  theme.border_color = -> if Color.light_or_dark(Color.parse(@bg())) == 'light' then 'rgba(0,0,0,.33)' else 'rgba(255,255,255,.33)'
+
+  theme.border_color = ->
+    return border_color if border_color
+    border_color = if Color.light_or_dark(Color.parse(@bg())) == 'light' then 'rgba(0,0,0,.33)' else 'rgba(255,255,255,.33)'
 
   # Theme Stylesheet Generator ------------------------------------------
 
-  theme.css_scopes = ->
+  theme.css_scopes = (->
     styles = ''
     if @json && @json.settings
       for rule in @json.settings.compact()
@@ -61,8 +68,9 @@ Application.factory "Theme", ['Color', 'json_to_plist', 'plist_to_json', (Color,
             styles += "text-decoration:underline;" if underline
             styles += "}\n"
     styles
+  ).throttle(50)
 
-  theme.css_gutter = ->
+  theme.css_gutter = (->
     style = ''
     if @json && @json.settings && @bg()
       bgcolor = Color.parse(@bg())
@@ -75,13 +83,15 @@ Application.factory "Theme", ['Color', 'json_to_plist', 'plist_to_json', (Color,
         gutter_foreground = Color.parse(@gutter_fg()) || Color.lighten(bgcolor, 12)
         style += ".preview pre .l:before { color: #{gutter_foreground}; }"
     style
+  ).throttle(50)
 
-  theme.css_selection = ->
+  theme.css_selection = (->
     style = ''
     if @json && @json.settings
       style += "pre::selection {background:transparent}.preview pre *::selection {background:"
       style += "#{Color.parse(@selection_color())} }"
     style
+  ).throttle(50)
 
   theme.download = ->
     @update_general_colors()
