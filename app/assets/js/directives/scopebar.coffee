@@ -10,8 +10,8 @@ Application.directive "scopeBar", ['$timeout', 'Theme', ($timeout, Theme) ->
   """
   link: (scope, element, attr) ->
     preview_el = $("#preview")
+    scroll_promise = null
 
-    # MOUSE OVER ----------------------------
     preview_el.bind "mouseover", (event) ->
       active = {}
       active.scope = event.target.dataset.entityScope
@@ -22,18 +22,19 @@ Application.directive "scopeBar", ['$timeout', 'Theme', ($timeout, Theme) ->
         active.name = active_scope_rule.name if active_scope_rule
 
       scope.$apply ->
+        # setting scope text on the scopebar
+        scope.$parent.hovered_element_scope = generateElementScope(active.scope, event, true)
         # Highlight in sidebar
-        scope.$parent.hovered_element_scope = final_element_scope
         scope.$parent.hovered_rule = active_scope_rule
-        tmp = -> $(".hovered").scrollintoview({duration: 600, direction: "vertical", viewPadding: 10})
-        $timeout tmp, 20
 
-    # MOUSE OUT ----------------------------
+      scroll_into_view = -> $(".hovered").scrollintoview({duration: 500, direction: "vertical", viewPadding: 10})
+      scroll_promise = $timeout scroll_into_view, 500
+
     preview_el.bind "mouseout", (event) ->
       # Unhighlight in sidebar
+      $timeout.cancel(scroll_promise)
       scope.$parent.hovered_rule = null
 
-    # DBL CLICK ----------------------------
     preview_el.bind "dblclick", (event) ->
       active = {}
       active.scope = event.target.dataset.entityScope
@@ -70,12 +71,20 @@ Application.directive "scopeBar", ['$timeout', 'Theme', ($timeout, Theme) ->
           "bottom": "auto"
         }).removeClass("on-top").addClass("on-bottom")
 
-    generateElementScope = (scope, event) ->
+    # TODO: refactor, this function should not be called twice!
+    generateElementScope = (scope, event, reverse=false) ->
       result = [scope]
       $(event.target).parents("s").each((index, item) ->
         result.push( $(item).data().entityScope )
       )
-      result.join(" ")
+      if reverse
+        lang = $(event.target).closest("span.l").attr("class")
+        output = ""
+        output += lang.replace(/l l-\d+\s/,"").trim().split(" ").join(".") + " " if lang
+        output += result.reverse().join(" ")
+        return output
+      else
+        result.join(" ")
 
     # Finds the best matching rule from theme, given the current scope
     findBestMachingThemeRule = (active_scope) ->

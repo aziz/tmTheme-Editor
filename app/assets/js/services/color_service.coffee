@@ -36,10 +36,10 @@ Application.factory "Color", [ ->
 
   color.is_color = (color) -> if @parse(color) then true else false
 
-  #-----------
+  # Color Effects and Adjustments -----------------------
 
   color.brightness_contrast = (color, brightness, contrast) ->
-    rgb = tinycolor(color).toRgb()
+    rgb = tinycolor(@parse(color)).toRgb()
     brightMul = 1 + Math.min(150, Math.max(-150, brightness)) / 150
     contrast = contrast/100.0
     contrast = Math.max(0, contrast + 1)
@@ -71,10 +71,10 @@ Application.factory "Color", [ ->
     else
       new_b = b
     # TODO: alpha channel?
-    tinycolor(r: new_r, g: new_g, b: new_b).toHexString()
+    tinycolor(r: new_r, g: new_g, b: new_b, a: rgb.a).toHex8String()
 
   color.change_hsl = (color, h_change, s_change, l_change, colorize) ->
-    hsl = tinycolor(color).toHsl()
+    hsl = tinycolor(@parse(color)).toHsl()
     if colorize
       hsl.h = parseInt(h_change) + 180
     else
@@ -83,22 +83,22 @@ Application.factory "Color", [ ->
       hsl.h -= 360 if hsl.h > 360
     hsl.s = clamp(hsl.s + parseInt(s_change)/100.0)
     hsl.l = clamp(hsl.l + parseInt(l_change)/100.0)
-    tinycolor(hsl).toHexString()
+    tinycolor(hsl).toHex8String()
 
   color.invert = (color) ->
-    rgb = tinycolor(color).toRgb()
+    rgb = tinycolor(@parse(color)).toRgb()
     rgb.r = 255 - rgb.r
     rgb.g = 255 - rgb.g
     rgb.b = 255 - rgb.b
-    tinycolor(rgb).toHexString()
+    tinycolor(rgb).toHex8String()
 
   color.grayscale = (color) ->
-    hsl = tinycolor(color).toHsl()
+    hsl = tinycolor(@parse(color)).toHsl()
     hsl.s = 0
-    tinycolor(hsl).toHexString()
+    tinycolor(hsl).toHex8String()
 
   color.sepia = (color) ->
-    rgb = tinycolor(color).toRgb()
+    rgb = tinycolor(@parse(color)).toRgb()
     r = (rgb.r * .393 + rgb.g * .769 + rgb.b * .189)
     g = (rgb.r * .349 + rgb.g * .686 + rgb.b * .168)
     b = (rgb.r * .272 + rgb.g * .534 + rgb.b * .131)
@@ -108,7 +108,7 @@ Application.factory "Color", [ ->
     g = 255  if g > 255
     b = 0  if b < 0
     b = 255  if b > 255
-    tinycolor(r: r, g: g, b: b).toHexString()
+    tinycolor(r: r, g: g, b: b, a: rgb.a).toHex8String()
 
   # layered_with_opacity = (fg, bg, opacity) ->
   #   fg_rgb = tinycolor(fg).toRgb()
@@ -117,7 +117,7 @@ Application.factory "Color", [ ->
   #   fg_rgb.r = Math.round((bg_rgb.r - fg_rgb.r) * opacity + fg_rgb.r)
   #   fg_rgb.g = Math.round((bg_rgb.g - fg_rgb.g) * opacity + fg_rgb.g)
   #   fg_rgb.b = Math.round((bg_rgb.b - fg_rgb.b) * opacity + fg_rgb.b)
-  #   tinycolor(fg_rgb).toHexString()
+  #   tinycolor(fg_rgb).toHex8String()
 
   return color
 

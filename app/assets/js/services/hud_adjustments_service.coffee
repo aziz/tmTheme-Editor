@@ -1,16 +1,18 @@
-Application.factory "HUDEffects", ['Theme', 'Color', (Theme, Color) ->
+Application.factory "HUDEffects", ['Theme', 'Color', '$timeout', (Theme, Color, $timeout) ->
   hud = {}
-  hud.visible  = false
-  hud.colorize = false
-  hud.apply_to_general = false
 
   original_colors = {}
+  original_gcolors = []
   brightness = 0
   contrast   = 0
   hue        = 0
   saturation = 0
   lightness  = 0
+  processing = false
 
+  # Sliders return a string while number inputs need integer.
+  # That's why we need to define these smart properties with
+  # getters and setters to always keep the values as integers
   Object.defineProperty hud, "brightness", {
     get: ->  brightness
     set: (new_val) -> brightness = parseInt(new_val, 10)
@@ -36,22 +38,27 @@ Application.factory "HUDEffects", ['Theme', 'Color', (Theme, Color) ->
     set: (new_val) -> lightness = parseInt(new_val, 10)
   }
 
+  hud.visible  = false
+  hud.colorize = false
+  hud.apply_to_general = false
+
   hud.toggle = ->
     if not @visible
       original_colors = angular.copy(Theme.json.settings)
+      original_gcolors = angular.copy(Theme.gcolors)
     @visible = not @visible
 
   hud.hide = -> @visible = false
 
   hud.reset_changes = ->
     Theme.json.settings = angular.copy(original_colors)
+    Theme.gcolors = angular.copy(original_gcolors)
     @brightness = 0
     @contrast   = 0
     @hue        = 0
     @saturation = 0
     @lightness  = 0
 
-  # TODO rule.settings.foreground is not safe, should parse colors with color service
   hud.filter_colors = (filter) ->
     for rule in Theme.json.settings
       if rule.settings
@@ -60,11 +67,12 @@ Application.factory "HUDEffects", ['Theme', 'Color', (Theme, Color) ->
         if rule.settings.background
           rule.settings.background = Color[filter](rule.settings.background)
     for rule in Theme.gcolors
-      rule.color = Color[filter](rule.color)
-    original_colors = angular.copy(Theme.json.settings)
+      unless rule.name.endsWith("Options")
+        rule.color = Color[filter](rule.color)
+    # original_colors = angular.copy(Theme.json.settings)
 
-  # TODO rule.settings.foreground is not safe, should parse colors with color service
   hud.update_brightness_contrast = (->
+
     for rule,i in original_colors
       if rule.scope && rule.settings
         if fg = rule.settings.foreground
@@ -74,16 +82,25 @@ Application.factory "HUDEffects", ['Theme', 'Color', (Theme, Color) ->
     if @apply_to_general
       for rule in Theme.gcolors
         rule.color = Color.brightness_contrast(rule.color, @brightness, @contrast)
-  ).throttle(20)
+    return
+  ).throttle(25)
 
-  hud.update_hsl = (->
+  hud.update_hsl = ( (alaki = "") ->
+    if processing
+      $timeout(@update_hsl("from timeout"), 15)
+      return
+    console.log "from timeout" if alaki.length > 0
+    console.log "called"
+    processing = true
     for rule,i in original_colors
       if rule.scope && rule.settings
         if fg = rule.settings.foreground
           Theme.json.settings[i].settings.foreground = Color.change_hsl(fg, @hue, @saturation, @lightness, @colorize)
         if bg = rule.settings.background
           Theme.json.settings[i].settings.background = Color.change_hsl(bg, @hue, @saturation, @lightness, @colorize)
-  ).throttle(10)
+    processing = false
+    return
+  ).throttle(25)
 
   return hud
 ]
