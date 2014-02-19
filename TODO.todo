@@ -1,4 +1,3 @@
-☐ IMP convert all colors on load and on download (no need for parse)
 
 improve HUD:
  ☐ parse alpha colors
@@ -8,9 +7,6 @@ improve HUD:
 
 TODO v.0.6:
  ☐ gutter issue (redo gutter styling)
- ☐ use angular.toJson/angular.fromJson instead of JSON
- ☐ BUG: do not store hashkey to localstorge for external themes
- ☐ use run and config blocks to bootstrap app
  ☐ add more themes
  ☐ Scrollfix from UI-UTILS
 
@@ -19,13 +15,11 @@ TODO v.0.6:
  ☐ imrove scope bar and inline editing (when clicking on a specefic scope that's not on the list open a new popover)
  ☐ BUG: invert with alpha channel
  ☐ BUG: reverse the order of scope bar values, match with what is reported in sublime
-
  ☐ Error report if can not load from external URL or local
  ☐ sample column in general tab (caret, line highlight, invisible ...)?
  ☐ favorites
  ☐ setting color with transparency (different alpha channel representation)
  ☐ ColorTools: invert and sepia are not resetabale
- ☐ ColorTools: hue/color tempreture/color tint/grayscale/ and other color adjustments
  ☐ ngAnimate
  ☐ undo delete rule or even more full featured undo
 
@@ -143,6 +137,10 @@ Test:
  ☐ download theme
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ use run and config blocks to bootstrap app @done (14-02-19 05:51) @project(TODO v.0.6)
+ ✔ BUG: do not store hashkey to localstorge for external themes @done (14-02-19 05:50) @project(TODO v.0.6)
+ ✔ use angular.toJson/angular.fromJson instead of JSON @done (14-02-19 05:50) @project(TODO v.0.6)
+ ✔ ColorTools: hue/color tempreture/color tint/grayscale/ and other color adjustments @done (14-02-19 05:38) @project(TODO v.0.6)
  ✔ BUG: new local file loading 1. do not set selected_theme and do not turn off loader @done (14-02-19 05:36)
  ✔ BUG: deleting from local/external does not trun off loading @done (14-02-19 05:36)
  ✔ highlight current theme/local file/external after reload @done (14-02-19 05:06) @project(TODO v.0.6)

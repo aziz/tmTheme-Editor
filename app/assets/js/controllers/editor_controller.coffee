@@ -170,15 +170,15 @@ Application.controller 'editorController',
     current_theme_obj = {name: name, url: url}
     unless $scope.external_themes.find(current_theme_obj)
       $scope.external_themes.push(current_theme_obj)
-      localStorage.setItem('external_themes', JSON.stringify($scope.external_themes))
+      localStorage.setItem('external_themes', angular.toJson($scope.external_themes))
 
   $scope.remove_external_theme = (theme) ->
     $scope.external_themes.remove(theme)
-    localStorage.setItem('external_themes', JSON.stringify($scope.external_themes))
+    localStorage.setItem('external_themes', angular.toJson($scope.external_themes))
     if $location.path() == "/url/#{theme.url}"
       $location.path('/')
 
-  $scope.external_themes = JSON.parse(localStorage.getItem("external_themes")) or []
+  $scope.external_themes = angular.fromJson(localStorage.getItem("external_themes")) or []
 
   # Drag & Drop ---------------------------------------------
   dropZone = document.getElementById('drop_zone')
