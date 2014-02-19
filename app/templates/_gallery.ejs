@@ -34,7 +34,7 @@
       <h5>External URLs</h5>
       <ul>
         <li ng-repeat="theme in external_themes | orderBy:'name' | filter: filter"
-            ng-click="open_from_url(theme)"
+            ng-click="load_external_theme(theme)"
             ng-class="{ 'selected': is_selected_theme(theme) }">
           <span class="local_theme_title">{{ theme.name | removeExtension }}</span>
           <span ng-click="remove_external_theme(theme)" class="remove_theme" title="Remove">&times;</span>
@@ -46,7 +46,7 @@
       <h5>Gallery</h5>
       <ul>
         <li ng-repeat="theme in themes | filter: filter"
-            ng-click="load_theme(theme)"
+            ng-click="load_gallery_theme(theme)"
             ng-class="{ 'selected': is_selected_theme(theme) }">
             <span class="light_theme_icon" ng-show="theme.light"></span>
             <span class="dark_theme_icon"  ng-show="!theme.light"></span>

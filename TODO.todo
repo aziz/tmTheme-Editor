@@ -1,10 +1,9 @@
 ☐ IMP convert all colors on load and on download (no need for parse)
-☐ cancel changes in popover?
-☐ show real colors on popover (put bg color layer and scope bg color layer)
 
 improve HUD:
  ☐ parse alpha colors
  ☐ reset filters
+ ☐ filters should not affect non color general values
  ☐ apply to bg checkbox
 
 TODO v.0.6:
@@ -35,6 +34,9 @@ TODO v.0.6:
 
 
 TODO:
+ ☐ cancel changes in popover?
+ ☐ validate color input on popover
+ ☐ show real colors on popover (put bg color layer and scope bg color layer)
  ☐ On-Hover highlight for scopes and galley
  ☐ use multiple colors for underlining
  ☐ multi-line scopes like comments or css rules

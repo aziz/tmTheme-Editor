@@ -61,7 +61,7 @@ Application.controller 'editorController',
 
   # TODO make sure selected theme is always set when loading in different modes
   $scope.selected_theme = null
-  $scope.is_selected_theme = (theme) -> theme == $scope.selected_theme
+  $scope.is_selected_theme = (theme) -> theme.name == $scope.selected_theme
 
   # -- Initializing ----------------------------------------------
   $scope.$on '$locationChangeStart', (event, nextLocation, currentLocation) ->
@@ -161,17 +161,6 @@ Application.controller 'editorController',
     readEntries() # Start reading dirs.
 
   $timeout(list_local_files, 500)
-
-  $scope.open_from_url = (theme) ->
-    if theme
-      return if $scope.selected_theme == theme
-      $scope.selected_theme = theme
-      $location.path("/url/#{theme.url}")
-    else
-      url = prompt('Enter the URL of the color scheme: ',
-                   'https://raw.github.com/aziz/tmTheme-Editor/master/themes/PlasticCodeWrap.tmTheme')
-      if url
-        $location.path("/url/#{url}")
 
   save_external_to_local_storage = (url) ->
     name = url.split('/').last().replace(/%20/g, ' ')
@@ -299,27 +288,37 @@ Application.controller 'editorController',
 
   # ----- from gallery controller ------------------------------------
   $scope.filter = {name: ''}
+  $scope.toggle_type_filter = (type) ->
+    $scope.filter.type = if $scope.filter.type == type then undefined else type
 
-  $scope.load_theme = (theme) ->
-    return if $scope.selected_theme == theme
+
+  $scope.load_gallery_theme = (theme) ->
+    return if $scope.is_selected_theme(theme)
     $scope.hide_all_popovers()
     Theme.theme_type = ''
     $scope.scopes_filter.name = ''
     $location.search('local', null)
     $location.path("/theme/#{theme.name}")
-    $scope.selected_theme = theme
+    $scope.selected_theme = theme.name
 
-  $scope.toggle_type_filter = (type) ->
-    $scope.filter.type = if $scope.filter.type == type then undefined else type
+  $scope.load_external_theme = (theme) ->
+    if theme
+      return if $scope.is_selected_theme(theme)
+      $scope.selected_theme = theme.name
+      $location.path("/url/#{theme.url}")
+    else
+      url = prompt('Enter the URL of the color scheme: ',
+                   'https://raw.github.com/aziz/tmTheme-Editor/master/themes/PlasticCodeWrap.tmTheme')
+      if url
+        $location.path("/url/#{url}")
 
-  # -- Loading Local Files -------------------------------------------
   $scope.load_local_theme = (theme) ->
-    return if $scope.selected_theme == theme
+    return if $scope.is_selected_theme(theme)
     throbber.on()
     $scope.hide_all_popovers()
     Theme.theme_type = 'Local File'
     $scope.scopes_filter.name = ''
-    $scope.selected_theme = theme
+    $scope.selected_theme = theme.name
     $scope.files.push(theme.name)
     $scope.fs.root.getFile theme.name, {}, ((fileEntry) ->
       fileEntry.file ((file) ->
