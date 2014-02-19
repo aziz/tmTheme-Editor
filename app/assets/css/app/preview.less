@@ -1,20 +1,3 @@
-s {
-  text-decoration: none;
-  padding: 2px;
-  margin: -2px;
-  border-radius: 2px;
-  cursor: default;
-
-  &:hover {
-    box-shadow: 0 2px 0 0 fadeout(#1eae37, 60);
-    .user-select(none);
-
-    s:hover {
-      // background: fadeout(#1eae37, 92);
-    }
-  }
-}
-
 .is_bold { font-weight: bold !important; }
 .is_italic { font-style: italic; }
 .is_underline { text-decoration: underline; }
@@ -31,7 +14,6 @@ pre {background-color: transparent;}
   pre {
     font-size: 15px;
     border:0;
-    // background-color: transparent;
     .border-radius(0);
     counter-reset: line_numbers;
     padding:0;
@@ -39,6 +21,7 @@ pre {background-color: transparent;}
     overflow-x: scroll;
     width: 10000px;
     padding-bottom: 4px;
+    line-height: 19px;
 
     &:before {
       content: "";
@@ -48,8 +31,22 @@ pre {background-color: transparent;}
       z-index: -1;
     }
 
+    s {
+      text-decoration: none;
+      padding: 2px;
+      margin: -2px;
+      border-radius: 2px;
+      cursor: default;
+
+      &:hover {
+        box-shadow: inset 0 -2px 0  fadeout(#1eae37, 66);
+        .user-select(none);
+      }
+    }
+
     .l {
       counter-increment: line_numbers;
+      // display: block;
     }
     .l:before {
       content: counter(line_numbers);
@@ -93,7 +90,6 @@ pre {background-color: transparent;}
       padding-right: 380px;
     }
   }
-
 
   .f-scope {
     line-height: 32px;

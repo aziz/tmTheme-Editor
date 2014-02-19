@@ -17,7 +17,8 @@
                ng-class="{ 'has_color': Color.is_color(EditPopover.rule.settings.foreground) }"
                ng-style="{ 'background-color': Color.parse(EditPopover.rule.settings.foreground) }"></div>
           <a ng-click="reset_color(EditPopover.rule, 'foreground')" class="reset">Reset</a>
-          <input class="colorpicker-input" type="color" title="{{EditPopover.rule.settings.foreground}}" ng-model="EditPopover.rule.settings.foreground">
+          <input class="colorpicker-input" type="color" ng-model="EditPopover.rule.settings.foreground">
+          <input class="colortext-input" type="text" ng-model="EditPopover.rule.settings.foreground">
         </div>
 
         <label>Background</label>
@@ -26,7 +27,8 @@
                ng-class="{ 'has_color': Color.is_color(EditPopover.rule.settings.background) }"
                ng-style="{ 'background-color': Color.parse(EditPopover.rule.settings.background) }"></div>
           <a ng-click="reset_color(EditPopover.rule, 'background')" class="reset">Reset</a>
-          <input class="colorpicker-input" type="color" title="{{EditPopover.rule.settings.background}}" ng-model="EditPopover.rule.settings.background">
+          <input class="colorpicker-input" type="color" ng-model="EditPopover.rule.settings.background">
+          <input class="colortext-input" type="text" ng-model="EditPopover.rule.settings.background">
         </div>
       </td>
     </tr>
@@ -36,7 +38,7 @@
   <textarea ng-model="EditPopover.rule.scope"></textarea>
 
   <div class="btn-sep">
-    <a ng-click="delete_rule(EditPopover.rule)" class="btn btn-small btn-danger pull-left">Delete</a>
-    <a ng-click="EditPopover.hide()" class="btn btn-small btn-primary transparent pull-right">Close</a>
+    <button ng-click="delete_rule(EditPopover.rule)" class="btn btn-small btn-danger pull-left">Delete</button>
+    <button ng-click="EditPopover.hide()" class="btn btn-small btn-primary transparent pull-right">Close</button>
   </div>
 </div>

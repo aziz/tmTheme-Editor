@@ -21,15 +21,18 @@ Application.factory "throbber", [ ->
   }
   spinner = new Spinner(spinner_options).spin($("#loading")[0])
   element = angular.element("#loading")
+  loading_counter = 0
 
   throbber.on = (opt) ->
+    loading_counter += 1
     if opt && opt.full_window
       element.show().addClass("show full_window")
     else
       element.show().addClass("show")
 
   throbber.off = ->
-    element.removeClass("show").hide().removeClass("full_window")
+    loading_counter -= 1
+    element.removeClass("show").hide().removeClass("full_window") if loading_counter == 0
 
   return throbber
 ]

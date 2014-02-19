@@ -1,4 +1,7 @@
 ☐ IMP convert all colors on load and on download (no need for parse)
+☐ cancel changes in popover?
+☐ show real colors on popover (put bg color layer and scope bg color layer)
+
 improve HUD:
  ☐ parse alpha colors
  ☐ reset filters
@@ -73,6 +76,7 @@ Low:
  ☐ add changelog link to menu
  ☐ convert drag/drop and file system api to service
  ☐ do not use file api, use localstorage
+ ☐ CSS lang color highlighting issues
 
 More Languages Support:
  ☐ C#
@@ -140,6 +144,8 @@ Test:
  ☐ download theme
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ show real color as input @done (14-02-19 03:48)
+ ✔ remove title on color boxes @done (14-02-19 03:48)
  ✔ trottle style generation @done (14-02-19 01:36) @project(improve HUD)
  ✔ do not compile boot.coffee @done (14-02-18 23:09) @project(TODO v.0.6)
  ✔ grayscale filter @done (14-02-18 21:30) @project(improve HUD)
