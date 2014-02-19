@@ -1,11 +1,12 @@
 
-TODO v.0.6:
+TODO v.0.7:
  ☐ add more themes
  ☐ more lang support (PHP Perl GO LESS SCSS C C++ Lua XML Markdown Latex)
  ☐ BUG: save does not work (gallery/local/external)
  ☐ gutter issue (redo gutter styling)
  ☐ refactor drag and drop theme file as a directive
  ☐ refactor file system API as a service
+ ☐ remove button for custom preview code
 
 Preview and scope bar:
  ☐ do not scroll preview when popover is open on the preview code
@@ -127,33 +128,3 @@ Test:
  ☐ download theme
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
- ✔ BUG: when loading theme hud should be reseted @done (14-02-19 20:58) @project(Improve HUD)
- ✔ reset filters @done (14-02-19 20:22) @project(Improve HUD)
- ✔ BUG: both hsl and b/c sliders @done (14-02-19 20:22) @project(Improve HUD)
- ✔ apply to bg checkbox should remember original general @done (14-02-19 19:59) @project(Improve HUD)
- ✘ update uuid @cancelled (14-02-19 16:49) @project(Low)
- ✔ BUG: reverse the order of scope bar values, match with what is reported in sublime @done (14-02-19 15:59) @project(TODO v.0.6)
- ✔ filters should not affect non color general values @done (14-02-19 07:59) @project(improve HUD)
- ✔ BUG: invert with alpha channel @done (14-02-19 07:34) @project(improve HUD)
- ✔ setting color with transparency (different alpha channel representation) @done (14-02-19 07:25) @project(improve HUD)
- ✔ parse alpha colors @done (14-02-19 07:24) @project(improve HUD)
- ✔ use run and config blocks to bootstrap app @done (14-02-19 05:51) @project(TODO v.0.6)
- ✔ use angular.toJson/angular.fromJson instead of JSON @done (14-02-19 05:50) @project(TODO v.0.6)
- ✔ BUG: do not store hashkey to localstorge for external themes @done (14-02-19 05:50) @project(TODO v.0.6)
- ✔ ColorTools: hue/color tempreture/color tint/grayscale/ and other color adjustments @done (14-02-19 05:38) @project(TODO v.0.6)
- ✔ BUG: new local file loading 1. do not set selected_theme and do not turn off loader @done (14-02-19 05:36)
- ✔ BUG: deleting from local/external does not trun off loading @done (14-02-19 05:36)
- ✔ highlight current theme/local file/external after reload @done (14-02-19 05:06) @project(TODO v.0.6)
- ✔ add color input boxes with real color values to edit popovers @done (14-02-19 05:06) @project(TODO v.0.6)
- ✔ some general settings are not colors /#/BoxUK (3 end with options and are text) @done (14-02-19 04:20) @project(TODO v.0.6)
- ✔ show real color as input @done (14-02-19 03:48)
- ✔ remove title on color boxes @done (14-02-19 03:48)
- ✔ trottle style generation @done (14-02-19 01:36) @project(improve HUD)
- ✔ do not compile boot.coffee @done (14-02-18 23:09) @project(TODO v.0.6)
- ✔ grayscale filter @done (14-02-18 21:30) @project(improve HUD)
- ✔ colorize (keep the s and l but set the same H) @done (14-02-18 20:53) @project(improve HUD)
- ✔ key up/down for value change in hud input @done (14-02-18 19:06) @project(improve HUD)
- ✔ draggable broken @done (14-02-18 18:17) @project(improve HUD)
- ✔ saturation (hsl) (-100,100) @done (14-02-18 16:52) @project(improve HUD)
- ✔ lightness (hsl) (-100,100) @done (14-02-18 16:52) @project(improve HUD)
- ✔ hue (hsl) (-180,180) @done (14-02-18 16:52) @project(improve HUD)
