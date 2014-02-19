@@ -12,7 +12,7 @@
 #= require vendors/tinycolor-0.9.17.js
 #= require vendors/spin-1.3.3.js
 
-#= require boot
+#= require app/boot
 #= require_tree directives
 #= require_tree services
 #= require_tree controllers

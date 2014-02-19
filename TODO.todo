@@ -1,10 +1,15 @@
+☐ IMP convert all colors on load and on download (no need for parse)
+improve HUD:
+ ☐ parse alpha colors
+ ☐ reset filters
+ ☐ apply to bg checkbox
 
 TODO v.0.6:
- ☐ update less/connect assets (less in dev tools)
- ☐ gutter issue
+ ☐ gutter issue (redo gutter styling)
+ ☐ use angular.toJson/angular.fromJson instead of JSON
+ ☐ BUG: do not store hashkey to localstorge for external themes
  ☐ use run and config blocks to bootstrap app
  ☐ Scrollfix from UI-UTILS
- ☐ prod mode
 
  ☐ more lang support (PHP Perl GO LESS SCSS C C++ Lua XML Markdown Latex)
  ☐ BUG: save does not work (gallery/local/external)
@@ -12,7 +17,7 @@ TODO v.0.6:
  ☐ BUG: deleting from local/external does not trun off loading
  ☐ BUG: invert with alpha channel
  ☐ BUG: reverse the order of scope bar values, match with what is reported in sublime
- ☐ BUG: do not store hashkey to localstorge for external themes
+
  ☐ Error report if can not load from external URL or local
  ☐ highlight current theme/local file/external after reload
  ☐ add color input boxes with real color values to edit popovers
@@ -25,12 +30,6 @@ TODO v.0.6:
  ☐ ngAnimate
  ☐ undo delete rule or even more full featured undo
 
-improve HUD:
- ☐ reset filters
- ☐ parse alpha colors
- ☐ draggable broken
- ☐ key up/down for value change in hud input
- ☐ more filters
 
 TODO:
  ☐ On-Hover highlight for scopes and galley
@@ -47,7 +46,6 @@ TODO:
  ☐ event tracking
  ☐ indicate dirty state
  ☐ removal and addition of general colors
- ☐ set production env on heroku
  ☐ focus state for color pickers
  ☐ indicate that drag and drop is enabled
  ☐ better shortcut management https://github.com/mgonto/mgo-mousetrap
@@ -142,23 +140,12 @@ Test:
  ☐ download theme
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
- ✔ use ngCookies @done (14-02-18 01:52) @project(TODO v.0.6)
- ✔ upgrade to 1.2.13 @done (14-02-18 01:40) @project(TODO v.0.6)
- ✔ tiny color and hud @done (14-02-17 21:12) @project(TODO v.0.6)
- ✔ move functions from tiny color to color service @done (14-02-17 21:12) @project(improve HUD)
- ✔ bootstrap tooltip directive @done (14-02-17 20:12) @project(TODO v.0.6)
- ✔ bootstrap dropdown directive @done (14-02-17 20:12) @project(TODO v.0.6)
- ✔ BUG: sortable filter issue @done (14-02-17 11:32) @project(TODO v.0.6)
- ✔ sortable is broken @done (14-02-17 10:35) @project(TODO v.0.6)
- ✔ remove lib folder @done (14-02-17 10:35) @project(TODO v.0.6)
- ✔ use real draggable @done (14-02-17 08:11) @project(TODO v.0.6)
- ✔ refactor scope bar @done (14-02-17 04:32) @project(TODO v.0.6)
- ✔ preview popover does not work @done (14-02-17 04:31) @project(TODO v.0.6)
- ✔ hud service @done (14-02-17 03:26) @project(TODO v.0.6)
- ✔ New Popover service @done (14-02-17 02:30) @project(TODO v.0.6)
- ✔ Edit popover service @done (14-02-17 01:48) @project(TODO v.0.6)
- ✔ Refactor: extract color service @done (14-02-15 14:11) @project(TODO)
- ✔ gallery and editor controllers both load all themes (make it a service) @done (14-02-15 14:09) @project(TODO)
- ✔ test download @done (14-02-14 02:03) @project(TODO v. 0.5)
- ✔ update readme/screenshots @done (14-02-14 01:50) @project(TODO v. 0.5)
- ✔ delete custom code localStorage on save @done (14-02-13 23:24) @project(TODO v. 0.5)
+ ✔ trottle style generation @done (14-02-19 01:36) @project(improve HUD)
+ ✔ do not compile boot.coffee @done (14-02-18 23:09) @project(TODO v.0.6)
+ ✔ grayscale filter @done (14-02-18 21:30) @project(improve HUD)
+ ✔ colorize (keep the s and l but set the same H) @done (14-02-18 20:53) @project(improve HUD)
+ ✔ key up/down for value change in hud input @done (14-02-18 19:06) @project(improve HUD)
+ ✔ draggable broken @done (14-02-18 18:17) @project(improve HUD)
+ ✔ saturation (hsl) (-100,100) @done (14-02-18 16:52) @project(improve HUD)
+ ✔ lightness (hsl) (-100,100) @done (14-02-18 16:52) @project(improve HUD)
+ ✔ hue (hsl) (-180,180) @done (14-02-18 16:52) @project(improve HUD)
