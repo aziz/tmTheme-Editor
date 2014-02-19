@@ -70,13 +70,16 @@ Application.controller 'editorController',
     if $location.path() && $location.path().startsWith('/theme/')
       Theme.type = ''
       theme = $location.path().replace('/theme/','')
+      $scope.selected_theme = theme
     # There's a theme-url in URL
     else if $location.path() && $location.path().startsWith('/url/')
       Theme.type = 'External URL'
       theme_url = $location.path().replace('/url/','')
+      $scope.selected_theme = theme_url.split('/').last().replace(/%20/g, ' ')
     # There's a theme locally saved
     else if $location.path() && $location.path().startsWith('/local/')
       Theme.type = 'Local File'
+      $scope.selected_theme = $location.path().replace('/local/','')
     # Loading Default theme
     else
       theme = 'Monokai'
@@ -299,12 +302,10 @@ Application.controller 'editorController',
     $scope.scopes_filter.name = ''
     $location.search('local', null)
     $location.path("/theme/#{theme.name}")
-    $scope.selected_theme = theme.name
 
   $scope.load_external_theme = (theme) ->
     if theme
       return if $scope.is_selected_theme(theme)
-      $scope.selected_theme = theme.name
       $location.path("/url/#{theme.url}")
     else
       url = prompt('Enter the URL of the color scheme: ',
@@ -318,7 +319,6 @@ Application.controller 'editorController',
     $scope.hide_all_popovers()
     Theme.theme_type = 'Local File'
     $scope.scopes_filter.name = ''
-    $scope.selected_theme = theme.name
     $scope.files.push(theme.name)
     $scope.fs.root.getFile theme.name, {}, ((fileEntry) ->
       fileEntry.file ((file) ->
@@ -326,8 +326,8 @@ Application.controller 'editorController',
         reader.onloadend = (e) ->
           Theme.process(@result.trim())
           $location.path("/local/#{theme.name}")
-          $scope.$apply()
           throbber.off()
+          $scope.$apply()
         reader.readAsText file
       ), FsErrorHandler
     ), FsErrorHandler

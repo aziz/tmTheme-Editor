@@ -31,7 +31,7 @@ Application.factory "throbber", [ ->
       element.show().addClass("show")
 
   throbber.off = ->
-    loading_counter -= 1
+    loading_counter -= 1 if loading_counter > 0
     element.removeClass("show").hide().removeClass("full_window") if loading_counter == 0
 
   return throbber

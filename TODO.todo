@@ -17,13 +17,10 @@ TODO v.0.6:
  ☐ more lang support (PHP Perl GO LESS SCSS C C++ Lua XML Markdown Latex)
  ☐ BUG: save does not work (gallery/local/external)
  ☐ imrove scope bar and inline editing (when clicking on a specefic scope that's not on the list open a new popover)
- ☐ BUG: deleting from local/external does not trun off loading
  ☐ BUG: invert with alpha channel
  ☐ BUG: reverse the order of scope bar values, match with what is reported in sublime
 
  ☐ Error report if can not load from external URL or local
- ☐ highlight current theme/local file/external after reload
- ☐ add color input boxes with real color values to edit popovers
  ☐ sample column in general tab (caret, line highlight, invisible ...)?
  ☐ favorites
  ☐ setting color with transparency (different alpha channel representation)
@@ -146,6 +143,10 @@ Test:
  ☐ download theme
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ BUG: new local file loading 1. do not set selected_theme and do not turn off loader @done (14-02-19 05:36)
+ ✔ BUG: deleting from local/external does not trun off loading @done (14-02-19 05:36)
+ ✔ highlight current theme/local file/external after reload @done (14-02-19 05:06) @project(TODO v.0.6)
+ ✔ add color input boxes with real color values to edit popovers @done (14-02-19 05:06) @project(TODO v.0.6)
  ✔ some general settings are not colors /#/BoxUK (3 end with options and are text) @done (14-02-19 04:20) @project(TODO v.0.6)
  ✔ show real color as input @done (14-02-19 03:48)
  ✔ remove title on color boxes @done (14-02-19 03:48)
