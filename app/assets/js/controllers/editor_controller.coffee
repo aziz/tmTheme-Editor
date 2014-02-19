@@ -4,9 +4,9 @@ Application.controller 'editorController',
 
   $scope.is_browser_supported = $window.chrome
   $scope.themes = []
-  $scope.Color = Color
-  $scope.Theme = Theme
-  $scope.HUD   = HUDEffects
+  $scope.Color  = Color
+  $scope.Theme  = Theme
+  $scope.HUD    = HUDEffects
   $scope.EditPopover = EditPopover
   $scope.NewPopover  = NewPopover
 
@@ -65,7 +65,6 @@ Application.controller 'editorController',
 
   # -- Initializing ----------------------------------------------
   $scope.$on '$locationChangeStart', (event, nextLocation, currentLocation) ->
-    # console.log 'locationChangeStart'
     # There's theme name in URL
     if $location.path() && $location.path().startsWith('/theme/')
       Theme.type = ''
@@ -103,7 +102,6 @@ Application.controller 'editorController',
   FsInitHandler = (fs) ->
     $scope.fs = fs
     $scope.$apply()
-
     if $location.path().startsWith('/local/')
       local_theme = $location.path().replace('/local/', '').replace(/%20/g,' ')
       $scope.files.push(local_theme)
@@ -146,6 +144,7 @@ Application.controller 'editorController',
     read_files($scope.files)
 
   $scope.localFiles = []
+  $scope.external_themes = angular.fromJson(localStorage.getItem("external_themes")) or []
 
   list_local_files = ->
     localFiles = []
@@ -172,14 +171,6 @@ Application.controller 'editorController',
       $scope.external_themes.push(current_theme_obj)
       localStorage.setItem('external_themes', angular.toJson($scope.external_themes))
 
-  $scope.remove_external_theme = (theme) ->
-    $scope.external_themes.remove(theme)
-    localStorage.setItem('external_themes', angular.toJson($scope.external_themes))
-    if $location.path() == "/url/#{theme.url}"
-      $location.path('/')
-
-  $scope.external_themes = angular.fromJson(localStorage.getItem("external_themes")) or []
-
   # Drag & Drop ---------------------------------------------
   dropZone = document.getElementById('drop_zone')
 
@@ -197,28 +188,6 @@ Application.controller 'editorController',
 
   dropZone.addEventListener 'dragover', handleDragOver, false
   dropZone.addEventListener 'drop', handleFileDrop, false
-
-  # Save ---------------------------------------------------
-
-  # TODO: this is broken
-  $scope.save_theme = ->
-    Theme.update_general_colors()
-    plist = json_to_plist(Theme.json)
-    $scope.fs && $scope.fs.root.getFile $scope.files.first(), {create: false}, (fileEntry) ->
-
-      fileEntry.remove ->
-        #console.log('File removed.')
-        $scope.fs && $scope.fs.root.getFile $scope.files.first(), {create: true}, (fileEntry) ->
-          fileEntry.createWriter (fileWriter) ->
-            fileWriter.onwriteend = (e) -> console.log 'File Saved'
-            fileWriter.onerror = (e) -> console.log 'Error in writing'
-            blob = new Blob([plist], {type: 'text/plain'})
-            fileWriter.write(blob)
-          , FsErrorHandler
-        , FsErrorHandler
-
-      , FsErrorHandler
-    , FsErrorHandler
 
   # ---------------------------------------------------------------------
 
@@ -279,7 +248,7 @@ Application.controller 'editorController',
       else
         $window.open(url)
     else
-      theme =  $location.path().replace('/theme/','')
+      theme = $location.path().replace('/theme/','')
       theme_obj = $scope.available_themes.find (t) -> t.name == theme
       gh_match = theme_obj.url.match(gh_pattern)
       if gh_match
@@ -289,23 +258,25 @@ Application.controller 'editorController',
         $window.open(theme_obj.url)
     return
 
-  # ----- from gallery controller ------------------------------------
   $scope.filter = {name: ''}
   $scope.toggle_type_filter = (type) ->
     $scope.filter.type = if $scope.filter.type == type then undefined else type
 
+  # -- LOAD THEME ------------------------------------------------
+  reset_state = ->
+    $scope.hide_all_popovers()
+    $scope.HUD.hide()
+    $scope.scopes_filter.name = ''
 
   $scope.load_gallery_theme = (theme) ->
     return if $scope.is_selected_theme(theme)
-    $scope.hide_all_popovers()
-    Theme.theme_type = ''
-    $scope.scopes_filter.name = ''
-    $location.search('local', null)
+    reset_state()
     $location.path("/theme/#{theme.name}")
 
   $scope.load_external_theme = (theme) ->
     if theme
       return if $scope.is_selected_theme(theme)
+      reset_state()
       $location.path("/url/#{theme.url}")
     else
       url = prompt('Enter the URL of the color scheme: ',
@@ -316,9 +287,8 @@ Application.controller 'editorController',
   $scope.load_local_theme = (theme) ->
     return if $scope.is_selected_theme(theme)
     throbber.on()
-    $scope.hide_all_popovers()
+    reset_state()
     Theme.theme_type = 'Local File'
-    $scope.scopes_filter.name = ''
     $scope.files.push(theme.name)
     $scope.fs.root.getFile theme.name, {}, ((fileEntry) ->
       fileEntry.file ((file) ->
@@ -332,16 +302,41 @@ Application.controller 'editorController',
       ), FsErrorHandler
     ), FsErrorHandler
 
+  # -- SAVE ---------------------------------------------------
+
+  # TODO: this is broken
+  $scope.save_theme = ->
+    Theme.update_general_colors()
+    plist = json_to_plist(Theme.json)
+    $scope.fs && $scope.fs.root.getFile $scope.files.first(), {create: false}, (fileEntry) ->
+      fileEntry.remove ->
+        $scope.fs && $scope.fs.root.getFile $scope.files.first(), {create: true}, (fileEntry) ->
+          fileEntry.createWriter (fileWriter) ->
+            fileWriter.onwriteend = (e) -> console.log 'File Saved'
+            fileWriter.onerror = (e) -> console.log 'Error in writing'
+            blob = new Blob([plist], {type: 'text/plain'})
+            fileWriter.write(blob)
+          , FsErrorHandler
+        , FsErrorHandler
+      , FsErrorHandler
+    , FsErrorHandler
+
+  # -- REMOVE -------------------------------------------------------
+
   $scope.remove_local_theme = (theme) ->
     $scope.fs.root.getFile theme.name, {create: false}, ((fileEntry) ->
       fileEntry.remove (->
-        # console.log 'File removed.'
         $scope.localFiles.remove(theme)
         if $location.path() == "/local/#{theme.name}"
-          # console.log 'removing deleted theme from path'
           $location.path('/')
         $scope.$apply()
       ), FsErrorHandler
     ), FsErrorHandler
+
+  $scope.remove_external_theme = (theme) ->
+    $scope.external_themes.remove(theme)
+    localStorage.setItem('external_themes', angular.toJson($scope.external_themes))
+    if $location.path() == "/url/#{theme.url}"
+      $location.path('/')
 
 ]

@@ -17,40 +17,40 @@
 
     <div class="hud_box">
       <label>Brightness</label>
-      <input type="range"  ng-change="HUD.update_brightness_contrast()" min="-150" max="150" ng-model="HUD.brightness">
-      <input type="number" ng-change="HUD.update_brightness_contrast()" min="-150" max="150" ng-model="HUD.brightness">
+      <input type="range"  ng-change="HUD.update_colors()" min="-150" max="150" ng-model="HUD.brightness">
+      <input type="number" ng-change="HUD.update_colors()" min="-150" max="150" ng-model="HUD.brightness">
     </div>
 
     <div class="hud_box">
       <label>Contrast</label>
-      <input type="range"  ng-change="HUD.update_brightness_contrast()" min="-100" max="300" ng-model="HUD.contrast">
-      <input type="number" ng-change="HUD.update_brightness_contrast()" min="-100" max="300" ng-model="HUD.contrast">
+      <input type="range"  ng-change="HUD.update_colors()" min="-100" max="300" ng-model="HUD.contrast">
+      <input type="number" ng-change="HUD.update_colors()" min="-100" max="300" ng-model="HUD.contrast">
     </div>
 
     <hr>
 
     <div class="hud_box">
       <label class="checkbox">
-        <input type="checkbox" ng-change="HUD.update_hsl()" ng-model="HUD.colorize"> Colorize
+        <input type="checkbox" ng-change="HUD.update_colors()" ng-model="HUD.colorize"> Colorize
       </label>
     </div>
 
     <div class="hud_box">
       <label>Hue</label>
-      <input type="range"  ng-change="HUD.update_hsl()" min="-180" max="180" ng-model="HUD.hue" class="hue_slider">
-      <input type="number" ng-change="HUD.update_hsl()" min="-180" max="180" ng-model="HUD.hue">
+      <input type="range"  ng-change="HUD.update_colors()" min="-180" max="180" ng-model="HUD.hue" class="hue_slider">
+      <input type="number" ng-change="HUD.update_colors()" min="-180" max="180" ng-model="HUD.hue">
     </div>
 
     <div class="hud_box">
       <label>Saturation</label>
-      <input type="range"   ng-change="HUD.update_hsl()" min="-100" max="100" ng-model="HUD.saturation" class="saturation_slider">
-      <input type="number"  ng-change="HUD.update_hsl()" min="-100" max="100" ng-model="HUD.saturation">
+      <input type="range"   ng-change="HUD.update_colors()" min="-100" max="100" ng-model="HUD.saturation" class="saturation_slider">
+      <input type="number"  ng-change="HUD.update_colors()" min="-100" max="100" ng-model="HUD.saturation">
     </div>
 
     <div class="hud_box">
       <label>Lightness</label>
-      <input type="range"   ng-change="HUD.update_hsl()" min="-100" max="100" ng-model="HUD.lightness" class="lightness_slider" >
-      <input type="number"  ng-change="HUD.update_hsl()" min="-100" max="100" ng-model="HUD.lightness">
+      <input type="range"   ng-change="HUD.update_colors()" min="-100" max="100" ng-model="HUD.lightness" class="lightness_slider" >
+      <input type="number"  ng-change="HUD.update_colors()" min="-100" max="100" ng-model="HUD.lightness">
     </div>
 
     <hr>

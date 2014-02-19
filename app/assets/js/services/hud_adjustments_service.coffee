@@ -3,12 +3,13 @@ Application.factory "HUDEffects", ['Theme', 'Color', '$timeout', (Theme, Color, 
 
   original_colors = {}
   original_gcolors = []
+  reset_colors = {}
+  reset_gcolors = []
   brightness = 0
   contrast   = 0
   hue        = 0
   saturation = 0
   lightness  = 0
-  processing = false
 
   # Sliders return a string while number inputs need integer.
   # That's why we need to define these smart properties with
@@ -42,17 +43,18 @@ Application.factory "HUDEffects", ['Theme', 'Color', '$timeout', (Theme, Color, 
   hud.colorize = false
   hud.apply_to_general = false
 
+  hud.hide = -> @visible = false
   hud.toggle = ->
     if not @visible
-      original_colors = angular.copy(Theme.json.settings)
+      original_colors  = angular.copy(Theme.json.settings)
       original_gcolors = angular.copy(Theme.gcolors)
+      reset_colors     = angular.copy(Theme.json.settings)
+      reset_gcolors    = angular.copy(Theme.gcolors)
     @visible = not @visible
 
-  hud.hide = -> @visible = false
-
   hud.reset_changes = ->
-    Theme.json.settings = angular.copy(original_colors)
-    Theme.gcolors = angular.copy(original_gcolors)
+    Theme.json.settings = angular.copy(reset_colors)
+    Theme.gcolors = angular.copy(reset_gcolors)
     @brightness = 0
     @contrast   = 0
     @hue        = 0
@@ -69,38 +71,27 @@ Application.factory "HUDEffects", ['Theme', 'Color', '$timeout', (Theme, Color, 
     for rule in Theme.gcolors
       unless rule.name.endsWith("Options")
         rule.color = Color[filter](rule.color)
-    # original_colors = angular.copy(Theme.json.settings)
+    original_colors  = angular.copy(Theme.json.settings)
+    original_gcolors = angular.copy(Theme.gcolors)
+    return
 
-  hud.update_brightness_contrast = (->
-
+  hud.update_colors = (->
     for rule,i in original_colors
       if rule.scope && rule.settings
         if fg = rule.settings.foreground
-          Theme.json.settings[i].settings.foreground = Color.brightness_contrast(fg, @brightness, @contrast)
+          Theme.json.settings[i].settings.foreground = apply_color_adjustments(fg)
         if bg = rule.settings.background
-          Theme.json.settings[i].settings.background = Color.brightness_contrast(bg, @brightness, @contrast)
+          Theme.json.settings[i].settings.background = apply_color_adjustments(bg)
     if @apply_to_general
-      for rule in Theme.gcolors
-        rule.color = Color.brightness_contrast(rule.color, @brightness, @contrast)
+      for rule,i in original_gcolors
+        Theme.gcolors[i].color = apply_color_adjustments(rule.color)
     return
-  ).throttle(25)
+  ).throttle(40)
 
-  hud.update_hsl = ( (alaki = "") ->
-    if processing
-      $timeout(@update_hsl("from timeout"), 15)
-      return
-    console.log "from timeout" if alaki.length > 0
-    console.log "called"
-    processing = true
-    for rule,i in original_colors
-      if rule.scope && rule.settings
-        if fg = rule.settings.foreground
-          Theme.json.settings[i].settings.foreground = Color.change_hsl(fg, @hue, @saturation, @lightness, @colorize)
-        if bg = rule.settings.background
-          Theme.json.settings[i].settings.background = Color.change_hsl(bg, @hue, @saturation, @lightness, @colorize)
-    processing = false
-    return
-  ).throttle(25)
+  apply_color_adjustments = (color) ->
+    ca1 = Color.change_hsl(color, hud.hue, hud.saturation, hud.lightness, hud.colorize)
+    ca2 = Color.brightness_contrast(ca1, hud.brightness, hud.contrast)
+    return ca2
 
   return hud
 ]

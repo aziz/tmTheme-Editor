@@ -1,24 +1,18 @@
-improve HUD:
- ☐ BUG: when loading theme hud should be reseted
- ☐ BUG: both hsl and b/c sliders
- ☐ BUG: colorize button
- ☐ reset filters
- ☐ apply to bg checkbox should remember original general
 
 TODO v.0.6:
  ☐ add more themes
  ☐ more lang support (PHP Perl GO LESS SCSS C C++ Lua XML Markdown Latex)
  ☐ BUG: save does not work (gallery/local/external)
  ☐ gutter issue (redo gutter styling)
- ☐ improve scope bar and inline editing (when clicking on a specefic scope that's not on the list open a new popover)
+ ☐ refactor drag and drop theme file as a directive
+ ☐ refactor file system API as a service
+
+Preview and scope bar:
+ ☐ do not scroll preview when popover is open on the preview code
  ☐ refactor scopebar
- ☐ Error report if can not load from external URL or local
- ☐ sample column in general tab (caret, line highlight, invisible ...)?
- ☐ favorites
- ☐ ngAnimate
- ☐ undo delete rule or even more full featured undo
 
 TODO:
+ ☐ Error report if can not load from external,local or gallery
  ☐ cancel changes in popover?
  ☐ validate color input on popover
  ☐ show real colors on popover (put bg color layer and scope bg color layer)
@@ -39,6 +33,9 @@ TODO:
  ☐ focus state for color pickers
  ☐ indicate that drag and drop is enabled
  ☐ better shortcut management https://github.com/mgonto/mgo-mousetrap
+ ☐ sample column in general tab (caret, line highlight, invisible ...)?
+ ☐ favorites
+ ☐ ngAnimate
 
 Low:
  ☐ color picker js https://github.com/bebraw/colorjoe or https://github.com/Jimdo/angular-spectrum-colorpicker
@@ -49,9 +46,8 @@ Low:
  ☐ get an image preview to embed
  ☐ Macgap (https://github.com/maccman/macgap)
  ☐ Node Webkit? (https://github.com/rogerwang/node-webkit)
- ☐ update uuid
  ☐ contrast score for bg and fg https://github.com/LeaVerou/contrast-ratio
- ☐ undo delete rule
+ ☐ undo delete rule or even more full featured undo
  ☐ set some info on the server for SEO when a theme is in URL
  ☐ chrome app?
  ☐ angular performance enhancement
@@ -131,6 +127,11 @@ Test:
  ☐ download theme
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ BUG: when loading theme hud should be reseted @done (14-02-19 20:58) @project(Improve HUD)
+ ✔ reset filters @done (14-02-19 20:22) @project(Improve HUD)
+ ✔ BUG: both hsl and b/c sliders @done (14-02-19 20:22) @project(Improve HUD)
+ ✔ apply to bg checkbox should remember original general @done (14-02-19 19:59) @project(Improve HUD)
+ ✘ update uuid @cancelled (14-02-19 16:49) @project(Low)
  ✔ BUG: reverse the order of scope bar values, match with what is reported in sublime @done (14-02-19 15:59) @project(TODO v.0.6)
  ✔ filters should not affect non color general values @done (14-02-19 07:59) @project(improve HUD)
  ✔ BUG: invert with alpha channel @done (14-02-19 07:34) @project(improve HUD)
