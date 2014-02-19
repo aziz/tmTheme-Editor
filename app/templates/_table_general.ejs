@@ -2,7 +2,7 @@
   <thead ng-hide="Theme.gcolors.length==0">
     <tr>
       <th class="align-begin truncate">General Colors</th>
-      <th class="big-color-box">Color</th>
+      <th class="big-color-box" style="width: 70px;">Color</th>
       <th class="check-box"></th>
     </tr>
   </thead>
@@ -14,7 +14,12 @@
         ng-click="mark_as_selected_gcolor(gcolor)"
         ng-class="{ 'selected': is_gcolor_selected(gcolor) }">
       <td class="name-box">{{gcolor.name}}</td>
-      <td>
+
+      <td ng-if="gcolor.name.endsWith('Options')">
+        <input type="text" class="gcolor-text-input" ng-model="gcolor.color">
+      </td>
+
+      <td ng-if="!gcolor.name.endsWith('Options')">
         <div class="colorpicker-box"
              ng-class="{ 'has_color': Color.is_color(gcolor.color) }"
              ng-style="{ 'background-color': Color.parse(gcolor.color), 'border-color': Theme.border_color() }"></div>
@@ -22,7 +27,6 @@
                title="{{gcolor.color}}"
                ng-model="gcolor.color"
                ng-change="update_gcolor(gcolor, angualr.element(this).val())">
-
       </td>
       <td></td>
     </tr>

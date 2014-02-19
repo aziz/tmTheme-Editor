@@ -12,6 +12,7 @@ TODO v.0.6:
  ☐ use angular.toJson/angular.fromJson instead of JSON
  ☐ BUG: do not store hashkey to localstorge for external themes
  ☐ use run and config blocks to bootstrap app
+ ☐ add more themes
  ☐ Scrollfix from UI-UTILS
 
  ☐ more lang support (PHP Perl GO LESS SCSS C C++ Lua XML Markdown Latex)
@@ -24,7 +25,6 @@ TODO v.0.6:
  ☐ Error report if can not load from external URL or local
  ☐ highlight current theme/local file/external after reload
  ☐ add color input boxes with real color values to edit popovers
- ☐ some general settings are not colors /#/BoxUK (3 end with options and are text)
  ☐ sample column in general tab (caret, line highlight, invisible ...)?
  ☐ favorites
  ☐ setting color with transparency (different alpha channel representation)
@@ -144,6 +144,7 @@ Test:
  ☐ download theme
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ some general settings are not colors /#/BoxUK (3 end with options and are text) @done (14-02-19 04:20) @project(TODO v.0.6)
  ✔ show real color as input @done (14-02-19 03:48)
  ✔ remove title on color boxes @done (14-02-19 03:48)
  ✔ trottle style generation @done (14-02-19 01:36) @project(improve HUD)
