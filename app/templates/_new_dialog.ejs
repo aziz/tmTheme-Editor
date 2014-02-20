@@ -18,7 +18,7 @@
           <div class="colorpicker-box"
                ng-class="{ 'has_color': Color.is_color(NewPopover.rule.settings.foreground) }"
                ng-style="{ 'background-color': Color.parse(NewPopover.rule.settings.foreground) }"></div>
-          <a ng-click="reset_color(NewPopover.rule, 'foreground')" class="reset">Reset</a>
+          <a ng-click="Theme.reset_color(NewPopover.rule, 'foreground')" class="reset">Reset</a>
           <input class="colorpicker-input" type="color" ng-model="NewPopover.rule.settings.foreground">
           <input class="colortext-input" type="text" ng-model="NewPopover.rule.settings.foreground">
         </div>
@@ -28,7 +28,7 @@
           <div class="colorpicker-box"
                ng-class="{ 'has_color': Color.is_color(NewPopover.rule.settings.background) }"
                ng-style="{ 'background-color': Color.parse(NewPopover.rule.settings.background) }"></div>
-          <a ng-click="reset_color(NewPopover.rule, 'background')" class="reset">Reset</a>
+          <a ng-click="Theme.reset_color(NewPopover.rule, 'background')" class="reset">Reset</a>
           <input class="colorpicker-input" type="color" ng-model="NewPopover.rule.settings.background">
           <input class="colortext-input" type="text" ng-model="NewPopover.rule.settings.background">
         </div>

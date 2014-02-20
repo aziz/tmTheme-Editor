@@ -1,12 +1,29 @@
 
 TODO v.0.7:
+ ☐ contrast score for bg and fg https://github.com/LeaVerou/contrast-ratio
  ☐ add more themes
  ☐ more lang support (PHP Perl GO LESS SCSS C C++ Lua XML Markdown Latex)
  ☐ BUG: save does not work (gallery/local/external)
  ☐ gutter issue (redo gutter styling)
+ ☐ remove button for custom preview code
+
+Refactor:
  ☐ refactor drag and drop theme file as a directive
  ☐ refactor file system API as a service
- ☐ remove button for custom preview code
+ ☐ refactor routing
+ ☐ do not use file api, use localstorage
+ ☐ convert drag/drop and file system api to service
+ ☐ try to make it work in other browsers
+
+Performance:
+ ☐ memoize functions that are called frequently with throttle()
+ ☐ optimize everything inside ng-repeats (gallery list, scope lists)
+ ☐ cache gallery, color-schemes and file samples locally to boost speed (https://github.com/jmdobry/angular-cache)
+ ☐ cache the parsed theme and lang to disk (to hopefully make it faster)
+
+General Colors:
+ ☐ removal and addition of general colors
+ ☐ sample column in general tab (caret, line highlight, invisible ...)?
 
 Preview and scope bar:
  ☐ do not scroll preview when popover is open on the preview code
@@ -27,40 +44,34 @@ TODO:
  ☐ new button
  ☐ use infinite scroll on gallery (https://github.com/BinaryMuse/ngInfiniteScroll)
  ☐ navigating with keyboard shortcuts (up and down to traverse the rules, enter to open, ctrl+delete to delete, ctrl+s to save, ...)
- ☐ Did you know and what's new panels
  ☐ event tracking
- ☐ indicate dirty state
- ☐ removal and addition of general colors
  ☐ focus state for color pickers
- ☐ indicate that drag and drop is enabled
  ☐ better shortcut management https://github.com/mgonto/mgo-mousetrap
- ☐ sample column in general tab (caret, line highlight, invisible ...)?
  ☐ favorites
  ☐ ngAnimate
+ ☐ color picker js https://github.com/bebraw/colorjoe or https://github.com/Jimdo/angular-spectrum-colorpicker
+
 
 Low:
- ☐ color picker js https://github.com/bebraw/colorjoe or https://github.com/Jimdo/angular-spectrum-colorpicker
+ ☐ indicate dirty state
+ ☐ indicate that drag and drop is enabled
+ ☐ Did you know and what's new panels
  ☐ being able to auto upload current theme inside sublim to a server and preview it: http://pastie.org/pastes/7745711/text
  ☐ dropbox integration (https://github.com/AnalogJ/dropstore-ng)
  ☐ prefrences: window for changing font/font-size/custom code
  ☐ prefrences: enable/disable scope bar and inline editing
  ☐ get an image preview to embed
- ☐ Macgap (https://github.com/maccman/macgap)
- ☐ Node Webkit? (https://github.com/rogerwang/node-webkit)
- ☐ contrast score for bg and fg https://github.com/LeaVerou/contrast-ratio
  ☐ undo delete rule or even more full featured undo
- ☐ set some info on the server for SEO when a theme is in URL
- ☐ chrome app?
  ☐ angular performance enhancement
  ☐ only work with tmtheme files. reject others, error handling
- ☐ try to make it work in other browsers
- ☐ cache the parsed theme and lang to disk (to hopefully make it faster)
- ☐ webworker to do processing in bg (https://github.com/ramesaliyev/EasyWebWorker)
  ☐ update release page on github
  ☐ add changelog link to menu
- ☐ convert drag/drop and file system api to service
- ☐ do not use file api, use localstorage
  ☐ CSS lang color highlighting issues
+
+Desktop:
+ ☐ Macgap (https://github.com/maccman/macgap)
+ ☐ Node Webkit? (https://github.com/rogerwang/node-webkit)
+ ☐ chrome app?
 
 More Languages Support:
  ☐ C#
@@ -128,3 +139,5 @@ Test:
  ☐ download theme
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✘ set some info on the server for SEO when a theme is in URL @cancelled (14-02-20 08:22) @project(Low)
+ ✘ webworker to do processing in bg (https://github.com/ramesaliyev/EasyWebWorker) @cancelled (14-02-20 08:19) @project(Low)

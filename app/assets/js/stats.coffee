@@ -9,7 +9,7 @@
 #= require vendors/tinycolor-0.9.17.js
 #= require vendors/spin-1.3.3.js
 
-#= require app/boot
+#= require config/boot
 #= require_tree directives
 #= require_tree services
 #= require controllers/stats_controller.coffee

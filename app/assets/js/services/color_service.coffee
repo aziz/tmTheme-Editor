@@ -3,14 +3,13 @@ Application.factory "Color", [ ->
   clamp = (val, min= 0, max=1) -> Math.min(max, Math.max(min, val))
 
   color.parse = (color) ->
-    return null unless color && color[0] == "#" && color.length >= 4
+    return null unless color and color[0] == "#" and color.length >= 4
     if color.length > 7
-      hex_color = color[0..6]
-      rgba      = tinycolor(hex_color).toRgb()
-      opacity   = parseInt(color[7..8], 16)/255
-      rgba.a    = opacity
-      new_rgba  = tinycolor(rgba)
-      new_rgba.toRgbString()
+      hex     = color[0..6]
+      rgba    = tinycolor(hex).toRgb()
+      opacity = parseInt(color[7..8], 16)/255
+      rgba.a  = opacity
+      tinycolor(rgba).toRgbString()
     else
       color
 

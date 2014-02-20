@@ -37,6 +37,8 @@ Application.factory "Theme", ['Color', 'json_to_plist', 'plist_to_json', (Color,
     else
       rule.settings.fontStyle += " #{fontStyle}"
 
+  theme.reset_color = (rule, attr) -> delete rule.settings[attr]
+
   theme.bg = -> @gcolors.length > 0 && @gcolors.find((gc) -> gc.name == 'background').color
   theme.fg = -> @gcolors.length > 0 && @gcolors.find((gc) -> gc.name == 'foreground').color
   theme.selection_color = -> @gcolors.length > 0 && @gcolors.find((gc) -> gc.name == 'selection')?.color

@@ -214,7 +214,6 @@ Application.controller 'editorController',
     $scope.EditPopover.hide()
     $scope.NewPopover.hide()
 
-  # TODO move it theme service, make a rule service
   $scope.delete_rule = (rule) ->
     return unless rule
     rules = Theme.json.settings
@@ -223,7 +222,6 @@ Application.controller 'editorController',
     $scope.selected_rule = rules[index]
     EditPopover.hide()
 
-  # TODO move it theme service, make a rule service
   $scope.add_rule = (new_rule) ->
     Theme.json.settings.push(new_rule)
     NewPopover.hide()
@@ -231,10 +229,6 @@ Application.controller 'editorController',
     max_scroll_height = sidebar[0].scrollHeight
     sidebar.animate {'scrollTop': max_scroll_height}, 500, 'swing'
     return
-
-  # TODO move it theme service, make a rule service
-  $scope.reset_color = (rule, attr) ->
-    delete rule.settings[attr]
 
   #-------------------------------------------------------------------------
 
