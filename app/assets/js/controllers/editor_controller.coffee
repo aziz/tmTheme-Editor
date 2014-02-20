@@ -116,7 +116,7 @@ Application.controller 'editorController',
         ), FsErrorHandler
       ), FsErrorHandler
 
-  $window.requestFileSystem($window.TEMPORARY, 10*1024*1024,  FsInitHandler, FsErrorHandler)
+  $window.requestFileSystem && $window.requestFileSystem($window.TEMPORARY, 10*1024*1024,  FsInitHandler, FsErrorHandler)
 
   read_files = (files) ->
     throbber.on()
@@ -147,6 +147,7 @@ Application.controller 'editorController',
   $scope.external_themes = angular.fromJson(localStorage.getItem("external_themes")) or []
 
   list_local_files = ->
+    return unless $scope.fs
     localFiles = []
     dirReader = $scope.fs.root.createReader()
     toArray = (list) -> Array::slice.call list or [], 0

@@ -1,5 +1,5 @@
-<div id="browser_support" ng-cloak ng-hide="is_browser_supported">
-  <div class="window">
+<div id="browser_support" ng-cloak ng-if="!is_browser_supported">
+  <div class="window" ng-style="{ 'background' : '#ededed url(/images/not_supported_bg.png) no-repeat 283px 135px' }">
     <div class="header">
       <div class="noise"></div>
       <div class="title">Your browser is not supported</div>
