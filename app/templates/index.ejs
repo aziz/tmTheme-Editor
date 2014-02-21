@@ -10,62 +10,18 @@
   <style ng-bind="Theme.css_scopes()"></style>
 </head>
 
-<body id="drop_zone"
-      shortcut='shortcuts'
-      ng-class="'current_theme_' + Color.light_or_dark(Color.parse(Theme.bg()))"
-      class="transition-off">
+<body id="drop_zone" shortcut='shortcuts' class="transition-off">
   <% include _browser_support %>
   <% include _gallery %>
-
-<div ng-controller="previewController">
-
   <% include _header %>
   <% include _sidebar %>
+  <% include _preview %>
+  <% include _edit_dialog %>
+  <% include _new_dialog %>
+  <% include _colors_hud %>
+  <div id="loading"></div>
 
-  <div ng-class="{ 'slide' : gallery_visible }" id="preview" class="preview" ng-style="{ 'background-color': Color.parse(Theme.bg()), 'color': Color.parse(Theme.fg()) }">
-    <pre ng-show="Theme.json"
-         ng-bind-html="colorized"
-         ng-style="{ 'color': Color.parse(Theme.fg()) }"></preview>
-  </div>
-
-  <div ng-cloak  ng-class="{ 'slide' : gallery_visible }" ng-show="custom_code_editor_visible" id="custom_code" class="preview custom_code_edtior" >
-    <textarea spellcheck='false' ng-model="custom_code" focus-me="custom_code_editor_visible"></textarea>
-    <div class="cc_header">
-      <p class="pull-left">Paste your code below and press Save button.</p>
-    </div>
-  </div>
-  <a ng-cloak  class="btn btn-small btn-success save_custom_code"
-     ng-show="custom_code_editor_visible"
-     ng-click="update_preview()">
-     &nbsp;&nbsp;&nbsp;Save&nbsp;&nbsp;&nbsp;
-  </a>
-
-  <div scope-bar></div>
-  <div class="btn-group custom_code_toggle_btn" ng-cloak ng-show="Theme.json">
-    <a class="btn btn-mac btn-small"
-       ng-click="custom_code_editor_visible = !custom_code_editor_visible"
-       ng-class="{'active': custom_code_editor_visible }">
-      Customize Preview Code
-    </a>
-  </div>
-  <div class="btn-group dropup languages-dd" ng-cloak ng-show="Theme.json">
-    <a class="btn btn-mac btn-small dropdown-toggle">
-      {{ current_lang }}
-      <span class="icon-arrow-combo ud-arrow"></span>
-    </a>
-    <ul class="dropdown-menu pull-right">
-      <li ng-repeat="lang in available_langs">
-        <a ng-click="set_lang(lang)">{{lang}}</a>
-      </li>
-    </ul>
-  </div>
-
-</div>
-<div id="loading"></div>
-<% include _edit_dialog %>
-<% include _new_dialog %>
-<% include _colors_hud %>
-<%- js("application") -%>
-<% include _ga  %>
+  <%- js("application") -%>
+  <% include _ga  %>
 </body>
 </html>
