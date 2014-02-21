@@ -1,5 +1,5 @@
 <table ng-show="current_tab == 'general'" class="list general">
-  <thead ng-hide="Theme.gcolors.length==0">
+  <thead>
     <tr>
       <th class="align-begin truncate">General Colors</th>
       <th class="big-color-box" style="width: 70px;">Color</th>
@@ -12,7 +12,7 @@
 
     <tr ng-repeat="gcolor in Theme.gcolors"
         ng-click="mark_as_selected_gcolor(gcolor)"
-        ng-class="{ 'selected': is_gcolor_selected(gcolor) }">
+        ng-class="{ 'selected': gcolor == general_selected_rule }">
       <td class="name-box">{{gcolor.name}}</td>
 
       <td ng-if="gcolor.name.endsWith('Options')">

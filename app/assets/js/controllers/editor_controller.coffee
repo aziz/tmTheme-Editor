@@ -1,8 +1,24 @@
+Function.extend
+  countCalls: ->
+    origFn = this
+    cFn = ->
+      cFn.calls_counter += 1
+      t0 = performance.now()
+      res = origFn.apply(origFn, arguments)
+      t1 = performance.now()
+      cFn.last_call_time += t1 - t0
+      res
+
+    cFn.calls_counter = 0
+    cFn.last_call_time = 0
+    return cFn
+
+
 Application.controller 'editorController',
 ['Color', 'Theme', 'ThemeLoader', 'EditPopover', 'NewPopover', 'HUDEffects', 'throbber', '$cookies', '$filter', '$scope', '$http', '$location', '$timeout', '$window',
 ( Color,   Theme,   ThemeLoader,   EditPopover,   NewPopover,   HUDEffects,   throbber,   $cookies,   $filter,   $scope,   $http,   $location,   $timeout,   $window) ->
 
-  $scope.is_browser_supported = $window.chrome
+  $scope.is_browser_supported = if $window.chrome then true else false
   $scope.themes = []
   $scope.Color  = Color
   $scope.Theme  = Theme
@@ -19,7 +35,15 @@ Application.controller 'editorController',
 
   $scope.fs = null
   $scope.files = []
+  $scope.hovered_rule = null
   $scope.selected_rule = null
+  $scope.selected_theme = null
+  $scope.general_selected_rule = null
+  $scope.mark_as_selected_gcolor = (rule) -> $scope.general_selected_rule = rule
+  $scope.mark_as_selected = (rule) ->
+    $scope.selected_rule = rule
+    EditPopover.hide()
+
 
   $scope.sortable_options = {
     axis: 'y'
@@ -38,11 +62,11 @@ Application.controller 'editorController',
     'ctrl+n': 'NewPopover.show()'
   }
 
+  # TODO return promise
   ThemeLoader.themes.success (data) ->
     for theme in data
       theme.type = if theme.light then 'light' else 'dark'
     $scope.themes = data
-
 
   $scope.page_title = ->
     if Theme.json
@@ -59,9 +83,6 @@ Application.controller 'editorController',
       $scope.gallery_visible = true
       $cookies.gallery_state = 'slide'
 
-  # TODO make sure selected theme is always set when loading in different modes
-  $scope.selected_theme = null
-  $scope.is_selected_theme = (theme) -> theme.name == $scope.selected_theme
 
   # -- Initializing ----------------------------------------------
   $scope.$on '$locationChangeStart', (event, nextLocation, currentLocation) ->
@@ -98,7 +119,14 @@ Application.controller 'editorController',
           save_external_to_local_storage(theme_url)
           throbber.off()
 
-  # File System API -----------------------------------------
+  # File System API ----------------------------------------------
+  $scope.setFiles = (element) ->
+    $scope.files.push(file) for file in element.files
+    read_files($scope.files)
+
+  $scope.localFiles = []
+  $scope.external_themes = angular.fromJson(localStorage.getItem("external_themes")) or []
+
   FsInitHandler = (fs) ->
     $scope.fs = fs
     $scope.$apply()
@@ -115,8 +143,6 @@ Application.controller 'editorController',
           reader.readAsText file
         ), FsErrorHandler
       ), FsErrorHandler
-
-  $window.requestFileSystem && $window.requestFileSystem($window.TEMPORARY, 10*1024*1024,  FsInitHandler, FsErrorHandler)
 
   read_files = (files) ->
     throbber.on()
@@ -139,13 +165,6 @@ Application.controller 'editorController',
           $scope.$apply()
           throbber.off()
 
-  $scope.setFiles = (element) ->
-    $scope.files.push(file) for file in element.files
-    read_files($scope.files)
-
-  $scope.localFiles = []
-  $scope.external_themes = angular.fromJson(localStorage.getItem("external_themes")) or []
-
   list_local_files = ->
     return unless $scope.fs
     localFiles = []
@@ -163,8 +182,6 @@ Application.controller 'editorController',
       ), FsErrorHandler
     readEntries() # Start reading dirs.
 
-  $timeout(list_local_files, 500)
-
   save_external_to_local_storage = (url) ->
     name = url.split('/').last().replace(/%20/g, ' ')
     current_theme_obj = {name: name, url: url}
@@ -172,7 +189,11 @@ Application.controller 'editorController',
       $scope.external_themes.push(current_theme_obj)
       localStorage.setItem('external_themes', angular.toJson($scope.external_themes))
 
-  # Drag & Drop ---------------------------------------------
+  $timeout(list_local_files, 500)
+
+  $window.requestFileSystem && $window.requestFileSystem($window.TEMPORARY, 10*1024*1024,  FsInitHandler, FsErrorHandler)
+
+  # Drag & Drop --------------------------------------------------------
   dropZone = document.getElementById('drop_zone')
 
   handleFileDrop = (evt) ->
@@ -189,18 +210,6 @@ Application.controller 'editorController',
 
   dropZone.addEventListener 'dragover', handleDragOver, false
   dropZone.addEventListener 'drop', handleFileDrop, false
-
-  # ---------------------------------------------------------------------
-
-  $scope.is_selected = (rule) -> rule == $scope.selected_rule
-  $scope.is_hovered = (rule) -> rule == $scope.hovered_rule
-  $scope.is_gcolor_selected = (rule) -> rule == $scope.general_selected_rule
-
-  $scope.mark_as_selected = (rule) ->
-    $scope.selected_rule = rule
-    EditPopover.hide()
-
-  $scope.mark_as_selected_gcolor = (rule) -> $scope.general_selected_rule = rule
 
   # ---------------------------------------------------------------------
 
@@ -254,23 +263,24 @@ Application.controller 'editorController',
     return
 
   $scope.filter = {name: ''}
+
   $scope.toggle_type_filter = (type) ->
     $scope.filter.type = if $scope.filter.type == type then undefined else type
 
-  # -- LOAD THEME ------------------------------------------------
+  # -- LOAD THEME ----------------------------------------------------------
   reset_state = ->
     $scope.hide_all_popovers()
     $scope.HUD.hide()
     $scope.scopes_filter.name = ''
 
   $scope.load_gallery_theme = (theme) ->
-    return if $scope.is_selected_theme(theme)
+    return if theme.name == $scope.selected_theme
     reset_state()
     $location.path("/theme/#{theme.name}")
 
   $scope.load_external_theme = (theme) ->
     if theme
-      return if $scope.is_selected_theme(theme)
+      return if theme.name == $scope.selected_theme
       reset_state()
       $location.path("/url/#{theme.url}")
     else
@@ -280,7 +290,7 @@ Application.controller 'editorController',
         $location.path("/url/#{url}")
 
   $scope.load_local_theme = (theme) ->
-    return if $scope.is_selected_theme(theme)
+    return if theme.name == $scope.selected_theme
     throbber.on()
     reset_state()
     Theme.theme_type = 'Local File'
@@ -333,5 +343,16 @@ Application.controller 'editorController',
     localStorage.setItem('external_themes', angular.toJson($scope.external_themes))
     if $location.path() == "/url/#{theme.url}"
       $location.path('/')
+
+
+  for own k,v of $scope
+    if k[0] != "$" and angular.isFunction(v)
+      $scope[k] = v.countCalls()
+
+  $scope.$report = ->
+    table = for own k,v of $scope
+      if k[0] != "$" and angular.isFunction(v)
+        { name: k, calls: v.calls_counter, time: v.last_call_time }
+    console.table table
 
 ]

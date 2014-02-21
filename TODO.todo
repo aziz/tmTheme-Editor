@@ -1,5 +1,7 @@
 
 TODO v.0.7:
+ ☐ accept opening/drag and dropping multiple files
+ ☐ customize input textarea use the same bg as theme
  ☐ contrast score for bg and fg https://github.com/LeaVerou/contrast-ratio
  ☐ add more themes
  ☐ more lang support (PHP Perl GO LESS SCSS C C++ Lua XML Markdown Latex)
@@ -50,7 +52,6 @@ TODO:
  ☐ favorites
  ☐ ngAnimate
  ☐ color picker js https://github.com/bebraw/colorjoe or https://github.com/Jimdo/angular-spectrum-colorpicker
-
 
 Low:
  ☐ indicate dirty state

@@ -95,8 +95,8 @@
                 {{ theme.bgcolor }}
               </td>
               <td>
-                <div ng-show="theme.is_light" style="border-radius:50px;  width: 16px; height: 16px; border: 1px solid rgba(0,0,0,.4); background-color: #fff"></div>
-                <div ng-hide="theme.is_light" style="border-radius:50px;  width: 16px; height: 16px; border: 1px solid rgba(0,0,0,.4); background-color: #000"></div>
+                <div ng-if="theme.is_light" style="border-radius:50px;  width: 16px; height: 16px; border: 1px solid rgba(0,0,0,.4); background-color: #fff"></div>
+                <div ng-if="!theme.is_light" style="border-radius:50px;  width: 16px; height: 16px; border: 1px solid rgba(0,0,0,.4); background-color: #000"></div>
               </td>
             </tr>
           </tbody>

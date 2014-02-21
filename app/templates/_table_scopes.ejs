@@ -15,10 +15,10 @@
          ng-style="{ 'background-color': Color.parse(Theme.bg()), 'color': Color.parse(Theme.fg()) }">
 
     <tr ng-repeat="rule in scopes_filtered"
-        ng-show="rule.scope"
+        ng-if="rule.scope"
         ng-click="mark_as_selected(rule)"
         ng-dblclick="EditPopover.show(rule, $index)"
-        ng-class="{ 'selected': is_selected(rule), 'hovered': is_hovered(rule) }"
+        ng-class="{ 'selected': rule == selected_rule, 'hovered': rule == hovered_rule }"
         class="rule-{{$index}}">
 
       <td class="name-box"
