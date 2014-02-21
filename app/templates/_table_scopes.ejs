@@ -24,9 +24,9 @@
       <td class="name-box"
           ng-style="{ 'color': Color.parse(rule.settings.foreground), 'background-color': Color.parse(rule.settings.background) }"
           ng-class="{
-            'is_italic' : Theme.fontStyleIs('italic', rule),
-            'is_bold': Theme.fontStyleIs('bold', rule),
-            'is_underline': Theme.fontStyleIs('underline', rule)
+            'is_italic' : Theme.is_font_style('italic', rule),
+            'is_bold': Theme.is_font_style('bold', rule),
+            'is_underline': Theme.is_font_style('underline', rule)
           }">
           <span class="truncate">{{ rule.name || rule.scope }}</span>
       </td>
@@ -45,9 +45,9 @@
         <input class="colorpicker-input" type="color" ng-model="rule.settings.background">
       </td>
 
-      <td class="check-box"><input type="checkbox" ng-checked="Theme.fontStyleIs('bold', rule)"      ng-click="Theme.fontStyleToggle('bold',rule)"     ></td>
-      <td class="check-box"><input type="checkbox" ng-checked="Theme.fontStyleIs('italic', rule)"    ng-click="Theme.fontStyleToggle('italic',rule)"   ></td>
-      <td class="check-box"><input type="checkbox" ng-checked="Theme.fontStyleIs('underline', rule)" ng-click="Theme.fontStyleToggle('underline',rule)"></td>
+      <td class="check-box"><input type="checkbox" ng-checked="Theme.is_font_style('bold', rule)"      ng-click="Theme.toggle_font_style('bold',rule)"     ></td>
+      <td class="check-box"><input type="checkbox" ng-checked="Theme.is_font_style('italic', rule)"    ng-click="Theme.toggle_font_style('italic',rule)"   ></td>
+      <td class="check-box"><input type="checkbox" ng-checked="Theme.is_font_style('underline', rule)" ng-click="Theme.toggle_font_style('underline',rule)"></td>
       <td></td>
     </tr>
   </tbody>

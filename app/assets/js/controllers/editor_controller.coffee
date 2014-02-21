@@ -1,19 +1,3 @@
-Function.extend
-  countCalls: ->
-    origFn = this
-    cFn = ->
-      cFn.calls_counter += 1
-      t0 = performance.now()
-      res = origFn.apply(origFn, arguments)
-      t1 = performance.now()
-      cFn.last_call_time += t1 - t0
-      res
-
-    cFn.calls_counter = 0
-    cFn.last_call_time = 0
-    return cFn
-
-
 Application.controller 'editorController',
 ['Color', 'Theme', 'ThemeLoader', 'EditPopover', 'NewPopover', 'HUDEffects', 'throbber', '$cookies', '$filter', '$scope', '$http', '$location', '$timeout', '$window',
 ( Color,   Theme,   ThemeLoader,   EditPopover,   NewPopover,   HUDEffects,   throbber,   $cookies,   $filter,   $scope,   $http,   $location,   $timeout,   $window) ->
@@ -347,7 +331,7 @@ Application.controller 'editorController',
 
   for own k,v of $scope
     if k[0] != "$" and angular.isFunction(v)
-      $scope[k] = v.countCalls()
+      $scope[k] = v.monitor($scope)
 
   $scope.$report = ->
     table = for own k,v of $scope

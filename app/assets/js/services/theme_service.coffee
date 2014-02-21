@@ -25,15 +25,15 @@ Application.factory "Theme", ['Color', 'json_to_plist', 'plist_to_json', (Color,
     globals.settings = {}
     globals.settings[gc.name] = gc.color for gc in @gcolors
 
-  theme.fontStyleIs = (fontStyle, rule) ->
-    fs_array = rule.settings?.fontStyle?.split(' ') || []
-    fs_array.any(fontStyle)
+  theme.is_font_style = (fontStyle, rule) ->
+    rule.settings && rule.settings.fontStyle && rule.settings.fontStyle.indexOf(fontStyle) >= 0
 
-  theme.fontStyleToggle = (fontStyle, rule) ->
+  theme.toggle_font_style = (fontStyle, rule) ->
     rule.settings = {} unless rule.settings
     rule.settings.fontStyle = '' unless rule.settings.fontStyle
-    if @fontStyleIs(fontStyle, rule)
-      rule.settings.fontStyle = rule.settings.fontStyle.split(' ').remove(fontStyle).join(' ')
+    if @is_font_style(fontStyle, rule)
+      rule.settings.fontStyle = rule.settings.fontStyle.replace(fontStyle, "")
+      delete rule.settings['fontStyle'] if rule.settings.fontStyle.isBlank()
     else
       rule.settings.fontStyle += " #{fontStyle}"
 
@@ -56,9 +56,9 @@ Application.factory "Theme", ['Color', 'json_to_plist', 'plist_to_json', (Color,
       for rule in @json.settings.compact()
         fg_color  = if rule?.settings?.foreground then Color.parse(rule.settings.foreground) else null
         bg_color  = if rule?.settings?.background then Color.parse(rule.settings.background) else null
-        bold      = @fontStyleIs('bold', rule)
-        italic    = @fontStyleIs('italic', rule)
-        underline = @fontStyleIs('underline', rule)
+        bold      = @is_font_style('bold', rule)
+        italic    = @is_font_style('italic', rule)
+        underline = @is_font_style('underline', rule)
         if rule.scope
           rules = rule.scope.split(',').map (r) -> r.trim().split(' ').map((x) -> ".#{x}").join(' ')
           rules.each (r) ->
@@ -100,6 +100,17 @@ Application.factory "Theme", ['Color', 'json_to_plist', 'plist_to_json', (Color,
     plist = json_to_plist(@json)
     blob = new Blob([plist], {type: 'text/plain'})
     saveAs blob, "#{@json.name}.tmTheme"
+
+
+  for own k,v of theme
+    if angular.isFunction(v)
+      theme[k] = v.monitor(theme)
+
+  theme.$report = ->
+    table = for own k,v of theme
+      if k[0] != "$" and angular.isFunction(v)
+        { name: k, calls: v.calls_counter, time: v.last_call_time }
+    console.table table
 
   return theme
 ]

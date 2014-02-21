@@ -2,6 +2,20 @@
 .is_italic { font-style: italic; }
 .is_underline { text-decoration: underline; }
 
+// This should not be nested to prevent higher CSS specificity
+s {
+  text-decoration: none;
+  padding: 2px;
+  margin: -2px;
+  border-radius: 2px;
+  cursor: default;
+
+  &:hover {
+    box-shadow: inset 0 -2px 0  fadeout(#1eae37, 66);
+    .user-select(none);
+  }
+}
+
 pre {background-color: transparent;}
 .preview {
   position: absolute;
@@ -29,19 +43,6 @@ pre {background-color: transparent;}
       height: 100%;
       width: 48px;
       z-index: -1;
-    }
-
-    s {
-      text-decoration: none;
-      padding: 2px;
-      margin: -2px;
-      border-radius: 2px;
-      cursor: default;
-
-      &:hover {
-        box-shadow: inset 0 -2px 0  fadeout(#1eae37, 66);
-        .user-select(none);
-      }
     }
 
     .l {
