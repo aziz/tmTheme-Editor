@@ -20,16 +20,17 @@ app.configure ->
   app.use express.bodyParser()
   app.use express.cookieParser()
   app.use express.methodOverride()
-  app.use assets_manager("buildDir": "public/assets/", "paths": ["app/assets/js","app/assets/css"])
   app.use app.router
   app.use express.static "#{__dirname}/../public"
 
 app.configure 'development', ->
   app.use express.logger('dev')
+  app.use assets_manager("paths": ["app/assets/js","app/assets/css"])
   app.use express.errorHandler('dumpExceptions': true, 'showStack': true)
 
 app.configure 'production', ->
   # log = fs.createWriteStream 'log/production.log', {flags: 'w'}
+  app.use assets_manager("buildDir": "public/assets/", "paths": ["app/assets/js","app/assets/css"])
   app.use express.errorHandler()
   # app.use express.logger(stream: log)
 
