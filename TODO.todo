@@ -1,25 +1,30 @@
 
 TODO v.0.7:
- ☐ accept opening/drag and dropping multiple files
- ☐ customize input textarea use the same bg as theme
- ☐ contrast score for bg and fg https://github.com/LeaVerou/contrast-ratio
+ ☐ BUG: save does not work (gallery/local/external)
  ☐ add more themes
  ☐ more lang support (PHP Perl GO LESS SCSS C C++ Lua XML Markdown Latex)
- ☐ BUG: save does not work (gallery/local/external)
- ☐ gutter issue (redo gutter styling)
- ☐ remove button for custom preview code
 
-Refactor:
+FileSystem:
  ☐ refactor drag and drop theme file as a directive
  ☐ refactor file system API as a service
- ☐ refactor routing
  ☐ do not use file api, use localstorage
  ☐ convert drag/drop and file system api to service
  ☐ try to make it work in other browsers
+ ☐ accept opening/drag and dropping multiple files
+
+Preview and scope bar:
+ ☐ gutter issue (redo gutter styling)
+ ☐ customize input textarea use the same bg as theme
+ ☐ remove button for custom preview code
+ ☐ dynamically set pre width based on longest line
+ ☐ do not scroll preview when popover is open on the preview code
+ ☐ refactor scopebar
+
+Refactor:
+ ☐ refactor theme service, fg, bg, border_color should not be fn
+ ☐ refactor routing
 
 Performance:
- ☐ memoize functions that are called frequently with throttle()
- ☐ optimize everything inside ng-repeats (gallery list, scope lists)
  ☐ cache gallery, color-schemes and file samples locally to boost speed (https://github.com/jmdobry/angular-cache)
  ☐ cache the parsed theme and lang to disk (to hopefully make it faster)
 
@@ -27,11 +32,8 @@ General Colors:
  ☐ removal and addition of general colors
  ☐ sample column in general tab (caret, line highlight, invisible ...)?
 
-Preview and scope bar:
- ☐ do not scroll preview when popover is open on the preview code
- ☐ refactor scopebar
-
 TODO:
+ ☐ contrast score for bg and fg https://github.com/LeaVerou/contrast-ratio
  ☐ Error report if can not load from external,local or gallery
  ☐ cancel changes in popover?
  ☐ validate color input on popover

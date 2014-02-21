@@ -52,12 +52,6 @@ Application.controller 'editorController',
       theme.type = if theme.light then 'light' else 'dark'
     $scope.themes = data
 
-  $scope.page_title = ->
-    if Theme.json
-      Theme.json.name + ' — ' + 'TmTheme Editor'
-    else
-      'TmTheme Editor'
-
   $scope.gallery_visible = if $cookies.gallery_state and $cookies.gallery_state == 'slide' then true else false
   $scope.toggle_gallery = ->
     if $scope.gallery_visible
