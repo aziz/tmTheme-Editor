@@ -1,6 +1,6 @@
 Application.controller 'editorController',
-['Color', 'Theme', 'ThemeLoader', 'EditPopover', 'NewPopover', 'HUDEffects', 'throbber', '$cookies', '$filter', '$scope', '$http', '$location', '$timeout', '$window',
-( Color,   Theme,   ThemeLoader,   EditPopover,   NewPopover,   HUDEffects,   throbber,   $cookies,   $filter,   $scope,   $http,   $location,   $timeout,   $window) ->
+['Color', 'Theme', 'ThemeLoader', 'EditPopover', 'NewPopover', 'HUDEffects', 'throbber', '$filter', '$scope', '$http', '$location', '$timeout', '$window',
+( Color,   Theme,   ThemeLoader,   EditPopover,   NewPopover,   HUDEffects,   throbber,   $filter,   $scope,   $http,   $location,   $timeout,   $window) ->
 
   $scope.is_browser_supported = if $window.chrome then true else false
   $scope.themes = []
@@ -52,14 +52,14 @@ Application.controller 'editorController',
       theme.type = if theme.light then 'light' else 'dark'
     $scope.themes = data
 
-  $scope.gallery_visible = if $cookies.gallery_state and $cookies.gallery_state == 'slide' then true else false
+  $scope.gallery_visible = angular.fromJson($.cookie("gallery_visible")) || false
   $scope.toggle_gallery = ->
     if $scope.gallery_visible
       $scope.gallery_visible = false
-      $cookies.gallery_state = 'closed'
+      $.cookie('gallery_visible', false)
     else
       $scope.gallery_visible = true
-      $cookies.gallery_state = 'slide'
+      $.cookie('gallery_visible', true)
 
 
   # -- Initializing ----------------------------------------------
@@ -172,22 +172,22 @@ Application.controller 'editorController',
   $window.requestFileSystem && $window.requestFileSystem($window.TEMPORARY, 10*1024*1024,  FsInitHandler, FsErrorHandler)
 
   # Drag & Drop --------------------------------------------------------
-  dropZone = document.getElementById('drop_zone')
+  # dropZone = document.getElementById('drop_zone')
 
-  handleFileDrop = (evt) ->
-    evt.stopPropagation()
-    evt.preventDefault()
-    files = evt.dataTransfer.files # FileList object.
-    $scope.files.push(file.name) for file in files
-    read_files(files)
+  # handleFileDrop = (evt) ->
+  #   evt.stopPropagation()
+  #   evt.preventDefault()
+  #   files = evt.dataTransfer.files # FileList object.
+  #   $scope.files.push(file.name) for file in files
+  #   read_files(files)
 
-  handleDragOver = (evt) ->
-    evt.stopPropagation()
-    evt.preventDefault()
-    evt.dataTransfer.dropEffect = 'copy'
+  # handleDragOver = (evt) ->
+  #   evt.stopPropagation()
+  #   evt.preventDefault()
+  #   evt.dataTransfer.dropEffect = 'copy'
 
-  dropZone.addEventListener 'dragover', handleDragOver, false
-  dropZone.addEventListener 'drop', handleFileDrop, false
+  # dropZone.addEventListener 'dragover', handleDragOver, false
+  # dropZone.addEventListener 'drop', handleFileDrop, false
 
   # ---------------------------------------------------------------------
 

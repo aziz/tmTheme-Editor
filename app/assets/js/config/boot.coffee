@@ -1,5 +1,5 @@
 
-window.Application = angular.module('ThemeEditor', ['ngSanitize', 'ngCookies', 'ui.sortable', 'ui.bootstrap'])
+window.Application = angular.module('ThemeEditor', ['ngSanitize', 'ui.sortable', 'ui.bootstrap'])
 
 Application.run ->
   window.requestFileSystem  = window.requestFileSystem || window.webkitRequestFileSystem
