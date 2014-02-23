@@ -2,7 +2,8 @@ Application.controller 'editorController',
 ['Color', 'Theme', 'ThemeLoader', 'FileManager', 'EditPopover', 'NewPopover', 'HUDEffects', 'throbber', '$filter', '$scope', '$http', '$location', '$timeout', '$window', '$q',
 ( Color,   Theme,   ThemeLoader,   FileManager,   EditPopover,   NewPopover,   HUDEffects,   throbber,   $filter,   $scope,   $http,   $location,   $timeout,   $window,   $q) ->
 
-  $scope.is_browser_supported = if $window.chrome then true else false
+  # $scope.is_browser_supported = if $window.chrome then true else false
+  $scope.is_browser_supported = true
 
   $scope.Color  = Color
   $scope.Theme  = Theme
@@ -15,9 +16,9 @@ Application.controller 'editorController',
   $scope.$watchCollection 'Theme.json', update_scopes_filter
   $scope.$watchCollection 'scopes_filter', update_scopes_filter
 
-  # TODO: these are for gallery rename them properly
-  $scope.filter = {name: ''}
-  $scope.toggle_type_filter = (type) -> $scope.filter.type = if $scope.filter.type == type then undefined else type
+  $scope.gallery_filter = {name: ''}
+  $scope.toggle_gallery_type_filter = (type) ->
+    $scope.gallery_filter.type = if $scope.gallery_filter.type == type then undefined else type
 
   $scope.current_tab    = 'scopes'
   $scope.hovered_rule   = null
@@ -46,15 +47,11 @@ Application.controller 'editorController',
     'ctrl+n': 'NewPopover.show()'
   }
 
-  $scope.themes          = [] # TODO: this should be intiliazed with a promise
+  $scope.themes = []
+  ThemeLoader.themes().then (data) -> $scope.themes = data
+
   $scope.local_themes    = FileManager.list
   $scope.external_themes = angular.fromJson(localStorage.getItem("external_themes")) or []
-
-  # TODO: return promise
-  ThemeLoader.themes.success (data) ->
-    for theme in data
-      theme.type = if theme.light then 'light' else 'dark'
-    $scope.themes = data
 
   $scope.gallery_visible = angular.fromJson($.cookie("gallery_visible")) || false
   $scope.toggle_gallery = ->
@@ -70,49 +67,6 @@ Application.controller 'editorController',
     # update the location path to the last file
     $q.all(local_files).then (names) ->
       $location.path("/local/#{names.last()}")
-
-  # -- Initializing ----------------------------------------------
-  $scope.$on '$locationChangeStart', (event, nextLocation, currentLocation) ->
-    throbber.on()
-
-    # There's theme name in URL
-    if $location.path() && $location.path().startsWith('/theme/')
-      Theme.type = ''
-      theme = $location.path().replace('/theme/','')
-      $scope.selected_theme = theme
-
-      # TODO: this should be a promise!
-      ThemeLoader.themes.success (data) ->
-        $scope.available_themes = data
-        if Theme.type == ''
-          theme_obj = $scope.available_themes.find (t) -> t.name == theme
-          ThemeLoader.load(theme_obj).success (data) ->
-            Theme.process(data)
-            throbber.off()
-
-    # There's a theme-url in URL
-    else if $location.path() && $location.path().startsWith('/url/')
-      Theme.type = 'External URL'
-      theme_url = $location.path().replace('/url/','')
-      $scope.selected_theme = theme_url.split('/').last().replace(/%20/g, ' ')
-      ThemeLoader.load({ url: theme_url }).success (data) ->
-        Theme.process(data)
-        save_external_to_local_storage(theme_url)
-        throbber.off()
-
-    # There's a theme locally saved
-    else if $location.path() && $location.path().startsWith('/local/')
-      Theme.type = 'Local File'
-      $scope.selected_theme = $location.path().replace('/local/','')
-      data = FileManager.load($scope.selected_theme)
-      Theme.process(data)
-      throbber.off()
-
-    # Loading Default theme
-    else
-      throbber.off()
-      $timeout ->
-        $location.path('/theme/Monokai')
 
   $scope.$watch 'EditPopover.visible', (visible) ->
     if visible
@@ -162,7 +116,7 @@ Application.controller 'editorController',
         $window.open(url)
     else
       theme = $location.path().replace('/theme/','')
-      theme_obj = $scope.available_themes.find (t) -> t.name == theme
+      theme_obj = $scope.themes.find (t) -> t.name == theme
       gh_match = theme_obj.url.match(gh_pattern)
       if gh_match
         web_url = "https://github.com/#{gh_match[1]}/#{gh_match[2]}/blob/#{gh_match[3]}/#{gh_match[4]}"
@@ -171,33 +125,23 @@ Application.controller 'editorController',
         $window.open(theme_obj.url)
     return
 
-  # -- LOAD THEME ----------------------------------------------------------
+  # -- LOAD THEME ---------------------------------------------------
   reset_state = ->
     $scope.hide_all_popovers()
     $scope.HUD.hide()
     $scope.scopes_filter.name = ''
 
-  # TODO: consolidate all load functions into one
-  $scope.load_gallery_theme = (theme) ->
+  $scope.load_theme = (theme, type) ->
     return if theme.name == $scope.selected_theme
     reset_state()
-    $location.path("/theme/#{theme.name}")
+    $location.path("/#{type}/#{if type == 'url' then theme.url else theme.name}")
 
-  $scope.load_external_theme = (theme) ->
-    if theme
-      return if theme.name == $scope.selected_theme
+  $scope.load_from_url = ->
+    url = prompt('Enter the URL of the color scheme: ',
+                 'https://raw.github.com/aziz/tmTheme-Editor/master/themes/PlasticCodeWrap.tmTheme')
+    if url
       reset_state()
-      $location.path("/url/#{theme.url}")
-    else
-      url = prompt('Enter the URL of the color scheme: ',
-                   'https://raw.github.com/aziz/tmTheme-Editor/master/themes/PlasticCodeWrap.tmTheme')
-      if url
-        $location.path("/url/#{url}")
-
-  $scope.load_local_theme = (theme) ->
-    return if theme.name == $scope.selected_theme
-    reset_state()
-    $location.path("/local/#{theme.name}")
+      $location.path("/url/#{url}")
 
   # -- REMOVE -------------------------------------------------------
 
@@ -215,5 +159,47 @@ Application.controller 'editorController',
 
   # TODO: this is broken
   $scope.save_theme = ->
+
+  # -- ROUTING ----------------------------------------------
+  # TODO: make this a proper angular routing
+  $scope.$on '$locationChangeStart', (event, nextLocation, currentLocation) ->
+    throbber.on()
+
+    # There's theme name in URL
+    if $location.path() && $location.path().startsWith('/theme/')
+      Theme.type = ''
+      theme = $location.path().replace('/theme/','')
+      $scope.selected_theme = theme
+
+      ThemeLoader.themes().then (data) ->
+        return unless Theme.type == ''
+        theme_obj = data.find (t) -> t.name == theme
+        ThemeLoader.load(theme_obj).success (data) ->
+          Theme.process(data)
+          throbber.off()
+
+    # There's a theme-url in URL
+    else if $location.path() && $location.path().startsWith('/url/')
+      Theme.type = 'External URL'
+      theme_url = $location.path().replace('/url/','')
+      $scope.selected_theme = theme_url.split('/').last().replace(/%20/g, ' ')
+      ThemeLoader.load({ url: theme_url }).success (data) ->
+        Theme.process(data)
+        save_external_to_local_storage(theme_url)
+        throbber.off()
+
+    # There's a theme locally saved
+    else if $location.path() && $location.path().startsWith('/local/')
+      Theme.type = 'Local File'
+      $scope.selected_theme = $location.path().replace('/local/','')
+      data = FileManager.load($scope.selected_theme)
+      Theme.process(data)
+      throbber.off()
+
+    # Loading Default theme
+    else
+      throbber.off()
+      $timeout ->
+        $location.path('/theme/Monokai')
 
 ]

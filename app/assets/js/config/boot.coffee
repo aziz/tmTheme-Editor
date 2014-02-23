@@ -10,16 +10,17 @@ Application.run () ->
 #   monitor: (self) ->
 #     origFn = this
 #     self = self || this
-#     cFn = ->
-#       cFn.calls_counter += 1
+#     decoratedFn = ->
+#       decoratedFn.calls_counter += 1
 #       t0 = performance.now()
 #       res = origFn.apply(self, arguments)
 #       t1 = performance.now()
-#       cFn.last_call_time += t1 - t0
+#       decoratedFn.last_call_time += t1 - t0
 #       res
-#     cFn.calls_counter = 0
-#     cFn.last_call_time = 0
-#     return cFn
+#     decoratedFn.calls_counter = 0
+#     decoratedFn.last_call_time = 0
+#     decoratedFn.toString = -> origFn.toString()
+#     return decoratedFn
 
 # use case of monitor is a controller
 

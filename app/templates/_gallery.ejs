@@ -8,11 +8,11 @@
         target="_blank" class="add" tooltip-placement="bottom" tooltip="Add your own theme to the gallery">
         <i class="icon-plus"></i>
      </a>
-     <a ng-click="toggle_type_filter('dark')"
-        ng-class="{'active': filter.type == 'dark'}"
+     <a ng-click="toggle_gallery_type_filter('dark')"
+        ng-class="{'active': gallery_filter.type == 'dark'}"
         class="dark_filter" tooltip-placement="bottom" tooltip="Show Dark Themes">Dark</a>
-     <a ng-click="toggle_type_filter('light')"
-        ng-class="{'active': filter.type == 'light' }"
+     <a ng-click="toggle_gallery_type_filter('light')"
+        ng-class="{'active': gallery_filter.type == 'light' }"
         class="light_filter" tooltip-placement="bottom"  tooltip="Show Light Themes">Light</a>
    </div>
   </div>
@@ -22,8 +22,8 @@
       <div class="local_themes_list" ng-show="local_themes.length > 0">
         <h5>Local Files</h5>
         <ul>
-          <li ng-repeat="theme in local_themes | orderBy:'name' | filter: filter"
-              ng-click="load_local_theme(theme)"
+          <li ng-repeat="theme in local_themes | orderBy:'name' | filter: gallery_filter"
+              ng-click="load_theme(theme, 'local')"
               ng-class="{ 'selected': theme.name == selected_theme }">
             <span class="theme_title">{{ theme.name | removeExtension }}</span>
             <span ng-click="remove_local_theme(theme)" class="remove_theme" title="Remove">&times;</span>
@@ -34,8 +34,8 @@
       <div class="external_theme_list local_themes_list" ng-show="external_themes.length > 0">
         <h5>External URLs</h5>
         <ul>
-          <li ng-repeat="theme in external_themes | orderBy:'name' | filter: filter"
-              ng-click="load_external_theme(theme)"
+          <li ng-repeat="theme in external_themes | orderBy:'name' | filter: gallery_filter"
+              ng-click="load_theme(theme, 'url')"
               ng-class="{ 'selected': theme.name == selected_theme }">
             <span class="theme_title">{{ theme.name | removeExtension }}</span>
             <span ng-click="remove_external_theme(theme)" class="remove_theme" title="Remove">&times;</span>
@@ -46,8 +46,8 @@
       <div class="gallery_themes_list">
         <h5>Gallery</h5>
         <ul>
-          <li ng-repeat="theme in themes | filter: filter"
-              ng-click="load_gallery_theme(theme)"
+          <li ng-repeat="theme in themes | filter: gallery_filter"
+              ng-click="load_theme(theme, 'theme')"
               ng-class="{ 'selected': theme.name == selected_theme }">
               <span class="{{theme.type}}_theme_icon" ></span>
               <span>{{theme.name}}</span>
@@ -57,7 +57,7 @@
     </div>
   </div>
   <div ng-class="{ 'slide' : gallery_visible }" class="searchbar">
-    <input type="search" ng-model="filter.name">
-    <div ng-show="filter.name" ng-click="filter.name = ''" class="clear_search">&times;</div>
+    <input type="search" ng-model="gallery_filter.name">
+    <div ng-show="gallery_filter.name" ng-click="gallery_filter.name = ''" class="clear_search">&times;</div>
   </div>
 </div>

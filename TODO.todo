@@ -1,12 +1,17 @@
 FileSystem:
  ☐ throbber on new local files drag/load/open
- ☐ try to make it work in other browsers
  ☐ udpate readme, update browser is not supported
+
+Browser Support:
+ ☐ Safari
+ ☐ Firefox
+ ☐ IE11
 
 TODO v.0.7:
  ☐ BUG: save does not work (gallery/local/external)
  ☐ add more themes
  ☐ more lang support (PHP Perl GO LESS SCSS C C++ Lua XML Markdown Latex)
+ ☐ slide animation is not smooth
 
 Preview and scope bar:
  ☐ gutter issue (redo gutter styling)
