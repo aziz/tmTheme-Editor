@@ -58,6 +58,8 @@
   </div>
   <div ng-class="{ 'slide' : gallery_visible }" class="searchbar">
     <input type="search" ng-model="gallery_filter.name">
-    <div ng-show="gallery_filter.name" ng-click="gallery_filter.name = ''" class="clear_search">&times;</div>
+    <div ng-show="gallery_filter.name" ng-click="gallery_filter.name = ''" class="clear_search">
+      <i class="icon-cancel-circle"></i>
+    </div>
   </div>
 </div>

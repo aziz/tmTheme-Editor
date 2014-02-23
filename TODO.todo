@@ -1,7 +1,3 @@
-☐ colorbox is not working
-
-Browser Support:
- ☐ close button
 
 TODO v.0.7:
  ☐ BUG: save does not work (gallery/local/external)
@@ -143,6 +139,8 @@ Test:
  ☐ download theme
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ close button @done (14-02-23 22:32) @project(Browser Support)
+ ✔ colorbox is not working @done (14-02-23 21:42)
  ✔ remove button for custom preview code @done (14-02-23 13:05)
  ✔ customize input textarea use the same bg as theme @done (14-02-23 13:05)
  ✔ input range @done (14-02-23 12:54) @project(Browser Support)
