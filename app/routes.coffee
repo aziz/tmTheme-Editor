@@ -1,7 +1,8 @@
 routes = {}
+pjson = require('../package.json')
 
 routes.index = (req, res) ->
-  view = {}
+  view = {app_version: pjson.version}
   res.render 'index', view
 
 routes.get_uri = (req, res) ->
