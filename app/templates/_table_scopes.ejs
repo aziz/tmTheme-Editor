@@ -32,17 +32,21 @@
       </td>
 
       <td class="color-box">
-        <div class="colorpicker-box"
-             ng-class="{ 'has_color': Color.is_color(rule.settings.foreground) }"
-             ng-style="{ 'background-color': Color.parse(rule.settings.foreground), 'border-color': Theme.border_color() }"></div>
-        <input class="colorpicker-input" type="color" ng-model="rule.settings.foreground">
+        <div style="position:relative">
+          <div class="colorpicker-box"
+               ng-class="{ 'has_color': Color.is_color(rule.settings.foreground) }"
+               ng-style="{ 'background-color': Color.parse(rule.settings.foreground), 'border-color': Theme.border_color() }"></div>
+          <input class="colorpicker-input" type="color" ng-model="rule.settings.foreground">
+        </div>
       </td>
 
       <td class="color-box">
-        <div class="colorpicker-box"
-             ng-class="{ 'has_color': Color.is_color(rule.settings.background) }"
-             ng-style="{ 'background-color': Color.parse(rule.settings.background), 'border-color': Theme.border_color() }"></div>
-        <input class="colorpicker-input" type="color" ng-model="rule.settings.background">
+        <div style="position:relative">
+          <div class="colorpicker-box"
+               ng-class="{ 'has_color': Color.is_color(rule.settings.background) }"
+               ng-style="{ 'background-color': Color.parse(rule.settings.background), 'border-color': Theme.border_color() }"></div>
+          <input class="colorpicker-input" type="color" ng-model="rule.settings.background">
+        </div>
       </td>
 
       <td class="check-box"><input type="checkbox" ng-checked="Theme.is_font_style('bold', rule)"      ng-click="Theme.toggle_font_style('bold',rule)"     ></td>

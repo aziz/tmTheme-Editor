@@ -9,16 +9,22 @@
 
   <!-- preview custom code -->
   <div ng-cloak  ng-class="{ 'slide' : gallery_visible }" ng-show="custom_code_editor_visible" id="custom_code" class="preview custom_code_edtior" >
-    <textarea spellcheck='false' ng-model="custom_code" focus-me="custom_code_editor_visible"></textarea>
+    <textarea spellcheck='false'
+              focus-me="custom_code_editor_visible"
+              ng-model="custom_code"
+              ng-style="{ 'background-color': Color.parse(Theme.bg()), 'color': Color.parse(Theme.fg()) }"></textarea>
     <div class="cc_header">
       <p class="pull-left">Paste your code below and press Save button.</p>
     </div>
   </div>
-  <a ng-cloak  class="btn btn-small btn-success save_custom_code"
-     ng-show="custom_code_editor_visible"
-     ng-click="update_preview()">
-     &nbsp;&nbsp;&nbsp;Save&nbsp;&nbsp;&nbsp;
-  </a>
+  <div class="custom_code_btn_bar" ng-show="custom_code_editor_visible" ng-cloak>
+    <a class="btn btn-small btn-danger" ng-click="custom_code='';custom_code_editor_visible = false">
+       &nbsp;Clear&nbsp;
+    </a>
+    <a class="btn btn-small btn-success" ng-click="update_preview()">
+       &nbsp;&nbsp;&nbsp;Save&nbsp;&nbsp;&nbsp;
+    </a>
+  </div>
 
   <!-- preview footer -->
   <div scope-bar></div>
@@ -31,8 +37,8 @@
   </div>
   <div class="btn-group dropup languages-dd" ng-cloak ng-show="Theme.json">
     <a class="btn btn-mac btn-small dropdown-toggle">
-      {{ current_lang }}
       <span class="icon-arrow-combo ud-arrow"></span>
+      {{ current_lang }}
     </a>
     <ul class="dropdown-menu pull-right">
       <li ng-repeat="lang in available_langs">

@@ -1,7 +1,7 @@
+☐ colorbox is not working
+
 Browser Support:
- ☐ Safari
- ☐ Firefox
- ☐ IE11
+ ☐ close button
 
 TODO v.0.7:
  ☐ BUG: save does not work (gallery/local/external)
@@ -11,14 +11,11 @@ TODO v.0.7:
 
 Preview and scope bar:
  ☐ gutter issue (redo gutter styling)
- ☐ customize input textarea use the same bg as theme
- ☐ remove button for custom preview code
  ☐ dynamically set pre width based on longest line
  ☐ do not scroll preview when popover is open on the preview code
  ☐ refactor scopebar
 
 Refactor:
- ☐ refactor theme service, fg, bg, border_color should not be fn
  ☐ refactor routing
 
 Performance:
@@ -146,6 +143,12 @@ Test:
  ☐ download theme
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ remove button for custom preview code @done (14-02-23 13:05)
+ ✔ customize input textarea use the same bg as theme @done (14-02-23 13:05)
+ ✔ input range @done (14-02-23 12:54) @project(Browser Support)
+ ✔ UI glitch in tab bar @done (14-02-23 12:09) @project(Browser Support)
+ ✔ SF loader @done (14-02-23 12:09) @project(Browser Support)
+ ✔ FF loader @done (14-02-23 12:09) @project(Browser Support)
  ✔ udpate readme, update browser is not supported @done (14-02-23 10:25) @project(FileSystem)
  ✔ version should be in one place @done (14-02-23 05:25) @project(Refactor)
  ✔ accept opening/drag and dropping multiple files @done (14-02-23 05:23) @project(FileSystem)
