@@ -21,7 +21,6 @@ Application.controller 'StatsController',
       process = -> process_scopes(theme.jsonTheme.settings)
       setTimeout(process, 0)
 
-
   process_scopes = (settings) ->
     for key,value of settings[0].settings
       found_object = $scope.general_data.find((x) -> x.name == key)
@@ -46,8 +45,7 @@ Application.controller 'StatsController',
             $scope.scopes_data.push({ name: scope, count: 1})
     $scope.update_progress()
 
-
-  ThemeLoader.themes.success (data) ->
+  ThemeLoader.themes().then (data) ->
     $scope.themes = data
     progress_unit = 100.0/data.length
     for theme in $scope.themes

@@ -6,8 +6,6 @@
 It allows you to edit `tmtheme` files easier and faster. it's written in [coffeescript](http://coffeescript.org/) 
 using [angular.js](angularjs.org)
 
-**NOTE**: Only works in **Google Chrome** at the moment since HTML5 APIs it uses are not available in other browsers yet.
-
 ### [tmtheme-editor.herokuapp.com](http://tmtheme-editor.herokuapp.com/)
 
 ![TmTheme Editor Screenshot](public/images/screenshots/tmte-screenshot.png)

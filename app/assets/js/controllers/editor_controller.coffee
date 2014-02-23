@@ -2,23 +2,11 @@ Application.controller 'editorController',
 ['Color', 'Theme', 'ThemeLoader', 'FileManager', 'EditPopover', 'NewPopover', 'HUDEffects', 'throbber', '$filter', '$scope', '$http', '$location', '$timeout', '$window', '$q',
 ( Color,   Theme,   ThemeLoader,   FileManager,   EditPopover,   NewPopover,   HUDEffects,   throbber,   $filter,   $scope,   $http,   $location,   $timeout,   $window,   $q) ->
 
-  # $scope.is_browser_supported = if $window.chrome then true else false
-  $scope.is_browser_supported = true
-
   $scope.Color  = Color
   $scope.Theme  = Theme
   $scope.HUD    = HUDEffects
   $scope.EditPopover = EditPopover
   $scope.NewPopover  = NewPopover
-
-  $scope.scopes_filter = { name: '' }
-  update_scopes_filter = -> $scope.scopes_filtered = $filter('filter')(Theme.json.settings, $scope.scopes_filter)
-  $scope.$watchCollection 'Theme.json', update_scopes_filter
-  $scope.$watchCollection 'scopes_filter', update_scopes_filter
-
-  $scope.gallery_filter = {name: ''}
-  $scope.toggle_gallery_type_filter = (type) ->
-    $scope.gallery_filter.type = if $scope.gallery_filter.type == type then undefined else type
 
   $scope.current_tab    = 'scopes'
   $scope.hovered_rule   = null
@@ -29,6 +17,24 @@ Application.controller 'editorController',
   $scope.mark_as_selected = (rule) ->
     $scope.selected_rule = rule
     EditPopover.hide()
+
+  $scope.scopes_filter = { name: '' }
+  update_scopes_filter = -> $scope.scopes_filtered = $filter('filter')(Theme.json.settings, $scope.scopes_filter)
+  $scope.$watchCollection 'Theme.json', update_scopes_filter
+  $scope.$watchCollection 'scopes_filter', update_scopes_filter
+
+  $scope.gallery_filter = {name: ''}
+  $scope.toggle_gallery_type_filter = (type) ->
+    $scope.gallery_filter.type = if $scope.gallery_filter.type == type then undefined else type
+
+  $scope.gallery_visible = angular.fromJson($.cookie("gallery_visible")) || false
+  $scope.toggle_gallery = ->
+    if $scope.gallery_visible
+      $scope.gallery_visible = false
+      $.cookie('gallery_visible', false)
+    else
+      $scope.gallery_visible = true
+      $.cookie('gallery_visible', true)
 
   $scope.sortable_options = {
     axis: 'y'
@@ -52,15 +58,6 @@ Application.controller 'editorController',
 
   $scope.local_themes    = FileManager.list
   $scope.external_themes = angular.fromJson(localStorage.getItem("external_themes")) or []
-
-  $scope.gallery_visible = angular.fromJson($.cookie("gallery_visible")) || false
-  $scope.toggle_gallery = ->
-    if $scope.gallery_visible
-      $scope.gallery_visible = false
-      $.cookie('gallery_visible', false)
-    else
-      $scope.gallery_visible = true
-      $.cookie('gallery_visible', true)
 
   $scope.setFiles = (element) ->
     local_files = FileManager.add(element.files)
@@ -126,6 +123,7 @@ Application.controller 'editorController',
     return
 
   # -- LOAD THEME ---------------------------------------------------
+
   reset_state = ->
     $scope.hide_all_popovers()
     $scope.HUD.hide()

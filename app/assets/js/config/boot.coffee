@@ -1,10 +1,15 @@
 
 window.Application = angular.module('ThemeEditor', ['ngSanitize', 'ui.sortable', 'ui.bootstrap'])
 
-Application.run () ->
+Application.run ["$rootScope", ($rootScope) ->
+
+  # $rootScope.is_browser_supported = if window.chrome then true else false
+  $rootScope.is_browser_supported = true
+
   $("#loading").remove() unless window.chrome
   enable_trasition = -> $('body').removeClass('transition-off')
   setTimeout(enable_trasition, 600)
+]
 
 # Function.extend
 #   monitor: (self) ->

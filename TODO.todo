@@ -1,7 +1,3 @@
-FileSystem:
- ☐ throbber on new local files drag/load/open
- ☐ udpate readme, update browser is not supported
-
 Browser Support:
  ☐ Safari
  ☐ Firefox
@@ -9,9 +5,9 @@ Browser Support:
 
 TODO v.0.7:
  ☐ BUG: save does not work (gallery/local/external)
+ ☐ slide animation is not smooth
  ☐ add more themes
  ☐ more lang support (PHP Perl GO LESS SCSS C C++ Lua XML Markdown Latex)
- ☐ slide animation is not smooth
 
 Preview and scope bar:
  ☐ gutter issue (redo gutter styling)
@@ -150,6 +146,7 @@ Test:
  ☐ download theme
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ udpate readme, update browser is not supported @done (14-02-23 10:25) @project(FileSystem)
  ✔ version should be in one place @done (14-02-23 05:25) @project(Refactor)
  ✔ accept opening/drag and dropping multiple files @done (14-02-23 05:23) @project(FileSystem)
  ✔ open local from menu @done (14-02-23 05:21) @project(FileSystem)
