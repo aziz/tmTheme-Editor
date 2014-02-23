@@ -19,10 +19,10 @@
 
   <div ng-class="{ 'slide' : gallery_visible }" class="scrollbox" ng-style="{ 'background-color': Color.parse(Theme.bg()), 'color': Color.parse(Theme.fg()) }">
     <div style="overflow-y: scroll; height: 100%">
-      <div class="local_themes_list" ng-show="localFiles.length > 0">
+      <div class="local_themes_list" ng-show="local_themes.length > 0">
         <h5>Local Files</h5>
         <ul>
-          <li ng-repeat="theme in localFiles | orderBy:'name' | filter: filter"
+          <li ng-repeat="theme in local_themes | orderBy:'name' | filter: filter"
               ng-click="load_local_theme(theme)"
               ng-class="{ 'selected': theme.name == selected_theme }">
             <span class="theme_title">{{ theme.name | removeExtension }}</span>

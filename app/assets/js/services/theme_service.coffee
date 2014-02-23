@@ -1,34 +1,33 @@
 Application.factory "Theme", ['Color', 'json_to_plist', 'plist_to_json', (Color, json_to_plist, plist_to_json) ->
-  theme = {}
+  xml  = ''
+  json = ''
+  type = ''
+  gcolors = []
 
-  theme.xml  = ''
-  theme.json = ''
-  theme.type = ''
-  theme.gcolors = []
+  _border_color = null
 
-  border_color = null
-
-  theme.process = (data) ->
+  process = (data) ->
     @xml = data
     @json = plist_to_json(data)
     @gcolors = []
     if @json && @json.settings
       for key, val of @json.settings[0].settings
         @gcolors.push({'name': key, 'color': val})
-      border_color = null
+      _border_color = null
       @border_color()
       @json.colorSpaceName = 'sRGB'
       @json.semanticClass = "theme.#{Color.light_or_dark(@bg())}.#{@json.name.underscore().replace(/[\(\)'&]/g, '')}"
 
-  theme.update_general_colors = ->
+  # TODO: should not be exposed, only used in save which should be part of this service
+  update_general_colors = ->
     globals = @json.settings[0]
     globals.settings = {}
     globals.settings[gc.name] = gc.color for gc in @gcolors
 
-  theme.is_font_style = (fontStyle, rule) ->
+  is_font_style = (fontStyle, rule) ->
     rule.settings && rule.settings.fontStyle && rule.settings.fontStyle.indexOf(fontStyle) >= 0
 
-  theme.toggle_font_style = (fontStyle, rule) ->
+  toggle_font_style = (fontStyle, rule) ->
     rule.settings = {} unless rule.settings
     rule.settings.fontStyle = '' unless rule.settings.fontStyle
     if @is_font_style(fontStyle, rule)
@@ -37,20 +36,27 @@ Application.factory "Theme", ['Color', 'json_to_plist', 'plist_to_json', (Color,
     else
       rule.settings.fontStyle += " #{fontStyle}"
 
-  theme.reset_color = (rule, attr) -> delete rule.settings[attr]
+  reset_color = (rule, attr) -> delete rule.settings[attr]
 
-  theme.bg = -> @gcolors.length > 0 && @gcolors.find((gc) -> gc.name == 'background').color
-  theme.fg = -> @gcolors.length > 0 && @gcolors.find((gc) -> gc.name == 'foreground').color
-  theme.selection_color = -> @gcolors.length > 0 && @gcolors.find((gc) -> gc.name == 'selection')?.color
-  theme.gutter_fg = -> @gcolors.length > 0 && @gcolors.find((gc) -> gc.name == 'gutterForeground')?.color
+  bg = -> @gcolors.length > 0 && @gcolors.find((gc) -> gc.name == 'background').color
+  fg = -> @gcolors.length > 0 && @gcolors.find((gc) -> gc.name == 'foreground').color
+  selection_color = -> @gcolors.length > 0 && @gcolors.find((gc) -> gc.name == 'selection')?.color
+  gutter_fg = -> @gcolors.length > 0 && @gcolors.find((gc) -> gc.name == 'gutterForeground')?.color
 
-  theme.border_color = ->
-    return border_color if border_color
-    border_color = if Color.light_or_dark(Color.parse(@bg())) == 'light' then 'rgba(0,0,0,.33)' else 'rgba(255,255,255,.33)'
+  border_color = ->
+    return _border_color if _border_color
+    # TODO: should not return style, should be a class name
+    _border_color = if Color.light_or_dark(Color.parse(@bg())) == 'light' then 'rgba(0,0,0,.33)' else 'rgba(255,255,255,.33)'
+
+  download = ->
+    @update_general_colors()
+    plist = json_to_plist(@json)
+    blob = new Blob([plist], {type: 'text/plain'})
+    saveAs blob, "#{@json.name}.tmTheme"
 
   # Theme Stylesheet Generator ------------------------------------------
 
-  theme.css_scopes = (->
+  css_scopes = ->
     styles = ''
     if @json && @json.settings
       for rule in @json.settings.compact()
@@ -70,9 +76,8 @@ Application.factory "Theme", ['Color', 'json_to_plist', 'plist_to_json', (Color,
             styles += "text-decoration:underline;" if underline
             styles += "}\n"
     styles
-  ).throttle(50)
 
-  theme.css_gutter = (->
+  css_gutter = ->
     style = ''
     if @json && @json.settings && @bg()
       bgcolor = Color.parse(@bg())
@@ -85,32 +90,32 @@ Application.factory "Theme", ['Color', 'json_to_plist', 'plist_to_json', (Color,
         gutter_foreground = Color.parse(@gutter_fg()) || Color.lighten(bgcolor, 12)
         style += ".preview pre .l:before { color: #{gutter_foreground}; }"
     style
-  ).throttle(50)
 
-  theme.css_selection = (->
+  css_selection = ->
     style = ''
     if @json && @json.settings
       style += "pre::selection {background:transparent}.preview pre *::selection {background:"
       style += "#{Color.parse(@selection_color())} }"
     style
-  ).throttle(50)
 
-  theme.download = ->
-    @update_general_colors()
-    plist = json_to_plist(@json)
-    blob = new Blob([plist], {type: 'text/plain'})
-    saveAs blob, "#{@json.name}.tmTheme"
-
-
-  for own k,v of theme
-    if angular.isFunction(v)
-      theme[k] = v.monitor(theme)
-
-  theme.$report = ->
-    table = for own k,v of theme
-      if k[0] != "$" and angular.isFunction(v)
-        { name: k, calls: v.calls_counter, time: v.last_call_time }
-    console.table table
-
-  return theme
+  {
+    process:               process
+    download:              download
+    xml:                   xml
+    json:                  json
+    type:                  type
+    gcolors:               gcolors
+    update_general_colors: update_general_colors
+    is_font_style:         is_font_style
+    toggle_font_style:     toggle_font_style
+    reset_color:           reset_color
+    bg:                    bg
+    fg:                    fg
+    selection_color:       selection_color
+    gutter_fg:             gutter_fg
+    border_color:          border_color
+    css_scopes:            css_scopes
+    css_gutter:            css_gutter
+    css_selection:         css_selection
+  }
 ]

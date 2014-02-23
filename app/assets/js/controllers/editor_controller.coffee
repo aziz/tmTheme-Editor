@@ -1,33 +1,33 @@
 Application.controller 'editorController',
-['Color', 'Theme', 'ThemeLoader', 'EditPopover', 'NewPopover', 'HUDEffects', 'throbber', '$filter', '$scope', '$http', '$location', '$timeout', '$window',
-( Color,   Theme,   ThemeLoader,   EditPopover,   NewPopover,   HUDEffects,   throbber,   $filter,   $scope,   $http,   $location,   $timeout,   $window) ->
+['Color', 'Theme', 'ThemeLoader', 'FileManager', 'EditPopover', 'NewPopover', 'HUDEffects', 'throbber', '$filter', '$scope', '$http', '$location', '$timeout', '$window', '$q',
+( Color,   Theme,   ThemeLoader,   FileManager,   EditPopover,   NewPopover,   HUDEffects,   throbber,   $filter,   $scope,   $http,   $location,   $timeout,   $window,   $q) ->
 
   $scope.is_browser_supported = if $window.chrome then true else false
-  $scope.themes = []
+
   $scope.Color  = Color
   $scope.Theme  = Theme
   $scope.HUD    = HUDEffects
   $scope.EditPopover = EditPopover
   $scope.NewPopover  = NewPopover
 
-  $scope.current_tab   = 'scopes'
-
   $scope.scopes_filter = { name: '' }
   update_scopes_filter = -> $scope.scopes_filtered = $filter('filter')(Theme.json.settings, $scope.scopes_filter)
   $scope.$watchCollection 'Theme.json', update_scopes_filter
   $scope.$watchCollection 'scopes_filter', update_scopes_filter
 
-  $scope.fs = null
-  $scope.files = []
-  $scope.hovered_rule = null
-  $scope.selected_rule = null
+  # TODO: these are for gallery rename them properly
+  $scope.filter = {name: ''}
+  $scope.toggle_type_filter = (type) -> $scope.filter.type = if $scope.filter.type == type then undefined else type
+
+  $scope.current_tab    = 'scopes'
+  $scope.hovered_rule   = null
+  $scope.selected_rule  = null
   $scope.selected_theme = null
   $scope.general_selected_rule = null
   $scope.mark_as_selected_gcolor = (rule) -> $scope.general_selected_rule = rule
   $scope.mark_as_selected = (rule) ->
     $scope.selected_rule = rule
     EditPopover.hide()
-
 
   $scope.sortable_options = {
     axis: 'y'
@@ -46,7 +46,11 @@ Application.controller 'editorController',
     'ctrl+n': 'NewPopover.show()'
   }
 
-  # TODO return promise
+  $scope.themes          = [] # TODO: this should be intiliazed with a promise
+  $scope.local_themes    = FileManager.list
+  $scope.external_themes = angular.fromJson(localStorage.getItem("external_themes")) or []
+
+  # TODO: return promise
   ThemeLoader.themes.success (data) ->
     for theme in data
       theme.type = if theme.light then 'light' else 'dark'
@@ -61,135 +65,54 @@ Application.controller 'editorController',
       $scope.gallery_visible = true
       $.cookie('gallery_visible', true)
 
+  $scope.setFiles = (element) ->
+    local_files = FileManager.add(element.files)
+    # update the location path to the last file
+    $q.all(local_files).then (names) ->
+      $location.path("/local/#{names.last()}")
 
   # -- Initializing ----------------------------------------------
   $scope.$on '$locationChangeStart', (event, nextLocation, currentLocation) ->
+    throbber.on()
+
     # There's theme name in URL
     if $location.path() && $location.path().startsWith('/theme/')
       Theme.type = ''
       theme = $location.path().replace('/theme/','')
       $scope.selected_theme = theme
+
+      # TODO: this should be a promise!
+      ThemeLoader.themes.success (data) ->
+        $scope.available_themes = data
+        if Theme.type == ''
+          theme_obj = $scope.available_themes.find (t) -> t.name == theme
+          ThemeLoader.load(theme_obj).success (data) ->
+            Theme.process(data)
+            throbber.off()
+
     # There's a theme-url in URL
     else if $location.path() && $location.path().startsWith('/url/')
       Theme.type = 'External URL'
       theme_url = $location.path().replace('/url/','')
       $scope.selected_theme = theme_url.split('/').last().replace(/%20/g, ' ')
+      ThemeLoader.load({ url: theme_url }).success (data) ->
+        Theme.process(data)
+        save_external_to_local_storage(theme_url)
+        throbber.off()
+
     # There's a theme locally saved
     else if $location.path() && $location.path().startsWith('/local/')
       Theme.type = 'Local File'
       $scope.selected_theme = $location.path().replace('/local/','')
+      data = FileManager.load($scope.selected_theme)
+      Theme.process(data)
+      throbber.off()
+
     # Loading Default theme
     else
-      theme = 'Monokai'
-      $location.path('/theme/Monokai')
-
-    throbber.on() unless Theme.type == 'Local File'
-    ThemeLoader.themes.success (data) ->
-      $scope.available_themes = data
-      if theme
-        theme_obj = $scope.available_themes.find (t) -> t.name == theme
-        ThemeLoader.load(theme_obj).success (data) ->
-          Theme.process(data)
-          throbber.off()
-      else if theme_url
-        ThemeLoader.load({ url: theme_url }).success (data) ->
-          Theme.process(data)
-          save_external_to_local_storage(theme_url)
-          throbber.off()
-
-  # File System API ----------------------------------------------
-  $scope.setFiles = (element) ->
-    $scope.files.push(file) for file in element.files
-    read_files($scope.files)
-
-  $scope.localFiles = []
-  $scope.external_themes = angular.fromJson(localStorage.getItem("external_themes")) or []
-
-  FsInitHandler = (fs) ->
-    $scope.fs = fs
-    $scope.$apply()
-    if $location.path().startsWith('/local/')
-      local_theme = $location.path().replace('/local/', '').replace(/%20/g,' ')
-      $scope.files.push(local_theme)
-      $scope.fs.root.getFile local_theme, {}, ((fileEntry) ->
-        fileEntry.file ((file) ->
-          reader = new FileReader()
-          reader.onloadend = (e) ->
-            Theme.process(@result.trim())
-            throbber.off()
-            $scope.$apply()
-          reader.readAsText file
-        ), FsErrorHandler
-      ), FsErrorHandler
-
-  read_files = (files) ->
-    throbber.on()
-    for file in files
-      #continue unless f.type.match('tmtheme')
-      reader = new FileReader()
-      reader.readAsText(file) # Read in the tmtheme file
-      reader.onload = do (file) ->
-        (e) ->
-          xml_data = e.target.result.trim()
-          $scope.fs && $scope.fs.root.getFile file.name, {create: true}, (fileEntry) ->
-            fileEntry.createWriter (fileWriter) ->
-              fileWriter.onwriteend = (e) ->
-                $scope.$apply ->
-                  $location.path("/local/#{file.name}")
-                  list_local_files()
-              blob = new Blob([xml_data], {type: 'text/plain'})
-              fileWriter.write(blob)
-          Theme.process(xml_data)
-          $scope.$apply()
-          throbber.off()
-
-  list_local_files = ->
-    return unless $scope.fs
-    localFiles = []
-    dirReader = $scope.fs.root.createReader()
-    toArray = (list) -> Array::slice.call list or [], 0
-    # Call the reader.readEntries() until no more results are returned.
-    readEntries = ->
-      dirReader.readEntries ((results) ->
-        if results.length
-          localFiles = localFiles.concat(toArray(results))
-          readEntries()
-        else
-          $scope.$apply ->
-            $scope.localFiles = localFiles
-      ), FsErrorHandler
-    readEntries() # Start reading dirs.
-
-  save_external_to_local_storage = (url) ->
-    name = url.split('/').last().replace(/%20/g, ' ')
-    current_theme_obj = {name: name, url: url}
-    unless $scope.external_themes.find(current_theme_obj)
-      $scope.external_themes.push(current_theme_obj)
-      localStorage.setItem('external_themes', angular.toJson($scope.external_themes))
-
-  $timeout(list_local_files, 500)
-
-  $window.requestFileSystem && $window.requestFileSystem($window.TEMPORARY, 10*1024*1024,  FsInitHandler, FsErrorHandler)
-
-  # Drag & Drop --------------------------------------------------------
-  # dropZone = document.getElementById('drop_zone')
-
-  # handleFileDrop = (evt) ->
-  #   evt.stopPropagation()
-  #   evt.preventDefault()
-  #   files = evt.dataTransfer.files # FileList object.
-  #   $scope.files.push(file.name) for file in files
-  #   read_files(files)
-
-  # handleDragOver = (evt) ->
-  #   evt.stopPropagation()
-  #   evt.preventDefault()
-  #   evt.dataTransfer.dropEffect = 'copy'
-
-  # dropZone.addEventListener 'dragover', handleDragOver, false
-  # dropZone.addEventListener 'drop', handleFileDrop, false
-
-  # ---------------------------------------------------------------------
+      throbber.off()
+      $timeout ->
+        $location.path('/theme/Monokai')
 
   $scope.$watch 'EditPopover.visible', (visible) ->
     if visible
@@ -209,6 +132,7 @@ Application.controller 'editorController',
     $scope.selected_rule = rules[index]
     EditPopover.hide()
 
+  # TODO: refactor
   $scope.add_rule = (new_rule) ->
     Theme.json.settings.push(new_rule)
     NewPopover.hide()
@@ -218,6 +142,13 @@ Application.controller 'editorController',
     return
 
   #-------------------------------------------------------------------------
+  # TODO: make a external url service
+  save_external_to_local_storage = (url) ->
+    name = url.split('/').last().replace(/%20/g, ' ')
+    current_theme_obj = {name: name, url: url}
+    unless $scope.external_themes.find(current_theme_obj)
+      $scope.external_themes.push(current_theme_obj)
+      localStorage.setItem('external_themes', angular.toJson($scope.external_themes))
 
   $scope.open_theme_url = ->
     gh_pattern = /https?:\/\/raw2?\.github\.com\/(.+?)\/(.+?)\/(.+?)\/(.+)/
@@ -240,17 +171,13 @@ Application.controller 'editorController',
         $window.open(theme_obj.url)
     return
 
-  $scope.filter = {name: ''}
-
-  $scope.toggle_type_filter = (type) ->
-    $scope.filter.type = if $scope.filter.type == type then undefined else type
-
   # -- LOAD THEME ----------------------------------------------------------
   reset_state = ->
     $scope.hide_all_popovers()
     $scope.HUD.hide()
     $scope.scopes_filter.name = ''
 
+  # TODO: consolidate all load functions into one
   $scope.load_gallery_theme = (theme) ->
     return if theme.name == $scope.selected_theme
     reset_state()
@@ -269,68 +196,24 @@ Application.controller 'editorController',
 
   $scope.load_local_theme = (theme) ->
     return if theme.name == $scope.selected_theme
-    throbber.on()
     reset_state()
-    Theme.theme_type = 'Local File'
-    $scope.files.push(theme.name)
-    $scope.fs.root.getFile theme.name, {}, ((fileEntry) ->
-      fileEntry.file ((file) ->
-        reader = new FileReader()
-        reader.onloadend = (e) ->
-          Theme.process(@result.trim())
-          $location.path("/local/#{theme.name}")
-          throbber.off()
-          $scope.$apply()
-        reader.readAsText file
-      ), FsErrorHandler
-    ), FsErrorHandler
+    $location.path("/local/#{theme.name}")
+
+  # -- REMOVE -------------------------------------------------------
+
+  # TODO: merge these two functions
+  $scope.remove_local_theme = (theme) ->
+    FileManager.remove(theme)
+    $location.path('/') if $location.path() == "/local/#{theme.name}"
+
+  $scope.remove_external_theme = (theme) ->
+    $scope.external_themes.remove(theme)
+    localStorage.setItem('external_themes', angular.toJson($scope.external_themes))
+    $location.path('/') if $location.path() == "/url/#{theme.url}"
 
   # -- SAVE ---------------------------------------------------
 
   # TODO: this is broken
   $scope.save_theme = ->
-    Theme.update_general_colors()
-    plist = json_to_plist(Theme.json)
-    $scope.fs && $scope.fs.root.getFile $scope.files.first(), {create: false}, (fileEntry) ->
-      fileEntry.remove ->
-        $scope.fs && $scope.fs.root.getFile $scope.files.first(), {create: true}, (fileEntry) ->
-          fileEntry.createWriter (fileWriter) ->
-            fileWriter.onwriteend = (e) -> console.log 'File Saved'
-            fileWriter.onerror = (e) -> console.log 'Error in writing'
-            blob = new Blob([plist], {type: 'text/plain'})
-            fileWriter.write(blob)
-          , FsErrorHandler
-        , FsErrorHandler
-      , FsErrorHandler
-    , FsErrorHandler
-
-  # -- REMOVE -------------------------------------------------------
-
-  $scope.remove_local_theme = (theme) ->
-    $scope.fs.root.getFile theme.name, {create: false}, ((fileEntry) ->
-      fileEntry.remove (->
-        $scope.localFiles.remove(theme)
-        if $location.path() == "/local/#{theme.name}"
-          $location.path('/')
-        $scope.$apply()
-      ), FsErrorHandler
-    ), FsErrorHandler
-
-  $scope.remove_external_theme = (theme) ->
-    $scope.external_themes.remove(theme)
-    localStorage.setItem('external_themes', angular.toJson($scope.external_themes))
-    if $location.path() == "/url/#{theme.url}"
-      $location.path('/')
-
-
-  for own k,v of $scope
-    if k[0] != "$" and angular.isFunction(v)
-      $scope[k] = v.monitor($scope)
-
-  $scope.$report = ->
-    table = for own k,v of $scope
-      if k[0] != "$" and angular.isFunction(v)
-        { name: k, calls: v.calls_counter, time: v.last_call_time }
-    console.table table
 
 ]
