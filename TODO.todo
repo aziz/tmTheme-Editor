@@ -1,15 +1,9 @@
 TODO v.0.7:
- ☐ BUG: save does not work (gallery/local/external)
- ☐ slide animation is not smooth
- ☐ add more themes
- ☐ more lang support (PHP Perl GO LESS SCSS C C++ Lua XML Markdown Latex)
-
-Preview and scope bar:
  ☐ do not scroll preview when popover is open on the preview code
- ☐ refactor scopebar
 
 Refactor:
  ☐ refactor routing
+ ☐ refactor scopebar
 
 Performance:
  ☐ cache gallery, color-schemes and file samples locally to boost speed (https://github.com/jmdobry/angular-cache)
@@ -25,6 +19,8 @@ BackEnds:
  ☐ https://developers.goinstant.com/v1/GoAngular/index.html
 
 TODO:
+ ☐ add more themes
+ ☐ more lang support (PHP Perl GO LESS SCSS C C++ Lua XML Markdown Latex)
  ☐ confirm delete local themes
  ☐ rss feed for gallery
  ☐ contrast score for bg and fg https://github.com/LeaVerou/contrast-ratio
@@ -136,6 +132,7 @@ Test:
  ☐ download theme
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ BUG: save does not work (gallery/local/external) @done (14-02-24 10:42) @project(TODO v.0.7)
  ✔ BUG: back when galerry is closed -> badly posisioned throbber @done (14-02-24 10:04)
  ✔ gutter issue (redo gutter styling) @done (14-02-24 09:48) @project(Preview and scope bar)
  ✔ dynamically set pre width based on longest line @done (14-02-24 09:48) @project(Preview and scope bar)

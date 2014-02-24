@@ -155,8 +155,14 @@ Application.controller 'editorController',
 
   # -- SAVE ---------------------------------------------------
 
-  # TODO: this is broken
   $scope.save_theme = ->
+    return unless Theme.json
+    if Theme.type == 'Local File'
+      FileManager.save($scope.selected_theme, Theme.to_plist())
+    else
+      # save a local copy of current theme
+      FileManager.add_from_memory($scope.selected_theme, Theme.to_plist())
+      $location.path("/local/#{$scope.selected_theme}")
 
   # -- ROUTING ----------------------------------------------
   # TODO: make this a proper angular routing

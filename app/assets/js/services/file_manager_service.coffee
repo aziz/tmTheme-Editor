@@ -25,6 +25,14 @@ Application.factory "FileManager", ['$q', ($q) ->
     localStorage.setItem("local_files", angular.toJson(@list))
     file_names
 
+  add_from_memory = (file_name, content) ->
+    @list.push({name: file_name})
+    localStorage.setItem("local_files", angular.toJson(@list))
+    @save(file_name, content)
+
+  save = (file_name, content) ->
+    localStorage.setItem("THEME/#{file_name}", content)
+
   remove = (file) ->
     @list.remove(file)
     localStorage.setItem("local_files", angular.toJson(@list))
@@ -34,6 +42,8 @@ Application.factory "FileManager", ['$q', ($q) ->
     list:   list
     add:    add
     load:   load
+    save:   save
     remove: remove
+    add_from_memory: add_from_memory
   }
 ]

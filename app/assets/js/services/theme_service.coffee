@@ -55,6 +55,8 @@ Application.factory "Theme", ['Color', 'json_to_plist', 'plist_to_json', (Color,
     blob = new Blob([plist], {type: 'text/plain'})
     saveAs blob, "#{@json.name}.tmTheme"
 
+  to_plist = -> json_to_plist(@json)
+
   # Theme Stylesheet Generator ------------------------------------------
 
   css_scopes = ->
@@ -101,6 +103,7 @@ Application.factory "Theme", ['Color', 'json_to_plist', 'plist_to_json', (Color,
   {
     process:               process
     download:              download
+    to_plist:              to_plist
     xml:                   xml
     json:                  json
     type:                  type
