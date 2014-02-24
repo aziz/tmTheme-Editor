@@ -17,6 +17,7 @@ s {
 }
 
 pre {background-color: transparent;}
+
 .preview {
   position: absolute;
   top: @header_height+ 1;
@@ -33,36 +34,28 @@ pre {background-color: transparent;}
     padding:0;
     margin:0;
     overflow-x: scroll;
-    width: 2000px;
+    white-space: pre !important;
+    word-wrap: normal !important;
     padding-bottom: 4px;
     line-height: 19px;
 
-    &:before {
-      content: "";
-      position: absolute;
-      height: 100%;
-      width: 48px;
-      z-index: -1;
-    }
-
     .l {
       counter-increment: line_numbers;
-      // display: block;
+      padding-left: 52px;
+      padding-right: 230px;
     }
     .l:before {
       content: counter(line_numbers);
-      width: 40px;
+      width: 36px;
       text-align: right;
-      //background-color: rgba(255,255,255,.03);
-      //color: rgba(255,255,255,.3);
       display: inline-block;
       padding: 0 8px 0 0;
-      margin-right: 8px;
       font-weight: normal;
       font-style: normal;
       text-decoration: none;
       .user-select(none);
-      // position: fixed;
+      position: fixed;
+      left: 0;
     }
   }
 }

@@ -2,25 +2,32 @@
   "name": "tmtheme-editor",
   "version": "0.6.0",
   "private": true,
+  "author": {
+    "name": "Allen Bargi"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/aziz/tmTheme-Editor.git"
+  },
   "scripts": {
     "start": "./node_modules/.bin/coffee app/app.coffee",
-    "prod": "NODE_ENV=production PORT=9090 ./node_modules/.bin/coffee app/app.coffee",
-    "test": "./node_modules/.bin/testem -f testem.json"
+    "test": "./node_modules/.bin/testem -f testem.json",
+    "start_prod": "NODE_ENV=production PORT=9090 ./node_modules/.bin/coffee app/app.coffee"
   },
   "engines": {
     "node": "0.10.x",
     "npm":  "1.4.x"
   },
   "dependencies": {
-    "express": "3.4.8",
+    "express":        "3.4.8",
     "connect-assets": "3.0.0-beta1",
-    "less": "1.6.3",
-    "ejs-locals": "1.0.2",
-    "coffee-script": "1.7.1",
-    "sugar": "1.4.1",
-    "request": "2.33.0",
-    "csso": "*",
-    "uglify-js": "*"
+    "less":           "1.6.3",
+    "ejs-locals":     "1.0.2",
+    "coffee-script":  "1.7.1",
+    "sugar":          "1.4.1",
+    "request":        "2.34.0",
+    "csso":           "1.3.11",
+    "uglify-js":      "2.4.12"
   },
   "devDependencies": {
     "supervisor": "*",

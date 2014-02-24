@@ -1,4 +1,4 @@
-
+ ☐ BUG: back when galerry is closed -> badly posisioned throbber
 TODO v.0.7:
  ☐ BUG: save does not work (gallery/local/external)
  ☐ slide animation is not smooth
@@ -6,8 +6,6 @@ TODO v.0.7:
  ☐ more lang support (PHP Perl GO LESS SCSS C C++ Lua XML Markdown Latex)
 
 Preview and scope bar:
- ☐ gutter issue (redo gutter styling)
- ☐ dynamically set pre width based on longest line
  ☐ do not scroll preview when popover is open on the preview code
  ☐ refactor scopebar
 
@@ -139,6 +137,8 @@ Test:
  ☐ download theme
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ gutter issue (redo gutter styling) @done (14-02-24 09:48) @project(Preview and scope bar)
+ ✔ dynamically set pre width based on longest line @done (14-02-24 09:48) @project(Preview and scope bar)
  ✔ close button @done (14-02-23 22:32) @project(Browser Support)
  ✔ colorbox is not working @done (14-02-23 21:42)
  ✔ remove button for custom preview code @done (14-02-23 13:05)

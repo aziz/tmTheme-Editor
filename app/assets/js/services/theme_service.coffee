@@ -42,6 +42,7 @@ Application.factory "Theme", ['Color', 'json_to_plist', 'plist_to_json', (Color,
   fg = -> @gcolors.length > 0 && @gcolors.find((gc) -> gc.name == 'foreground').color
   selection_color = -> @gcolors.length > 0 && @gcolors.find((gc) -> gc.name == 'selection')?.color
   gutter_fg = -> @gcolors.length > 0 && @gcolors.find((gc) -> gc.name == 'gutterForeground')?.color
+  gutter_bg = -> @gcolors.length > 0 && @gcolors.find((gc) -> gc.name == 'gutter')?.color
 
   border_color = ->
     return _border_color if _border_color
@@ -82,13 +83,12 @@ Application.factory "Theme", ['Color', 'json_to_plist', 'plist_to_json', (Color,
     if @json && @json.settings && @bg()
       bgcolor = Color.parse(@bg())
       if Color.light_or_dark(bgcolor) == 'light'
-        style = ".preview pre:before { background-color: #{Color.darken(bgcolor, 2)}; }\n"
-        gutter_foreground = Color.parse(@gutter_fg()) || Color.darken(bgcolor, 18)
-        style += ".preview pre .l:before { color: #{gutter_foreground}; }"
+        gutter_fg = Color.parse(@gutter_fg()) || Color.darken(bgcolor, 18)
+        gutter_bg = Color.parse(@gutter_bg()) || Color.darken(bgcolor, 3)
       else
-        style = ".preview pre:before { background-color: #{Color.lighten(bgcolor, 2)}; }\n"
-        gutter_foreground = Color.parse(@gutter_fg()) || Color.lighten(bgcolor, 12)
-        style += ".preview pre .l:before { color: #{gutter_foreground}; }"
+        gutter_fg = Color.parse(@gutter_fg()) || Color.lighten(bgcolor, 18)
+        gutter_bg = Color.parse(@gutter_bg()) || Color.lighten(bgcolor, 3)
+      style = ".preview pre .l:before { color: #{gutter_fg}; background-color: #{gutter_bg}; }"
     style
 
   css_selection = ->
@@ -113,6 +113,7 @@ Application.factory "Theme", ['Color', 'json_to_plist', 'plist_to_json', (Color,
     fg:                    fg
     selection_color:       selection_color
     gutter_fg:             gutter_fg
+    gutter_bg:             gutter_bg
     border_color:          border_color
     css_scopes:            css_scopes
     css_gutter:            css_gutter
