@@ -1,7 +1,7 @@
 <div ng-controller="previewController">
 
   <!-- preview  -->
-  <div ng-class="{ 'slide' : gallery_visible }" id="preview" class="preview" ng-style="{ 'background-color': Color.parse(Theme.bg()), 'color': Color.parse(Theme.fg()) }">
+  <div ng-class="{ 'slide': gallery_visible, 'no-scroll': EditPopover.visible  }" id="preview" class="preview" ng-style="{ 'background-color': Color.parse(Theme.bg()), 'color': Color.parse(Theme.fg()) }">
     <pre ng-show="Theme.json"
          ng-bind-html="colorized"
          ng-style="{ 'color': Color.parse(Theme.fg()) }"></preview>
