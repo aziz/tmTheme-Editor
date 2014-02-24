@@ -161,7 +161,7 @@ Application.controller 'editorController',
   # -- ROUTING ----------------------------------------------
   # TODO: make this a proper angular routing
   $scope.$on '$locationChangeStart', (event, nextLocation, currentLocation) ->
-    throbber.on()
+    throbber.on(full_window: not $scope.gallery_visible)
 
     # There's theme name in URL
     if $location.path() && $location.path().startsWith('/theme/')

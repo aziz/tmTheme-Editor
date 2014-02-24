@@ -1,4 +1,3 @@
- ☐ BUG: back when galerry is closed -> badly posisioned throbber
 TODO v.0.7:
  ☐ BUG: save does not work (gallery/local/external)
  ☐ slide animation is not smooth
@@ -137,6 +136,7 @@ Test:
  ☐ download theme
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ BUG: back when galerry is closed -> badly posisioned throbber @done (14-02-24 10:04)
  ✔ gutter issue (redo gutter styling) @done (14-02-24 09:48) @project(Preview and scope bar)
  ✔ dynamically set pre width based on longest line @done (14-02-24 09:48) @project(Preview and scope bar)
  ✔ close button @done (14-02-23 22:32) @project(Browser Support)
