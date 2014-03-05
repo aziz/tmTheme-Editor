@@ -46,6 +46,7 @@
 {"name": "Bongzilla", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Bongzilla.tmTheme", "light": false },
 {"name": "Boron", "url": "https://raw.github.com/mjio/boron.tmtheme/master/Boron.tmTheme", "light": false },
 {"name": "Bubububububad", "url": "https://raw.github.com/eibbors/Bubububububad/master/Bubububububad.tmTheme", "light": false },
+{"name": "Candy Land", "url": "https://raw.github.com/ryanburgess/Text-Editor-Themes/Editor-Themes/Candy%20Land.tmTheme", "light": true },
 {"name": "Calydon", "url": "https://raw.github.com/carlcalderon/sublime-color-schemes/master/Calydon/Calydon.tmTheme", "light": false },
 {"name": "Chanfle", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Chanfle.tmTheme", "light": true },
 {"name": "Chrome DevTools", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Chrome%20DevTools.tmTheme", "light": true },
