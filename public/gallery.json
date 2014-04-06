@@ -109,6 +109,7 @@
 {"name": "iPlastic", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/iPlastic.tmTheme", "light": true },
 {"name": "IR_Black", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/IR_Black.tmTheme", "light": false },
 {"name": "IR_White", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/IR_White.tmTheme", "light": true },
+{"name": "itg.flat.dark", "url": "https://raw.githubusercontent.com/itsthatguy/theme-itg-flat/master/itg.dark.tmTheme", "light": false },
 {"name": "Johnny", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Johnny.tmTheme", "light": true },
 {"name": "Juicy", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Juicy.tmTheme", "light": true },
 {"name": "Katzenmilch", "url": "https://raw.github.com/eibbors/Bubububububad/master/Katzenmilch.tmTheme", "light": true },
