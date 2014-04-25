@@ -10,21 +10,37 @@ h1, p, table {
   width: 100%;
 }
 
+/* Bootstrap snipit */
+@media (min-width: 992px) and (max-width: 1199px) {
+  .hidden-md,
+  tr.hidden-md,
+  th.hidden-md,
+  td.hidden-md {
+    display: none !important;
+  }
+}
+
+/* originally authored by Nick Pettit - https://github.com/nickpettit/glide */
+@-webkit-keyframes pulse {
+  50% {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+}
+@keyframes pulse {
+  50% {
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+}
+.pulse {
+  -webkit-animation-name: pulse;
+  animation-name: pulse;
+}
+
 .addon-store .pagehead h1 { display: inline-block }
 .addon-store .addon-summary:after { clear: both }
-
-#addon-store .pagehead .electrocat-small {
-    bottom: -7px;
-    position: absolute;
-    right: 0;
-}
-
-.addon-store .addons-nav a.selected {
-    border-bottom-color: #d26911;
-    color: #333;
-    font-weight: bold;
-    padding: 0 0 14px;
-}
 
 .addon-store .addon-icon {
     background: #fff;
@@ -50,14 +66,6 @@ h1, p, table {
     text-shadow: 0 1px 0 #fff;
 }
 
-.addon-field-editor .addon-field-list, .addon-field-editor .addon-new-field {
-    -moz-box-sizing: border-box;
-    border-radius: 3px;
-    box-sizing: border-box;
-    display: inline-block;
-    text-align: center;
-    width: 595px;
-}
 
 
 
