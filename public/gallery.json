@@ -5,6 +5,7 @@
 {"name": "Amy", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Amy.tmTheme", "light": false },
 {"name": "Argonaut", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Argonaut.tmTheme", "light": false },
 {"name": "Arona", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Arona.tmTheme", "light": false },
+{"name": "Atom Dark", "url": "https://raw.github.com/jasontruluck/Atom-Dark.tmTheme/master/Atom%20Dark.tmTheme", "light": false },
 {"name": "Axar", "url": "https://raw.github.com/axar/Axar-SublimeTheme/master/Axar.tmTheme", "light": false },
 {"name": "Baby, The Code Shines Bright", "url": "https://raw.github.com/spacekat/Baby-The-Code-Shines-Bright/master/Baby,%20The%20Code%20Shines%20Bright.tmTheme", "light": false },
 {"name": "Base16 Bright Dark", "url": "https://raw.github.com/chriskempson/base16-textmate/master/base16-bright.dark.tmTheme", "light": false},
