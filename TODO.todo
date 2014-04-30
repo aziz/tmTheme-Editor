@@ -1,7 +1,12 @@
 MAJOR FEATURES:
+ ☐ update icons
+ ☐ ATOM theme support
  ☐ More lang support
  ☐ js color picker
  ☐ general colors
+
+ATOM:
+ ☐ http://stuk.github.io/jszip/
 
 Refactor:
  ☐ refactor routing
@@ -19,6 +24,11 @@ BackEnds:
  ☐ https://parse.com/platforms
  ☐ https://www.firebase.com/quickstart/angularjs.html
  ☐ https://developers.goinstant.com/v1/GoAngular/index.html
+
+APP refinements:
+ ☐ custom build jq
+ ☐ get rid of sugar?
+ ☐ separate js file for defered scripts like filesaver, jquery.scrollintoview.js
 
 TODO:
  ☐ add more themes
