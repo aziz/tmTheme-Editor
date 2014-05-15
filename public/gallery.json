@@ -47,6 +47,8 @@
 {"name": "Boneyfied", "url": "https://raw.github.com/eibbors/Bubububububad/master/Boneyfied.tmTheme", "light": false },
 {"name": "Bongzilla", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Bongzilla.tmTheme", "light": false },
 {"name": "Boron", "url": "https://raw.github.com/mjio/boron.tmtheme/master/Boron.tmTheme", "light": false },
+{"name": "Brilliance Black", "url": "https://gist.github.com/subtleGradient/268168/raw/86cb4bf47bf15da4ed37f47706e30afa37ac144e/Brilliance%20Black.tmTheme", "light": false },
+{"name": "Brilliance White", "url": "https://gist.github.com/subtleGradient/268168/raw/0095164116c030a25e4a514058a945f7c6df966d/Brilliance%20White.tmTheme", "light": true },
 {"name": "Bubububububad", "url": "https://raw.github.com/eibbors/Bubububububad/master/Bubububububad.tmTheme", "light": false },
 {"name": "Candy Land", "url": "https://raw.github.com/ryanburgess/Text-Editor-Themes/Editor-Themes/Candy%20Land.tmTheme", "light": true },
 {"name": "Calydon", "url": "https://raw.github.com/carlcalderon/sublime-color-schemes/master/Calydon/Calydon.tmTheme", "light": false },
