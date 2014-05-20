@@ -65,7 +65,6 @@
 {"name": "Crayon Pony Fish", "url": "https://raw.github.com/idleberg/Zissou.tmTheme/master/Crayon-Pony-Fish.tmTheme", "light": false },
 {"name": "CSSEdit", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/CSSEdit.tmTheme", "light": true },
 {"name": "Cube2Media", "url": "https://raw.github.com/electricgraffitti/sublime-theme-Cube2/master/Cube2Media.tmTheme", "light": false },
-{"name": "Dark Neon", "url": "https://raw.github.com/RainyDayMedia/Dark-Neon/master/Dark%20Neon.tmTheme", "light": false},
 {"name": "DarkPastel", "url": "https://raw.github.com/jdiehl/dark-pastel/master/dark-pastel.tmTheme", "light": false},
 {"name": "DarkVIM", "url": "https://raw.github.com/edgarjs/tm-themes/master/DarkVIM.tmTheme", "light": false },
 {"name": "Dawn", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Dawn.tmTheme", "light": true },
@@ -82,8 +81,6 @@
 {"name": "EggplantParm", "url": "https://raw.github.com/mimshwright/sublime-eggplant-parm/master/EggplantParm.tmTheme", "light": false},
 {"name": "Eiffel", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Eiffel.tmTheme", "light": true },
 {"name": "Emacs Strict", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Emacs%20Strict.tmTheme", "light": false },
-{"name": "Erebus Light", "url": "https://raw.github.com/Anomareh/Erebus-Light.tmTheme/master/Erebus%20Light.tmTheme", "light": false },
-{"name": "Erebus", "url": "https://raw.github.com/Anomareh/Erebus.tmTheme/master/Erebus.tmTheme", "light": false },
 {"name": "Espresso Libre", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Espresso%20Libre.tmTheme", "light": false },
 {"name": "Espresso Soda", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Espresso%20Soda.tmTheme", "light": true },
 {"name": "Espresso Tutti", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Espresso%20Tutti.tmTheme", "light": true },
@@ -135,7 +132,6 @@
 {"name": "Mirodark", "url": "https://raw.github.com/djjcast/mirodark-st2/master/Mirodark.tmTheme", "light": false},
 {"name": "MonoIndustrial", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/MonoIndustrial.tmTheme", "light": false },
 {"name": "Monokai Bright", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Monokai%20Bright.tmTheme", "light": false },
-{"name": "Monokai Dark", "url": "https://raw.github.com/Anomareh/Monokai-Dark.tmTheme/master/Monokai%20Dark.tmTheme", "light": false },
 {"name": "Monokai", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Monokai.tmTheme", "light": false },
 {"name": "Monokai-FannonEdition", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Monokai-FannonEdition.tmTheme", "light": false },
 {"name": "Monokai-sublime", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Monokai-sublime.tmTheme", "light": false },
@@ -224,7 +220,6 @@
 {"name": "Visual Studio Light", "url": "https://raw.github.com/mihaifm/Visual-Studio.tmTheme/master/Visual%20Studio.tmTheme", "light": true },
 {"name": "WebExPert", "url": "https://raw.github.com/matiaspub/WebExPertColorScheme/master/WebExPert.tmTheme", "light": false },
 {"name": "YellowStone", "url": "https://raw.github.com/antlong/Textmate-Themes/master/TM1/yellowStone.tmtheme", "light": true },
-{"name": "Z-Personal", "url": "https://raw.github.com/lloan/personaltheme/master/MyPersonal.tmTheme", "light": true },
 {"name": "Zenburn", "url": "https://raw.github.com/colinta/zenburn/master/zenburn.tmTheme", "light": false },
 {"name": "Zenburnesque", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Zenburnesque.tmTheme", "light": false }
 ]

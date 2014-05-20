@@ -75,6 +75,13 @@ BUGYY THEMES:
 {"name": "Userscape", "url": "https://raw.github.com/daylerees/colour-schemes/master/Userscape.tmTheme", "light": true },
 {"name": "Obsidian", "url": "https://raw.github.com/mekwall/obsidian-color-scheme/master/textmate/Obsidian.tmTheme", "light": false },
 
+Grave Yard:
+{"name": "Z-Personal", "url": "https://raw.github.com/lloan/personaltheme/master/MyPersonal.tmTheme", "light": true },
+{"name": "Dark Neon", "url": "https://raw.github.com/RainyDayMedia/Dark-Neon/master/Dark%20Neon.tmTheme", "light": false},
+{"name": "Monokai Dark", "url": "https://raw.github.com/Anomareh/Monokai-Dark.tmTheme/master/Monokai%20Dark.tmTheme", "light": false },
+{"name": "Erebus", "url": "https://raw.github.com/Anomareh/Erebus.tmTheme/master/Erebus.tmTheme", "light": false },
+{"name": "Erebus Light", "url": "https://raw.github.com/Anomareh/Erebus-Light.tmTheme/master/Erebus%20Light.tmTheme", "light": false },
+
 Path is incorrect:
 {"name": "BlueDawn", "url": "https://raw.github.com/daylerees/colour-schemes/master/BlueDawn.tmTheme", "light": false },
 {"name": "BoxUK", "url": "https://raw.github.com/daylerees/colour-schemes/master/BoxUK.tmTheme", "light": true },

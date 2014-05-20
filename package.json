@@ -10,7 +10,7 @@
     "url": "git://github.com/aziz/tmTheme-Editor.git"
   },
   "scripts": {
-    "start": "./node_modules/.bin/coffee app/app.coffee",
+    "start": "./node_modules/coffee-script/bin/coffee app/app.coffee",
     "test": "./node_modules/.bin/testem -f testem.json",
     "start_prod": "NODE_ENV=production PORT=9090 ./node_modules/.bin/coffee app/app.coffee"
   },
