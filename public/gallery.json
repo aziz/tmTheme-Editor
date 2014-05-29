@@ -188,6 +188,7 @@
 {"name": "Summerfruit", "url": "https://raw.github.com/thgie/Summerfruit/master/Summerfruit.tmTheme", "light": true },
 {"name": "Sunburst", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Sunburst.tmTheme", "light": false },
 {"name": "Sundried", "url": "https://raw.github.com/frou/Sundried/master/Sundried.tmTheme", "light": false },
+{"name": "Superman", "url": "https://raw.githubusercontent.com/mawiseman/Superman-tmTheme/master/Themes/Superman.tmTheme", "light": false },
 {"name": "SwordFish", "url": "https://raw.github.com/jdstein1/jdstein1-codeThemes/master/src/SwordFish.tmTheme", "light": false },
 {"name": "Swyphs II", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Swyphs%20II.tmTheme", "light": false },
 {"name": "Tango", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Tango.tmTheme", "light": true },
