@@ -10,7 +10,7 @@ Application.factory "FileManager", ['$q', ($q) ->
         deferred.resolve(file.name)
     return deferred.promise
 
-  list = angular.fromJson(localStorage.getItem("local_files")) or []
+  list = angular.fromJson(localStorage.getItem("local_files") || [])
   load = (file_name) -> localStorage.getItem("THEME/#{file_name}")
 
   # Add returns an array of promises

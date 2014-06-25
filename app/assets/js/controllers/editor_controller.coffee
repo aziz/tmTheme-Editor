@@ -27,7 +27,7 @@ Application.controller 'editorController',
   $scope.toggle_gallery_type_filter = (type) ->
     $scope.gallery_filter.type = if $scope.gallery_filter.type == type then undefined else type
 
-  $scope.gallery_visible = angular.fromJson($.cookie("gallery_visible")) || false
+  $scope.gallery_visible = angular.fromJson($.cookie("gallery_visible") || false)
   $scope.toggle_gallery = ->
     if $scope.gallery_visible
       $scope.gallery_visible = false
@@ -57,7 +57,7 @@ Application.controller 'editorController',
   ThemeLoader.themes().then (data) -> $scope.themes = data
 
   $scope.local_themes    = FileManager.list
-  $scope.external_themes = angular.fromJson(localStorage.getItem("external_themes")) or []
+  $scope.external_themes = angular.fromJson(localStorage.getItem("external_themes") || [])
 
   $scope.setFiles = (element) ->
     local_files = FileManager.add(element.files)
