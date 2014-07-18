@@ -68,6 +68,7 @@
 {"name": "Crayon Pony Fish", "url": "https://raw.github.com/idleberg/Zissou.tmTheme/master/Crayon-Pony-Fish.tmTheme", "light": false },
 {"name": "CSSEdit", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/CSSEdit.tmTheme", "light": true },
 {"name": "Cube2Media", "url": "https://raw.github.com/electricgraffitti/sublime-theme-Cube2/master/Cube2Media.tmTheme", "light": false },
+{"name": "DarkNeon", "url": "https://raw.githubusercontent.com/RainyDayMedia/DarkNeon/master/DarkNeon.tmTheme", "light": false},
 {"name": "DarkPastel", "url": "https://raw.github.com/jdiehl/dark-pastel/master/dark-pastel.tmTheme", "light": false},
 {"name": "Dawn", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Dawn.tmTheme", "light": true },
 {"name": "Dimmed", "url": "https://raw.github.com/uonick/dimmed/master/dimmed.tmTheme", "light": true },
