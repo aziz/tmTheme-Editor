@@ -138,6 +138,7 @@
 {"name": "Monokai", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Monokai.tmTheme", "light": false },
 {"name": "Monokai-FannonEdition", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Monokai-FannonEdition.tmTheme", "light": false },
 {"name": "Monokai-sublime", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Monokai-sublime.tmTheme", "light": false },
+{"name": "Monokai Extended Mod", "url": "https://raw.githubusercontent.com/stefanosc/sublime-monokai-extended-mod/master/Monokai%20Extended.tmTheme", "light": false },
 {"name": "Monsters Inc", "url": "https://raw.github.com/ryanburgess/Text-Editor-Themes/Editor-Themes/MonstersInc.tmTheme", "light": false},
 {"name": "Morrowmind", "url": "https://raw.github.com/natestedman/morrowind/master/Morrowind.tmTheme", "light": false},
 {"name": "Mreq", "url": "https://raw.github.com/mreq/mreq-theme/master/mreq.tmTheme", "light": false },
