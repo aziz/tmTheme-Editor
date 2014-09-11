@@ -101,6 +101,7 @@
 {"name": "FrontEndDelight", "url": "https://raw.github.com/bernatfortet/sublime-frontend-delight/master/FrontEndDelightColorScheme.tmTheme", "light": false },
 {"name": "GitHub", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/GitHub.tmTheme", "light": true },
 {"name": "GlitterBomb", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/GlitterBomb.tmTheme", "light": false },
+{"name": "hackmp", "url": "http://www.hackmp.com/files/hackmp.tmTheme", "light": false},
 {"name": "Hammer", "url": "https://raw.github.com/jared-christensen/sublime-2-color-scheme-hammer/master/Hammer.tmTheme", "light": false },
 {"name": "Hamster", "url": "https://raw.github.com/pchomik/Hamster/master/Hamster.tmTheme", "light": false },
 {"name": "Happy happy joy joy 2", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Happy%20happy%20joy%20joy%202.tmTheme", "light": true },
