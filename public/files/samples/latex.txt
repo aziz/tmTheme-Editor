@@ -1,0 +1,43 @@
+\documentclass[12pt]{article}
+% options include 12pt or 11pt or 10pt
+% classes include article, report, book, letter, thesis
+
+\title{This is the title}
+\author{Author One \\ Author Two}
+\date{29 February 2004}
+
+\usepackage{pstricks}
+\setlength{\textheight}{12.5cm}
+\setlength{\textwidth}{16.0cm}
+
+\newcommand{\cloud}[1]{
+  \psset{unit=#1cm}
+  \pspicture(2,4)
+  \psarc(2,0){1.25}{210}{35}
+  \psarc(0,0){1.25}{105}{320}
+  \psarc(0.2,.75){.75}{45}{145}
+  \psarc(1.8,.5){1.15}{5}{150}%
+  \endpspicture
+  }
+
+\setlength{\parindent}{0mm}
+\setlength{\parskip}{5mm}
+
+
+\begin{document}
+\maketitle
+
+This is the content of this document.
+
+This is the 2nd paragraph.
+Here is an inline formula:
+$   V = \frac{4 \pi r^3}{3}  $.
+And appearing immediately below
+is a displayed formula:
+$$  V = \frac{4 \pi r^3}{3}  $$
+
+This is a cloud size 0.3: ~ ~ ~ ~ ~ \cloud{0.3}
+
+This is a cloud size 0.9: ~ ~ ~ ~ ~ \cloud{0.9}
+
+\end{document}

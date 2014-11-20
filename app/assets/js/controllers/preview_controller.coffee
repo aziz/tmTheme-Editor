@@ -9,9 +9,20 @@ Application.controller 'previewController',
     'HTML',
     'Java'
     'Javascript',
+    'Latex',
+    'Perl',
     'PHP',
     'Python',
-    'Ruby'
+    'Ruby',
+
+    # 'XML',
+    # 'Lua',
+    # 'C',
+    # 'C++',
+    # 'LESS',
+    # 'SCSS',
+    # 'Markdown'
+    # 'GO',
   ]
   $scope.current_lang = $.cookie("preview_lang") || $scope.available_langs[0]
   $scope.set_lang = (lang) -> $scope.current_lang = lang
