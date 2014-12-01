@@ -77,6 +77,7 @@
 {"name": "Django (Smoothy)", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Django%20(Smoothy).tmTheme", "light": false },
 {"name": "Django", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Django.tmTheme", "light": false },
 {"name": "Dobdark", "url": "https://raw.github.com/charlesroper/DobDark-Theme/master/Dobdark.tmTheme", "light": false },
+{"name": "DownedRainbow" "url": "https://raw.githubusercontent.com/geedew/DownedRainbow/master/DownedRainbow.tmTheme", "light": false},
 {"name": "Dreamweaver", "url": "https://raw.github.com/actarian/Dreamweaver.tmTheme/master/Dreamweaver.tmTheme", "light": true },
 {"name": "EasyBalls", "url": "https://raw.github.com/afmacedo/sublime-themes/master/easyballs.tmTheme", "light": false },
 {"name": "Eclipse", "url": "https://raw.github.com/missedone/sublime-themes/master/Eclipse.tmTheme", "light": true },
