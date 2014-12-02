@@ -33,7 +33,30 @@ APP refinements:
  ☐ separate js file for defered scripts like filesaver, jquery.scrollintoview.js
 
 TODO:
- ☐ more lang support (GO LESS SCSS C C++ Lua XML Markdown)
+ ☐ update parser
+ ☐ more lang support
+   ☐ XML ✔
+   ☐ Yaml ✔
+   ☐ SCSS ✔
+   ☐ C ✔
+   ☐ C++ ✔
+   ☐ ObjC ✔
+   ☐ C# ✔
+   ☐ Bash ✔
+   ☐ R ✔
+   ☐ Lua ✔
+   ☐ Haskell ✔
+   ☐ Erlang ✔
+   ☐ diff ✔
+   ☐ json ✔
+   ☐ ocaml ✔
+   ☐ SQL ✔
+   ☐ GO
+   ☐ LESS
+   ☐ Markdown
+   ☐ Clojure
+   ☐ Scala
+
  ☐ add more themes
  ☐ confirm delete local themes
  ☐ rss feed for gallery
