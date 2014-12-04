@@ -54,7 +54,7 @@ Application.controller 'editorController',
   }
 
   $scope.themes = []
-  ThemeLoader.themes().then (data) -> $scope.themes = data
+  ThemeLoader.themes.then (data) -> $scope.themes = data
 
   $scope.local_themes    = FileManager.list
   $scope.external_themes = angular.fromJson(localStorage.getItem("external_themes") || [])
@@ -175,7 +175,7 @@ Application.controller 'editorController',
       theme = $location.path().replace('/theme/','')
       $scope.selected_theme = theme
 
-      ThemeLoader.themes().then (data) ->
+      ThemeLoader.themes.then (data) ->
         return unless Theme.type == ''
         theme_obj = data.find (t) -> t.name == theme
         ThemeLoader.load(theme_obj).success (data) ->

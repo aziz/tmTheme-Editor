@@ -45,7 +45,7 @@ Application.controller 'StatsController',
             $scope.scopes_data.push({ name: scope, count: 1})
     $scope.update_progress()
 
-  ThemeLoader.themes().then (data) ->
+  ThemeLoader.themes.then (data) ->
     $scope.themes = data
     progress_unit = 100.0/data.length
     for theme in $scope.themes
