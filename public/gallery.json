@@ -125,6 +125,7 @@
 {"name": "Kuroir", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Kuroir.tmTheme", "light": true },
 {"name": "KWrite", "url": "https://raw.github.com/daris/sublime-kwrite-color-scheme/master/KWrite.tmTheme", "light": true },
 {"name": "LAZY", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/LAZY.tmTheme", "light": true },
+{"name": "Le-genda", "url": "https://github.com/le-genda/le-genda_theme/blob/master/Le-genda.tmTheme", "light": true},
 {"name": "LightRays", "url": "https://raw.githubusercontent.com/raydenvm/Public/master/LightRays.tmTheme", "light": true},
 {"name": "Lioshi", "url": "https://raw.github.com/lioshi/lioshiScheme/master/lioshi.tmTheme", "light": false },
 {"name": "Lollypop unicorn", "url": "https://raw.github.com/tdekoning/tmTheme_lollypopunicorn/master/lollypopunicorn.tmTheme", "light": false },
