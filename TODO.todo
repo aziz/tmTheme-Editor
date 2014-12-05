@@ -1,8 +1,8 @@
- ☐ upgrade angular
+ ✔ upgrade angular @done (14-12-06 00:05)
+ ✔ use bower @done (14-12-06 00:08)
+ ☐ all external dependencies by bower
  ☐ use one way data binding for some parts of UI
- ☐ use bower
-
- ☐ better css sample does not work
+ ☐ firefox elipsis issue in scopes table
 
 MAJOR FEATURES:
  ☐ update icons

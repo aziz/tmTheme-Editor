@@ -1,7 +1,8 @@
-settings = {}
+config = {}
+config.assets = ["app/assets/js", "app/assets/css", "bower_components"]
 if process.env.NODE_ENV == 'production'
-  settings.port = process.env.PORT || 80
+  config.port = process.env.PORT || 80
 else
-  settings.port = process.env.PORT || 9999
+  config.port = process.env.PORT || 9999
 
-module.exports = settings
+module.exports = config

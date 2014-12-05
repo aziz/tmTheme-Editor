@@ -25,7 +25,7 @@ app.configure ->
 
 app.configure 'development', ->
   app.use express.logger('dev')
-  app.use assets_manager("paths": ["app/assets/js","app/assets/css"])
+  app.use assets_manager("paths": settings.assets)
   app.use express.errorHandler('dumpExceptions': true, 'showStack': true)
 
 app.configure 'production', ->
