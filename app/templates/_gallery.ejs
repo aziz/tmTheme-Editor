@@ -1,7 +1,7 @@
 <div id="gallery" ng-cloak ng-style="{ 'background-color': Color.parse(Theme.bg()), 'color': Color.parse(Theme.fg()) }">
   <div ng-class="{ 'slide' : gallery_visible }" ng-cloak class="titlebar">
    <div class="title">
-      {{ themes.length }} Themes
+      {{ ::themes.length }} Themes
    </div>
    <div class="actions">
      <a href="https://github.com/aziz/tmTheme-Editor/wiki/How-to-add-your-own-theme-to-the-gallery%3F"
@@ -49,8 +49,8 @@
           <li ng-repeat="theme in themes | filter: gallery_filter"
               ng-click="load_theme(theme, 'theme')"
               ng-class="{ 'selected': theme.name == selected_theme }">
-              <span class="{{theme.type}}_theme_icon" ></span>
-              <span>{{theme.name}}</span>
+              <span class="{{::theme.type}}_theme_icon" ></span>
+              <span>{{::theme.name}}</span>
           </li>
         </ul>
       </div>

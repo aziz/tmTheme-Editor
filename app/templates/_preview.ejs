@@ -42,7 +42,7 @@
     </a>
     <ul class="dropdown-menu pull-right">
       <li ng-repeat="lang in available_langs">
-        <a ng-click="set_lang(lang)">{{lang}}</a>
+        <a ng-click="set_lang(lang)">{{::lang}}</a>
       </li>
     </ul>
   </div>
