@@ -66,7 +66,13 @@ h1, p, table {
     text-shadow: 0 1px 0 #fff;
 }
 
+#header > div {
+    padding: 5px;
+}
 
+#header a:active {
+    color: red;
+}
 
 
 
