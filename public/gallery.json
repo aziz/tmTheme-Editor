@@ -234,6 +234,7 @@
 {"name": "Vibrant Tango", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Vibrant%20Tango.tmTheme", "light": false },
 {"name": "Visual Studio Dark", "url": "https://raw.github.com/nikeee/Visual-Studio-Dark/master/Visual%20Studio%20Dark.tmTheme", "light": false },
 {"name": "Visual Studio Light", "url": "https://raw.github.com/mihaifm/Visual-Studio.tmTheme/master/Visual%20Studio.tmTheme", "light": true },
+{"name": "Wee", "url": "https://github.com/georgeleonardo/tmTheme-Editor/blob/master/themes/Wee.tmTheme", "light": false }
 {"name": "WebExPert", "url": "https://raw.github.com/matiaspub/WebExPertColorScheme/master/WebExPert.tmTheme", "light": false },
 {"name": "YellowStone", "url": "https://raw.github.com/antlong/Textmate-Themes/master/TM1/yellowStone.tmtheme", "light": true },
 {"name": "Zenburn", "url": "https://raw.github.com/colinta/zenburn/master/zenburn.tmTheme", "light": false },
