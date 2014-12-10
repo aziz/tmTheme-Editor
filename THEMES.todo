@@ -74,6 +74,7 @@ BUGYY THEMES:
 {"name": "Dracula", "url": "https://raw.github.com/zenorocha/dracula-theme/master/Dracula.tmTheme", "light": false },
 {"name": "Userscape", "url": "https://raw.github.com/daylerees/colour-schemes/master/Userscape.tmTheme", "light": true },
 {"name": "Obsidian", "url": "https://raw.github.com/mekwall/obsidian-color-scheme/master/textmate/Obsidian.tmTheme", "light": false },
+{"name": "SwordFish", "url": "https://raw.githubusercontent.com/jdstein1/jdstein1-codeThemes/master/src/SwordFish.tmTheme", "light": false },
 
 Grave Yard:
 {"name": "Z-Personal", "url": "https://raw.github.com/lloan/personaltheme/master/MyPersonal.tmTheme", "light": true },
