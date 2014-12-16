@@ -17,11 +17,11 @@
     <tr ng-repeat="rule in scopes_filtered"
         ng-if="rule.scope"
         ng-click="mark_as_selected(rule)"
-        ng-dblclick="EditPopover.show(rule, $index)"
         ng-class="{ 'selected': rule == selected_rule, 'hovered': rule == hovered_rule }"
         class="rule-{{$index}}">
 
       <td class="name-box"
+          ng-dblclick="EditPopover.show(rule, $index)"
           ng-style="{ 'color': Color.parse(rule.settings.foreground), 'background-color': Color.parse(rule.settings.background) }"
           ng-class="{
             'is_italic' : Theme.is_font_style('italic', rule),
