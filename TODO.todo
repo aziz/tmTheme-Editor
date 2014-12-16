@@ -1,11 +1,15 @@
  ✔ upgrade angular @done (14-12-06 00:05)
  ✔ use bower @done (14-12-06 00:08)
  ✔ use one way data binding for some parts of UI @done (14-12-06 00:52)
- ☐ all external dependencies by bower
- ☐ BUG: override bootstrap mixins
+ ✔ all external dependencies by bower @done (14-12-16 18:12)
+ ✔ BUG: override bootstrap mixins @done (14-12-16 18:29)
  ☐ BUG: gallery list counter and filters
  ☐ BUG: popovers on scope list is not working
+ ☐ BUG: tooltips are not working (get rid of ui-bootstrap-popover-tooltip)
+ ☐ BUG: sortable is not working (get rid of ui-sortable)
+ ☐ BUG: draggable with no jquery (get rid of draggable directive)
  ☐ Reset colors are extremely slow
+
  ☐ get rid of themes folder
 
 Firefox:
