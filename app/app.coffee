@@ -1,43 +1,67 @@
 express         = require 'express'
-http            = require 'http'
+bodyParser      = require 'body-parser'
+methodOverride  = require 'method-override'
+logger          = require 'morgan'
+errorhandler    = require 'errorhandler'
+cookieParser    = require 'cookie-parser'
+session         = require 'express-session'
+compress        = require 'compression'
 fs              = require 'fs'
-path            = require 'path'
 less            = require 'less'
-sugar           = require 'sugar'
-template_engine = require 'ejs-locals'
 assets_manager  = require 'connect-assets'
-settings        = require './config'
-routes          = require './routes'
+ECT             = require 'ect'
+
+config           = require './config'
+routes           = require './routes'
 
 app = module.exports = express()
 
-app.configure ->
-  app.engine 'ejs', template_engine
-  app.set 'port', settings.port
-  app.set 'views', "#{__dirname}/templates"
-  app.set 'view engine', 'ejs'
-  app.use express.compress()
-  app.use express.bodyParser()
-  app.use express.cookieParser()
-  app.use express.methodOverride()
-  app.use app.router
-  app.use express.static "#{__dirname}/../public"
+app.set 'view engine', 'html'
+app.set 'views', "#{__dirname}/templates"
+app.set 'port', config.port
+app.set 'x-powered-by', false
 
-app.configure 'development', ->
-  app.use express.logger('dev')
-  app.use assets_manager("paths": settings.assets)
-  app.use express.errorHandler('dumpExceptions': true, 'showStack': true)
+app.engine 'html', ECT(watch: true, root: "#{__dirname}/templates", ext : '.html').render
 
-app.configure 'production', ->
-  # log = fs.createWriteStream 'log/production.log', {flags: 'w'}
-  app.use assets_manager("buildDir": "public/assets/", "paths": ["app/assets/js","app/assets/css"])
-  app.use express.errorHandler()
-  # app.use express.logger(stream: log)
+app.use compress()
+app.use express.static "#{__dirname}/../public"
+app.use bodyParser.json()
+app.use bodyParser.urlencoded({extended: true })
+app.use cookieParser(config.cookie_secret)
+app.use methodOverride()
+# app.use session secret: config.cookie_secret, name: 'sid', cookie: { path: '/', httpOnly: true, secure: false, maxAge: null }
+
+if config.env_development
+  app.use logger("dev", skip: (req, res) -> res.statusCode is 304)
+  app.use assets_manager("paths": config.assets)
+
+if config.env_production
+  log = fs.createWriteStream config.log_file, {flags: 'w'}
+  app.use logger("combined", stream: log)
+  app.use assets_manager("buildDir": "#{__dirname}/../public/assets/", "paths": config.assets)
 
 app.get '/', routes.index
 app.get '/get_uri', routes.get_uri
 app.get '/stats', routes.stats
 app.post '/parse', routes.parse
 
-http.createServer(app).listen settings.port, ->
-  console.log "Express server listening on port #{settings.port} in '#{app.get('env')}' environment"
+if config.env_development
+  app.use errorhandler()
+
+app.use (req, res, next) ->
+  res.status 404
+  if req.accepts 'html'
+    res.render 'errors/404'
+    return
+  if req.accepts 'json'
+    res.send { error: 'Not found' }
+    return
+
+app.use (err, req, res, next) ->
+  res.status 500
+  # res.render 'errors/500'
+
+unless module.parent
+  app.listen(config.port)
+  console.log "Express server listening on port #{config.port} in '#{config.env}' environment"
+

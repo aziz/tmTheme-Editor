@@ -1,3 +1,6 @@
+@import (reference) "bootstrap/less/bootstrap";
+@import (reference) "lib/mixins";
+
 .hud {
 
   @system_font: "lucida grande", "Segoe UI" , "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -8,7 +11,7 @@
 
   width: @hud_w;
   .box-shadow(0 4px 8px rgba(0,0,0,.4));
-  .border-radius(@hud_border_radius);
+  border-radius: @hud_border_radius;
   font-family: @system_font;
   font-size: 12px;
   line-height: 16px;
@@ -19,7 +22,7 @@
     text-align: center;
     height: @hud_header_h;
     line-height: @hud_header_h;
-    .border-radius(@hud_border_radius @hud_border_radius 0 0);
+    border-radius: @hud_border_radius @hud_border_radius 0 0;
     .box-sizing('border-box');
     .user-select(none);
     cursor: default;
@@ -48,7 +51,7 @@
   }
 
   .hud_body {
-    .border-radius(0 0 @hud_border_radius @hud_border_radius);
+    border-radius: 0 0 @hud_border_radius @hud_border_radius;
     border: 1px solid rgba(79,79,79,.87);
     border-top: 0;
     .background-clip(border-box);
@@ -95,7 +98,7 @@
     height: 4px;
     .box-shadow(inset 0 0 0 1px rgba(255,255,255,0.5));
     background-color: rgba(255,255,255,.33);
-    .border-radius(10px);
+    border-radius: 10px;
     .background-clip(padding-box);
     .box-sizing('border-box');
     width: 220px;
@@ -130,7 +133,7 @@
 
     &::-moz-range-track {
       // height: 4px;
-      .border-radius(10px);
+      border-radius: 10px;
       border: 0;
       // .background-clip(padding-box);
       // .box-sizing('border-box');
@@ -152,7 +155,7 @@
 
     &::-moz-range-thumb {
       position: relative;
-      .border-radius(0);
+      border-radius: 0;
       border: 0;
       top:1px;
       width: 13px;
@@ -166,7 +169,7 @@
     display: inline-block;
     color: #fff;
     border: 1px solid #c3c7ce;
-    .border-radius(50px);
+    border-radius: 50px;
     padding: 0 18px;
     text-decoration: none;
     background: -moz-linear-gradient(top,  rgba(73,73,75,.9) 0%, rgba(63,63,65,.9) 33%, rgba(39,39,39,.9) 100%);

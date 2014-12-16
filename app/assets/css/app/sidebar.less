@@ -1,3 +1,7 @@
+@import (reference) "bootstrap/less/bootstrap";
+@import (reference) "lib/mixins";
+@import (reference) "lib/variables";
+
 .sidebar {
   width: @sidebar_width - 1;
   border-right: 1px solid #989898;
@@ -161,7 +165,7 @@
     }
 
     input[type="search"] {
-      .border-radius(500px);
+      border-radius: 500px;
       border-color: #989898;
       margin: 4px;
       font-size: 13px;
@@ -245,7 +249,7 @@
   .gcolor-text-input {
     height: 16px;
     padding: 2px 4px;
-    .border-radius(0);
+    border-radius: 0;
     width: 70px;
     margin: 0;
     font-family: @monoFontFamily;
@@ -367,7 +371,7 @@ a.reset {
   z-index: 9999;
   min-width: 290px;
   padding: 12px;
-  .border-radius(5px);
+  border-radius: 5px;
   #gradient > .vertical(#fdfdfd, #ededed);
   border: 1px solid rgba(0,0,0,.35);
   border-top: 1px solid rgba(0,0,0,.25);
@@ -481,7 +485,7 @@ a.reset {
 
   textarea {
     min-width: 100%;
-    .border-radius(1px);
+    border-radius: 1px;
     //resize: none;
     margin-bottom: 0;
     display: block;
@@ -528,7 +532,7 @@ a.reset {
   }
 
   .colortext-input {
-    .border-radius(1px);
+    border-radius: 1px;
     height: 17px;
     width: 75px;
     margin-left: 50px;

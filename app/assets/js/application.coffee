@@ -5,8 +5,8 @@
 #= require jquery.scrollintoview/jquery.scrollintoview.js
 #= require angular/angular.js
 #= require angular-sanitize/angular-sanitize.js
+#= require tinycolor/tinycolor.js
 
-#= require vendor/tinycolor-0.9.17.js
 #= require vendor/spin-1.3.3.js
 #= require vendor/jquery-ui-1.10.4.sortable-draggable.js
 #= require vendor/ui-sortable.js

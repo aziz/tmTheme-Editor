@@ -1,3 +1,7 @@
+@import (reference) "bootstrap/less/bootstrap";
+@import (reference) "lib/mixins";
+@import (reference) "lib/variables";
+
 #gallery {
   width: 200px;
   z-index: -1;
@@ -139,7 +143,7 @@
         &:before {
           @width: 10px;
           content: "";
-          .border-radius(20px);
+          border-radius: 20px;
           width: @width;
           height: @width;
           border: 1px solid rgba(0,0,0,.4);
@@ -176,7 +180,7 @@
     position: relative;
     top: 2px;
     left: 2px;
-    // .border-radius(3px);
+    // border-radius: 3px;
   }
 
   .dark_theme_icon {
@@ -199,7 +203,7 @@
     width: 200px;
 
     input[type="search"] {
-      .border-radius(500px);
+      border-radius: 500px;
       margin: 4px;
       font-size: 13px;
       line-height: 13px;
@@ -241,7 +245,7 @@
   // background-color: #bababa;
   // color: #fff;
   color: #bababa;
-  // .border-radius(500px);
+  // border-radius: 500px;
   z-index: 9999999;
   position: absolute;
   top: 8px;

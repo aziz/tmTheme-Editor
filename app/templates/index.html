@@ -3,8 +3,8 @@
 <head>
   <title ng-bind="Theme.json.name ? Theme.json.name + ' • TmTheme Editor' : 'TmTheme Editor'"></title>
   <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700' rel='stylesheet' type='text/css'>
-  <% include _meta %>
-  <%- css("app") -%>
+  <% include '_meta' %>
+  <%- css("app") %>
   <style ng-bind="Theme.css_gutter()"></style>
   <style ng-bind="Theme.css_selection()"></style>
   <style ng-bind="Theme.css_scopes()"></style>
@@ -12,17 +12,16 @@
 
 <body drop-zone shortcut='shortcuts' class="transition-off"
       ng-class="'current_theme_' + Color.light_or_dark(Color.parse(Theme.bg()))">
-  <% include _browser_support %>
-  <% include _gallery %>
-  <% include _header %>
-  <% include _sidebar %>
-  <% include _preview %>
-  <% include _edit_dialog %>
-  <% include _new_dialog %>
-  <% include _colors_hud %>
+  <% include '_gallery' %>
+  <% include '_header' %>
+  <% include '_sidebar' %>
+  <% include '_preview' %>
+  <% include '_edit_dialog' %>
+  <% include '_new_dialog' %>
+  <% include '_colors_hud' %>
   <div id="loading"></div>
 
-  <%- js("application") -%>
-  <% include _ga  %>
+  <%- js("application") %>
+  <% include '_ga'  %>
 </body>
 </html>

@@ -1,3 +1,7 @@
+@import (reference) "bootstrap/less/bootstrap";
+@import (reference) "lib/mixins";
+@import (reference) "lib/variables";
+
 .is_bold { font-weight: bold !important; }
 .is_italic { font-style: italic; }
 .is_underline { text-decoration: underline; }
@@ -30,7 +34,7 @@ pre {background-color: transparent;}
   pre {
     font-size: 15px;
     border:0;
-    .border-radius(0);
+    border-radius: 0;
     counter-reset: line_numbers;
     padding:0;
     margin:0;
@@ -122,7 +126,7 @@ pre {background-color: transparent;}
     margin: 0;
     top: 42px;
     padding: 10px;
-    .border-radius(0);
+    border-radius: 0;
     resize: none;
   }
 

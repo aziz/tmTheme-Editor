@@ -2,9 +2,14 @@
  ✔ use bower @done (14-12-06 00:08)
  ✔ use one way data binding for some parts of UI @done (14-12-06 00:52)
  ☐ all external dependencies by bower
- ☐ firefox elipsis issue in scopes table
+ ☐ BUG: override bootstrap mixins
+ ☐ BUG: gallery list counter and filters
+ ☐ BUG: popovers on scope list is not working
+ ☐ Reset colors are extremely slow
  ☐ get rid of themes folder
 
+Firefox:
+ ☐ firefox elipsis issue in scopes table
 
 MAJOR FEATURES:
  ☐ update icons
@@ -12,6 +17,29 @@ MAJOR FEATURES:
  ☐ More lang support
  ☐ js color picker
  ☐ general colors
+ ☐ more lang support
+   ☐ XML ✔
+   ☐ Yaml ✔
+   ☐ SCSS ✔
+   ☐ C ✔
+   ☐ C++ ✔
+   ☐ ObjC ✔
+   ☐ C# ✔
+   ☐ Bash ✔
+   ☐ R ✔
+   ☐ Lua ✔
+   ☐ Haskell ✔
+   ☐ Erlang ✔
+   ☐ diff ✔
+   ☐ json ✔
+   ☐ ocaml ✔
+   ☐ SQL ✔
+   ☐ GO
+   ☐ LESS
+   ☐ Markdown
+   ☐ Clojure
+   ☐ Scala
+
 
 ATOM:
  ☐ http://stuk.github.io/jszip/
@@ -40,29 +68,6 @@ APP refinements:
 
 TODO:
  ☐ update parser
- ☐ more lang support
-   ☐ XML ✔
-   ☐ Yaml ✔
-   ☐ SCSS ✔
-   ☐ C ✔
-   ☐ C++ ✔
-   ☐ ObjC ✔
-   ☐ C# ✔
-   ☐ Bash ✔
-   ☐ R ✔
-   ☐ Lua ✔
-   ☐ Haskell ✔
-   ☐ Erlang ✔
-   ☐ diff ✔
-   ☐ json ✔
-   ☐ ocaml ✔
-   ☐ SQL ✔
-   ☐ GO
-   ☐ LESS
-   ☐ Markdown
-   ☐ Clojure
-   ☐ Scala
-
  ☐ add more themes
  ☐ confirm delete local themes
  ☐ rss feed for gallery

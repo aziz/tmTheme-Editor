@@ -3,11 +3,11 @@
 <head>
   <title>TmTheme Editor Stats</title>
   <link href='http://fonts.googleapis.com/css?family=Source+Code+Pro:400,700' rel='stylesheet' type='text/css'>
-  <% include _meta %>
-  <%- css("stats") -%>
+  <% include '_meta' %>
+  <%- css("stats") %>
 </head>
 
-<body ng-app="ThemeEditor">
+<body ng-app="ThemeStats">
 
 <div ng-cloak ng-controller="StatsController">
 
@@ -133,7 +133,7 @@
 
   <div id="loading"></div>
 </div>
-<%- js("stats") -%>
-<% include _ga  %>
+<%- js("stats") %>
+<% include '_ga' %>
 </body>
 </html>

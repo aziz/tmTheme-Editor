@@ -1,6 +1,8 @@
 Application.factory "Color", [ ->
   color = {}
   clamp = (val, min= 0, max=1) -> Math.min(max, Math.max(min, val))
+  tm_hex8 = (standard_hex_8) ->
+    "##{standard_hex_8[2..8]}#{standard_hex_8[0..1]}"
 
   color.parse = (color) ->
     return null unless color and color[0] == "#" and color.length >= 4
@@ -70,7 +72,7 @@ Application.factory "Color", [ ->
     else
       new_b = b
     # TODO: alpha channel?
-    tinycolor(r: new_r, g: new_g, b: new_b, a: rgb.a).toHex8String()
+    tm_hex8(tinycolor(r: new_r, g: new_g, b: new_b, a: rgb.a).toHex8())
 
   color.change_hsl = (color, h_change, s_change, l_change, colorize) ->
     hsl = tinycolor(@parse(color)).toHsl()
@@ -82,19 +84,19 @@ Application.factory "Color", [ ->
       hsl.h -= 360 if hsl.h > 360
     hsl.s = clamp(hsl.s + parseInt(s_change)/100.0)
     hsl.l = clamp(hsl.l + parseInt(l_change)/100.0)
-    tinycolor(hsl).toHex8String()
+    tm_hex8(tinycolor(hsl).toHex8())
 
   color.invert = (color) ->
     rgb = tinycolor(@parse(color)).toRgb()
     rgb.r = 255 - rgb.r
     rgb.g = 255 - rgb.g
     rgb.b = 255 - rgb.b
-    tinycolor(rgb).toHex8String()
+    tm_hex8(tinycolor(rgb).toHex8())
 
   color.grayscale = (color) ->
     hsl = tinycolor(@parse(color)).toHsl()
     hsl.s = 0
-    tinycolor(hsl).toHex8String()
+    tm_hex8(tinycolor(hsl).toHex8())
 
   color.sepia = (color) ->
     rgb = tinycolor(@parse(color)).toRgb()
@@ -107,7 +109,7 @@ Application.factory "Color", [ ->
     g = 255  if g > 255
     b = 0  if b < 0
     b = 255  if b > 255
-    tinycolor(r: r, g: g, b: b, a: rgb.a).toHex8String()
+    tm_hex8(tinycolor(r: r, g: g, b: b, a: rgb.a).toHex8())
 
   # layered_with_opacity = (fg, bg, opacity) ->
   #   fg_rgb = tinycolor(fg).toRgb()
@@ -116,7 +118,7 @@ Application.factory "Color", [ ->
   #   fg_rgb.r = Math.round((bg_rgb.r - fg_rgb.r) * opacity + fg_rgb.r)
   #   fg_rgb.g = Math.round((bg_rgb.g - fg_rgb.g) * opacity + fg_rgb.g)
   #   fg_rgb.b = Math.round((bg_rgb.b - fg_rgb.b) * opacity + fg_rgb.b)
-  #   tinycolor(fg_rgb).toHex8String()
+  #   tm_hex8(tinycolor(fg_rgb).toHex8())
 
   return color
 
