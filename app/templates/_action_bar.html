@@ -9,12 +9,12 @@
     <div class="actions">
       <div ng-click="NewPopover.show()"
            ng-class="{'active': NewPopover.visible }" class="add"
-           tooltip-placement="top" tooltip="Add">
+           bs-tooltip="{title: 'Add'}" data-placement="top" data-container="body">
         <i class="icon-plus"></i>
       </div>
       <div ng-click="delete_rule(selected_rule)"
            ng-class="{'disabled': !selected_rule }" class="remove"
-           tooltip-placement="top" tooltip="Remove">
+           bs-tooltip="{title: 'Remove'}" data-placement="top" data-container="body">
         <i class="icon-minus"></i>
       </div>
     </div>

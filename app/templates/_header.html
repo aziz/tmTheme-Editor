@@ -36,8 +36,11 @@
   <div class="theme-title" ng-cloak ng-class="{ 'slide' : gallery_visible }" ng-show="Theme.json">
     {{ Theme.json.name }}
     <span ng-show="Theme.type != ''" class="label label-success" style="position:relative;top:-2px">{{Theme.type}}</span>
-    <a ng-hide="Theme.type == 'Local File'" ng-click="open_theme_url()">
-      <i class="icon-globe" tooltip-placement="right" tooltip="View original file on the web"></i>
+    <a ng-hide="Theme.type == 'Local File'" ng-click="open_theme_url()"
+       data-placement='right'
+       data-container="body"
+       bs-tooltip="{ title: 'View original file on the web' }">
+      <i class="icon-globe"></i>
     </a>
   </div>
 

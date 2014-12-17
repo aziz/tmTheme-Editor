@@ -1,7 +1,7 @@
 window.Application = angular.module('ThemeEditor',
   ['ngSanitize',
    'ui.sortable',
-   'ui.bootstrap']
+   'mgcrea.ngStrap.tooltip']
 )
 
 Application.run ["$rootScope", ($rootScope) ->

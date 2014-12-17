@@ -7,10 +7,12 @@
 #= require angular-sanitize/angular-sanitize.js
 #= require tinycolor/tinycolor.js
 #= require spin.js/spin.js
+#= require angular-strap/dist/modules/dimensions.js
+#= require angular-strap/dist/modules/tooltip.js
+#= require angular-strap/dist/modules/tooltip.tpl.js
 
 #= require vendor/jquery-ui-1.10.4.sortable-draggable.js
 #= require vendor/ui-sortable.js
-#= require vendor/ui-bootstrap-popover-tooltip-tpls-0.10.0.js
 
 #= require config/boot
 #= require_tree directives
