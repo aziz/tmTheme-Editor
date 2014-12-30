@@ -10,9 +10,13 @@
 #= require angular-strap/dist/modules/dimensions.js
 #= require angular-strap/dist/modules/tooltip.js
 #= require angular-strap/dist/modules/tooltip.tpl.js
+#= require angular-bootstrap/src/dropdown/dropdown.js
 
 #= require vendor/jquery-ui-1.10.4.sortable-draggable.js
 #= require vendor/ui-sortable.js
+
+## require jquery-ui/jquery-ui.js
+## require angular-ui-sortable/sortable.js
 
 #= require config/boot
 #= require_tree directives

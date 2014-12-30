@@ -6,7 +6,7 @@
  ✔ BUG: gallery list counter and filters @done (14-12-16 18:44)
  ✔ BUG: popovers on scope list are not working @done (14-12-16 18:56)
  ✔ BUG: tooltips are not working (get rid of ui-bootstrap-popover-tooltip) @done (14-12-18 00:34)
- ☐ BUG: lang dropdown does not work (use angularstrap dropdown)
+ ✔ BUG: lang dropdown does not work (use angularstrap dropdown) @done (14-12-31 09:08)
  ☐ BUG: sortable is not working (get rid of ui-sortable)
  ☐ BUG: draggable with no jquery (get rid of draggable directive)
  ☐ Reset colors are extremely slow
