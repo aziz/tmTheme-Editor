@@ -12,11 +12,22 @@ header {
   .btn-toolbar {margin-top: 0;}
   .sep {
     height: @header_height;
-    width: 2px;
-    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAAkCAIAAAAsIXxYAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAGZJREFUeNpMjtENACEIQwHdf85bwah4rWKwPy+lBbVvq661RKS6O1FKwaDOOeFMtgzZMzwLzDC3bNKNMegSKN+F1hqRVwzqvasqmwSGBCoEMraAZy9On+9eRBaIm/lQHKODgF+AAQBWGnC7vMRz4wAAAABJRU5ErkJggg==) no-repeat;
+    width: 1px;
+    background: linear-gradient(to top,  rgba(152,152,152,1) 0%,rgba(152,152,152,0) 60%);
     position: absolute;
     bottom: 0;
     left: 400px;
+
+    &:after {
+      content: "";
+      height: @header_height;
+      width: 1px;
+      background: red;
+      display: block;
+      position: relative;
+      right: -1px;
+      background: linear-gradient(to top,  rgba(255,255,255,0.6) 0%,rgba(255,255,255,0) 60%);
+    }
   }
 
   .dl-save {

@@ -95,7 +95,7 @@
 {"name": "Espresso Tutti", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Espresso%20Tutti.tmTheme", "light": true },
 {"name": "Espresso", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Espresso.tmTheme", "light": true },
 {"name": "Express", "url": "https://raw.github.com/TitanKing/Express.tmTheme/master/Express.tmTheme", "light": false },
-{"name": "Eye Salvation - Dark", "url": "https://raw.githubusercontent.com/darkgriffon/eye-salvation-st2/gh-pages/Eye%20Salvation%20-%20Dark.tmTheme", "light": true },
+{"name": "Eye Salvation - Dark", "url": "https://raw.githubusercontent.com/darkgriffon/eye-salvation-st2/gh-pages/Eye%20Salvation%20-%20Dark.tmTheme", "light": false },
 {"name": "Eye Salvation - Light", "url": "https://raw.githubusercontent.com/darkgriffon/eye-salvation-st2/gh-pages/Eye%20Salvation%20-%20Light.tmTheme", "light": true },
 {"name": "Fade to Grey", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Fade to Grey.tmTheme", "light": false },
 {"name": "Failcoder", "url": "https://raw.github.com/failcoder/failcoder-theme/master/Failcoder.tmTheme", "light": false},
