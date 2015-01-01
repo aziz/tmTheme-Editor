@@ -38,7 +38,7 @@ if config.env_development
 if config.env_production
   log = fs.createWriteStream config.log_file, {flags: 'w'}
   app.use logger("combined", stream: log)
-  app.use assets_manager("buildDir": "#{__dirname}/../public/assets/", "paths": config.assets)
+  app.use assets_manager("buildDir": "public/assets/", "paths": config.assets, "compress": false)
 
 app.get '/', routes.index
 app.get '/get_uri', routes.get_uri
