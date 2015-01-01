@@ -1,6 +1,6 @@
 {
   "name": "tmtheme-editor",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "private": true,
   "author": {
     "name": "Allen Bargi"
@@ -11,6 +11,7 @@
   },
   "scripts": {
     "start": "./node_modules/coffee-script/bin/coffee app/app.coffee",
+    "postinstall": "bower install",
     "test": "./node_modules/.bin/testem -f testem.json",
     "start_prod": "NODE_ENV=production PORT=9090 ./node_modules/.bin/coffee app/app.coffee"
   },

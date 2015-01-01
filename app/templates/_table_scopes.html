@@ -15,9 +15,8 @@
          ng-style="{ 'background-color': Color.parse(Theme.bg()), 'color': Color.parse(Theme.fg()) }">
 
     <tr ng-repeat="rule in scopes_filtered"
-        ng-if="rule.scope"
         ng-click="mark_as_selected(rule)"
-        ng-class="{ 'selected': rule == selected_rule, 'hovered': rule == hovered_rule }"
+        ng-class="{ 'selected': rule == selected_rule, 'hovered': rule == hovered_rule, 'hide': !rule.scope }"
         class="rule-{{$index}}">
 
       <td class="name-box"
