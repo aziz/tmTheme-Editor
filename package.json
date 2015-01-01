@@ -36,7 +36,6 @@
     "morgan": "*",
     "sugar": "1.4.1",
     "uglify-js": "*",
-    "mincer": "*",
     "bower": "*"
   },
   "devDependencies": {
