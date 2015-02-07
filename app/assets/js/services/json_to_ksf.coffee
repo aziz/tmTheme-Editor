@@ -33,31 +33,31 @@ def _(val):
 
 def parseColors():
   colors = {}
-  colors['comment'] = _(#{if colors['comment']? then colors['comment'] else colors['global']['foreground']})
-  colors['string'] = _(#{if colors['string']? then colors['string'] else colors['global']['foreground']})
-  colors['number'] = _(#{if colors['number']? then colors['number'] else colors['global']['foreground']})
+  colors['comment'] = _(#{colors['comment'] or colors['global']['foreground']})
+  colors['string'] = _(#{colors['string'] or colors['global']['foreground']})
+  colors['number'] = _(#{colors['number'] or colors['global']['foreground']})
   colors['regex'] = colors['number']
-  colors['constant'] = _(#{if colors['user-defined constant']? then colors['user-defined constant'] else colors['global']['foreground']})
-  colors['variable'] = _(#{if colors['variable']? then colors['variable'] else colors['global']['foreground']})
-  colors['keyword'] = _(#{if colors['keyword']? then colors['keyword'] else colors['global']['foreground']})
-  colors['identifiers'] = _(#{if colors['global']['foreground']? then colors['global']['foreground'] else colors['global']['foreground']})
+  colors['constant'] = _(#{colors['user-defined constant'] or colors['global']['foreground']})
+  colors['variable'] = _(#{colors['variable'] or colors['global']['foreground']})
+  colors['keyword'] = _(#{colors['keyword'] or colors['global']['foreground']})
+  colors['identifiers'] = _(#{colors['global']['foreground'] or colors['global']['foreground']})
   colors['function'] = colors['identifiers']
-  colors['control_characters'] = _(#{if colors['function argument']? then colors['function argument'] else colors['global']['foreground']})
-  colors['attr_name'] = _(#{if colors['tag name']? then colors['tag name'] else colors['global']['foreground']})
-  colors['attr_value'] = _(#{if colors['tag attribute']? then colors['tag attribute'] else colors['global']['foreground']})
+  colors['control_characters'] = _(#{colors['function argument'] or colors['global']['foreground']})
+  colors['attr_name'] = _(#{colors['tag name'] or colors['global']['foreground']})
+  colors['attr_value'] = _(#{colors['tag attribute'] or colors['global']['foreground']})
   colors['tag'] = colors['attr_name']
-  colors['foreground'] = _(#{if colors['global']['foreground']? then colors['global']['foreground'] else colors['global']['foreground']})
-  colors['background'] = _(#{if colors['global']['background']? then colors['global']['background'] else colors['global']['foreground']})
-  colors['classes'] = _(#{if colors['class name']? then colors['class name'] else colors['global']['foreground']})
+  colors['foreground'] = _(#{colors['global']['foreground'] or colors['global']['foreground']})
+  colors['background'] = _(#{colors['global']['background'] or colors['global']['foreground']})
+  colors['classes'] = _(#{colors['class name'] or colors['global']['foreground']})
   colors['l_back'] = colors['background']
   colors['l_fore'] = colors['comment']
-  colors['current_line'] = _(#{if colors['global']['linehighlight']? then colors['global']['linehighlight'] else colors['global']['foreground']})
+  colors['current_line'] = _(#{colors['global']['linehighlight'] or colors['global']['foreground']})
   colors['operators'] = colors['foreground']
   colors['error'] = _(#{if colors['invalid']? then colors['invalid'] else colors['keyword']})
-  colors['diff_add'] = _(#{if colors['class name']? then colors['class name'] else colors['global']['foreground']})
-  colors['diff_delete'] = _(#{if colors['keyword']? then colors['keyword'] else colors['global']['foreground']})
-  colors['diff_change'] = _(#{if colors['string']? then colors['string'] else colors['global']['foreground']})
-  colors['selection'] = _(#{if colors['global']['selection']? then colors['global']['selection'] else colors['global']['foreground']})
+  colors['diff_add'] = _(#{colors['class name'] or colors['global']['foreground']})
+  colors['diff_delete'] = _(#{colors['keyword'] or colors['global']['foreground']})
+  colors['diff_change'] = _(#{colors['string'] or colors['global']['foreground']})
+  colors['selection'] = _(#{colors['global']['selection'] or colors['global']['foreground']})
   return colors
 
 def parseScheme(colors):
