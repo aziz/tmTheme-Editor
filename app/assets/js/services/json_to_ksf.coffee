@@ -53,7 +53,7 @@ def parseColors():
   colors['l_fore'] = colors['comment']
   colors['current_line'] = _(#{colors['global']['linehighlight']})
   colors['operators'] = colors['foreground']
-  colors['error'] = _(#{colors['invalid']})
+  colors['error'] = _(#{if colors['invalid']? then colors['invalid'] else colors['keyword']})
   colors['diff_add'] = _(#{colors['class name']})
   colors['diff_delete'] = _(#{colors['keyword']})
   colors['diff_change'] = _(#{colors['string']})
