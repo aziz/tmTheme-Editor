@@ -8,7 +8,7 @@ Application.value "json_to_ksf", (json) ->
       name = k['name'] or "global"
       do (name) ->
         if name is "global"
-          console.log k['settings']
+          #console.log k['settings']
           for i,v of k['settings']
             colors[name.toLowerCase()][i.toString().toLowerCase()] = "\"#{v}\""
         else if name is "invalid"
@@ -16,7 +16,7 @@ Application.value "json_to_ksf", (json) ->
         else
           colors[name.toLowerCase()] = "\"#{k['settings']['foreground']}\""
   
-  console.log colors
+  #console.log colors
   
   pattern = """
 def _(val):
@@ -170,10 +170,10 @@ def parseScheme(colors):
                 'fore': colors['error'] #red
             },
             'stdin': {
-                'fore': colors['foreground'] #orange
+                'fore': colors['foreground'] 
             },
             'stdout': {
-                'fore': colors['foreground'] #wtf is it color?
+                'fore': colors['foreground'] 
             },
             'stringeol': {
                 'back': colors['foreground'],
@@ -183,7 +183,7 @@ def parseScheme(colors):
                 'fore': colors['string']
             },
             'tags': {
-                'fore': colors['tag'] #red
+                'fore': colors['tag'] 
             },
             'variables': {
                 'fore': colors['variable']
@@ -368,5 +368,4 @@ def parseScheme(colors):
 colors = parseColors()
 exports = parseScheme(colors)
 """
-  #yep, ^-------- looks pretty scary.
   pattern
