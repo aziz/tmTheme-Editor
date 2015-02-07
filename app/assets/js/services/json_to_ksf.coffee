@@ -26,45 +26,47 @@ def hexToBGR(val):
     return color
 
 def parseColors():
+  colors = {}
+  colors[\"attribute_name\"] = hexToBGR(#{colors['tag name']})
+  colors[\"attributes\"] = colors[\"attribute_name\"]
+  colors[\"attribute_value\"] = hexToBGR(#{colors['tag attribute']})
+  colors[\"base_fore\"] = hexToBGR(\"#{colors['global']['foreground']}\")
+  colors[\"base_back\"] = hexToBGR(\"#{colors['global']['background']}\")
+  colors[\"classes\"] = hexToBGR(#{colors['class name']})
+  colors[\"comment\"] = hexToBGR(#{colors['comment']})
+  colors[\"constants\"] = hexToBGR(#{colors['built-in constant']})
+  colors[\"functions\"] = hexToBGR(#{colors['function name']})
+  colors[\"identifiers\"] = hexToBGR(\"#{colors['global']['foreground']}\")
+  colors[\"keywords\"] = hexToBGR(#{colors['keyword']})
+  colors[\"keywords2\"] = hexToBGR(#{colors['keyword']}) #FOR THE LOVE OF PYTHON
+  colors[\"linenumber_back\"] = colors[\"base_fore\"]
+  colors[\"linenumber_fore\"] = hexToBGR(\"#{colors['global']['foreground']}\")
+  colors[\"numbers\"] = hexToBGR(#{colors['number']})
+  colors[\"operators\"] = hexToBGR(#{colors['keyword']})
+  colors[\"regex\"] = colors[\"functions\"]
+  colors[\"strings\"] = hexToBGR(#{colors['string']})
+  colors[\"tags\"] = hexToBGR(#{colors['tag name']})
+  colors[\"variables\"] = hexToBGR(#{colors['variable']})
+  colors[\"stdin\"] = hexToBGR(\"#{colors['global']['background']}\")
+  colors[\"diff_add\"] = hexToBGR(#{colors['tag attribute']})
+  colors[\"diff_change\"] = hexToBGR(#{colors['string']})
+  colors[\"diff_delete\"] = hexToBGR(#{colors['keyword']})
+  colors[\"red\"]       = colors[\"diff_delete\"]
+  colors[\"orange\"]    = colors[\"functions\"]
+  colors[\"yellow\"]    = colors[\"diff_change\"]
+  colors[\"green\"]     = colors[\"diff_add\"]
+  colors[\"teal\"]      = colors[\"variables\"]
+  colors[\"blue\"]      = colors[\"numbers\"]
+  colors[\"purple\"]    = colors[\"attributes\"]
+  colors[\"themed\"]    = colors[\"strings\"]
+  colors[\"stdout\"] = colors[\"teal\"]
+  colors[\"stderr\"] = colors[\"red\"]
+  colors[\"css_ids\"] = colors[\"blue\"]
 
-    colors[\"attribute_name\"] = hexToBGR(#{colors['tag name']})
-    colors[\"attributes\"] = colors[\"attribute_name\"]
-    colors[\"attribute_value\"] = hexToBGR(#{colors['tag attribute']})
-    colors[\"base_fore\"] = hexToBGR(\"#{colors['global']['foreground']}\")
-    colors[\"base_back\"] = hexToBGR(\"#{colors['global']['background']}\")
-    colors[\"classes\"] = hexToBGR(#{colors['class name']})
-    colors[\"comment\"] = hexToBGR(#{colors['comment']})
-    colors[\"constants\"] = hexToBGR(#{colors['built-in constant']})
-    colors[\"functions\"] = hexToBGR(#{colors['functions']})
-    colors[\"identifiers\"] = hexToBGR(#{colors['identifiers']})
-    colors[\"keywords\"] = hexToBGR(#{colors['keywords']})
-    colors[\"keywords2\"] = hexToBGR(#{colors['keywords']}) #FOR THE LOVE OF PYTHON
-    colors[\"linenumber_back\"] = colors[\"base_fore\"]
-    colors[\"linenumber_fore\"] = hexToBGR(#{colors['linenumbers']})
-    colors[\"numbers\"] = hexToBGR(#{colors['numbers']})
-    colors[\"operators\"] = hexToBGR(#{colors['keyword']})
-    colors[\"regex\"] = colors[\"functions\"]
-    colors[\"strings\"] = hexToBGR(#{colors['string']})
-    colors[\"tags\"] = hexToBGR(#{colors['tag name']})
-    colors[\"variables\"] = hexToBGR(#{colors['foreground']})
-    colors[\"stdin\"] = hexToBGR(#{colors['background']})
-    colors[\"stdout\"] = hexToBGR(colors[\"B0F\"])
-    colors[\"stderr\"] = hexToBGR(colors[\"B0F\"])
-    colors[\"css_ids\"] = hexToBGR(colors[\"B0F\"])
-    colors[\"diff_add\"] = hexToBGR(#{colors['tag_attribute']})
-    colors[\"diff_change\"] = hexToBGR(#{colors['strings']})
-    colors[\"diff_delete\"] = hexToBGR(#{colors['keywords']})
 
-    colors[\"red\"]       = colors[\"diff_delete\"]
-    colors[\"orange\"]    = colors[\"functions\"]
-    colors[\"yellow\"]    = colors[\"diff_change\"]
-    colors[\"green\"]     = colors[\"diff_add\"]
-    colors[\"teal\"]      = colors[\"variables\"]
-    colors[\"blue\"]      = colors[\"numbers\"]
-    colors[\"purple\"]    = colors[\"attributes\"]
-    colors[\"themed\"]    = colors[\"strings\"]
 
-    return colors
+
+  return colors
 
 def parseScheme(colors):
     return {
