@@ -25,19 +25,21 @@
   <div class="btn-toolbar dl-save" ng-class="{ 'slide' : gallery_visible }">
     <div class="btn-group" dropdown>
       <a ng-click="save_theme()" class="btn btn-success btn-small  save">Save</a>
-      <a class="dropdown-toggle btn btn-success btn-small download" dropdown-toggle>
-        Download as...
-        <span class="caret"></span>
+      <a ng-click="Theme.download()" class="btn btn-success btn-small download">
+        <i class="icon-download"></i> Download
+      <a class="btn btn-small btn-success dropdown-toggle" dropdown-toggle><span class="caret"></span></a>
+      
+      
       </a>
       <ul class="dropdown-menu">
         <li>
           <a ng-click="Theme.download()">
-            <i class="icon-download"></i> tmTheme
+            <i class="icon-download"></i> as tmTheme
           </a>
         </li>
         <li>
           <a ng-click="Theme.downloadksf()">
-            <i class="icon-download"></i> Komodo Scheme File
+            <i class="icon-download"></i> as Komodo Scheme File
           </a>
         </li>
       </ul>
