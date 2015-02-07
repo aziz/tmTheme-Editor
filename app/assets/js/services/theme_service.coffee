@@ -51,10 +51,16 @@ Application.factory "Theme", ['Color', 'json_to_plist', 'plist_to_json', 'json_t
 
   download = ->
     @update_general_colors()
+    plist = json_to_plist(@json)
+    blob = new Blob([plist], {type: 'text/plain'})
+    saveAs blob, "#{@json.name}.tmTheme"
+
+  downloadksf = ->
+    @update_general_colors()
     ksf = json_to_ksf(@json)
     blob = new Blob([ksf], {type: 'text/plain'})
     saveAs blob, "#{@json.name}.ksf"
-
+  
   to_plist = -> json_to_plist(@json)
 
   # Theme Stylesheet Generator ------------------------------------------
@@ -103,6 +109,7 @@ Application.factory "Theme", ['Color', 'json_to_plist', 'plist_to_json', 'json_t
   {
     process:               process
     download:              download
+    downloadksf:           downloadksf
     to_plist:              to_plist
     xml:                   xml
     json:                  json
