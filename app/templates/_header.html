@@ -22,12 +22,26 @@
     </div>
   </div>
 
-  <div class="btn-toolbar dl-save" ng-class="{ 'slide' : gallery_visible }">
-    <div class="btn-group">
-      <a ng-click="save_theme()" class="btn btn-success btn-small  save">Save</a>
-      <a ng-click="Theme.download()" class="btn btn-success btn-small download">
-        <i class="icon-download"></i> Download
+  <div class="btn-toolbar dl-save" ng-class="{ 'slide' : gallery_invisible }">
+    <a ng-click="save_theme()" class="btn btn-success btn-small  save">Save</a>
+    <div class="btn-group" dropdown>
+      <a class="dropdown-toggle btn btn-small btn-info" dropdown-toggle>
+        Download as...
+        <span class="caret"></span>
       </a>
+      <ul class="dropdown-menu">
+        <li>
+          <a ng-click="Theme.download()">
+            <i class="icon-download"></i> tmTheme
+          </a>
+        </li>
+        <li>
+          <a ng-click="Theme.downloadksf()">
+            <i class="icon-download"></i> KSF
+          </a>
+        </li>
+      </ul>
+      
     </div>
   </div>
 
