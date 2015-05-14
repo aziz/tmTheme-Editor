@@ -175,6 +175,7 @@
 {"name": "PolyKai", "url": "https://raw.githubusercontent.com/transat/polykai/master/PolyKai.tmTheme", "light": false},
 {"name": "ProcessWire", "url": "https://raw.github.com/ocorreiododiogo/ProcessWire-SublimeColorScheme/master/ProcessWire.tmTheme", "light": false },
 {"name": "Prospettiva", "url": "https://raw.github.com/mattsanders/Prospettiva-Theme/master/TextMate/prospettiva.tmTheme", "light": true },
+{"name": "Pulsar", "url": "https://raw.githubusercontent.com/WegPast/master/master/Pulsar.tmTheme", "light": false },
 {"name": "Putty", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Putty.tmTheme", "light": false },
 {"name": "Quiet Night", "url": "https://raw.github.com/watsnow/code-editor-theme/master/textmate/Quiet%20Night.tmTheme", "light": false },
 {"name": "Rails Envy", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Rails%20Envy.tmTheme", "light": false },
