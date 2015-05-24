@@ -7,10 +7,13 @@ routes.index = (req, res) ->
 
 routes.get_uri = (req, res) ->
   request  = require 'request'
+  res.set 'Content-Type', 'text/plain'
   request req.query.uri, (error, response, body) ->
     if !error && response.statusCode == 200
-      res.set 'Content-Type', 'text/plain'
       res.send body
+    else
+      res.status 404
+      res.send 'Not found'
 
 routes.stats = (req, res) ->
   view = {}

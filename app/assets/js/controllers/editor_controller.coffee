@@ -145,7 +145,7 @@ Application.controller 'editorController',
 
   $scope.load_from_url = ->
     url = prompt('Enter the URL of the color scheme: ',
-                 'https://raw.github.com/aziz/tmTheme-Editor/master/themes/PlasticCodeWrap.tmTheme')
+                 'https://raw.github.com/aziz/tmTheme-Editor/master/themes/Tomorrow.tmTheme')
     if url
       reset_state()
       $location.path("/url/#{url}")
@@ -173,21 +173,26 @@ Application.controller 'editorController',
       FileManager.add_from_memory($scope.selected_theme, Theme.to_plist())
       $location.path("/local/#{$scope.selected_theme}")
 
-  process_theme = (data) ->
-    processed = Theme.process(data)
-    throbber.off()
-    if processed.error
-      console.log processed.error
-      $scope.alerts.push { type: 'danger', msg: processed.msg }
-      $location.path('/')
-      false
-    else
-      true
-
-
   # -- ROUTING ----------------------------------------------
   # TODO: make this a proper angular routing
   $scope.$on '$locationChangeStart', (event, nextLocation, currentLocation) ->
+    previous_path = currentLocation.split("#").last()
+    process_theme = (data) ->
+      processed = Theme.process(data)
+      throbber.off()
+      if processed.error
+        console.log processed.error
+        $location.path(previous_path)
+        $scope.alerts.push { type: 'danger', msg: processed.msg }
+        false
+      else
+        true
+
+    handle_load_error = ->
+      throbber.off()
+      $location.path(previous_path)
+      $scope.alerts.push { type: 'danger', msg: "LOAD ERROR: Can not fetch color scheme" }
+
     throbber.on(full_window: not $scope.gallery_visible)
 
     # There's theme name in URL
@@ -198,16 +203,19 @@ Application.controller 'editorController',
       ThemeLoader.themes.then (data) ->
         return unless Theme.type == ''
         theme_obj = data.find (t) -> t.name == theme
-        ThemeLoader.load(theme_obj).success (data) ->
-          process_theme(data)
+        theme_loader_promise = ThemeLoader.load(theme_obj)
+        theme_loader_promise.success(process_theme)
+        theme_loader_promise.error(handle_load_error)
 
     # There's a theme-url in URL
     else if $location.path() && $location.path().startsWith('/url/')
       Theme.type = 'External URL'
       theme_url = $location.path().replace('/url/','')
       $scope.selected_theme = theme_url.split('/').last().replace(/%20/g, ' ')
-      ThemeLoader.load({ url: theme_url }).success (data) ->
+      theme_loader_promise = ThemeLoader.load({ url: theme_url })
+      theme_loader_promise.success (data) ->
         process_theme(data) and save_external_to_local_storage(theme_url)
+      theme_loader_promise.error(handle_load_error)
 
     # There's a theme locally saved
     else if $location.path() && $location.path().startsWith('/local/')
@@ -219,7 +227,5 @@ Application.controller 'editorController',
     # Loading Default theme
     else
       throbber.off()
-      $timeout ->
-        $location.path('/theme/Monokai')
-
+      $timeout -> $location.path('/theme/Monokai')
 ]
