@@ -178,7 +178,7 @@
 {"name": "Perv Orange", "url": "https://raw.github.com/FlavourSys/Perv-ColorScheme/master/Perv%20Orange.tmTheme", "light": false },
 {"name": "Phix Dark", "url": "https://raw.github.com/stuartherbert/sublime-phix-color-scheme/master/Phix%20Dark.tmTheme", "light": false },
 {"name": "PKsTheme", "url": "https://raw.github.com/mjs7231/sublime-pkstheme/master/PKsTheme.tmTheme", "light": false},
-{"name": "PlasticCodeWrap", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/PlasticCodeWrap.tmTheme", "light": false },
+{"name": "PlasticCodeWrap", "url": "https://raw.githubusercontent.com/aziz/sublimeText3-Userfiles/master/Color%20Schemes/PlasticCodeWrap.tmTheme", "light": false },
 {"name": "Poe", "url": "https://raw.githubusercontent.com/darkness/Poe-Editor-Theme/master/Poe.tmTheme", "light": false},
 {"name": "PolyKai", "url": "https://raw.githubusercontent.com/transat/polykai/master/PolyKai.tmTheme", "light": false},
 {"name": "ProcessWire", "url": "https://raw.github.com/ocorreiododiogo/ProcessWire-SublimeColorScheme/master/ProcessWire.tmTheme", "light": false },
