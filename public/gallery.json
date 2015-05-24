@@ -124,6 +124,7 @@
 {"name": "itg.flat.dark", "url": "https://raw.githubusercontent.com/itsthatguy/theme-itg-flat/master/itg.dark.tmTheme", "light": false },
 {"name": "Johnny", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Johnny.tmTheme", "light": true },
 {"name": "Juicy", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Juicy.tmTheme", "light": true },
+{"name": "JSBeauty", "url": "https://raw.githubusercontent.com/fruud/JSBeauty/master/JSBeauty.tmTheme", "light": true },
 {"name": "Katzenmilch", "url": "https://raw.github.com/eibbors/Bubububububad/master/Katzenmilch.tmTheme", "light": true },
 {"name": "krTheme", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/krTheme.tmTheme", "light": false },
 {"name": "Kuroir", "url": "https://raw.github.com/aziz/tmTheme-Editor/master/themes/Kuroir.tmTheme", "light": true },
