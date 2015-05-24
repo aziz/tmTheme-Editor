@@ -1,4 +1,6 @@
 Archive:
+ ✔ input fonts in popovers should be fixed width @done (15-05-25 04:16)
+ ✔ BUG: color adjustments do not work properly (more than one level undo for filters)
  ✔ error handling on HTTP (client and server) @done (15-05-24 22:04)
  ✔ error handling on parsing (https://gist.github.com/acook/6333725) @done (15-05-24 21:42)
  ✔ fixed add and remove scope rules @done (15-05-24 17:18)
