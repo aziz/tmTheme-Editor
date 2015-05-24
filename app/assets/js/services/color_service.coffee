@@ -1,7 +1,6 @@
 Application.factory "Color", [ ->
   clamp = (val, min= 0, max=1) -> Math.min(max, Math.max(min, val))
-  tm_hex8 = (standard_hex_8) ->
-    "##{standard_hex_8[2..8]}#{standard_hex_8[0..1]}"
+  tm_hex8 = (standard_hex_8) -> "##{standard_hex_8[2..8]}#{standard_hex_8[0..1]}"
 
   parse = (color) ->
     return null unless color and color[0] == "#" and color.length >= 4
@@ -109,15 +108,6 @@ Application.factory "Color", [ ->
     b = 0  if b < 0
     b = 255  if b > 255
     tm_hex8(tinycolor(r: r, g: g, b: b, a: rgb.a).toHex8())
-
-  # layered_with_opacity = (fg, bg, opacity) ->
-  #   fg_rgb = tinycolor(fg).toRgb()
-  #   bg_rgb = tinycolor(bg).toRgb()
-  #   opacity = Math.max(opacity - 1 + bg.a, 0)
-  #   fg_rgb.r = Math.round((bg_rgb.r - fg_rgb.r) * opacity + fg_rgb.r)
-  #   fg_rgb.g = Math.round((bg_rgb.g - fg_rgb.g) * opacity + fg_rgb.g)
-  #   fg_rgb.b = Math.round((bg_rgb.b - fg_rgb.b) * opacity + fg_rgb.b)
-  #   tm_hex8(tinycolor(fg_rgb).toHex8())
 
   return {
     parse

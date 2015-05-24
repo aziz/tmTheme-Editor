@@ -44,7 +44,9 @@ Application.factory "Theme", ['Color', 'json_to_plist', 'plist_to_json', (Color,
   bg = -> @gcolors.length > 0 && @gcolors.find((gc) -> gc.name == 'background').color
   fg = -> @gcolors.length > 0 && @gcolors.find((gc) -> gc.name == 'foreground').color
   selection_color = -> @gcolors.length > 0 && @gcolors.find((gc) -> gc.name == 'selection')?.color
+  # TODO: should not be exposed
   gutter_fg = -> @gcolors.length > 0 && @gcolors.find((gc) -> gc.name == 'gutterForeground')?.color
+  # TODO: should not be exposed
   gutter_bg = -> @gcolors.length > 0 && @gcolors.find((gc) -> gc.name == 'gutter')?.color
 
   border_color = ->

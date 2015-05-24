@@ -5,15 +5,11 @@ Application.factory "EditPopover", [ ->
   popover = {}
   popover.visible = false
   popover.rule = {}
-
   popover.hide = -> @visible = false
-
   popover.show = (rule, rule_index) ->
     @rule = rule
     @visible = true
     @set_position(rule_index)
-    # TODO
-    # $scope.new_popover_visible = false
     return
 
   popover.set_position = (rule_index) ->
