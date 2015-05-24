@@ -100,26 +100,26 @@ Application.factory "Theme", ['Color', 'json_to_plist', 'plist_to_json', (Color,
       style += "#{Color.parse(@selection_color())} }"
     style
 
-  {
-    process:               process
-    download:              download
-    to_plist:              to_plist
-    xml:                   xml
-    json:                  json
-    type:                  type
-    gcolors:               gcolors
-    update_general_colors: update_general_colors
-    is_font_style:         is_font_style
-    toggle_font_style:     toggle_font_style
-    reset_color:           reset_color
-    bg:                    bg
-    fg:                    fg
-    selection_color:       selection_color
-    gutter_fg:             gutter_fg
-    gutter_bg:             gutter_bg
-    border_color:          border_color
-    css_scopes:            css_scopes
-    css_gutter:            css_gutter
-    css_selection:         css_selection
+  return {
+    process
+    download
+    to_plist
+    xml
+    json
+    type
+    gcolors
+    update_general_colors
+    is_font_style
+    toggle_font_style
+    reset_color
+    bg
+    fg
+    selection_color
+    gutter_fg
+    gutter_bg
+    border_color
+    css_scopes
+    css_gutter
+    css_selection
   }
 ]

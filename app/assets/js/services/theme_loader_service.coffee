@@ -13,5 +13,4 @@ Application.factory "ThemeLoader", ['$http', '$q', ($http, $q) ->
     themes: defer.promise
     load: load
   }
-
 ]
