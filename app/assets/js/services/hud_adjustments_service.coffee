@@ -55,6 +55,8 @@ Application.factory "HUDEffects", ['Theme', 'Color', '$timeout', (Theme, Color, 
   hud.reset_changes = ->
     Theme.json.settings = angular.copy(reset_colors)
     Theme.gcolors = angular.copy(reset_gcolors)
+    original_colors  = angular.copy(Theme.json.settings)
+    original_gcolors = angular.copy(Theme.gcolors)
     @brightness = 0
     @contrast   = 0
     @hue        = 0
