@@ -1,4 +1,8 @@
 Archive:
+ ✔ fixed add and remove scope rules @done (15-05-24 17:18)
+ ✔ no line break in UUID @done (15-05-24 17:18)
+ ✔ fixed safari rendering bug @done (15-05-24 17:18)
+ ✔ open dropdown goes under the black screen during loading @done (15-05-24 17:17)
  ✔ ---- v. 0.8.0 -------------------- @done
  ✔ upgrade angular @done (14-12-06 00:05)
  ✔ use bower @done (14-12-06 00:08)
