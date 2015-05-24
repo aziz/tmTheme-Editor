@@ -20,7 +20,9 @@
   <% include '_new_dialog' %>
   <% include '_colors_hud' %>
   <div id="loading"></div>
-
+  <div id="alerts" ng-cloak >
+    <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+  </div>
   <%- js("application") %>
   <% include '_ga'  %>
 </body>

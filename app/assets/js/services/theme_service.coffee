@@ -7,16 +7,19 @@ Application.factory "Theme", ['Color', 'json_to_plist', 'plist_to_json', (Color,
   _border_color = null
 
   process = (data) ->
-    @xml = data
-    @json = plist_to_json(data)
-    @gcolors = []
-    if @json && @json.settings
-      for key, val of @json.settings[0].settings
-        @gcolors.push({'name': key, 'color': val})
-      _border_color = null
-      @border_color()
-      @json.colorSpaceName = 'sRGB'
-      @json.semanticClass = "theme.#{Color.light_or_dark(@bg())}.#{@json.name.underscore().replace(/[\(\)'&]/g, '')}"
+    try
+      @xml = data
+      @json = plist_to_json(data)
+      @gcolors = []
+      if @json && @json.settings
+        for key, val of @json.settings[0].settings
+          @gcolors.push({'name': key, 'color': val})
+        _border_color = null
+        @border_color()
+        @json.colorSpaceName = 'sRGB'
+        @json.semanticClass = "theme.#{Color.light_or_dark(@bg())}.#{@json.name.underscore().replace(/[\(\)'&]/g, '')}"
+    catch error
+      return { error: error, msg: 'PARSE ERROR: could not parse your file!' }
 
   # TODO: should not be exposed, only used in save which should be part of this service
   update_general_colors = ->

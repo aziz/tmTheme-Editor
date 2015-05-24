@@ -8,6 +8,9 @@ Application.controller 'editorController',
   $scope.EditPopover = EditPopover
   $scope.NewPopover  = NewPopover
 
+  $scope.alerts = []
+  $scope.closeAlert = (index) -> $scope.alerts.splice(index, 1)
+
   $scope.current_tab    = 'scopes'
   $scope.hovered_rule   = null
   $scope.selected_rule  = null
@@ -170,6 +173,18 @@ Application.controller 'editorController',
       FileManager.add_from_memory($scope.selected_theme, Theme.to_plist())
       $location.path("/local/#{$scope.selected_theme}")
 
+  process_theme = (data) ->
+    processed = Theme.process(data)
+    throbber.off()
+    if processed.error
+      console.log processed.error
+      $scope.alerts.push { type: 'danger', msg: processed.msg }
+      $location.path('/')
+      false
+    else
+      true
+
+
   # -- ROUTING ----------------------------------------------
   # TODO: make this a proper angular routing
   $scope.$on '$locationChangeStart', (event, nextLocation, currentLocation) ->
@@ -180,13 +195,11 @@ Application.controller 'editorController',
       Theme.type = ''
       theme = $location.path().replace('/theme/','')
       $scope.selected_theme = theme
-
       ThemeLoader.themes.then (data) ->
         return unless Theme.type == ''
         theme_obj = data.find (t) -> t.name == theme
         ThemeLoader.load(theme_obj).success (data) ->
-          Theme.process(data)
-          throbber.off()
+          process_theme(data)
 
     # There's a theme-url in URL
     else if $location.path() && $location.path().startsWith('/url/')
@@ -194,17 +207,14 @@ Application.controller 'editorController',
       theme_url = $location.path().replace('/url/','')
       $scope.selected_theme = theme_url.split('/').last().replace(/%20/g, ' ')
       ThemeLoader.load({ url: theme_url }).success (data) ->
-        Theme.process(data)
-        save_external_to_local_storage(theme_url)
-        throbber.off()
+        process_theme(data) and save_external_to_local_storage(theme_url)
 
     # There's a theme locally saved
     else if $location.path() && $location.path().startsWith('/local/')
       Theme.type = 'Local File'
       $scope.selected_theme = $location.path().replace('/local/','')
       data = FileManager.load($scope.selected_theme)
-      Theme.process(data)
-      throbber.off()
+      process_theme(data)
 
     # Loading Default theme
     else
