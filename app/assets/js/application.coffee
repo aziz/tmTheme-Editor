@@ -10,6 +10,7 @@
 #= require angular-strap/dist/modules/dimensions.js
 #= require angular-strap/dist/modules/tooltip.js
 #= require angular-strap/dist/modules/tooltip.tpl.js
+#= require angular-bootstrap/src/position/position.js
 #= require angular-bootstrap/src/dropdown/dropdown.js
 #= require jquery-ui/ui/core.js
 #= require jquery-ui/ui/widget.js
