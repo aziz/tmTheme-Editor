@@ -91,6 +91,7 @@ Application.controller 'editorController',
     rules.remove(rule)
     $scope.selected_rule = rules[index]
     EditPopover.hide()
+    return
 
   # TODO: refactor
   $scope.add_rule = (new_rule) ->
