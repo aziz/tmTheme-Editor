@@ -19,8 +19,11 @@ Application.controller 'editorController',
     EditPopover.hide()
 
   $scope.scopes_filter = { name: '' }
-  update_scopes_filter = -> $scope.scopes_filtered = $filter('filter')(Theme.json.settings, $scope.scopes_filter)
+  update_scopes_filter = ->
+    return unless Theme.json
+    $scope.scopes_filtered = $filter('filter')(Theme.json.settings, $scope.scopes_filter)
   $scope.$watchCollection 'Theme.json', update_scopes_filter
+  $scope.$watchCollection 'Theme.json.settings', update_scopes_filter
   $scope.$watchCollection 'scopes_filter', update_scopes_filter
 
   $scope.gallery_filter = {name: ''}
