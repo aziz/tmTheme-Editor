@@ -18,6 +18,7 @@ Application.controller 'StatsController',
       theme.bgcolor = theme.jsonTheme.settings.first().settings.background
       console.log theme unless theme.bgcolor
       theme.is_light = Color.light_or_dark(theme.bgcolor[0..6]) == 'light'
+      theme.general_settings_count = Object.extended(theme.jsonTheme.settings.first().settings).size()
       process = -> process_scopes(theme.jsonTheme.settings)
       setTimeout(process, 0)
 
@@ -31,6 +32,7 @@ Application.controller 'StatsController',
       if key.endsWith('Options')
         current_object = $scope.general_data.find((x) -> x.name == key)
         current_object.values.push(value)
+
     for d in $scope.general_data
       d.grouped_values = d.values.groupBy()
 
