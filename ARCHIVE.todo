@@ -1,4 +1,6 @@
 Archive:
+ ✔ proper modal window for open from URL @done (15-05-25 08:03)
+ ✔ Migrating to the Celadon Cedar-14 Stack @done (15-05-25 05:12)
  ✔ BUG: loading from a file with .hidden-tmTheme extension @done (15-05-25 04:34)
  ✔ input fonts in popovers should be fixed width @done (15-05-25 04:16)
  ✔ BUG: color adjustments do not work properly (more than one level undo for filters)

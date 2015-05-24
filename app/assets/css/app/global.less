@@ -82,3 +82,83 @@ body { overflow: hidden; }
 .btn, header, .btn-toolbar, .tabbar, table.list th {
   .user-select(none);
 }
+
+// Modals
+.modal {
+  background-color: #E5E5E5;
+  border-radius: 0;
+  border: 0;
+  box-shadow: 0 24px 24px rgba(0, 0, 0, 0.8);
+  top: -300px;
+
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: -14px;
+    left: 0;
+    right: 0;
+    height: 16px;
+    // #gradient > .radial(#B6B6B6, #E5E5E5);
+    #gradient > .radial(#A6A6A6, #E5E5E5);
+  }
+
+
+  &:focus {
+    outline: none;
+  }
+
+  &.fade.in, &.in {
+    top: 35px;
+    margin-top: 0;
+  }
+
+  .modal-header {
+    border-bottom: 0;
+    padding: 18px 20px 0 110px;
+
+    h3.modal-title {
+      line-height: 18px;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+  }
+
+  .modal-body {
+    padding: 18px 20px 18px 110px;
+    font-size: 13px;
+  }
+
+  .modal-footer {
+    border-top: 0;
+    box-shadow: none;
+    border-radius: 0;
+    background-color: transparent;
+    padding: 0 20px 18px 110px;
+
+    .btn {
+      margin-left: 14px;
+      min-width: 80px;
+    }
+  }
+
+  .modal-icon {
+    padding: 18px 20px;
+    width: 64px;
+    height: 64px;
+    background: url('/images/icon/tmtheme-256.png') center center no-repeat;
+    background-size: 64px;
+    display: block;
+    position: absolute;
+  }
+
+  .text-input {
+    width: 100%;
+    box-sizing: border-box;
+    height: initial;
+    margin-bottom: 0;
+  }
+}
+
+.modal-backdrop.in {opacity: .4; }

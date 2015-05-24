@@ -13,6 +13,7 @@
 #= require angular-bootstrap/src/position/position.js
 #= require angular-bootstrap/src/dropdown/dropdown.js
 #= require angular-bootstrap/src/alert/alert.js
+#= require angular-bootstrap/src/modal/modal.js
 #= require jquery-ui/ui/core.js
 #= require jquery-ui/ui/widget.js
 #= require jquery-ui/ui/mouse.js

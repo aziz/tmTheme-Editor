@@ -1,6 +1,6 @@
 Application.controller 'editorController',
-['Color', 'Theme', 'ThemeLoader', 'FileManager', 'EditPopover', 'NewPopover', 'HUDEffects', 'throbber', '$filter', '$scope', '$http', '$location', '$timeout', '$window', '$q',
-( Color,   Theme,   ThemeLoader,   FileManager,   EditPopover,   NewPopover,   HUDEffects,   throbber,   $filter,   $scope,   $http,   $location,   $timeout,   $window,   $q) ->
+['Color', 'Theme', 'ThemeLoader', 'FileManager', 'EditPopover', 'NewPopover', 'HUDEffects', 'throbber', '$filter', '$scope', '$http', '$location', '$timeout', '$window', '$q', '$modal'
+( Color,   Theme,   ThemeLoader,   FileManager,   EditPopover,   NewPopover,   HUDEffects,   throbber,   $filter,   $scope,   $http,   $location,   $timeout,   $window,   $q,   $modal) ->
 
   $scope.Color  = Color
   $scope.Theme  = Theme
@@ -145,11 +145,20 @@ Application.controller 'editorController',
     $location.path("/#{type}/#{if type == 'url' then theme.url else theme.name}")
 
   $scope.load_from_url = ->
-    url = prompt('Enter the URL of the color scheme: ',
-                 'https://raw.github.com/aziz/tmTheme-Editor/master/themes/Tomorrow.tmTheme')
-    if url
+    modalInstance = $modal.open(
+      animation: false
+      backdrop: true
+      templateUrl: 'template/modalOpenURL.html'
+      controller: 'ModalOpenURLController'
+      resolve: {
+        themeExternalURL: -> 'https://raw.github.com/aziz/tmTheme-Editor/master/themes/Tomorrow.tmTheme'
+      }
+    )
+    modalInstance.result.then (themeURL) ->
       reset_state()
-      $location.path("/url/#{url}")
+      $location.path("/url/#{themeURL}")
+      return
+    return
 
   # -- REMOVE -------------------------------------------------------
 

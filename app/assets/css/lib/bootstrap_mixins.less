@@ -440,9 +440,10 @@
   .radial(@innerColor: #555, @outerColor: #333)  {
     background-color: @outerColor;
     background-image: -webkit-gradient(radial, center center, 0, center center, 460, from(@innerColor), to(@outerColor));
-    background-image: -webkit-radial-gradient(circle, @innerColor, @outerColor);
-    background-image: -moz-radial-gradient(circle, @innerColor, @outerColor);
-    background-image: -o-radial-gradient(circle, @innerColor, @outerColor);
+    background-image: -webkit-radial-gradient(ellipse, @innerColor, @outerColor);
+    background-image: -moz-radial-gradient(ellipse, @innerColor, @outerColor);
+    background-image: -o-radial-gradient(ellipse, @innerColor, @outerColor);
+    background-image: radial-gradient(ellipse, @innerColor, @outerColor);
     background-repeat: no-repeat;
   }
   .striped(@color, @angle: 45deg) {
