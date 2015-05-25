@@ -12,7 +12,8 @@ Application.controller 'StatsController',
   progress_unit = 0
 
   load_theme = (theme) ->
-    ThemeLoader.load(theme).success (theme_data) ->
+
+    process_theme = (theme_data) ->
       theme.xmlTheme  = theme_data
       theme.jsonTheme = plist_to_json(theme.xmlTheme)
       theme.bgcolor = theme.jsonTheme.settings.first().settings.background
@@ -21,6 +22,11 @@ Application.controller 'StatsController',
       theme.general_settings_count = Object.extended(theme.jsonTheme.settings.first().settings).size()
       process = -> process_scopes(theme.jsonTheme.settings)
       setTimeout(process, 0)
+
+    handle_load_error = ->
+
+    theme_loader_promise = ThemeLoader.load(theme)
+    theme_loader_promise.then(process_theme, handle_load_error)
 
   process_scopes = (settings) ->
     for key,value of settings[0].settings
