@@ -214,8 +214,8 @@ Application.controller 'editorController',
         return unless Theme.type == ''
         theme_obj = data.find (t) -> t.name == theme
         theme_loader_promise = ThemeLoader.load(theme_obj)
-        theme_loader_promise.success(process_theme)
-        theme_loader_promise.error(handle_load_error)
+        theme_loader_promise.then(process_theme, handle_load_error)
+        return
 
     # There's a theme-url in URL
     else if $location.path() && $location.path().startsWith('/url/')
@@ -223,9 +223,8 @@ Application.controller 'editorController',
       theme_url = $location.path().replace('/url/','')
       $scope.selected_theme = theme_url.split('/').last().replace(/%20/g, ' ')
       theme_loader_promise = ThemeLoader.load({ url: theme_url })
-      theme_loader_promise.success (data) ->
-        process_theme(data) and save_external_to_local_storage(theme_url)
-      theme_loader_promise.error(handle_load_error)
+      success_handler = (data) -> process_theme(data) and save_external_to_local_storage(theme_url)
+      theme_loader_promise.then(success_handler, handle_load_error)
 
     # There's a theme locally saved
     else if $location.path() && $location.path().startsWith('/local/')

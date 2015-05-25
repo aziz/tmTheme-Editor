@@ -13,7 +13,6 @@ Application.factory "FileManager", ['$q', ($q) ->
     return deferred.promise
 
   list = angular.fromJson(localStorage.getItem("local_files") || [])
-  load = (file_name) -> localStorage.getItem("#{PREFIX}/#{file_name}")
 
   # Add returns an array of promises
   add = (files) ->
@@ -32,13 +31,16 @@ Application.factory "FileManager", ['$q', ($q) ->
     localStorage.setItem("local_files", angular.toJson(@list))
     @save(file_name, content)
 
-  save = (file_name, content) ->
-    localStorage.setItem("#{PREFIX}/#{file_name}", content)
+  load = (file_name, prefix = PREFIX) ->
+    localStorage.getItem("#{prefix}/#{file_name}")
 
-  remove = (file) ->
+  save = (file_name, content, prefix = PREFIX) ->
+    localStorage.setItem("#{prefix}/#{file_name}", content)
+
+  remove = (file, prefix = PREFIX) ->
     @list.remove(file)
     localStorage.setItem("local_files", angular.toJson(@list))
-    localStorage.removeItem("#{PREFIX}/#{file.name}")
+    localStorage.removeItem("#{prefix}/#{file.name}")
 
   return {
     list
