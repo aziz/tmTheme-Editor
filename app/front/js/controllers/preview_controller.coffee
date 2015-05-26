@@ -1,6 +1,6 @@
 Application.controller 'previewController',
-['$scope', '$http', 'throbber', '$window', '$sce',
-( $scope,   $http,   throbber,   $window,   $sce ) ->
+['$scope', '$http', 'throbber', 'FileManager', '$window', '$q', '$sce',
+( $scope,   $http,   throbber,   FileManager,   $window,   $q,   $sce ) ->
 
   $scope.colorized = ''
   $scope.available_langs = [
@@ -24,18 +24,26 @@ Application.controller 'previewController',
   $scope.update_preview = ->
     throbber.on(full_window: true)
     $.cookie("preview_lang", $scope.current_lang)
+    defered_code = $q.defer()
     if $scope.custom_code.length > 0
       localStorage.setItem('custom_code', $scope.custom_code)
       $http.post("#{$window.API}/parse", {text: $scope.custom_code, syntax: $scope.current_lang}).success (data) ->
-        $scope.colorized = $sce.trustAsHtml(data)
-        $scope.custom_code_editor_visible = false
-        throbber.off()
+        defered_code.resolve(data)
     else
       localStorage.removeItem('custom_code')
-      $http.get("#{$window.API}/files/samples/pre-compiled/#{$scope.current_lang.toLowerCase()}.html").success (data) ->
-        $scope.colorized = $sce.trustAsHtml(data)
-        $scope.custom_code_editor_visible = false
-        throbber.off()
+      lang = $scope.current_lang.toLowerCase()
+      cached = FileManager.load(lang , 'sample_cache')
+      if cached
+        defered_code.resolve(cached)
+      else
+        $http.get("#{$window.API}/files/samples/pre-compiled/#{$scope.current_lang.toLowerCase()}.html").success (data) ->
+          defered_code.resolve(data)
+          FileManager.save(lang, data, 'sample_cache')
+
+    defered_code.promise.then (data) ->
+      $scope.colorized = $sce.trustAsHtml(data)
+      $scope.custom_code_editor_visible = false
+      throbber.off()
 
   $scope.$watch 'current_lang', $scope.update_preview
 

@@ -1,4 +1,7 @@
 Archive:
+ ✔ cache lang samples to disk @done (15-05-27 07:26)
+ ✔ add clear cache @done (15-05-27 06:56)
+ ✔ load old themes from https://github.com/filmgirl/TextMate-Themes @done (15-05-27 06:56)
  ✔ better open url dialog, submit on enter and auto-select @done (15-05-27 02:26)
  ✔ a gulpfile to generate static assets @done (15-05-27 01:35)
  ✔ major reorganization of the app folder @done (15-05-27 01:35)
