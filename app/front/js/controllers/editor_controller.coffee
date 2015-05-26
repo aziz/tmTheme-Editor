@@ -58,7 +58,7 @@ Application.controller 'editorController',
   }
 
   $scope.shortcuts = {
-    'escape': 'hide_all_popovers()',
+    'escape': 'hide_all_popovers()'
     'ctrl+n': 'NewPopover.show()'
   }
 

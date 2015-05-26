@@ -5,6 +5,8 @@ Application.directive "shortcut", [ ->
       switch
         when event.keyCode == 27
           scope.$apply shortcut_obj["escape"]
+        when event.keyCode == 13
+          scope.$apply shortcut_obj["enter"]
         when 32 <= event.keyCode <= 126
           string = String.fromCharCode(event.keyCode).toLowerCase()
           string = "ctrl+#{string}" if event.ctrlKey

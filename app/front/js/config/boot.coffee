@@ -12,18 +12,20 @@ Application.run ["$rootScope", "$templateCache", ($rootScope, $templateCache) ->
   setTimeout(enable_trasition, 600)
 
   $templateCache.put 'template/modalOpenURL.html', '''
-  <div class="modal-icon"></div>
-  <div class="modal-header">
-    <h3 class="modal-title">Open a color scheme from somewhere on the web</h3>
-  </div>
-  <div class="modal-body">
-    <div>URL of the color scheme:</div>
-    <div><input focus-me="true" class="text-input" type="url" ng-model="themeExternalURL"></div>
-  </div>
-  <div class="modal-footer">
-    <button class="btn btn-mac btn-small" ng-click="cancel()">Cancel</button>
-    <button class="btn btn-mac btn-small" ng-click="ok()">Open</button>
-  </div>
+    <div shortcut="{ 'enter': 'ok()' }">
+      <div class="modal-icon"></div>
+      <div class="modal-header">
+        <h3 class="modal-title">Open a color scheme from somewhere on the web</h3>
+      </div>
+      <div class="modal-body">
+        <div>URL of the color scheme:</div>
+        <div><input focus-me="true" auto-select="true" class="text-input" type="url" ng-model="themeExternalURL"></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-mac btn-small" ng-click="cancel()">Cancel</button>
+        <button class="btn btn-mac btn-small" ng-click="ok()">Open</button>
+      </div>
+    </div>
   '''
 ]
 
