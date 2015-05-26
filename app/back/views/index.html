@@ -2,31 +2,36 @@
 <html ng-app="ThemeEditor" ng-controller="editorController">
 <head>
   <title ng-bind="Theme.json.name ? Theme.json.name + ' • TmTheme Editor' : 'TmTheme Editor'"></title>
-  <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700' rel='stylesheet' type='text/css'>
-  <% include '_meta' %>
-  <%- css("app") %>
+  <% include 'partials/meta' %>
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700" rel="stylesheet" type="text/css">
+
   <style ng-bind="Theme.css_gutter()"></style>
   <style ng-bind="Theme.css_selection()"></style>
   <style ng-bind="Theme.css_scopes()"></style>
+
+  <%- css("app") %>
+  <% include 'partials/shared_assets' %>
+  <%- js("application") %>
 </head>
 
-<body drop-zone shortcut='shortcuts' class="transition-off"
+<body drop-zone shortcut="shortcuts" class="transition-off"
       ng-class="'current_theme_' + Color.light_or_dark(Color.parse(Theme.bg()))">
-  <% include '_gallery' %>
-  <% include '_header' %>
-  <% include '_sidebar' %>
-  <% include '_preview' %>
-  <% include '_edit_dialog' %>
-  <% include '_new_dialog' %>
-  <% include '_colors_hud' %>
+  <header id="header" ng-cloak>
+    <ng-include src="'template/header.ng.html'"></ng-include>
+  </header>
+
+  <ng-include src="'template/gallery.ng.html'"></ng-include>
+  <ng-include src="'template/sidebar.ng.html'"></ng-include>
+  <ng-include src="'template/preview.ng.html'"></ng-include>
+  <ng-include src="'template/dialog_edit.ng.html'"></ng-include>
+  <ng-include src="'template/dialog_new.ng.html'"></ng-include>
+  <ng-include src="'template/hud_colors.ng.html'"></ng-include>
 
   <div id="loading"></div>
-  <div id="alerts" ng-cloak >
+  <div id="alerts" ng-cloak>
     <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
   </div>
 
-  <%- js("libs") %>
-  <%- js("application") %>
-  <% include '_ga'  %>
+  <% include 'partials/analytics' %>
 </body>
 </html>

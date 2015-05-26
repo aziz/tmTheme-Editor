@@ -1,4 +1,5 @@
 Archive:
+ ✔ better open url dialog, submit on enter and auto-select @done (15-05-27 02:26)
  ✔ a gulpfile to generate static assets @done (15-05-27 01:35)
  ✔ major reorganization of the app folder @done (15-05-27 01:35)
  ✔ Open URL dialog: select input text by default @done (15-05-27 01:34)

@@ -47,6 +47,8 @@
     "gulp-minify-css": "*",
     "gulp-remote-src": "*",
     "gulp-initial-cleaning": "*",
+    "gulp-angular-templatecache": "*",
+    "gulp-clean": "*",
     "gulp-minify-html": "*",
     "mincer": "1.2.4"
   }

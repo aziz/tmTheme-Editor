@@ -11,7 +11,9 @@ var minCSS     = require('gulp-minify-css');
 var uglify     = require('gulp-uglify');
 var remoteSrc  = require('gulp-remote-src');
 var cleaning   = require('gulp-initial-cleaning');
+var clean      = require('gulp-clean');
 var minifyHTML = require('gulp-minify-html');
+var ngTmpl     = require('gulp-angular-templatecache');
 
 
 var DIST_DIR = "dist";
@@ -25,7 +27,7 @@ var assets_path = {
   external_scripts: listAssetsIn("libs.coffee"),
   scripts:          listAssetsIn("application.coffee"),
   styles:           listAssetsIn("app.less"),
-  templates:        'app/front/public/templates/**/*.html'
+  templates:        'app/front/public/template/**/*'
 };
 
 function listAssetsIn(asset_name) {
@@ -43,10 +45,6 @@ function listAssetsIn(asset_name) {
   })()).slice(0, -1);
 }
 
-process.env.NODE_ENV = 'production';
-var app = require('./app/back/app.coffee');
-var server = app.listen(9898);
-
 gulp.task('js-ext', function() {
   return gulp.src(assets_path.external_scripts)
              .pipe(concat('libs.js'))
@@ -63,6 +61,12 @@ gulp.task('js', function() {
              .pipe(gulp.dest(ASSETS_DIR));
 });
 
+gulp.task('ng-templates', function () {
+  return gulp.src(assets_path.templates)
+             .pipe(ngTmpl({root: '/template/'}))
+             .pipe(gulp.dest(ASSETS_DIR));
+});
+
 gulp.task('css', function() {
   // console.log(assets_path.styles);
   return gulp.src(assets_path.styles)
@@ -72,7 +76,12 @@ gulp.task('css', function() {
              .pipe(gulp.dest(ASSETS_DIR));
 });
 
+var server;
+
 gulp.task('html', function() {
+  process.env.NODE_ENV = 'production';
+  var app = require('./app/back/app.coffee');
+  server = app.listen(9898);
   var opts = {
      conditionals: true,
      spare: true,
@@ -80,7 +89,7 @@ gulp.task('html', function() {
    };
   return remoteSrc(['/'], { base: 'http://localhost:9898' })
     .pipe(concat('index.html'))
-    .pipe(minifyHTML(opts))
+    // .pipe(minifyHTML(opts))
     .pipe(gulp.dest(DIST_DIR));
 });
 
@@ -88,11 +97,14 @@ gulp.task('static-assets', function() {
   gulp.src([
     'app/front/public/**',
     '!app/front/public/assets{,/**}'
+    // , '!app/front/public/template{,/**}'
   ]).pipe(gulp.dest(DIST_DIR));
 });
 
 cleaning({tasks: ['default'], folders: ['dist/']});
 
-gulp.task('default', ['js-ext', 'js', 'css', 'html', 'static-assets'], function() {
+gulp.task('default', ['js-ext', 'js', 'ng-templates', 'css', 'html', 'static-assets'], function() {
+  var cleanups = ['app/front/public/assets/*'];
+  gulp.src(cleanups, {read: false}).pipe(clean());
   server.close();
 });

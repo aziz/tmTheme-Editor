@@ -1,7 +1,9 @@
-Application.factory "ThemeLoader", ['$http', '$q', 'FileManager', ($http, $q, FileManager) ->
+Application.factory "ThemeLoader",
+['$http', '$q', '$window', 'FileManager',
+( $http,   $q,   $window,   FileManager) ->
 
   themes_future = $q.defer()
-  themes = $http.get("/gallery.json")
+  themes = $http.get("#{$window.API}/gallery.json")
   themes.success (data) ->
     for theme in data
       theme.type = if theme.light then 'light' else 'dark'
@@ -13,7 +15,7 @@ Application.factory "ThemeLoader", ['$http', '$q', 'FileManager', ($http, $q, Fi
     if cached
       theme_promise.resolve(cached)
     else
-      http_get = $http.get("/get_uri?uri=#{encodeURIComponent(theme.url)}")
+      http_get = $http.get("#{$window.API}/get_uri?uri=#{encodeURIComponent(theme.url)}")
       http_get.success (data) ->
         theme_promise.resolve(data)
         FileManager.save(theme.url, data, 'http_cache')

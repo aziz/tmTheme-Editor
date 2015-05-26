@@ -1,6 +1,10 @@
 Application.controller 'editorController',
-['Color', 'Theme', 'ThemeLoader', 'FileManager', 'EditPopover', 'NewPopover', 'HUDEffects', 'throbber', '$filter', '$scope', '$http', '$location', '$timeout', '$window', '$q', '$modal'
-( Color,   Theme,   ThemeLoader,   FileManager,   EditPopover,   NewPopover,   HUDEffects,   throbber,   $filter,   $scope,   $http,   $location,   $timeout,   $window,   $q,   $modal) ->
+['Color', 'Theme', 'ThemeLoader', 'FileManager', 'EditPopover', 'NewPopover', 'HUDEffects', 'throbber', '$filter', '$scope', '$location', '$timeout', '$window', '$q', '$modal'
+( Color,   Theme,   ThemeLoader,   FileManager,   EditPopover,   NewPopover,   HUDEffects,   throbber,   $filter,   $scope,   $location,   $timeout,   $window,   $q,   $modal) ->
+
+  throbber.on(full_window: not $scope.gallery_visible)
+
+  $scope.version = $("#version").attr("content")
 
   $scope.Color  = Color
   $scope.Theme  = Theme
@@ -148,7 +152,7 @@ Application.controller 'editorController',
     modalInstance = $modal.open(
       animation: false
       backdrop: true
-      templateUrl: 'template/modalOpenURL.html'
+      templateUrl: '/template/modalOpenURL.ng.html'
       controller: 'ModalOpenURLController'
       resolve: {
         themeExternalURL: -> 'https://raw.github.com/aziz/tmTheme-Editor/master/themes/Tomorrow.tmTheme'
@@ -202,8 +206,6 @@ Application.controller 'editorController',
       throbber.off()
       $location.path(previous_path)
       $scope.alerts.push { type: 'danger', msg: "LOAD ERROR: Can not fetch color scheme" }
-
-    throbber.on(full_window: not $scope.gallery_visible)
 
     # There's theme name in URL
     if $location.path() && $location.path().startsWith('/theme/')

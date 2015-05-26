@@ -7,7 +7,11 @@ parserURI = 'http://tmtheme-editor-parser.herokuapp.com/'
 #parserURI = 'http://localhost:4567/'
 
 router.get '/', (req, res, next) ->
-  view = {app_version: pjson.version}
+  view = {
+    app_version: pjson.version
+  }
+  # view.api_url = "http://localhost:#{process.env.PORT || 9999}"
+  view.api_url = ""
   res.render 'index', view
 
 router.get '/get_uri', (req, res, next) ->
@@ -21,6 +25,7 @@ router.get '/get_uri', (req, res, next) ->
 
 router.get '/stats', (req, res, next) ->
   view = {}
+  view.api_url = ""
   res.render 'stats', view
 
 router.post '/parse', (req, res, next) ->
