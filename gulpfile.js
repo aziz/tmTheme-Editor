@@ -10,6 +10,7 @@ var less      = require('gulp-less');
 var minCSS    = require('gulp-minify-css');
 var uglify    = require('gulp-uglify');
 var remoteSrc = require('gulp-remote-src');
+var cleaning  = require('gulp-initial-cleaning');
 
 
 var DIST_DIR = "dist";
@@ -52,7 +53,6 @@ gulp.task('js-ext', function() {
              .pipe(gulp.dest(ASSETS_DIR));
 });
 
-
 gulp.task('js', function() {
   return gulp.src(assets_path.scripts)
              .pipe(coffee({bare: true}))
@@ -77,7 +77,15 @@ gulp.task('html', function() {
     .pipe(gulp.dest(DIST_DIR));
 });
 
+gulp.task('static-assets', function() {
+  gulp.src([
+    'app/front/public/**',
+    '!app/front/public/assets{,/**}'
+  ]).pipe(gulp.dest(DIST_DIR));
+});
 
-gulp.task('default', ['js-ext', 'js', 'css', 'html'], function() {
+cleaning({tasks: ['default'], folders: ['dist/']});
+
+gulp.task('default', ['js-ext', 'js', 'css', 'html', 'static-assets'], function() {
   server.close();
 });
