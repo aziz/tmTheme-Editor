@@ -51,6 +51,7 @@
     "gulp-minify-css": "*",
     "gulp-remote-src": "*",
     "gulp-initial-cleaning": "*",
+    "gulp-minify-html": "*",
     "mincer": "1.2.4"
   }
 }

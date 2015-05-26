@@ -3,14 +3,15 @@ var coffeescript = require('coffee-script/register');
 var path     = require('path');
 var Mincer   = require('mincer');
 
-var gulp      = require('gulp');
-var concat    = require('gulp-concat');
-var coffee    = require('gulp-coffee');
-var less      = require('gulp-less');
-var minCSS    = require('gulp-minify-css');
-var uglify    = require('gulp-uglify');
-var remoteSrc = require('gulp-remote-src');
-var cleaning  = require('gulp-initial-cleaning');
+var gulp       = require('gulp');
+var concat     = require('gulp-concat');
+var coffee     = require('gulp-coffee');
+var less       = require('gulp-less');
+var minCSS     = require('gulp-minify-css');
+var uglify     = require('gulp-uglify');
+var remoteSrc  = require('gulp-remote-src');
+var cleaning   = require('gulp-initial-cleaning');
+var minifyHTML = require('gulp-minify-html');
 
 
 var DIST_DIR = "dist";
@@ -72,8 +73,14 @@ gulp.task('css', function() {
 });
 
 gulp.task('html', function() {
+  var opts = {
+     conditionals: true,
+     spare: true,
+     loose: true
+   };
   return remoteSrc(['/'], { base: 'http://localhost:9898' })
     .pipe(concat('index.html'))
+    .pipe(minifyHTML(opts))
     .pipe(gulp.dest(DIST_DIR));
 });
 
