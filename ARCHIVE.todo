@@ -1,4 +1,7 @@
 Archive:
+ ✔ a gulpfile to generate static assets @done (15-05-27 01:35)
+ ✔ major reorganization of the app folder @done (15-05-27 01:35)
+ ✔ Open URL dialog: select input text by default @done (15-05-27 01:34)
  ✔ load stats from cache @done (15-05-25 21:41)
  ✔ caching for THEMES @done (15-05-25 20:29)
  ✔ proper modal window for open from URL @done (15-05-25 08:03)
