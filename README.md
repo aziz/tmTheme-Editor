@@ -8,11 +8,11 @@ using [angular.js](angularjs.org)
 
 ### [tmtheme-editor.herokuapp.com](http://tmtheme-editor.herokuapp.com/)
 
-![TmTheme Editor Screenshot](public/images/screenshots/tmte-screenshot.png)
+![TmTheme Editor Screenshot](app/front/public/images/screenshots/tmte-screenshot.png)
 
 <p align="center">
-<img src="https://raw.github.com/aziz/tmTheme-Editor/master/public/images/screenshots/tte-color-adjustments.png" width="320" height="380">
-<img src="https://raw.github.com/aziz/tmTheme-Editor/master/public/images/screenshots/tte-edit-popover.png" width="401" height="364">
+<img src="app/front/public/images/screenshots/tte-color-adjustments.png" width="320" height="380">
+<img src="app/front/public/images/screenshots/tte-edit-popover.png" width="401" height="364">
 </p>
 
 ## Copyright
