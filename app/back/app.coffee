@@ -37,9 +37,12 @@ if config.env_development
 if config.env_production
   log = fs.createWriteStream config.log_file, {flags: 'w'}
   app.use logger("combined", stream: log)
-  app.use assets_manager("buildDir": "app/front/public/assets/",
-                         "paths": config.assets,
-                         "compress": false)
+  app.use assets_manager({
+    buildDir:       config.assets_build_dir,
+    paths:          config.assets,
+    compress:       false,
+    fingerprinting: false
+  })
 
 app.use '/', pages_controller
 

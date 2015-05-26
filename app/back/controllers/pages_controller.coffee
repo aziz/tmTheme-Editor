@@ -11,7 +11,6 @@ router.get '/', (req, res, next) ->
   res.render 'index', view
 
 router.get '/get_uri', (req, res, next) ->
-  request  = require 'request'
   res.set 'Content-Type', 'text/plain'
   request req.query.uri, (error, response, body) ->
     if !error && response.statusCode == 200

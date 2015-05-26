@@ -1,13 +1,19 @@
+var coffeescript = require('coffee-script/register');
+
 var path     = require('path');
 var Mincer   = require('mincer');
-var gulp     = require('gulp');
-var concat   = require('gulp-concat');
-var coffee   = require('gulp-coffee');
-var less     = require('gulp-less');
-var minCSS   = require('gulp-minify-css');
-var uglify   = require('gulp-uglify');
 
-var DIST_DIR = "dist/";
+var gulp      = require('gulp');
+var concat    = require('gulp-concat');
+var coffee    = require('gulp-coffee');
+var less      = require('gulp-less');
+var minCSS    = require('gulp-minify-css');
+var uglify    = require('gulp-uglify');
+var remoteSrc = require('gulp-remote-src');
+
+
+var DIST_DIR = "dist";
+var ASSETS_DIR = DIST_DIR + "/assets";
 var APP_ASSETS = ["app/front/js", "app/front/css", "bower_components"];
 
 var environment = new Mincer.Environment();
@@ -35,11 +41,15 @@ function listAssetsIn(asset_name) {
   })()).slice(0, -1);
 }
 
+process.env.NODE_ENV = 'production';
+var app = require('./app/back/app.coffee');
+var server = app.listen(9898);
+
 gulp.task('js-ext', function() {
   return gulp.src(assets_path.external_scripts)
              .pipe(concat('libs.js'))
              .pipe(uglify())
-             .pipe(gulp.dest(DIST_DIR));
+             .pipe(gulp.dest(ASSETS_DIR));
 });
 
 
@@ -47,19 +57,27 @@ gulp.task('js', function() {
   return gulp.src(assets_path.scripts)
              .pipe(coffee({bare: true}))
              // .pipe(ngmin())
-             .pipe(concat('app.js'))
+             .pipe(concat('application.js'))
              .pipe(uglify())
-             .pipe(gulp.dest(DIST_DIR));
+             .pipe(gulp.dest(ASSETS_DIR));
 });
 
 gulp.task('css', function() {
-  console.log(assets_path.styles);
+  // console.log(assets_path.styles);
   return gulp.src(assets_path.styles)
              .pipe(less({paths: APP_ASSETS}))
              .pipe(concat('app.css'))
              .pipe(minCSS())
-             .pipe(gulp.dest(DIST_DIR));
+             .pipe(gulp.dest(ASSETS_DIR));
+});
+
+gulp.task('html', function() {
+  return remoteSrc(['/'], { base: 'http://localhost:9898' })
+    .pipe(concat('index.html'))
+    .pipe(gulp.dest(DIST_DIR));
 });
 
 
-gulp.task('default', ['js-ext', 'js', 'css']);
+gulp.task('default', ['js-ext', 'js', 'css', 'html'], function() {
+  server.close();
+});

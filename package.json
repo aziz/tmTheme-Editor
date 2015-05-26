@@ -49,6 +49,7 @@
     "gulp-coffee": "*",
     "gulp-less": "*",
     "gulp-minify-css": "*",
+    "gulp-remote-src": "*",
     "mincer": "1.2.4"
   }
 }
