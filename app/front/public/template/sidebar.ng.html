@@ -4,10 +4,10 @@
   <a ng-click="current_tab = 'info'"    ng-class="{'active': current_tab == 'info'}">Info</a>
 </div>
 
-<% include '_action_bar' %>
+<ng-include src="'template/action_bar.ng.html'"></ng-include>
 
 <div ng-cloak ng-class="{ 'slide': gallery_visible, 'no-scroll': EditPopover.visible  }" class="sidebar" ng-style="{ 'background-color': Color.parse(Theme.bg())}">
-  <% include '_table_general' %>
-  <% include '_table_scopes' %>
-  <% include '_table_info' %>
+  <ng-include src="'template/table_general.ng.html'"></ng-include>
+  <ng-include src="'template/table_scopes.ng.html'"></ng-include>
+  <ng-include src="'template/table_info.ng.html'"></ng-include>
 </div>
