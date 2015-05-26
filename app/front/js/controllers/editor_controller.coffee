@@ -143,6 +143,10 @@ Application.controller 'editorController',
     $scope.HUD.hide()
     $scope.scopes_filter.name = ''
 
+  $scope.clear_cache = ->
+    for key of localStorage
+      localStorage.removeItem(key) if key.startsWith("http_cache/")
+
   $scope.load_theme = (theme, type) ->
     return if theme.name == $scope.selected_theme
     reset_state()
@@ -191,6 +195,8 @@ Application.controller 'editorController',
   # TODO: make this a proper angular routing
   $scope.$on '$locationChangeStart', (event, nextLocation, currentLocation) ->
     previous_path = currentLocation.split("#").last()
+    throbber.on(full_window: not $scope.gallery_visible) unless throbber.visible()
+
     process_theme = (data) ->
       processed = Theme.process(data)
       throbber.off()

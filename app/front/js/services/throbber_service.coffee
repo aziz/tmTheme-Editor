@@ -34,5 +34,7 @@ Application.factory "throbber", [ ->
     loading_counter -= 1 if loading_counter > 0
     element.removeClass("show").hide().removeClass("full_window") if loading_counter == 0
 
+  throbber.visible = -> loading_counter > 0
+
   return throbber
 ]
