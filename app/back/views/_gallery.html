@@ -1,8 +1,5 @@
 <div id="gallery" ng-cloak ng-style="{ 'background-color': Color.parse(Theme.bg()), 'color': Color.parse(Theme.fg()) }">
   <div ng-class="{ 'slide' : gallery_visible }" ng-cloak class="titlebar">
-   <div class="title">
-      {{ themes.length }} Themes
-   </div>
    <div class="actions">
      <a href="https://github.com/aziz/tmTheme-Editor/wiki/How-to-add-your-own-theme-to-the-gallery%3F"
         target="_blank" class="add"
@@ -13,23 +10,19 @@
      </a>
      <a ng-click="toggle_gallery_type_filter('dark')"
         ng-class="{'active': gallery_filter.type == 'dark'}"
-        class="dark_filter"
-        data-placement="bottom"
-        data-container="body"
-        bs-tooltip="{title: 'Show Dark Themes'}">Dark</a>
+        class="dark_filter">Dark</a>
      <a ng-click="toggle_gallery_type_filter('light')"
         ng-class="{'active': gallery_filter.type == 'light' }"
-        class="light_filter"
-        data-placement="bottom"
-        data-container="body"
-        bs-tooltip="{title: 'Show Light Themes'}">Light</a>
+        class="light_filter">Light</a>
    </div>
   </div>
 
   <div ng-class="{ 'slide' : gallery_visible }" class="scrollbox" ng-style="{ 'background-color': Color.parse(Theme.bg()), 'color': Color.parse(Theme.fg()) }">
     <div style="overflow-y: scroll; height: 100%">
       <div class="local_themes_list" ng-show="local_themes.length > 0">
-        <h5>Local Files</h5>
+        <h5>
+          Local Files
+        </h5>
         <ul>
           <li ng-repeat="theme in local_themes | orderBy:'name' | filter: gallery_filter"
               ng-click="load_theme(theme, 'local')"
@@ -53,12 +46,15 @@
       </div>
 
       <div class="gallery_themes_list">
-        <h5>Gallery</h5>
+        <h5>
+          <span class="theme_count pull-right">{{ themes.length }}</span>
+          Gallery
+        </h5>
         <ul>
           <li ng-repeat="theme in themes | filter: gallery_filter"
               ng-click="load_theme(theme, 'theme')"
               ng-class="{ 'selected': theme.name == selected_theme }">
-              <span class="{{::theme.type}}_theme_icon" ></span>
+              <span class="{{::theme.type}}_theme_icon"></span>
               <span>{{::theme.name}}</span>
           </li>
         </ul>

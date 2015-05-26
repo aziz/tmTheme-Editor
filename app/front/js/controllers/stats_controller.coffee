@@ -8,6 +8,10 @@ Application.controller 'StatsController',
   $scope.progress = 0
   $scope.predicate = 'name'
   $scope.reverse = false
+
+  $scope.scopes_predicate = 'count'
+  $scope.scopes_reverse = true
+
   $scope.current_tab = 'themes'
   progress_unit = 0
 

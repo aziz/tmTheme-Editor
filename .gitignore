@@ -4,3 +4,4 @@ tmp
 log/*.log
 public/assets
 test/**/*.js
+dist

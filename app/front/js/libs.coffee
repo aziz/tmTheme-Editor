@@ -20,8 +20,3 @@
 #= require jquery-ui/ui/sortable.js
 #= require jquery-ui/ui/draggable.js
 #= require angular-ui-sortable/sortable.js
-
-#= require config/boot
-#= require_tree directives
-#= require_tree services
-#= require_tree controllers

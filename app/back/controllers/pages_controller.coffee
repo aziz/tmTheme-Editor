@@ -1,11 +1,16 @@
-routes = {}
-pjson = require('../package.json')
+express = require 'express'
+request = require 'request'
+pjson   = require '../../../package.json'
 
-routes.index = (req, res) ->
+router    = module.exports = express.Router()
+parserURI = 'http://tmtheme-editor-parser.herokuapp.com/'
+#parserURI = 'http://localhost:4567/'
+
+router.get '/', (req, res, next) ->
   view = {app_version: pjson.version}
   res.render 'index', view
 
-routes.get_uri = (req, res) ->
+router.get '/get_uri', (req, res, next) ->
   request  = require 'request'
   res.set 'Content-Type', 'text/plain'
   request req.query.uri, (error, response, body) ->
@@ -15,16 +20,11 @@ routes.get_uri = (req, res) ->
       res.status 404
       res.send 'Not found'
 
-routes.stats = (req, res) ->
+router.get '/stats', (req, res, next) ->
   view = {}
   res.render 'stats', view
 
-routes.parse = (req, res) ->
-  request  = require 'request'
-  #parserURI = 'http://localhost:4567/'
-  parserURI = 'http://tmtheme-editor-parser.herokuapp.com/'
+router.post '/parse', (req, res, next) ->
   request.post parserURI, {form: {text: req.body.text, syntax: req.body.syntax} }, (error, response, body) ->
     res.set 'Content-Type', 'text/plain'
     res.send body
-
-module.exports = routes

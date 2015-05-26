@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html ng-app="ThemeEditor" ng-controller="editorController">
 <head>
   <title ng-bind="Theme.json.name ? Theme.json.name + ' • TmTheme Editor' : 'TmTheme Editor'"></title>
@@ -19,10 +19,13 @@
   <% include '_edit_dialog' %>
   <% include '_new_dialog' %>
   <% include '_colors_hud' %>
+
   <div id="loading"></div>
   <div id="alerts" ng-cloak >
     <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
   </div>
+
+  <%- js("libs") %>
   <%- js("application") %>
   <% include '_ga'  %>
 </body>

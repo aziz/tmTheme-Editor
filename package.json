@@ -10,14 +10,14 @@
     "url": "git://github.com/aziz/tmTheme-Editor.git"
   },
   "scripts": {
-    "start": "./node_modules/coffee-script/bin/coffee app/app.coffee",
+    "start": "`npm bin`/coffee app/back/app.coffee",
     "postinstall": "bower install",
-    "test": "./node_modules/.bin/testem -f testem.json",
-    "start_prod": "NODE_ENV=production PORT=9090 ./node_modules/.bin/coffee app/app.coffee"
+    "test": "`npm bin`/testem -f testem.json",
+    "start_prod": "NODE_ENV=production PORT=9090 `npm bin`/coffee app/back/app.coffee"
   },
   "engines": {
-    "node": "0.10.x",
-    "npm":  "1.4.x"
+    "node": "0.12.x",
+    "npm":  "2.10.x"
   },
   "dependencies": {
     "body-parser": "1.12.4",
@@ -41,6 +41,14 @@
   "devDependencies": {
     "supervisor": "*",
     "testem": "*",
-    "karma": "*"
+    "karma": "*",
+    "gulp": "*",
+    "gulp-concat": "*",
+    "gulp-uglify": "*",
+    "gulp-gzip": "*",
+    "gulp-coffee": "*",
+    "gulp-less": "*",
+    "gulp-minify-css": "*",
+    "mincer": "1.2.4"
   }
 }
