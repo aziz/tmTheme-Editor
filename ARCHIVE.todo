@@ -1,4 +1,6 @@
 Archive:
+ ✔ UI: Use "line-highlight" from theme for UI selected element @done (15-05-27 15:57)
+ ✔ add root scope to pre to prevent those buggy theme to show jagged bg colors @done (15-05-27 09:00)
  ✔ cache lang samples to disk @done (15-05-27 07:26)
  ✔ add clear cache @done (15-05-27 06:56)
  ✔ load old themes from https://github.com/filmgirl/TextMate-Themes @done (15-05-27 06:56)

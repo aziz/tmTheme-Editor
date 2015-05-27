@@ -304,8 +304,7 @@
   }
 
   tr {
-    border-top: 1px solid transparent;
-    border-bottom: 1px solid transparent;
+    padding: 1px 0;
   }
 
   .hovered {
@@ -346,15 +345,9 @@
 }
 
 .current_theme_light .selected {
-   #gradient > .vertical(rgba(0,0,0,.1),rgba(0,0,0,.3));
-   background-color: transparent;
-   border-top: 1px solid rgba(0,0,0,.1);
-   border-bottom: 1px solid rgba(0,0,0,.2);
+  background-image: linear-gradient(to top, rgba(0,0,0,.2) 0%, rgba(0,0,0,0) 60%);
 }
 
 .current_theme_dark .selected {
-   #gradient > .vertical(rgba(255,255,255,.2),rgba(255,255,255,.4));
-   background-color: transparent;
-   border-top: 1px solid rgba(255,255,255,.3);
-   border-bottom: 1px solid rgba(255,255,255,.2);
+  background-image: linear-gradient(to bottom, rgba(255,255,255,.2) 0%, rgba(255,255,255,0) 60%);
 }
