@@ -4,6 +4,9 @@ Application.controller 'previewController',
 
   $scope.colorized = ''
   $scope.available_langs = [
+    'C',
+    'C++',
+    'C#',
     'CoffeeScript',
     'CSS',
     'HTML',
@@ -16,6 +19,13 @@ Application.controller 'previewController',
     'Ruby',
   ]
   $scope.current_lang = $.cookie("preview_lang") || $scope.available_langs[0]
+
+  $scope.current_lang_for_api = ->
+    lang = $scope.current_lang
+    lang = 'c-sharp' if lang == 'C#'
+    console.log lang
+    lang.toLowerCase()
+
   $scope.set_lang = (lang) -> $scope.current_lang = lang
 
   # Custom Code
@@ -36,7 +46,7 @@ Application.controller 'previewController',
       if cached
         defered_code.resolve(cached)
       else
-        $http.get("#{$window.API}/files/samples/pre-compiled/#{$scope.current_lang.toLowerCase()}.html").success (data) ->
+        $http.get("#{$window.API}/files/samples/compiled/#{$scope.current_lang_for_api()}.html").success (data) ->
           defered_code.resolve(data)
           FileManager.save(lang, data, 'sample_cache')
 

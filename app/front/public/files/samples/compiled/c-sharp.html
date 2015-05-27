@@ -1,0 +1,66 @@
+<span class='l l-1 source c-sharp'><s class='keyword control c#' data-entity-scope='keyword.control.c#'>using</s> System.Collections.Generic;
+</span><span class='l l-2 source c-sharp'><s class='keyword control c#' data-entity-scope='keyword.control.c#'>using</s> System.Linq;
+</span><span class='l l-3 source c-sharp'><s class='keyword control c#' data-entity-scope='keyword.control.c#'>using</s> Abp.Domain.Entities;
+</span><span class='l l-4 source c-sharp'><s class='keyword control c#' data-entity-scope='keyword.control.c#'>using</s> Abp.Domain.Repositories;
+</span><span class='l l-5 source c-sharp'>
+</span><span class='l l-6 source c-sharp'><s class='keyword control c#' data-entity-scope='keyword.control.c#'>namespace</s> Abp.MemoryDb.Repositories
+</span><span class='l l-7 source c-sharp'>{
+</span><span class='l l-8 source c-sharp'>    <s class='comment line double-slash c#' data-entity-scope='comment.line.double-slash.c#'><s class='punctuation definition comment c#' data-entity-scope='punctuation.definition.comment.c#'>//</s>TODO: Implement thread-safety..?
+</s></span><span class='l l-9 source c-sharp'>    <s class='keyword control c#' data-entity-scope='keyword.control.c#'>public</s> <s class='storage type c#' data-entity-scope='storage.type.c#'>class</s> MemoryRepository&lt;TEntity, TPrimaryKey&gt; : AbpRepositoryBase&lt;TEntity, TPrimaryKey&gt;
+</span><span class='l l-10 source c-sharp'>        where TEntity : <s class='storage type c#' data-entity-scope='storage.type.c#'>class</s>, IEntity&lt;TPrimaryKey&gt;
+</span><span class='l l-11 source c-sharp'>    {
+</span><span class='l l-12 source c-sharp'>        <s class='keyword control c#' data-entity-scope='keyword.control.c#'>private</s> <s class='keyword control c#' data-entity-scope='keyword.control.c#'>readonly</s> IMemoryDatabaseProvider _databaseProvider;
+</span><span class='l l-13 source c-sharp'>        <s class='keyword control c#' data-entity-scope='keyword.control.c#'>protected</s> MemoryDatabase Database { get { <s class='keyword control c#' data-entity-scope='keyword.control.c#'>return</s> _databaseProvider.Database; } }
+</span><span class='l l-14 source c-sharp'>
+</span><span class='l l-15 source c-sharp'>        <s class='keyword control c#' data-entity-scope='keyword.control.c#'>protected</s> List&lt;TEntity&gt; Table { get { <s class='keyword control c#' data-entity-scope='keyword.control.c#'>return</s> Database.Set&lt;TEntity&gt;(); } }
+</span><span class='l l-16 source c-sharp'>
+</span><span class='l l-17 source c-sharp'>        <s class='keyword control c#' data-entity-scope='keyword.control.c#'>private</s> <s class='keyword control c#' data-entity-scope='keyword.control.c#'>readonly</s> MemoryPrimaryKeyGenerator&lt;TPrimaryKey&gt; _primaryKeyGenerator;
+</span><span class='l l-18 source c-sharp'>
+</span><span class='l l-19 source c-sharp'>        <s class='keyword control c#' data-entity-scope='keyword.control.c#'>public</s> MemoryRepository(IMemoryDatabaseProvider databaseProvider)
+</span><span class='l l-20 source c-sharp'>        {
+</span><span class='l l-21 source c-sharp'>            _databaseProvider = databaseProvider;
+</span><span class='l l-22 source c-sharp'>            _primaryKeyGenerator = <s class='keyword control c#' data-entity-scope='keyword.control.c#'>new</s> MemoryPrimaryKeyGenerator&lt;TPrimaryKey&gt;();
+</span><span class='l l-23 source c-sharp'>        }
+</span><span class='l l-24 source c-sharp'>
+</span><span class='l l-25 source c-sharp'>        <s class='keyword control c#' data-entity-scope='keyword.control.c#'>public</s> <s class='keyword control c#' data-entity-scope='keyword.control.c#'>override</s> IQueryable&lt;TEntity&gt; GetAll()
+</span><span class='l l-26 source c-sharp'>        {
+</span><span class='l l-27 source c-sharp'>            <s class='keyword control c#' data-entity-scope='keyword.control.c#'>return</s> Table.AsQueryable();
+</span><span class='l l-28 source c-sharp'>        }
+</span><span class='l l-29 source c-sharp'>
+</span><span class='l l-30 source c-sharp'>        <s class='keyword control c#' data-entity-scope='keyword.control.c#'>public</s> <s class='keyword control c#' data-entity-scope='keyword.control.c#'>override</s> TEntity Insert(TEntity entity)
+</span><span class='l l-31 source c-sharp'>        {
+</span><span class='l l-32 source c-sharp'>            <s class='keyword control c#' data-entity-scope='keyword.control.c#'>if</s> (entity.IsTransient())
+</span><span class='l l-33 source c-sharp'>            {
+</span><span class='l l-34 source c-sharp'>                entity.Id = _primaryKeyGenerator.GetNext();
+</span><span class='l l-35 source c-sharp'>            }
+</span><span class='l l-36 source c-sharp'>
+</span><span class='l l-37 source c-sharp'>            Table.Add(entity);
+</span><span class='l l-38 source c-sharp'>            <s class='keyword control c#' data-entity-scope='keyword.control.c#'>return</s> entity;
+</span><span class='l l-39 source c-sharp'>        }
+</span><span class='l l-40 source c-sharp'>
+</span><span class='l l-41 source c-sharp'>        <s class='keyword control c#' data-entity-scope='keyword.control.c#'>public</s> <s class='keyword control c#' data-entity-scope='keyword.control.c#'>override</s> TEntity Update(TEntity entity)
+</span><span class='l l-42 source c-sharp'>        {
+</span><span class='l l-43 source c-sharp'>            var index = Table.FindIndex(e =&gt; EqualityComparer&lt;TPrimaryKey&gt;.Default.Equals(e.Id, entity.Id));
+</span><span class='l l-44 source c-sharp'>            <s class='keyword control c#' data-entity-scope='keyword.control.c#'>if</s> (index &gt;= <s class='constant numeric c#' data-entity-scope='constant.numeric.c#'>0</s>)
+</span><span class='l l-45 source c-sharp'>            {
+</span><span class='l l-46 source c-sharp'>                Table[index] = entity;
+</span><span class='l l-47 source c-sharp'>            }
+</span><span class='l l-48 source c-sharp'>
+</span><span class='l l-49 source c-sharp'>            <s class='keyword control c#' data-entity-scope='keyword.control.c#'>return</s> entity;
+</span><span class='l l-50 source c-sharp'>        }
+</span><span class='l l-51 source c-sharp'>
+</span><span class='l l-52 source c-sharp'>        <s class='keyword control c#' data-entity-scope='keyword.control.c#'>public</s> <s class='keyword control c#' data-entity-scope='keyword.control.c#'>override</s> <s class='keyword control c#' data-entity-scope='keyword.control.c#'>void</s> Delete(TEntity entity)
+</span><span class='l l-53 source c-sharp'>        {
+</span><span class='l l-54 source c-sharp'>            Delete(entity.Id);
+</span><span class='l l-55 source c-sharp'>        }
+</span><span class='l l-56 source c-sharp'>
+</span><span class='l l-57 source c-sharp'>        <s class='keyword control c#' data-entity-scope='keyword.control.c#'>public</s> <s class='keyword control c#' data-entity-scope='keyword.control.c#'>override</s> <s class='keyword control c#' data-entity-scope='keyword.control.c#'>void</s> Delete(TPrimaryKey id)
+</span><span class='l l-58 source c-sharp'>        {
+</span><span class='l l-59 source c-sharp'>            var index = Table.FindIndex(e =&gt; EqualityComparer&lt;TPrimaryKey&gt;.Default.Equals(e.Id, id));
+</span><span class='l l-60 source c-sharp'>            <s class='keyword control c#' data-entity-scope='keyword.control.c#'>if</s> (index &gt;= <s class='constant numeric c#' data-entity-scope='constant.numeric.c#'>0</s>)
+</span><span class='l l-61 source c-sharp'>            {
+</span><span class='l l-62 source c-sharp'>                Table.RemoveAt(index);
+</span><span class='l l-63 source c-sharp'>            }
+</span><span class='l l-64 source c-sharp'>        }
+</span><span class='l l-65 source c-sharp'>    }
+</span><span class='l l-66 source c-sharp'>}</span>

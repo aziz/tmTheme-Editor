@@ -103,4 +103,6 @@ Application.directive "scopeBar", ['$timeout', 'Theme', ($timeout, Theme) ->
         return item if match.length
 
       candidates.last()
+
+    return
 ]
