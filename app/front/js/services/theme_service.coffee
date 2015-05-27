@@ -11,6 +11,7 @@ Application.factory "Theme", ['Color', 'json_to_plist', 'plist_to_json', (Color,
       @xml = data
       @json = plist_to_json(data)
       @gcolors = []
+      throw "can not covert to json" unless @json
       if @json && @json.settings
         for key, val of @json.settings[0].settings
           @gcolors.push({'name': key, 'color': val})

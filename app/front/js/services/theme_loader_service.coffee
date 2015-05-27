@@ -19,6 +19,8 @@ Application.factory "ThemeLoader",
       http_get.success (data) ->
         theme_promise.resolve(data)
         FileManager.save(theme.url, data, 'http_cache')
+      http_get.error (data) ->
+        theme_promise.reject("LOAD ERROR: Can not fetch color scheme")
     theme_promise.promise
 
   return {

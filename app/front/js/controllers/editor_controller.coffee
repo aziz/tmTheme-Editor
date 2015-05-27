@@ -215,10 +215,10 @@ Application.controller 'editorController',
       else
         true
 
-    handle_load_error = ->
+    handle_load_error = (error) ->
       throbber.off()
       $location.path(previous_path)
-      $scope.alerts.push { type: 'danger', msg: "LOAD ERROR: Can not fetch color scheme" }
+      $scope.alerts.push { type: 'danger', msg: error }
 
     # There's theme name in URL
     if $location.path() && $location.path().startsWith('/theme/')

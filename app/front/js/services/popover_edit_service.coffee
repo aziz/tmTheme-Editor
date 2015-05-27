@@ -1,7 +1,5 @@
 Application.factory "EditPopover", [ ->
 
-  popover_el = $('#edit-popover')
-
   popover = {}
   popover.visible = false
   popover.rule = {}
@@ -13,6 +11,7 @@ Application.factory "EditPopover", [ ->
     return
 
   popover.set_position = (rule_index) ->
+    popover_el = $('#edit-popover')
     row  = $("#scope-lists .rule-#{rule_index}")
     top  = row.offset().top
     winH = $(window).height()
