@@ -30,5 +30,9 @@ router.get '/stats', (req, res, next) ->
 
 router.post '/parse', (req, res, next) ->
   request.post parserURI, {form: {text: req.body.text, syntax: req.body.syntax} }, (error, response, body) ->
-    res.set 'Content-Type', 'text/plain'
-    res.send body
+    if body == "<h1>Internal Server Error</h1>"
+      res.status 404
+      res.send 'Not found'
+    else
+      res.set 'Content-Type', 'text/plain'
+      res.send body

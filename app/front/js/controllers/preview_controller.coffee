@@ -13,6 +13,7 @@ Application.controller 'previewController',
     'Java'
     'Javascript',
     'Latex',
+    'Objective-C'
     'Perl',
     'PHP',
     'Python',
@@ -23,7 +24,7 @@ Application.controller 'previewController',
   $scope.current_lang_for_api = ->
     lang = $scope.current_lang
     lang = 'c-sharp' if lang == 'C#'
-    console.log lang
+    lang = 'objc' if lang == 'Objective-C'
     lang.toLowerCase()
 
   $scope.set_lang = (lang) -> $scope.current_lang = lang
@@ -37,8 +38,9 @@ Application.controller 'previewController',
     defered_code = $q.defer()
     if $scope.custom_code.length > 0
       localStorage.setItem('custom_code', $scope.custom_code)
-      $http.post("#{$window.API}/parse", {text: $scope.custom_code, syntax: $scope.current_lang}).success (data) ->
-        defered_code.resolve(data)
+      parser = $http.post("#{$window.API}/parse", {text: $scope.custom_code, syntax: $scope.current_lang_for_api()})
+      parser.success (data) -> defered_code.resolve(data)
+      parser.error -> defered_code.resolve("")
     else
       localStorage.removeItem('custom_code')
       lang = $scope.current_lang.toLowerCase()
@@ -46,9 +48,13 @@ Application.controller 'previewController',
       if cached
         defered_code.resolve(cached)
       else
-        $http.get("#{$window.API}/files/samples/compiled/#{$scope.current_lang_for_api()}.html").success (data) ->
+        sample = $http.get("#{$window.API}/files/samples/compiled/#{$scope.current_lang_for_api()}.html")
+        sample.success (data) ->
           defered_code.resolve(data)
           FileManager.save(lang, data, 'sample_cache')
+        sample.error ->
+          defered_code.resolve("")
+
 
     defered_code.promise.then (data) ->
       root_scopes = $("<div>#{data}</div>").find("span.l").map((x,item) -> $(item).attr("class").replace(/^l\s/, "").replace(/l-\d+ /, ""))
