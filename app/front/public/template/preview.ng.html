@@ -1,8 +1,12 @@
-<div ng-controller="previewController">
+<style ng-bind="Theme.css_gutter()"></style>
+<style ng-bind="Theme.css_selection()"></style>
+<style ng-bind="Theme.css_scopes()"></style>
 
+<div ng-controller="previewController">
   <!-- preview  -->
   <div ng-class="{ 'slide': gallery_visible, 'no-scroll': EditPopover.visible  }" id="preview" class="preview" ng-style="{ 'background-color': Color.parse(Theme.bg()), 'color': Color.parse(Theme.fg()) }">
     <pre ng-show="Theme.json"
+         ng-class="root_scope"
          ng-bind-html="colorized"
          ng-style="{ 'color': Color.parse(Theme.fg()) }"></preview>
   </div>
@@ -46,5 +50,4 @@
       </li>
     </ul>
   </div>
-
 </div>

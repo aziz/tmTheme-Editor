@@ -41,6 +41,10 @@ Application.controller 'previewController',
           FileManager.save(lang, data, 'sample_cache')
 
     defered_code.promise.then (data) ->
+      root_scopes = $("<div>#{data}</div>").find("span.l").map((x,item) -> $(item).attr("class").replace(/^l\s/, "").replace(/l-\d+ /, ""))
+      root_scope = Array.prototype.unique.call(root_scopes)
+      console.log "Warning: more than one root scope found for this source code" if root_scope.length > 1
+      $scope.root_scope = root_scope[0]
       $scope.colorized = $sce.trustAsHtml(data)
       $scope.custom_code_editor_visible = false
       throbber.off()
