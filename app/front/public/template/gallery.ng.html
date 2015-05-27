@@ -9,10 +9,10 @@
         <i class="icon-plus"></i>
      </a>
      <a ng-click="toggle_gallery_type_filter('dark')"
-        ng-class="{'active': gallery_filter.type == 'dark'}"
+        ng-class="{'active': gallery_filter.color_type == 'dark'}"
         class="dark_filter">Dark</a>
      <a ng-click="toggle_gallery_type_filter('light')"
-        ng-class="{'active': gallery_filter.type == 'light' }"
+        ng-class="{'active': gallery_filter.color_type == 'light' }"
         class="light_filter">Light</a>
    </div>
   </div>
@@ -60,7 +60,7 @@
           <li ng-repeat="theme in themes | filter: gallery_filter"
               ng-click="load_theme(theme, 'theme')"
               ng-class="{ 'selected': theme.name == selected_theme }">
-              <span class="{{::theme.type}}_theme_icon"></span>
+              <span class="{{::theme.color_type}}_theme_icon"></span>
               <span>{{::theme.name}}</span>
           </li>
         </ul>

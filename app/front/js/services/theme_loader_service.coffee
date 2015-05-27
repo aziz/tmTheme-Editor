@@ -6,7 +6,7 @@ Application.factory "ThemeLoader",
   themes = $http.get("#{$window.API}/gallery.json")
   themes.success (data) ->
     for theme in data
-      theme.type = if theme.light then 'light' else 'dark'
+      theme.color_type = if theme.light then 'light' else 'dark'
     themes_future.resolve(data)
 
   load = (theme) ->

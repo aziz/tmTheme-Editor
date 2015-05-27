@@ -35,10 +35,10 @@ Application.controller 'editorController',
 
   $scope.gallery_filter = {name: ''}
   $scope.toggle_gallery_type_filter = (type) ->
-    if $scope.gallery_filter.type == type
-      delete $scope.gallery_filter.type
+    if $scope.gallery_filter.color_type == type
+      delete $scope.gallery_filter.color_type
     else
-      $scope.gallery_filter.type = type
+      $scope.gallery_filter.color_type = type
 
   $scope.gallery_visible = angular.fromJson($.cookie("gallery_visible") || false)
   $scope.toggle_gallery = ->
