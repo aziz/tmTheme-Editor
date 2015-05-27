@@ -150,7 +150,7 @@
       display: block;
       position: absolute;
       top: 9px;
-      left: 10px;
+      left: 13px;
       z-index: 999999;
       width: 16px;
       height: 16px;
@@ -178,14 +178,26 @@
     }
 
     input[type="search"] {
-      border-radius: 500px;
+      border-radius: 4px;
+      box-shadow: 0 1px 2px rgba(0,0,0,.05);
       border-color: #989898;
-      margin: 4px;
+      margin: 3px 6px;
       font-size: 13px;
-      line-height: 13px;
-      height: 13px;
+      line-height: 16px;
+      height: 16px;
       width: 280px;
       padding-left: 24px;
+
+      &:-moz-placeholder {
+        line-height: 16px;
+      }
+      &:-ms-input-placeholder {
+        line-height: 16px;
+      }
+      &::-webkit-input-placeholder {
+        line-height: 16px;
+      }
+
     }
   }
   .actions {

@@ -14,5 +14,5 @@ Application = angular.module('ThemeEditor',
 
 Application.run ["$rootScope", "$templateCache", ($rootScope) ->
   enable_trasition = -> $('body').removeClass('transition-off')
-  setTimeout(enable_trasition, 1000)
+  setTimeout(enable_trasition, 1200)
 ]

@@ -5,7 +5,14 @@
 [ng-cloak], .ng-cloak { display: none; }
 [ng-click] { cursor: pointer; }
 
-body { overflow: hidden; }
+body {
+  overflow: hidden;
+  font-family: @systemFontFamily;
+}
+
+input, button, select, textarea {
+  font-family: @systemFontFamily;
+}
 
 #loading {
   position: fixed;
