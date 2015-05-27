@@ -4,20 +4,25 @@ Application.controller 'previewController',
 
   $scope.colorized = ''
   $scope.available_langs = [
-    'C',
-    'C++',
-    'C#',
-    'CoffeeScript',
-    'CSS',
-    'HTML',
+    'C'
+    'C++'
+    'C#'
+    'CoffeeScript'
+    'CSS'
+    'Erlang'
+    'Haskell'
+    'HTML'
     'Java'
-    'Javascript',
-    'Latex',
+    'Javascript'
+    'Latex'
+    'Lua'
     'Objective-C'
-    'Perl',
-    'PHP',
-    'Python',
-    'Ruby',
+    'OCaml'
+    'Perl'
+    'PHP'
+    'Python'
+    'R'
+    'Ruby'
   ]
   $scope.current_lang = $.cookie("preview_lang") || $scope.available_langs[0]
 
