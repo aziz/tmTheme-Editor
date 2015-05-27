@@ -1,4 +1,7 @@
 Archive:
+ ✔ UI: extenal themes in the gallery list don't have the light/dark icon
+ ✔ UI: local themes in the gallery list don't have the light/dark icon
+ ✔ UI: count number for local and external
  ✔ UI: Use "line-highlight" from theme for UI selected element @done (15-05-27 15:57)
  ✔ add root scope to pre to prevent those buggy theme to show jagged bg colors @done (15-05-27 09:00)
  ✔ cache lang samples to disk @done (15-05-27 07:26)

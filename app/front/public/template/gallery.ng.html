@@ -21,12 +21,14 @@
     <div style="overflow-y: scroll; height: 100%">
       <div class="local_themes_list" ng-show="local_themes.length > 0">
         <h5>
+          <span class="theme_count pull-right">{{ local_themes.length }}</span>
           Local Files
         </h5>
         <ul>
           <li ng-repeat="theme in local_themes | orderBy:'name' | filter: gallery_filter"
               ng-click="load_theme(theme, 'local')"
               ng-class="{ 'selected': theme.name == selected_theme }">
+            <span class="{{::theme.color_type}}_theme_icon"></span>
             <span class="theme_title">{{ theme.name | removeExtension }}</span>
             <span ng-click="remove_local_theme(theme)" class="remove_theme" title="Remove">&times;</span>
           </li>
@@ -34,11 +36,15 @@
       </div>
 
       <div class="external_theme_list local_themes_list" ng-show="external_themes.length > 0">
-        <h5>External URLs</h5>
+        <h5>
+          <span class="theme_count pull-right">{{ external_themes.length }}</span>
+          External URLs
+        </h5>
         <ul>
           <li ng-repeat="theme in external_themes | orderBy:'name' | filter: gallery_filter"
               ng-click="load_theme(theme, 'url')"
               ng-class="{ 'selected': theme.name == selected_theme }">
+            <span class="{{::theme.color_type}}_theme_icon"></span>
             <span class="theme_title">{{ theme.name | removeExtension }}</span>
             <span ng-click="remove_external_theme(theme)" class="remove_theme" title="Remove">&times;</span>
           </li>

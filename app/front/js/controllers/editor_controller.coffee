@@ -110,7 +110,8 @@ Application.controller 'editorController',
   # TODO: make a external url service
   save_external_to_local_storage = (url) ->
     name = url.split('/').last().replace(/%20/g, ' ')
-    current_theme_obj = {name: name, url: url}
+    bg_type = Color.light_or_dark(Theme.bg())
+    current_theme_obj = {name: name, url: url, color_type: bg_type }
     unless $scope.external_themes.find(current_theme_obj)
       $scope.external_themes.push(current_theme_obj)
       localStorage.setItem('external_themes', angular.toJson($scope.external_themes))
@@ -159,7 +160,7 @@ Application.controller 'editorController',
       templateUrl: '/template/modalOpenURL.ng.html'
       controller: 'ModalOpenURLController'
       resolve: {
-        themeExternalURL: -> 'https://raw.github.com/aziz/tmTheme-Editor/master/themes/Tomorrow.tmTheme'
+        themeExternalURL: -> 'https://raw.githubusercontent.com/theymaybecoders/sublime-tomorrow-theme/master/Tomorrow.tmTheme'
       }
     )
     modalInstance.result.then (themeURL) ->
@@ -190,6 +191,12 @@ Application.controller 'editorController',
       # save a local copy of current theme
       FileManager.add_from_memory($scope.selected_theme, Theme.to_plist())
       $location.path("/local/#{$scope.selected_theme}")
+
+  update_local_theme = ->
+    current_theme_obj = {name: $scope.selected_theme, color_type: Color.light_or_dark(Theme.bg())}
+    index = $scope.local_themes.findIndex((item) -> item.name == current_theme_obj.name)
+    $scope.local_themes[index] = current_theme_obj
+    localStorage.setItem('local_files', angular.toJson($scope.local_themes))
 
   # -- ROUTING ----------------------------------------------
   # TODO: make this a proper angular routing
@@ -231,7 +238,8 @@ Application.controller 'editorController',
       theme_url = $location.path().replace('/url/','')
       $scope.selected_theme = theme_url.split('/').last().replace(/%20/g, ' ')
       theme_loader_promise = ThemeLoader.load({ url: theme_url })
-      success_handler = (data) -> process_theme(data) and save_external_to_local_storage(theme_url)
+      success_handler = (data) ->
+        process_theme(data) and save_external_to_local_storage(theme_url)
       theme_loader_promise.then(success_handler, handle_load_error)
 
     # There's a theme locally saved
@@ -239,7 +247,7 @@ Application.controller 'editorController',
       Theme.type = 'Local File'
       $scope.selected_theme = $location.path().replace('/local/','')
       data = FileManager.load($scope.selected_theme)
-      process_theme(data)
+      process_theme(data) && update_local_theme()
 
     # Loading Default theme
     else

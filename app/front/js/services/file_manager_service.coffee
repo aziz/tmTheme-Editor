@@ -21,7 +21,7 @@ Application.factory "FileManager", ['$q', ($q) ->
       continue unless file.name.endsWith(/\.(hidden-)?[tT]m[Tt]heme/)
       name = file.name
       @list.push({name: name})
-      _read_from_file_system(file).then (file_name) -> file_name # TODO: then part is not needed
+      _read_from_file_system(file).then (file_name) -> file_name
 
     localStorage.setItem("local_files", angular.toJson(@list))
     file_names
