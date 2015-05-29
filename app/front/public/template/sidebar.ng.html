@@ -1,12 +1,14 @@
+<ng-include src="'template/action_bar.ng.html'"></ng-include>
+
 <div ng-class="{ 'slide' : gallery_visible }" class="tabbar" ng-cloak>
   <a ng-click="current_tab = 'scopes'"  ng-class="{'active': current_tab == 'scopes'}">Scopes</a>
   <a ng-click="current_tab = 'general'" ng-class="{'active': current_tab == 'general'}">General</a>
   <a ng-click="current_tab = 'info'"    ng-class="{'active': current_tab == 'info'}">Info</a>
 </div>
 
-<ng-include src="'template/action_bar.ng.html'"></ng-include>
-
-<div ng-cloak ng-class="{ 'slide': gallery_visible, 'no-scroll': EditPopover.visible  }" class="sidebar" ng-style="{ 'background-color': Color.parse(Theme.bg())}">
+<div class="sidebar" ng-cloak
+     ng-class="{ 'slide': gallery_visible, 'no-scroll': EditPopover.visible  }"
+     ng-style="{ 'background-color': Color.parse(Theme.bg())}">
   <ng-include src="'template/table_general.ng.html'"></ng-include>
   <ng-include src="'template/table_scopes.ng.html'"></ng-include>
   <ng-include src="'template/table_info.ng.html'"></ng-include>

@@ -19,8 +19,8 @@ Application.factory "throbber", [ ->
     top: 'auto',          # Top position relative to parent in px
     left: 'auto'          # Left position relative to parent in px
   }
-  spinner = new Spinner(spinner_options).spin($("#loading")[0])
   element = angular.element("#loading")
+  spinner = new Spinner(spinner_options).spin(element[0])
   loading_counter = 0
 
   throbber.on = (opt) ->

@@ -1,4 +1,4 @@
-Application.factory "HUDEffects", ['Theme', 'Color', '$timeout', (Theme, Color, $timeout) ->
+Application.factory "HUDEffects", ['Theme', 'Color', (Theme, Color) ->
   hud = {}
 
   original_colors = {}

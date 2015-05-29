@@ -108,6 +108,7 @@ Application.factory "Theme", ['Color', 'json_to_plist', 'plist_to_json', (Color,
       style += ".selected { background-color: #{Color.parse(@line_highlight())} }"
     style
 
+  # TODO: some of these do not need to be exposed
   return {
     process
     download

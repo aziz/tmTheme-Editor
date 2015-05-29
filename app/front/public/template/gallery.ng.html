@@ -1,23 +1,26 @@
-<div id="gallery" ng-cloak ng-style="{ 'background-color': Color.parse(Theme.bg()), 'color': Color.parse(Theme.fg()) }">
-  <div ng-class="{ 'slide' : gallery_visible }" ng-cloak class="titlebar">
-   <div class="actions">
-     <a href="https://github.com/aziz/tmTheme-Editor/wiki/How-to-add-your-own-theme-to-the-gallery%3F"
-        target="_blank" class="add"
-        data-placement="bottom"
-        data-container="body"
-        bs-tooltip="{ title: 'Add your own theme to the gallery'}">
-        <i class="icon-plus"></i>
-     </a>
-     <a ng-click="toggle_gallery_type_filter('dark')"
-        ng-class="{'active': gallery_filter.color_type == 'dark'}"
-        class="dark_filter">Dark</a>
-     <a ng-click="toggle_gallery_type_filter('light')"
-        ng-class="{'active': gallery_filter.color_type == 'light' }"
-        class="light_filter">Light</a>
-   </div>
+<div id="gallery" ng-cloak
+     ng-style="{ 'background-color': Color.parse(Theme.bg()), 'color': Color.parse(Theme.fg()) }">
+
+  <div class="titlebar" ng-class="{ 'slide' : gallery_visible }" ng-cloak>
+    <div class="actions">
+      <a href="https://github.com/aziz/tmTheme-Editor/wiki/How-to-add-your-own-theme-to-the-gallery%3F"
+         target="_blank" class="add"
+         data-placement="bottom"
+         data-container="body"
+         bs-tooltip="{ title: 'Add your own theme to the gallery'}">
+         <i class="icon-plus"></i>
+      </a>
+      <a ng-click="toggle_gallery_type_filter('dark')"
+         ng-class="{'active': gallery_filter.color_type == 'dark'}"
+         class="dark_filter">Dark</a>
+      <a ng-click="toggle_gallery_type_filter('light')"
+         ng-class="{'active': gallery_filter.color_type == 'light' }"
+         class="light_filter">Light</a>
+    </div>
   </div>
 
-  <div ng-class="{ 'slide' : gallery_visible }" class="scrollbox" ng-style="{ 'background-color': Color.parse(Theme.bg()), 'color': Color.parse(Theme.fg()) }">
+  <div class="scrollbox" ng-class="{ 'slide' : gallery_visible }"
+       ng-style="{ 'background-color': Color.parse(Theme.bg()), 'color': Color.parse(Theme.fg()) }">
     <div style="overflow-y: scroll; height: 100%">
       <div class="local_themes_list" ng-show="local_themes.length > 0">
         <h5>
