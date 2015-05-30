@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html ng-app="ThemeEditor" ng-controller="editorController">
-<head>
-  <title ng-bind="Theme.json.name ? Theme.json.name + ' • TmTheme Editor' : 'TmTheme Editor'"></title>
-  <% include 'partials/meta' %>
+<html ng-app="ThemeEditor">
+<head ng-controller="pageController">
+  <title ng-bind="page_title(current_theme)"></title>
   <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700" rel="stylesheet" type="text/css">
-
+  <% include 'partials/meta' %>
   <%- css("app") %>
-  <% include 'partials/shared_assets' %>
-  <%- js("application") %>
 </head>
 
-<body drop-zone shortcut="shortcuts" class="transition-off"
+<body ng-controller="editorController"
+      class="transition-off"
+      drop-zone
+      shortcut="shortcuts"
       ng-class="'current_theme_' + Color.light_or_dark(Color.parse(Theme.bg()))">
   <header id="header" ng-cloak>
     <ng-include src="'template/header.ng.html'"></ng-include>
@@ -28,6 +28,9 @@
     <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
   </div>
 
+  <% include 'partials/shared_assets' %>
+  <%- js("application") %>
   <% include 'partials/analytics' %>
+
 </body>
 </html>
