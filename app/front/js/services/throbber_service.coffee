@@ -19,12 +19,13 @@ Application.factory "throbber", [ ->
     top: 'auto',          # Top position relative to parent in px
     left: 'auto'          # Left position relative to parent in px
   }
-  element = angular.element("#loading")
+  element = $("#loading")
   spinner = new Spinner(spinner_options).spin(element[0])
   loading_counter = 0
 
   throbber.on = (opt) ->
     loading_counter += 1
+    console.log "On #{loading_counter}"
     if opt && opt.full_window
       element.show().addClass("show full_window")
     else
@@ -32,6 +33,7 @@ Application.factory "throbber", [ ->
 
   throbber.off = ->
     loading_counter -= 1 if loading_counter > 0
+    console.log "Off #{loading_counter}"
     element.removeClass("show").hide().removeClass("full_window") if loading_counter == 0
 
   throbber.visible = -> loading_counter > 0

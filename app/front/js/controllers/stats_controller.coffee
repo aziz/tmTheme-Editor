@@ -1,4 +1,4 @@
-Application.controller 'StatsController',
+Application.controller 'statsController',
 ['Color', 'ThemeLoader', 'plist_to_json', '$scope', '$location',
 ( Color,   ThemeLoader ,  plist_to_json,   $scope,   $location) ->
 
@@ -28,6 +28,7 @@ Application.controller 'StatsController',
       setTimeout(process, 0)
 
     handle_load_error = ->
+      $scope.update_progress()
 
     theme_loader_promise = ThemeLoader.load(theme)
     theme_loader_promise.then(process_theme, handle_load_error)

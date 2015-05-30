@@ -1,9 +1,8 @@
 Application.controller 'editorController',
-['Color', 'Theme', 'ThemeLoader', 'FileManager', 'EditPopover', 'NewPopover', 'HUDEffects', 'throbber', '$filter', '$scope', '$location', '$timeout', '$window', '$q', '$modal'
-( Color,   Theme,   ThemeLoader,   FileManager,   EditPopover,   NewPopover,   HUDEffects,   throbber,   $filter,   $scope,   $location,   $timeout,   $window,   $q,   $modal) ->
+['current_theme', 'Color', 'Theme', 'ThemeLoader', 'FileManager', 'EditPopover', 'NewPopover', 'HUDEffects', 'throbber', '$filter', '$scope', '$location','$window', '$q', '$modal'
+( current_theme,   Color,   Theme,   ThemeLoader,   FileManager,   EditPopover,   NewPopover,   HUDEffects,   throbber,   $filter,   $scope,   $location,  $window,   $q,   $modal) ->
 
-  throbber.on(full_window: not $scope.gallery_visible)
-
+  default_external_theme_url = 'https://raw.githubusercontent.com/theymaybecoders/sublime-tomorrow-theme/master/Tomorrow.tmTheme'
   $scope.version = $("#version").attr("content")
 
   $scope.Color  = Color
@@ -145,13 +144,7 @@ Application.controller 'editorController',
     $scope.scopes_filter.name = ''
 
   $scope.clear_cache = ->
-    for key of localStorage
-      localStorage.removeItem(key) if key.startsWith("http_cache/")
-
-  $scope.load_theme = (theme, type) ->
-    return if theme.name == $scope.selected_theme
-    reset_state()
-    $location.path("/#{type}/#{if type == 'url' then theme.url else theme.name}")
+    FileManager.clear_cache()
 
   $scope.load_from_url = ->
     modalInstance = $modal.open(
@@ -160,7 +153,7 @@ Application.controller 'editorController',
       templateUrl: '/template/modalOpenURL.ng.html'
       controller: 'ModalOpenURLController'
       resolve: {
-        themeExternalURL: -> 'https://raw.githubusercontent.com/theymaybecoders/sublime-tomorrow-theme/master/Tomorrow.tmTheme'
+        themeExternalURL: -> default_external_theme_url
       }
     )
     modalInstance.result.then (themeURL) ->
@@ -198,59 +191,23 @@ Application.controller 'editorController',
     $scope.local_themes[index] = current_theme_obj
     localStorage.setItem('local_files', angular.toJson($scope.local_themes))
 
-  # -- ROUTING ----------------------------------------------
-  # TODO: make this a proper angular routing
-  $scope.$on '$locationChangeStart', (event, nextLocation, currentLocation) ->
-    previous_path = currentLocation.split("#").last()
-    throbber.on(full_window: not $scope.gallery_visible) unless throbber.visible()
-
-    process_theme = (data) ->
-      processed = Theme.process(data)
-      throbber.off()
-      if processed.error
-        console.log processed.error
-        $location.path(previous_path)
-        $scope.alerts.push { type: 'danger', msg: processed.msg }
-        false
-      else
-        true
-
-    handle_load_error = (error) ->
-      throbber.off()
-      $location.path(previous_path)
-      $scope.alerts.push { type: 'danger', msg: error }
-
-    # There's theme name in URL
-    if $location.path() && $location.path().startsWith('/theme/')
-      Theme.type = ''
-      theme = $location.path().replace('/theme/','')
-      $scope.selected_theme = theme
-      ThemeLoader.themes.then (data) ->
-        return unless Theme.type == ''
-        theme_obj = data.find (t) -> t.name == theme
-        theme_loader_promise = ThemeLoader.load(theme_obj)
-        theme_loader_promise.then(process_theme, handle_load_error)
-        return
-
-    # There's a theme-url in URL
-    else if $location.path() && $location.path().startsWith('/url/')
-      Theme.type = 'External URL'
-      theme_url = $location.path().replace('/url/','')
-      $scope.selected_theme = theme_url.split('/').last().replace(/%20/g, ' ')
-      theme_loader_promise = ThemeLoader.load({ url: theme_url })
-      success_handler = (data) ->
-        process_theme(data) and save_external_to_local_storage(theme_url)
-      theme_loader_promise.then(success_handler, handle_load_error)
-
-    # There's a theme locally saved
-    else if $location.path() && $location.path().startsWith('/local/')
-      Theme.type = 'Local File'
-      $scope.selected_theme = $location.path().replace('/local/','')
-      data = FileManager.load($scope.selected_theme)
-      process_theme(data) && update_local_theme()
-
-    # Loading Default theme
+  process_theme = (data) ->
+    processed = Theme.process(data)
+    if processed.error
+      console.log processed.error
+      # $location.path(previous_path)
+      $scope.alerts.push { type: 'danger', msg: processed.msg }
+      false
     else
-      throbber.off()
-      $timeout -> $location.path('/theme/Monokai')
+      save_external_to_local_storage(current_theme.url) if current_theme.url
+      true
+
+  handle_load_error = (error) ->
+    # $location.path(previous_path)
+    $scope.alerts.push { type: 'danger', msg: error }
+
+  current_theme.data.then(process_theme, handle_load_error)
+  $scope.Theme.type = current_theme.type
+  $scope.selected_theme = current_theme.name
+
 ]

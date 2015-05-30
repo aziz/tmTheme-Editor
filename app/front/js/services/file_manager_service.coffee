@@ -42,6 +42,10 @@ Application.factory "FileManager", ['$q', ($q) ->
     localStorage.setItem("local_files", angular.toJson(@list))
     localStorage.removeItem("#{prefix}/#{file.name}")
 
+  clear_cache = ->
+    for key of localStorage
+      localStorage.removeItem(key) if key.startsWith("cache")
+
   return {
     list
     add
@@ -49,5 +53,6 @@ Application.factory "FileManager", ['$q', ($q) ->
     save
     remove
     add_from_memory
+    clear_cache
   }
 ]

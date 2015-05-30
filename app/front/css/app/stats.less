@@ -1,18 +1,6 @@
-//= require lib/bootstrap
-//= require app/global
-//= require app/header
-
 @import (reference) "lib/bootstrap_mixins.less";
 @import (reference) "lib/mixins";
 @import (reference) "lib/variables";
-
-table {
-  font-family: @monoFontFamily;
-
-  th.active {
-    background-color: #eee;
-  }
-}
 
 .progress {
   @pwidth: 400px;
@@ -28,22 +16,15 @@ table {
   .box-shadow(@bs);
 
   .bar {
-    border-radius: 99px;
     @bs: 0 1px 0 rgba(255,255,255,.5) , inset 0 1px 3px rgba(0,0,0,.3);
     .box-shadow(@bs);
     .transition(none);
-    -webkit-animation: none !important;
-       -moz-animation: none !important;
-        -ms-animation: none !important;
-         -o-animation: none !important;
-            animation: none !important;
+    -webkit-animation: progress-bar-stripes 800ms linear infinite !important;
+       -moz-animation: progress-bar-stripes 800ms linear infinite !important;
+        -ms-animation: progress-bar-stripes 800ms linear infinite !important;
+         -o-animation: progress-bar-stripes 800ms linear infinite !important;
+            animation: progress-bar-stripes 800ms linear infinite !important;
   }
-}
-
-#header {
-  position: fixed;
-  left: 0;
-  right: 0;
 }
 
 #stats-tabs {
@@ -60,8 +41,12 @@ table {
   top: 90px;
   bottom: 0;
   overflow: scroll;
-}
 
-#loading {
-  left: 0;
+  table {
+    font-family: @monoFontFamily;
+
+    th.active {
+      background-color: #eee;
+    }
+  }
 }

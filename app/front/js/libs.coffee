@@ -6,6 +6,7 @@
 #= require jquery.scrollintoview/jquery.scrollintoview.js
 #= require angular/angular.js
 #= require angular-sanitize/angular-sanitize.js
+#= require angular-route/angular-route.js
 #= require tinycolor/tinycolor.js
 #= require angular-strap/dist/modules/dimensions.js
 #= require angular-strap/dist/modules/tooltip.js

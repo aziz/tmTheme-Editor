@@ -90,7 +90,14 @@
       cursor: pointer;
       padding: 2px 2px 2px 4px;
       font-size: 13px;
-      .ellipsis();
+
+      a {
+        text-decoration: none;
+        color: inherit;
+        display: block;
+        width: 100%;
+        .ellipsis();
+      }
     }
   }
 
@@ -218,12 +225,15 @@
 
       &:-moz-placeholder {
         line-height: 16px;
+        color: #bbb;
       }
       &:-ms-input-placeholder {
         line-height: 16px;
+        color: #bbb;
       }
       &::-webkit-input-placeholder {
         line-height: 16px;
+        color: #bbb;
       }
     }
 

@@ -1,23 +1,9 @@
-<!doctype html>
-<html>
-<head>
-  <title>TmTheme Editor Stats</title>
-  <link href='http://fonts.googleapis.com/css?family=Source+Code+Pro:400,700' rel='stylesheet' type='text/css'>
-  <% include 'partials/meta' %>
-
-  <%- css("stats") %>
-  <% include 'partials/shared_assets' %>
-  <%- js("stats") %>
-</head>
-
-<body ng-app="ThemeStats">
-
-<div ng-cloak ng-controller="StatsController">
+<div ng-cloak>
 
   <header id="header">
-    <a href="/" class="btn btn-info btn-small"><i class="icon-white icon-arrow-left"></i> Back to editor</a>
+    <a href="/#!/" class="btn btn-info btn-small"><i class="icon-white icon-arrow-left"></i> Back to editor</a>
 
-    <div ng-hide="progress > 99" class="progress progress-striped active">
+    <div ng-hide="progress > 99.999" class="progress progress-striped active">
       <div class="bar" style="width: {{progress}}%"></div>
     </div>
 
@@ -147,9 +133,4 @@
       </div>
     </div>
   </div>
-
-  <div id="loading"></div>
 </div>
-<% include 'partials/analytics' %>
-</body>
-</html>

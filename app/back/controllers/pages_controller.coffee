@@ -24,9 +24,7 @@ router.get '/get_uri', (req, res, next) ->
       res.send 'Not found'
 
 router.get '/stats', (req, res, next) ->
-  view = {}
-  view.api_url = ""
-  res.render 'stats', view
+  res.redirect 301, '/#!/stats'
 
 router.post '/parse', (req, res, next) ->
   request.post parserURI, {form: {text: req.body.text, syntax: req.body.syntax} }, (error, response, body) ->
