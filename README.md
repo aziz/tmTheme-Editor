@@ -17,7 +17,7 @@ using [angular.js](angularjs.org)
 
 ## Copyright
 **tmThemeEditor**  
-&copy; Copyright 2012-2014 Allen Bargi
+&copy; Copyright 2012-2015 Allen Bargi
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as
