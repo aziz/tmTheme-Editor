@@ -1,4 +1,5 @@
-<div id="gallery" ng-controller="galleryController" ng-cloak
+<div id="gallery" ng-cloak
+     ng-class="'current_theme_' + Color.light_or_dark(Color.parse(Theme.bg()))"
      ng-style="{ 'background-color': Color.parse(Theme.bg()), 'color': Color.parse(Theme.fg()) }">
 
   <div class="titlebar" ng-class="{ 'slide' : Editor.Gallery.visible }" ng-cloak>

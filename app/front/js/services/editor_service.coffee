@@ -12,8 +12,11 @@ Application.factory "Editor", [ ->
 
   version = $("#version").attr("content")
 
+  current_theme = {}
+
   {
     Gallery
     version
+    current_theme
   }
 ]

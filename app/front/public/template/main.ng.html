@@ -1,0 +1,15 @@
+<div class="transition-off"
+     drop-zone
+     shortcut="shortcuts"
+     ng-class="'current_theme_' + Color.light_or_dark(Color.parse(Theme.bg()))">
+  <header id="header" ng-cloak>
+    <ng-include src="'template/header.ng.html'"></ng-include>
+  </header>
+  <main>
+    <ng-include src="'template/sidebar.ng.html'"></ng-include>
+    <ng-include src="'template/preview.ng.html'"></ng-include>
+    <ng-include src="'template/dialog_edit.ng.html'"></ng-include>
+    <ng-include src="'template/dialog_new.ng.html'"></ng-include>
+    <ng-include src="'template/hud_colors.ng.html'"></ng-include>
+  </main>
+</div>

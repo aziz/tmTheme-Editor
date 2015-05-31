@@ -6,10 +6,8 @@
   <% include 'partials/meta' %>
   <%- css("app") %>
 </head>
-
-<body>
-  <div ng-view></div>
-
+<body class="transition-off">
+  <div ui-view></div>
   <div id="loading"></div>
   <div id="alerts" ng-cloak>
     <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
@@ -18,6 +16,5 @@
   <% include 'partials/shared_assets' %>
   <%- js("application") %>
   <% include 'partials/analytics' %>
-
 </body>
 </html>

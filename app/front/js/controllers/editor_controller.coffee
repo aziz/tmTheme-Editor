@@ -1,6 +1,6 @@
 Application.controller 'editorController',
-['current_theme', 'Color', 'Theme', 'ThemeLoader', 'FileManager', 'EditPopover', 'NewPopover', 'HUDEffects', 'throbber', '$filter', '$scope', '$location','$window', '$q', '$modal'
-( current_theme,   Color,   Theme,   ThemeLoader,   FileManager,   EditPopover,   NewPopover,   HUDEffects,   throbber,   $filter,   $scope,   $location,  $window,   $q,   $modal) ->
+['current_theme', 'Color', 'Editor', 'Theme', 'ThemeLoader', 'FileManager', 'EditPopover', 'NewPopover', 'HUDEffects', 'throbber', '$filter', '$scope', '$location','$window', '$q', '$modal'
+( current_theme,   Color,   Editor,   Theme,   ThemeLoader,   FileManager,   EditPopover,   NewPopover,   HUDEffects,   throbber,   $filter,   $scope,   $location,  $window,   $q,   $modal) ->
 
   default_external_theme_url = 'https://raw.githubusercontent.com/theymaybecoders/sublime-tomorrow-theme/master/Tomorrow.tmTheme'
 
@@ -13,8 +13,6 @@ Application.controller 'editorController',
   # TODO: alerts controller and service
   $scope.alerts = []
   $scope.closeAlert = (index) -> $scope.alerts.splice(index, 1)
-
-  $scope.selected_theme = null # TODO: should be moved to galley?
 
   $scope.current_tab    = 'scopes'
   $scope.hovered_rule   = null
@@ -103,11 +101,11 @@ Application.controller 'editorController',
   $scope.save_theme = ->
     return unless Theme.json
     if Theme.type == 'Local File'
-      FileManager.save($scope.selected_theme, Theme.to_plist())
+      FileManager.save(current_theme.name, Theme.to_plist())
     else
       # save a local copy of current theme
-      FileManager.add_from_memory($scope.selected_theme, Theme.to_plist())
-      $location.path("/local/#{$scope.selected_theme}")
+      FileManager.add_from_memory(current_theme.name, Theme.to_plist())
+      $location.path("/local/#{current_theme.name}")
 
   #-------------------------------------------------------------------------
   $scope.$watchCollection 'Theme.json', update_scopes_filter
@@ -130,7 +128,7 @@ Application.controller 'editorController',
     FileManager.add_external_theme(theme_obj)
 
   update_local_theme = ->
-    current_theme_obj = {name: $scope.selected_theme, color_type: Color.light_or_dark(Theme.bg())}
+    current_theme_obj = {name: current_theme.name, color_type: Color.light_or_dark(Theme.bg())}
     locals = FileManager.local_themes
     index = locals.findIndex((item) -> item.name == current_theme_obj.name)
     locals[index] = current_theme_obj
@@ -142,9 +140,8 @@ Application.controller 'editorController',
     $scope.scopes_filter.name = ''
 
   process_theme = (data) ->
+    Editor.current_theme = current_theme
     $scope.Theme.type = current_theme.type
-    $scope.selected_theme = current_theme.name
-
     processed = Theme.process(data)
     if processed.error
       console.log processed.error
