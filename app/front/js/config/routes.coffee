@@ -1,22 +1,23 @@
 Application.config ['$stateProvider', '$urlRouterProvider', '$locationProvider', ($stateProvider, $urlRouterProvider, $locationProvider) ->
     $locationProvider.hashPrefix '!'
-    $urlRouterProvider.otherwise '/theme/Monokai'
+    $urlRouterProvider.otherwise 'editor/theme/Monokai'
 
     $stateProvider
-    .state 'theme', {
-      url: '/theme'
+    .state 'editor', {
+      url: '/editor'
       views: {
         '@': {
           templateUrl: 'template/editor.ng.html'
         }
-        'gallery@theme': {
+        'gallery@editor': {
           controller: 'galleryController'
           templateUrl: 'template/gallery.ng.html'
         }
       }
     }
-    .state 'theme.gallery', {
-      url: '^/theme/:theme'
+
+    .state 'editor.gallery', {
+      url: '^/editor/theme/:theme'
       views: {
         'main': {
           templateUrl: 'template/main.ng.html'
@@ -26,20 +27,8 @@ Application.config ['$stateProvider', '$urlRouterProvider', '$locationProvider',
       resolve: Application.editorData
     }
 
-    .state 'url', {
-      url: '/url'
-      views: {
-        '@': {
-          templateUrl: 'template/editor.ng.html'
-        }
-        'gallery@url': {
-          controller: 'galleryController'
-          templateUrl: 'template/gallery.ng.html'
-        }
-      }
-    }
-    .state 'url.gallery', {
-      url: '^/url/*theme'
+    .state 'editor.url', {
+      url: '^/editor/url/*theme'
       views: {
         'main': {
           templateUrl: 'template/main.ng.html'
@@ -49,20 +38,8 @@ Application.config ['$stateProvider', '$urlRouterProvider', '$locationProvider',
       resolve: Application.urlData
     }
 
-    .state 'local', {
-      url: '/local'
-      views: {
-        '@': {
-          templateUrl: 'template/editor.ng.html'
-        }
-        'gallery@local': {
-          controller: 'galleryController'
-          templateUrl: 'template/gallery.ng.html'
-        }
-      }
-    }
-    .state 'local.gallery', {
-      url: '^/local/:theme'
+    .state 'editor.local', {
+      url: '^/editor/local/:theme'
       views: {
         'main': {
           templateUrl: 'template/main.ng.html'
@@ -71,6 +48,7 @@ Application.config ['$stateProvider', '$urlRouterProvider', '$locationProvider',
       }
       resolve: Application.localData
     }
+
     .state 'stats', {
       url: '/stats'
       templateUrl: 'template/stats.ng.html'

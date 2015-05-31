@@ -53,6 +53,10 @@ Application.factory "FileManager", ['$q', ($q) ->
     @local_themes = @local_themes.remove((item) -> item.name == file.name)
     localStorage.removeItem("#{prefix}/#{file.name}")
 
+  FM.remove_external_theme = (file) ->
+    @external_themes = @external_themes.remove((item) -> item.url == file.url)
+    localStorage.removeItem("cache_http/#{file.url}")
+
   FM.clear_cache = ->
     for key of localStorage
       localStorage.removeItem(key) if key.startsWith("cache")

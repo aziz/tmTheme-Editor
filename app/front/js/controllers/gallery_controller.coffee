@@ -4,6 +4,11 @@ Application.controller 'galleryController',
 
   $scope.Color = Color
   $scope.Theme = Theme
+  $scope.FileManager = FileManager
+  $scope.local_themes = []
+  $scope.external_themes = []
+  $scope.themes = []
+  ThemeLoader.themes.then (data) -> $scope.themes = data
 
   $scope.gallery_filter = {name: ''}
   $scope.toggle_gallery_type_filter = (type) ->
@@ -12,23 +17,24 @@ Application.controller 'galleryController',
     else
       $scope.gallery_filter.color_type = type
 
-  $scope.$watchCollection 'Editor.current_theme', ->
-    $scope.selected_theme = Editor.current_theme.name
-
-  $scope.themes = []
-  ThemeLoader.themes.then (data) -> $scope.themes = data
-
-  $scope.local_themes    = FileManager.local_themes
-  $scope.external_themes = FileManager.external_themes
-
   $scope.remove_local_theme = (theme) ->
     FileManager.remove(theme)
-    $location.path('/') if $location.path() == "/local/#{theme.name}"
+    $location.path('/') if $location.path() == "/editor/local/#{theme.name}"
 
-  # TODO: refactor, add remove external to file manager
   $scope.remove_external_theme = (theme) ->
-    $scope.external_themes.remove(theme)
-    localStorage.setItem('external_themes', angular.toJson($scope.external_themes))
-    $location.path('/') if $location.path() == "/url/#{theme.url}"
+    FileManager.remove_external_theme(theme)
+    $location.path('/') if $location.path() == "/editor/url/#{theme.url}"
 
+  #-----------------------------------------------------------------------
+  $scope.$watchCollection 'Editor.current_theme', -> $scope.selected_theme = Editor.current_theme.name
+
+  $scope.$watch 'FileManager.local_themes', (n, o) ->
+    $scope.local_themes = n
+  , true
+
+  $scope.$watch 'FileManager.external_themes', (n, o) ->
+    $scope.external_themes = n
+  , true
+
+  return
 ]

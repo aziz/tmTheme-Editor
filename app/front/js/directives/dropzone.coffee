@@ -9,7 +9,7 @@ Application.directive "dropZone", ["FileManager", "$location", "$q", (FileManage
       local_files = FileManager.add_local_theme(files)
       # update the location path to the last file
       $q.all(local_files).then (names) ->
-        $location.path("/local/#{names.last()}")
+        $location.path("/editor/local/#{names.last()}")
 
     handleDragOver = (e) ->
       e.stopPropagation()

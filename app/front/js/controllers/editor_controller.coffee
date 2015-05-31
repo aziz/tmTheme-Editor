@@ -50,7 +50,7 @@ Application.controller 'editorController',
   $scope.setFiles = (element) ->
     local_files = FileManager.add_local_theme(element.files)
     $q.all(local_files).then (names) ->
-      $location.path("/local/#{names.last()}")
+      $location.path("/editor/local/#{names.last()}")
 
   $scope.hide_all_popovers = ->
     $scope.EditPopover.hide()
@@ -94,7 +94,7 @@ Application.controller 'editorController',
     )
     modalInstance.result.then (themeURL) ->
       reset_state()
-      $location.path("/url/#{themeURL}")
+      $location.path("/editor/url/#{themeURL}")
       return
     return
 
@@ -105,7 +105,7 @@ Application.controller 'editorController',
     else
       # save a local copy of current theme
       FileManager.add_from_memory(current_theme.name, Theme.to_plist())
-      $location.path("/local/#{current_theme.name}")
+      $location.path("/editor/local/#{current_theme.name}")
 
   #-------------------------------------------------------------------------
   $scope.$watchCollection 'Theme.json', update_scopes_filter

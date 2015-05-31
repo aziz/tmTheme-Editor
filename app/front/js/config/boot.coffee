@@ -16,17 +16,15 @@ Application = angular.module('ThemeEditor',
 Application.run ['$rootScope', 'throbber', 'Editor', ($rootScope, throbber, Editor) ->
   $rootScope.Editor = Editor
 
-  # $rootScope.$on '$routeChangeStart', (event) ->
-  #   throbber.on(full_window: true)
+  $rootScope.$on '$stateChangeStart', (event) ->
+    throbber.on(full_window: not $rootScope.Editor.Gallery.visible)
 
-  # $rootScope.$on '$routeChangeSucces', (event) ->
-  #   throbber.off()
-
-  # $rootScope.$on '$routeChangeError', (event) ->
-  #   throbber.off()
-
-  $rootScope.$on '$viewContentLoaded', ->
-    enable_trasition = -> $('.transition-off').removeClass('transition-off')
-    setTimeout(enable_trasition, 1200)
+  $rootScope.$on '$stateChangeSuccess', (event) ->
     throbber.off()
+
+  $rootScope.$on '$stateChangeError', (event) ->
+    throbber.off()
+
+  # $rootScope.$on '$viewContentLoaded', ->
+  #   throbber.off()
 ]
