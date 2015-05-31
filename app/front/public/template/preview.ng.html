@@ -26,7 +26,7 @@
     </div>
   </div>
   <div class="custom_code_btn_bar" ng-show="custom_code_editor_visible" ng-cloak>
-    <a class="btn btn-small btn-danger" ng-click="custom_code='';custom_code_editor_visible = false">
+    <a class="btn btn-small btn-danger" ng-click="custom_code='';custom_code_editor_visible = false;update_preview()">
        &nbsp;Clear&nbsp;
     </a>
     <a class="btn btn-small btn-success" ng-click="update_preview()">
