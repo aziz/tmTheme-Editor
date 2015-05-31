@@ -13,7 +13,9 @@ Application = angular.module('ThemeEditor',
   ]
 )
 
-Application.run ["$rootScope", "throbber", ($rootScope, throbber) ->
+Application.run ['$rootScope', 'throbber', 'Editor', ($rootScope, throbber, Editor) ->
+  $rootScope.Editor = Editor
+
   $rootScope.$on '$routeChangeStart', (event) ->
     throbber.on(full_window: true)
 
@@ -37,6 +39,7 @@ Application.editorData = {
       return {
         data: ThemeLoader.load(theme_obj)
         name: theme
+        url: theme_obj.url
         type: ''
       }
   ]

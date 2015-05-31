@@ -30,9 +30,12 @@ Application.controller 'previewController',
 
   $scope.current_lang_for_api = ->
     lang = $scope.current_lang
-    lang = 'c-sharp' if lang == 'C#'
-    lang = 'objc' if lang == 'Objective-C'
-    lang.toLowerCase()
+    switch lang
+      when 'C#'           then 'c-sharp'
+      when 'Objective-C'  then 'objc'
+      when 'Javascript'   then 'js'
+      when 'CoffeeScript' then 'coffee'
+      else lang.toLowerCase()
 
   $scope.set_lang = (lang) -> $scope.current_lang = lang
 
