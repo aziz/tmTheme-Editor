@@ -1,6 +1,7 @@
 Application.factory "FileManager", ['$q', ($q) ->
 
   PREFIX = "LOCAL"
+  FM = {}
 
   _read_from_file_system = (file) ->
     deferred = $q.defer()
@@ -12,47 +13,49 @@ Application.factory "FileManager", ['$q', ($q) ->
         deferred.resolve(file.name)
     return deferred.promise
 
-  list = angular.fromJson(localStorage.getItem("local_files") || [])
+  Object.defineProperty FM, "external_themes", {
+    get: -> angular.fromJson(localStorage.getItem("external_themes") || [])
+    set: (new_val) -> localStorage.setItem('external_themes', angular.toJson(new_val))
+  }
 
+  Object.defineProperty FM, "local_themes", {
+    get: -> angular.fromJson(localStorage.getItem("local_themes") || [])
+    set: (new_val) -> localStorage.setItem('local_themes', angular.toJson(new_val))
+  }
+
+  FM.add_external_theme = (theme_obj) ->
+    return if @external_themes.find(theme_obj)
+    @external_themes = @external_themes.add(theme_obj)
+
+  # TODO: rename to add_local_theme
   # Add returns an array of promises
-  add = (files) ->
+  FM.add_local_theme = (files) ->
     file_names = for file in files
       # TODO: if name exisits and size is the same rename
       continue unless file.name.endsWith(/\.(hidden-)?[tT]m[Tt]heme/)
       name = file.name
-      @list.push({name: name})
+      @local_themes = @local_themes.add({name: name})
       _read_from_file_system(file).then (file_name) -> file_name
 
-    localStorage.setItem("local_files", angular.toJson(@list))
     file_names
 
-  add_from_memory = (file_name, content) ->
-    @list.push({name: file_name})
-    localStorage.setItem("local_files", angular.toJson(@list))
+  FM.add_from_memory = (file_name, content) ->
+    @local_themes = @local_themes.add({name: file_name})
     @save(file_name, content)
 
-  load = (file_name, prefix = PREFIX) ->
+  FM.load = (file_name, prefix = PREFIX) ->
     localStorage.getItem("#{prefix}/#{file_name}")
 
-  save = (file_name, content, prefix = PREFIX) ->
+  FM.save = (file_name, content, prefix = PREFIX) ->
     localStorage.setItem("#{prefix}/#{file_name}", content)
 
-  remove = (file, prefix = PREFIX) ->
-    @list.remove(file)
-    localStorage.setItem("local_files", angular.toJson(@list))
+  FM.remove = (file, prefix = PREFIX) ->
+    @local_themes = @local_themes.remove((item) -> item.name == file.name)
     localStorage.removeItem("#{prefix}/#{file.name}")
 
-  clear_cache = ->
+  FM.clear_cache = ->
     for key of localStorage
       localStorage.removeItem(key) if key.startsWith("cache")
 
-  return {
-    list
-    add
-    load
-    save
-    remove
-    add_from_memory
-    clear_cache
-  }
+  return FM
 ]

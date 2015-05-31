@@ -1,7 +1,7 @@
-<div id="gallery" ng-cloak
+<div id="gallery" ng-controller="galleryController" ng-cloak
      ng-style="{ 'background-color': Color.parse(Theme.bg()), 'color': Color.parse(Theme.fg()) }">
 
-  <div class="titlebar" ng-class="{ 'slide' : gallery_visible }" ng-cloak>
+  <div class="titlebar" ng-class="{ 'slide' : Editor.Gallery.visible }" ng-cloak>
     <div class="actions">
       <a href="https://github.com/aziz/tmTheme-Editor/wiki/How-to-add-your-own-theme-to-the-gallery%3F"
          target="_blank" class="add"
@@ -19,7 +19,7 @@
     </div>
   </div>
 
-  <div class="scrollbox" ng-class="{ 'slide' : gallery_visible }"
+  <div class="scrollbox" ng-class="{ 'slide' : Editor.Gallery.visible }"
        ng-style="{ 'background-color': Color.parse(Theme.bg()), 'color': Color.parse(Theme.fg()) }">
     <div style="overflow-y: scroll; height: 100%">
       <div class="local_themes_list" ng-show="local_themes.length > 0">
@@ -73,7 +73,7 @@
       </div>
     </div>
   </div>
-  <div ng-class="{ 'slide' : gallery_visible }" class="searchbar">
+  <div ng-class="{ 'slide' : Editor.Gallery.visible }" class="searchbar">
     <input type="search" ng-model="gallery_filter.name" placeholder="Search Gallery">
     <div ng-show="gallery_filter.name" ng-click="gallery_filter.name = ''" class="clear_search">
       <i class="icon-cancel-circle"></i>

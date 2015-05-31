@@ -5,7 +5,7 @@
 <div ng-controller="previewController">
   <!-- preview  -->
   <div id="preview" class="preview"
-       ng-class="{ 'slide': gallery_visible, 'no-scroll': EditPopover.visible }"
+       ng-class="{ 'slide': Editor.Gallery.visible, 'no-scroll': EditPopover.visible }"
        ng-style="{ 'background-color': Color.parse(Theme.bg()), 'color': Color.parse(Theme.fg()) }">
     <pre ng-show="Theme.json"
          ng-class="root_scope"
@@ -16,7 +16,7 @@
   <!-- preview custom code -->
   <div ng-cloak id="custom_code" class="preview custom_code_edtior"
        ng-show="custom_code_editor_visible"
-       ng-class="{ 'slide' : gallery_visible }">
+       ng-class="{ 'slide' : Editor.Gallery.visible }">
     <textarea spellcheck='false'
               focus-me="custom_code_editor_visible"
               ng-model="custom_code"
