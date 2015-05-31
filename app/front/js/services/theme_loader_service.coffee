@@ -1,6 +1,6 @@
 Application.factory "ThemeLoader",
-['$http', '$q', '$window', 'FileManager', 'throbber',
-( $http,   $q,   $window,   FileManager,   throbber) ->
+['$http', '$q', '$window', 'FileManager', '$state', 'Editor', 'throbber',
+( $http,   $q,   $window,   FileManager,   $state,   Editor,  throbber) ->
 
   cache_prefix = "cache_http"
 
@@ -12,7 +12,10 @@ Application.factory "ThemeLoader",
     themes_future.resolve(data)
 
   load = (theme) ->
-    throbber.on()
+    if $state.includes("editor.*")
+      throbber.on(full_window: not Editor.Gallery.visible)
+    else
+      throbber.on(full_window: true)
     theme_promise = $q.defer()
     cached = FileManager.load(theme.url, cache_prefix)
     if cached

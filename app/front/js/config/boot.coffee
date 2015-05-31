@@ -15,16 +15,4 @@ Application = angular.module('ThemeEditor',
 
 Application.run ['$rootScope', 'throbber', 'Editor', ($rootScope, throbber, Editor) ->
   $rootScope.Editor = Editor
-
-  $rootScope.$on '$stateChangeStart', (event) ->
-    throbber.on(full_window: not $rootScope.Editor.Gallery.visible)
-
-  $rootScope.$on '$stateChangeSuccess', (event) ->
-    throbber.off()
-
-  $rootScope.$on '$stateChangeError', (event) ->
-    throbber.off()
-
-  # $rootScope.$on '$viewContentLoaded', ->
-  #   throbber.off()
 ]
