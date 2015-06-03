@@ -94,7 +94,7 @@
 {"name": "Eye Salvation - Light", "url": "https://raw.githubusercontent.com/darkgriffon/eye-salvation-st2/gh-pages/Eye%20Salvation%20-%20Light.tmTheme", "light": true },
 {"name": "Fade to Grey", "url": "https://raw.githubusercontent.com/filmgirl/TextMate-Themes/master/Fade to Grey.tmTheme", "light": false },
 {"name": "Failcoder", "url": "https://raw.github.com/failcoder/failcoder-theme/master/Failcoder.tmTheme", "light": false},
-{"name": "fcgrx dark", "url": "https://raw.github.com/fcgrx/fcgrx-dark-color-theme-sublime-text-and-textmate/master/fcgrx_dark.tmTheme", "dark": true },
+{"name": "fcgrx dark", "url": "https://raw.github.com/fcgrx/fcgrx-dark-color-theme-sublime-text-and-textmate/master/fcgrx_dark.tmTheme", "Light": false },
 {"name": "Flatland", "url": "https://raw.github.com/thinkpixellab/flatland/master/Flatland%20Dark.tmTheme", "light": false },
 {"name": "Fluidvision", "url": "https://raw.githubusercontent.com/filmgirl/TextMate-Themes/master/Fluidvision.tmTheme", "light": true },
 {"name": "Freckle", "url": "https://raw.githubusercontent.com/filmgirl/TextMate-Themes/master/Freckle.tmTheme", "light": true },

@@ -42,8 +42,8 @@
           </thead>
           <tbody>
             <tr ng-repeat="scope in scopes_data | orderBy:scopes_predicate:scopes_reverse">
-              <td>{{ $index+1 }}</td>
-              <td>{{ scope.name }}</td>
+              <td>{{::$index+1 }}</td>
+              <td>{{::scope.name }}</td>
               <td style="text-align: right;">{{ scope.count }}</td>
               <td>
                 <span style="position: relative;top:3px;background-color: #3CA3C1; width: {{scope.count}}px; height: 16px; display: inline-block;"></span>
@@ -87,15 +87,15 @@
             </th>
           </thead>
           <tbody>
-            <tr ng-repeat="theme in themes | orderBy:predicate:reverse">
-              <td>{{ $index + 1 }}</td>
-              <td><a ng-href="/#!/editor/theme/{{ theme.name }}">{{ theme.name }}</a></td>
-              <td>{{ theme.jsonTheme.author.truncate(22) }}</td>
-              <td>{{ theme.jsonTheme.settings.length }}</td>
-              <td>{{ theme.general_settings_count }}</td>
+            <tr ng-repeat="theme in ::themes | orderBy:predicate:reverse">
+              <td>{{::$index + 1 }}</td>
+              <td><a ng-href="/#!/editor/theme/{{::theme.name }}">{{::theme.name }}</a></td>
+              <td>{{::theme.jsonTheme.author.truncate(22) }}</td>
+              <td>{{::theme.jsonTheme.settings.length }}</td>
+              <td>{{::theme.general_settings_count }}</td>
               <td>
-                <span class="stats-color-box" style="background-color: {{ theme.bgcolor.slice(0,7) }}"></span>
-                {{ theme.bgcolor }}
+                <span class="stats-color-box" style="background-color: {{::theme.bgcolor.slice(0,7) }}"></span>
+                {{::theme.bgcolor }}
               </td>
               <td>
                 <div ng-if="theme.is_light"  style="width: 16px; height: 16px; border: 1px solid rgba(0,0,0,.4); position: relative; top:2px; background-color: #fff"></div>
@@ -114,11 +114,11 @@
             <th>Count</th>
           </thead>
           <tbody>
-            <tr ng-repeat="scope in general_data | orderBy:'count':true">
-              <td>{{ $index+1 }}</td>
-              <td>{{ scope.name }}</td>
+            <tr ng-repeat="scope in ::general_data | orderBy:'count':true">
+              <td>{{::$index+1 }}</td>
+              <td>{{::scope.name }}</td>
               <td>
-                <div ng-repeat="(val,repeats) in scope.grouped_values">
+                <div ng-repeat="(val,repeats) in ::scope.grouped_values">
                   "{{ val }}"[{{ repeats.length }}]
                 </div>
               </td>

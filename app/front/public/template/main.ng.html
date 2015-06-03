@@ -1,9 +1,9 @@
 <div drop-zone
      shortcut="shortcuts"
      ng-class="'current_theme_' + Color.light_or_dark(Color.parse(Theme.bg()))">
-  <header id="header" ng-cloak>
-    <ng-include src="'template/header.ng.html'"></ng-include>
-  </header>
+
+  <ng-include src="'template/header.ng.html'"></ng-include>
+
   <main>
     <ng-include src="'template/sidebar.ng.html'"></ng-include>
     <ng-include src="'template/preview.ng.html'"></ng-include>
