@@ -40,7 +40,7 @@ if config.env_production
   app.use assets_manager({
     buildDir:       config.assets_build_dir,
     paths:          config.assets,
-    compress:       false,
+    compress:       true,
     fingerprinting: false
   })
 
