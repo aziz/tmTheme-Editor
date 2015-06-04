@@ -25,11 +25,11 @@
     <div style="overflow-y: scroll; height: 100%">
       <div class="local_themes_list" ng-show="local_themes.length > 0">
         <h5>
-          <span class="theme_count pull-right">{{ local_themes.length }}</span>
+          <span class="theme_count pull-right">{{ filtered_local.length }}</span>
           Local Files
         </h5>
         <ul>
-          <li ng-repeat="theme in local_themes | orderBy:'name' | filter: gallery_filter"
+          <li ng-repeat="theme in filtered_local=(local_themes track by theme.name | orderBy:'name' | filter: gallery_filter) track by theme.name"
               ng-class="{ 'selected': theme.name == selected_theme }">
               <a ng-href="/#!/editor/local/{{::theme.name}}">
                 <span class="{{::theme.color_type}}_theme_icon"></span>
@@ -42,11 +42,11 @@
 
       <div class="external_theme_list local_themes_list" ng-show="external_themes.length > 0">
         <h5>
-          <span class="theme_count pull-right">{{ external_themes.length }}</span>
+          <span class="theme_count pull-right">{{ filtered_external.length }}</span>
           External URLs
         </h5>
         <ul>
-          <li ng-repeat="theme in external_themes | orderBy:'name' | filter: gallery_filter"
+          <li ng-repeat="theme in filtered_external=(external_themes | orderBy:'name' | filter: gallery_filter) track by theme.name"
               ng-class="{ 'selected': theme.name == selected_theme }">
             <a ng-href="/#!/editor/url/{{::theme.url}}">
               <span class="{{::theme.color_type}}_theme_icon"></span>
@@ -59,11 +59,11 @@
 
       <div class="gallery_themes_list">
         <h5>
-          <span class="theme_count pull-right">{{::themes.length }}</span>
+          <span class="theme_count pull-right">{{filtered_gallery.length}}</span>
           Gallery
         </h5>
         <ul>
-          <li ng-repeat="theme in themes | filter: gallery_filter"
+          <li ng-repeat="theme in filtered_gallery=(themes | filter: gallery_filter) track by theme.name"
               ng-class="{ 'selected': theme.name == selected_theme }">
               <a ng-href="/#!/editor/theme/{{::theme.name}}">
                 <span class="{{::theme.color_type}}_theme_icon"></span>

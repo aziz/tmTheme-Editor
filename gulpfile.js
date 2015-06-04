@@ -104,7 +104,7 @@ gulp.task('static-assets', function() {
 cleaning({tasks: ['default'], folders: ['dist/']});
 
 gulp.task('default', ['js-ext', 'js', 'ng-templates', 'css', 'html', 'static-assets'], function() {
-  var cleanups = ['app/front/public/assets/*'];
+  var cleanups = ['app/front/public/assets'];
   gulp.src(cleanups, {read: false}).pipe(clean());
   server.close();
 });

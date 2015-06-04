@@ -10,7 +10,7 @@
   <tbody ui-sortable="sortable_options" ng-model="Theme.gcolors"
          ng-style="{ 'background-color': Color.parse(Theme.bg()), 'color': Color.parse(Theme.fg()) }">
 
-    <tr ng-repeat="gcolor in Theme.gcolors"
+    <tr ng-repeat="gcolor in Theme.gcolors track by gcolor.name"
         ng-click="mark_as_selected_gcolor(gcolor)"
         ng-class="{ 'selected': gcolor == general_selected_rule }">
       <td class="name-box">{{gcolor.name}}</td>
