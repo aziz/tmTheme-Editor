@@ -29,7 +29,7 @@
           Local Files
         </h5>
         <ul>
-          <li ng-repeat="theme in filtered_local=(local_themes | orderBy:'name' | filter: gallery_filter) track by theme.name"
+          <li ng-repeat="theme in filtered_local=(local_themes | orderBy:'name' | filter: gallery_filter)"
               ng-class="{ 'selected': theme.name == selected_theme }">
               <a ng-href="/#!/editor/local/{{::theme.name}}">
                 <span class="{{::theme.color_type}}_theme_icon"></span>
@@ -46,7 +46,7 @@
           External URLs
         </h5>
         <ul>
-          <li ng-repeat="theme in filtered_external=(external_themes | orderBy:'name' | filter: gallery_filter) track by theme.name"
+          <li ng-repeat="theme in filtered_external=(external_themes | orderBy:'name' | filter: gallery_filter)"
               ng-class="{ 'selected': theme.name == selected_theme }">
             <a ng-href="/#!/editor/url/{{::theme.url}}">
               <span class="{{::theme.color_type}}_theme_icon"></span>
