@@ -1,5 +1,5 @@
-<table ng-show="current_tab == 'scopes'" id="scope-lists" class="list">
-  <thead ng-show="Theme.json">
+<table ng-if="current_tab == 'scopes'" id="scope-lists" class="list">
+  <thead ng-if="Theme.json">
     <tr>
       <th class="align-begin">Scope Name</th>
       <th class="color-box">FG</th>

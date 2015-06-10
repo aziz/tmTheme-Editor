@@ -23,7 +23,7 @@
   <div class="scrollbox" ng-class="{ 'slide' : Editor.Gallery.visible }"
        ng-style="{ 'background-color': Color.parse(Theme.bg()), 'color': Color.parse(Theme.fg()) }">
     <div style="overflow-y: scroll; height: 100%">
-      <div class="local_themes_list" ng-show="local_themes.length > 0">
+      <div class="local_themes_list" ng-if="local_themes.length > 0">
         <h5>
           <span class="theme_count pull-right">{{ filtered_local.length }}</span>
           Local Files
@@ -40,7 +40,7 @@
         </ul>
       </div>
 
-      <div class="external_theme_list local_themes_list" ng-show="external_themes.length > 0">
+      <div class="external_theme_list local_themes_list" ng-if="external_themes.length > 0">
         <h5>
           <span class="theme_count pull-right">{{ filtered_external.length }}</span>
           External URLs
@@ -76,7 +76,7 @@
   </div>
   <div ng-class="{ 'slide' : Editor.Gallery.visible }" class="searchbar">
     <input type="search" ng-model="gallery_filter.name" placeholder="Search Gallery">
-    <div ng-show="gallery_filter.name" ng-click="gallery_filter.name = ''" class="clear_search">
+    <div ng-if="gallery_filter.name" ng-click="gallery_filter.name = ''" class="clear_search">
       <i class="icon-cancel-circle"></i>
     </div>
   </div>

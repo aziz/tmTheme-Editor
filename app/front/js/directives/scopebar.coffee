@@ -3,8 +3,8 @@ Application.directive "scopeBar", ['$timeout', 'Theme', ($timeout, Theme) ->
   template: """
   <div ng-cloak ng-class="{ 'slide' : Editor.Gallery.visible }" class="scope-bar">
     <div class="status-scope">
-      <span ng-show="hovered_element_scope" class="f-scope type-entity">{{ hovered_element_scope }}</span>
-      <span ng-show="hovered_rule.name" class="f-scope type-entity-text">({{ hovered_rule.name }})</span>
+      <span ng-if="hovered_element_scope" class="f-scope type-entity">{{ hovered_element_scope }}</span>
+      <span ng-if="hovered_rule.name" class="f-scope type-entity-text">({{ hovered_rule.name }})</span>
     </div>
   </div>
   """

@@ -7,7 +7,7 @@
   <div id="preview" class="preview"
        ng-class="{ 'slide': Editor.Gallery.visible, 'no-scroll': EditPopover.visible }"
        ng-style="{ 'background-color': Color.parse(Theme.bg()), 'color': Color.parse(Theme.fg()) }">
-    <pre ng-show="Theme.json"
+    <pre ng-if="Theme.json"
          ng-class="root_scope"
          ng-bind-html="colorized"
          ng-style="{ 'color': Color.parse(Theme.fg()) }"></pre>

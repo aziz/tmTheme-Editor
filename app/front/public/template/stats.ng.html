@@ -25,19 +25,19 @@
     <div class="row-fluid">
       <div class="span12">
 
-        <table ng-show="current_tab=='scopes'" class="table table-striped table-condensed">
+        <table ng-if="current_tab=='scopes'" class="table table-striped table-condensed">
           <thead>
             <th style="width: 30px">#</th>
             <th style="width: 400px" ng-class="{'active': scopes_predicate == 'name' }" ng-click="scopes_predicate = 'name'; scopes_reverse=!reverse">
               Scope
-              <span ng-show="scopes_predicate == 'name' && scopes_reverse == true">▼</span>
-              <span ng-show="scopes_predicate == 'name' && scopes_reverse == false">▲</span>
+              <span ng-if="scopes_predicate == 'name' && scopes_reverse == true">▼</span>
+              <span ng-if="scopes_predicate == 'name' && scopes_reverse == false">▲</span>
             </th>
             <th style="width: 50px"></th>
             <th ng-class="{'active': scopes_predicate == 'count' }" ng-click="scopes_predicate = 'count'; scopes_reverse=!reverse">
               Count
-              <span ng-show="scopes_predicate == 'count' && scopes_reverse == true">▼</span>
-              <span ng-show="scopes_predicate == 'count' && scopes_reverse == false">▲</span>
+              <span ng-if="scopes_predicate == 'count' && scopes_reverse == true">▼</span>
+              <span ng-if="scopes_predicate == 'count' && scopes_reverse == false">▲</span>
             </th>
           </thead>
           <tbody>
@@ -52,38 +52,38 @@
           </tbody>
         </table>
 
-        <table ng-show="current_tab=='themes'" class="table table-striped table-condensed">
+        <table ng-if="current_tab=='themes'" class="table table-striped table-condensed">
           <thead>
             <th style="width:30px">#</th>
             <th style="width:250px" ng-class="{'active': predicate == 'name' }" ng-click="predicate = 'name'; reverse=!reverse">
               Name
-              <span ng-show="predicate == 'name' && reverse == true">▼</span>
-              <span ng-show="predicate == 'name' && reverse == false">▲</span>
+              <span ng-if="predicate == 'name' && reverse == true">▼</span>
+              <span ng-if="predicate == 'name' && reverse == false">▲</span>
             </th>
             <th style="width:240px" ng-class="{'active': predicate == 'jsonTheme.author' }" ng-click="predicate = 'jsonTheme.author'; reverse=!reverse">
               Author
-              <span ng-show="predicate == 'jsonTheme.author' && reverse == true">▼</span>
-              <span ng-show="predicate == 'jsonTheme.author' && reverse == false">▲</span>
+              <span ng-if="predicate == 'jsonTheme.author' && reverse == true">▼</span>
+              <span ng-if="predicate == 'jsonTheme.author' && reverse == false">▲</span>
             </th>
             <th style="width:80px" ng-class="{'active': predicate == 'jsonTheme.settings.length' }" ng-click="predicate = 'jsonTheme.settings.length'; reverse=!reverse">
               Scopes
-              <span ng-show="predicate == 'jsonTheme.settings.length' && reverse == true">▼</span>
-              <span ng-show="predicate == 'jsonTheme.settings.length' && reverse == false">▲</span>
+              <span ng-if="predicate == 'jsonTheme.settings.length' && reverse == true">▼</span>
+              <span ng-if="predicate == 'jsonTheme.settings.length' && reverse == false">▲</span>
             </th>
             <th style="width:80px" ng-class="{'active': predicate == 'general_settings_count' }" ng-click="predicate = 'general_settings_count'; reverse=!reverse">
               General
-              <span ng-show="predicate == 'general_settings_count' && reverse == true">▼</span>
-              <span ng-show="predicate == 'general_settings_count' && reverse == false">▲</span>
+              <span ng-if="predicate == 'general_settings_count' && reverse == true">▼</span>
+              <span ng-if="predicate == 'general_settings_count' && reverse == false">▲</span>
             </th>
             <th style="width:140px" ng-class="{'active': predicate == 'bgcolor' }" ng-click="predicate = 'bgcolor'; reverse=!reverse">
               BG
-              <span ng-show="predicate == 'bgcolor' && reverse == true">▼</span>
-              <span ng-show="predicate == 'bgcolor' && reverse == false">▲</span>
+              <span ng-if="predicate == 'bgcolor' && reverse == true">▼</span>
+              <span ng-if="predicate == 'bgcolor' && reverse == false">▲</span>
             </th>
             <th ng-class="{'active': predicate == 'is_light' }" ng-click="predicate = 'is_light'; reverse=!reverse">
               light/dark
-              <span ng-show="predicate == 'is_light' && reverse == true">▼</span>
-              <span ng-show="predicate == 'is_light' && reverse == false">▲</span>
+              <span ng-if="predicate == 'is_light' && reverse == true">▼</span>
+              <span ng-if="predicate == 'is_light' && reverse == false">▲</span>
             </th>
           </thead>
           <tbody>
@@ -105,7 +105,7 @@
           </tbody>
         </table>
 
-        <table ng-show="current_tab=='general'" class="table table-striped table-condensed">
+        <table ng-if="current_tab=='general'" class="table table-striped table-condensed">
           <thead>
             <th style="width: 30px">#</th>
             <th style="width: 200px">Key</th>

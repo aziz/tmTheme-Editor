@@ -1,8 +1,8 @@
 <div ng-cloak ng-class="{ 'slide' : Editor.Gallery.visible }" class="actionbar">
-  <div ng-show="current_tab == 'scopes'" >
+  <div ng-if="current_tab == 'scopes'" >
     <div class="search">
       <input type="search" ng-model="scopes_filter.name" placeholder="Search Scopes">
-      <div ng-show="scopes_filter.name" ng-click="scopes_filter.name = ''" class="clear_search">
+      <div ng-if="scopes_filter.name" ng-click="scopes_filter.name = ''" class="clear_search">
         <i class="icon-cancel-circle"></i>
       </div>
     </div>
@@ -20,9 +20,9 @@
     </div>
   </div>
 
-  <div ng-show="current_tab == 'general'" class="actions">
+  <div ng-if="current_tab == 'general'" class="actions">
   </div>
 
-  <div ng-show="current_tab == 'info'" class="actions">
+  <div ng-if="current_tab == 'info'" class="actions">
   </div>
 </div>
