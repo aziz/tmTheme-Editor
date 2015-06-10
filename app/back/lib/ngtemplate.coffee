@@ -1,7 +1,5 @@
 
-# Template = require('mincer/lib/mincer/template')
-Mincer = require 'mincer'
-Template = Mincer.Template
+Template = require('mincer/lib/mincer/template')
 prop     = require('mincer/lib/mincer/common').prop
 templatecache = require('ng-templatecache')
 
