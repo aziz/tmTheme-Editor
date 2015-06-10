@@ -1,6 +1,6 @@
 Application.factory "NewPopover", [ ->
 
-  rule_pristine = {'name': '','scope': '','settings': {}}
+  rule_pristine = {'name': '','scope': '  ','settings': {}}
 
   popover = {}
   popover.visible = false

@@ -8,6 +8,7 @@ Application.controller 'statsController',
   $scope.progress = 0
   $scope.predicate = 'name'
   $scope.reverse = false
+  $scope.scopes_reverse = false
 
   $scope.scopes_predicate = 'count'
   $scope.scopes_reverse = true
