@@ -10,7 +10,7 @@
     "url": "git://github.com/aziz/tmTheme-Editor.git"
   },
   "scripts": {
-    "postinstall": "bower install",
+    "postinstall": "`npm bin`/bower install",
     "start": "`npm bin`/coffee app/back/app.coffee",
     "prod": "NODE_ENV=production PORT=9090 `npm bin`/coffee app/back/app.coffee",
     "build": "`npm bin`/gulp"
