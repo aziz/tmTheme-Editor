@@ -77,7 +77,7 @@ gulp.task('static-assets', function() {
 });
 
 gulp.task('default', ['js-ext', 'js', 'css', 'html', 'static-assets'], function() {
-  var cleanups = ['app/front/public/assets'];
+  var cleanups = ['app/front/public/assets', 'production.log'];
   gulp.src(cleanups, {read: false}).pipe(clean());
   server.close();
 });
