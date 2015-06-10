@@ -1,5 +1,4 @@
-angular.module("templates", [])
-
+angular.module('templates', [])
 Application = angular.module('ThemeEditor',
   [
     'templates'

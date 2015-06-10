@@ -86,7 +86,7 @@ Application.controller 'editorController',
     modalInstance = $modal.open(
       animation: false
       backdrop: true
-      templateUrl: '/template/modalOpenURL.ng.html'
+      templateUrl: '/template/modalOpenURL.html'
       controller: 'ModalOpenURLController'
       resolve: {
         themeExternalURL: -> default_external_theme_url

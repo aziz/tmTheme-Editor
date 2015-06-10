@@ -63,7 +63,7 @@ gulp.task('js', function() {
 
 gulp.task('ng-templates', function () {
   return gulp.src(assets_path.templates)
-             .pipe(ngTmpl({root: '/template/'}))
+             .pipe(ngTmpl({root: 'template/', standalone: true}))
              .pipe(gulp.dest(ASSETS_DIR));
 });
 

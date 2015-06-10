@@ -1,4 +1,4 @@
-<ng-include src="'template/action_bar.ng.html'"></ng-include>
+<ng-include src="'template/action_bar.html'"></ng-include>
 
 <div ng-class="{ 'slide' : Editor.Gallery.visible }" class="tabbar" ng-cloak>
   <a ng-click="current_tab = 'scopes'"  ng-class="{'active': current_tab == 'scopes'}">Scopes</a>
@@ -9,7 +9,7 @@
 <div class="sidebar" ng-cloak
      ng-class="{ 'slide': Editor.Gallery.visible, 'no-scroll': EditPopover.visible  }"
      ng-style="{ 'background-color': Color.parse(Theme.bg())}">
-  <ng-include src="'template/table_general.ng.html'"></ng-include>
-  <ng-include src="'template/table_scopes.ng.html'"></ng-include>
-  <ng-include src="'template/table_info.ng.html'"></ng-include>
+  <ng-include src="'template/table_general.html'"></ng-include>
+  <ng-include src="'template/table_scopes.html'"></ng-include>
+  <ng-include src="'template/table_info.html'"></ng-include>
 </div>

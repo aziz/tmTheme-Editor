@@ -11,8 +11,10 @@ less            = require 'less'
 assets_manager  = require 'connect-assets'
 ECT             = require 'ect'
 
-config           = require './config'
-pages_controller = require './controllers/pages_controller'
+config            = require './config'
+ngTemplatesEngine = require './lib/ngtemplate'
+pages_controller  = require './controllers/pages_controller'
+
 
 app = module.exports = express()
 
@@ -30,9 +32,12 @@ app.use bodyParser.urlencoded({extended: true })
 app.use cookieParser(config.cookie_secret)
 app.use methodOverride()
 
+register_mincer_engines = (instance) ->
+  instance.environment.registerEngine('.html',  ngTemplatesEngine)
+
 if config.env_development
   app.use logger("dev", skip: (req, res) -> res.statusCode is 304)
-  app.use assets_manager("paths": config.assets)
+  app.use assets_manager({"paths": config.assets}, register_mincer_engines)
 
 if config.env_production
   log = fs.createWriteStream config.log_file, {flags: 'w'}
@@ -42,7 +47,7 @@ if config.env_production
     paths:          config.assets,
     compress:       true,
     fingerprinting: false
-  })
+  }, register_mincer_engines)
 
 app.use (req, res, next) ->
   res.header 'Access-Control-Allow-Origin', '*'

@@ -7,11 +7,11 @@ Application.config ['$stateProvider', '$urlRouterProvider', '$locationProvider',
       url: '/editor'
       views: {
         '@': {
-          templateUrl: 'template/editor.ng.html'
+          templateUrl: 'template/editor.html'
         }
         'gallery@editor': {
           controller: 'galleryController'
-          templateUrl: 'template/gallery.ng.html'
+          templateUrl: 'template/gallery.html'
         }
       }
     }
@@ -20,7 +20,7 @@ Application.config ['$stateProvider', '$urlRouterProvider', '$locationProvider',
       url: '^/editor/theme/:theme'
       views: {
         'main': {
-          templateUrl: 'template/main.ng.html'
+          templateUrl: 'template/main.html'
           controller: 'editorController'
         }
       }
@@ -31,7 +31,7 @@ Application.config ['$stateProvider', '$urlRouterProvider', '$locationProvider',
       url: '^/editor/url/*theme'
       views: {
         'main': {
-          templateUrl: 'template/main.ng.html'
+          templateUrl: 'template/main.html'
           controller: 'editorController'
         }
       }
@@ -42,7 +42,7 @@ Application.config ['$stateProvider', '$urlRouterProvider', '$locationProvider',
       url: '^/editor/local/:theme'
       views: {
         'main': {
-          templateUrl: 'template/main.ng.html'
+          templateUrl: 'template/main.html'
           controller: 'editorController'
         }
       }
@@ -51,7 +51,7 @@ Application.config ['$stateProvider', '$urlRouterProvider', '$locationProvider',
 
     .state 'stats', {
       url: '/stats'
-      templateUrl: 'template/stats.ng.html'
+      templateUrl: 'template/stats.html'
       controller: 'statsController'
     }
     return

@@ -1,0 +1,14 @@
+<div drop-zone
+     shortcut="shortcuts"
+     ng-class="'current_theme_' + Color.light_or_dark(Color.parse(Theme.bg()))">
+
+  <ng-include src="'template/header.html'"></ng-include>
+
+  <main>
+    <ng-include src="'template/sidebar.html'"></ng-include>
+    <ng-include src="'template/preview.html'"></ng-include>
+    <ng-include src="'template/dialog_edit.html'"></ng-include>
+    <ng-include src="'template/dialog_new.html'"></ng-include>
+    <ng-include src="'template/hud_colors.html'"></ng-include>
+  </main>
+</div>
