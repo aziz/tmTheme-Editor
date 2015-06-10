@@ -37,7 +37,8 @@
     "express": "4.12.4",
     "less": "2.5.1",
     "sugar": "1.4.1",
-    "ng-templatecache": "0.1.4"
+    "ng-templatecache": "0.1.4",
+    "mincer": "1.2.4"
   },
   "devDependencies": {
     "gulp": "3.9.0",
@@ -50,7 +51,6 @@
     "gulp-initial-cleaning": "*",
     "gulp-angular-templatecache": "*",
     "gulp-clean": "*",
-    "gulp-minify-html": "1.0.3",
-    "mincer": "1.2.4"
+    "gulp-minify-html": "1.0.3"
   }
 }
