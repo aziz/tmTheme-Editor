@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="ThemeEditor">
 <head ng-controller="pageController">
-  <title ng-bind="page_title(current_theme)"></title>
+  <title ng-bind="page_title(current_theme)">TmThemeEditor</title>
   <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700" rel="stylesheet" type="text/css">
   <% include 'partials/meta' %>
   <%- css("app") %>
@@ -13,7 +13,8 @@
     <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
   </div>
 
-  <% include 'partials/shared_assets' %>
+  <script>window.API='<%- @api_url %>'</script>
+  <%- js("libs") %>
   <%- js("application") %>
   <% include 'partials/analytics' %>
 </body>
