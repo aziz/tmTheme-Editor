@@ -108,6 +108,29 @@ Application.factory "Theme", ['Color', 'json_to_plist', 'plist_to_json', (Color,
       style += ".selected { background-color: #{Color.parse(@line_highlight())} }"
     style
 
+  color_palette = ->
+    colors = []
+    if @json && @json.settings
+      for rule in @json.settings.compact()
+        if rule?.settings?.foreground
+          colors.push Color.parse(rule.settings.foreground)
+        if rule?.settings?.background
+          colors.push Color.parse(rule.settings.background)
+
+      for rule in @gcolors
+        if rule.color and rule.color.startsWith("#")
+          colors.push Color.parse(rule.color)
+
+    palette = colors.unique().map((c) -> tinycolor(c) )
+    sorted = palette.sortBy((c) ->
+      hsv = c.toHsv()
+      hsv.h*100 + hsv.s*10 + hsv.v*1000 + (1-hsv.a)*1000000
+    )
+    formatted = sorted.map( (c) -> c.toRgbString() )
+    formatted.unique()
+
+
+
   # TODO: some of these do not need to be exposed
   return {
     process
@@ -131,5 +154,6 @@ Application.factory "Theme", ['Color', 'json_to_plist', 'plist_to_json', (Color,
     css_scopes
     css_gutter
     css_selection
+    color_palette
   }
 ]

@@ -13,6 +13,15 @@ Application.factory "Color", [ ->
     else
       color
 
+  tm_encode = (color_str) ->
+    color = tinycolor(color_str)
+    if color.getAlpha() < 1
+      tm_hex8(color.toHex8()).toUpperCase()
+    else
+      color.toHexString().toUpperCase()
+
+  tm_decode = (color_str) -> tinycolor(@parse(color_str))
+
   light_or_dark = (color) ->
     c   = tinycolor(color)
     d   = c.toRgb()
@@ -69,7 +78,6 @@ Application.factory "Color", [ ->
       new_b = 0
     else
       new_b = b
-    # TODO: alpha channel?
     tm_hex8(tinycolor(r: new_r, g: new_g, b: new_b, a: rgb.a).toHex8())
 
   change_hsl = (color, h_change, s_change, l_change, colorize) ->
@@ -111,6 +119,8 @@ Application.factory "Color", [ ->
 
   return {
     parse
+    tm_encode
+    tm_decode
     light_or_dark
     darken
     lighten

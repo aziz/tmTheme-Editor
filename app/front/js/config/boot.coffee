@@ -9,6 +9,7 @@ Application = angular.module('ThemeEditor',
     'ui.bootstrap.alert'
     'ui.bootstrap.modal'
     'mgcrea.ngStrap.tooltip'
+    'minicolors'
   ]
 )
 
