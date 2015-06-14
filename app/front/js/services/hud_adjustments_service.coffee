@@ -5,40 +5,12 @@ Application.factory "HUDEffects", ['Theme', 'Color', (Theme, Color) ->
   original_gcolors = []
   reset_colors = {}
   reset_gcolors = []
-  brightness = 0
-  contrast   = 0
-  hue        = 0
-  saturation = 0
-  lightness  = 0
 
-  # Sliders return a string while number inputs need integer.
-  # That's why we need to define these smart properties with
-  # getters and setters to always keep the values as integers
-  Object.defineProperty hud, "brightness", {
-    get: ->  brightness
-    set: (new_val) -> brightness = parseInt(new_val, 10)
-  }
-
-  Object.defineProperty hud, "contrast", {
-    get: ->  contrast
-    set: (new_val) -> contrast = parseInt(new_val, 10)
-  }
-
-  Object.defineProperty hud, "hue", {
-    get: ->  hue
-    set: (new_val) -> hue = parseInt(new_val, 10)
-  }
-
-  Object.defineProperty hud, "saturation", {
-    get: ->  saturation
-    set: (new_val) -> saturation = parseInt(new_val, 10)
-  }
-
-  Object.defineProperty hud, "lightness", {
-    get: ->  lightness
-    set: (new_val) -> lightness = parseInt(new_val, 10)
-  }
-
+  hud.brightness = 0
+  hud.contrast   = 0
+  hud.hue        = 0
+  hud.saturation = 0
+  hud.lightness  = 0
   hud.visible  = false
   hud.colorize = false
   hud.apply_to_general = false
