@@ -20,15 +20,10 @@
       </td>
 
       <td ng-if="!gcolor.name.endsWith('Options')">
-        <div style="position:relative">
           <div class="colorpicker-box"
+               ng-click="CP.pick(gcolor.color)"
                ng-class="{ 'has_color': Color.is_color(gcolor.color) }"
                ng-style="{ 'background-color': Color.parse(gcolor.color), 'border-color': Theme.border_color() }"></div>
-          <input type="color" class="colorpicker-input"
-                 title="{{gcolor.color}}"
-                 ng-model="gcolor.color"
-                 ng-change="update_gcolor(gcolor, angualr.element(this).val())">
-        </div>
       </td>
       <td></td>
     </tr>

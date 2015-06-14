@@ -1,6 +1,6 @@
 Application.controller 'editorController',
-['current_theme', 'Color', 'Editor', 'Theme', 'ThemeLoader', 'FileManager', 'EditPopover', 'NewPopover', 'HUDEffects', 'throbber', '$filter', '$scope', '$location','$window', '$q', '$modal'
-( current_theme,   Color,   Editor,   Theme,   ThemeLoader,   FileManager,   EditPopover,   NewPopover,   HUDEffects,   throbber,   $filter,   $scope,   $location,  $window,   $q,   $modal) ->
+['current_theme', 'Color', 'Editor', 'Theme', 'ColorPicker', 'ThemeLoader', 'FileManager', 'EditPopover', 'NewPopover', 'HUDEffects', 'throbber', '$filter', '$scope', '$location','$window', '$q', '$modal'
+( current_theme,   Color,   Editor,   Theme,   ColorPicker,   ThemeLoader,   FileManager,   EditPopover,   NewPopover,   HUDEffects,   throbber,   $filter,   $scope,   $location,  $window,   $q,   $modal) ->
 
   default_external_theme_url = 'https://raw.githubusercontent.com/theymaybecoders/sublime-tomorrow-theme/master/Tomorrow.tmTheme'
 
@@ -9,6 +9,7 @@ Application.controller 'editorController',
   $scope.HUD   = HUDEffects
   $scope.EditPopover = EditPopover
   $scope.NewPopover  = NewPopover
+  $scope.CP  = ColorPicker
 
   # TODO: alerts controller and service
   $scope.alerts = []

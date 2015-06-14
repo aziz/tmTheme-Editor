@@ -1,26 +1,27 @@
-<div class="color-picker-window"
-     ng-cloak draggable="{ handle: '.header' }"
-     ng-controller="colorpickerController">
+<div class="color-picker-window" ng-cloak
+     ng-controller="colorpickerController"
+     ng-show="CP.visible"
+     draggable="{ handle: '.header' }">
 
   <div class="header">
     <ul>
       <li class="icon_picker" title="Color Picker"
-          ng-class="{'active': current_tab == 'picker'}"
-          ng-click="current_tab='picker'">picker</li>
+          ng-class="{'active': CP.current_tab == 'picker'}"
+          ng-click="CP.current_tab='picker'">picker</li>
       <li class="icon_sliders" title="Color Sliders"
-          ng-class="{'active': current_tab == 'sliders'}"
-          ng-click="current_tab='sliders'">sliders</li>
+          ng-class="{'active': CP.current_tab == 'sliders'}"
+          ng-click="CP.current_tab='sliders'">sliders</li>
       <li class="icon_palette" title="Color Palette"
-          ng-class="{'active': current_tab == 'palette'}"
-          ng-click="current_tab='palette'">palette</li>
+          ng-class="{'active': CP.current_tab == 'palette'}"
+          ng-click="CP.current_tab='palette'">palette</li>
     </ul>
 
-    <div class="cp-close" ng-click="close()">
+    <div class="cp-close" ng-click="CP.visible = false">
       <i class="icon-cancel-circle"></i>
     </div>
   </div>
 
-  <div ng-show="current_tab == 'picker'">
+  <div ng-show="CP.current_tab == 'picker'">
     <div><input type="text" minicolors="picker_options" ng-model="color.hex"></div>
     <div class="slider-box picker-slider-box">
       <input class="color-slider" type="range" min="0" max="100"
@@ -30,7 +31,7 @@
     </div>
   </div>
 
-  <div ng-show="current_tab == 'sliders'" style="margin-top: 10px;">
+  <div ng-show="CP.current_tab == 'sliders'" style="margin-top: 10px;">
 
     <div class="settings" dropdown>
       <a href="" class="dropdown-toggle" dropdown-toggle>
@@ -38,13 +39,13 @@
         <span class="caret"></span>
       </a>
       <ul class="dropdown-menu pull-right">
-        <li ng-click="active_sliders.rgb = !active_sliders.rgb" ng-class="{ 'checked': active_sliders.rgb}"><a href="">RGB</a></li>
-        <li ng-click="active_sliders.hsv = !active_sliders.hsv" ng-class="{ 'checked': active_sliders.hsv}"><a href="">HSB</a></li>
-        <li ng-click="active_sliders.hsl = !active_sliders.hsl" ng-class="{ 'checked': active_sliders.hsl}"><a href="">HSL</a></li>
+        <li ng-click="CP.active_sliders.rgb = !CP.active_sliders.rgb" ng-class="{ 'checked': CP.active_sliders.rgb}"><a href="">RGB</a></li>
+        <li ng-click="CP.active_sliders.hsv = !CP.active_sliders.hsv" ng-class="{ 'checked': CP.active_sliders.hsv}"><a href="">HSB</a></li>
+        <li ng-click="CP.active_sliders.hsl = !CP.active_sliders.hsl" ng-class="{ 'checked': CP.active_sliders.hsl}"><a href="">HSL</a></li>
       </ul>
     </div>
 
-    <div class="slider-group" ng-show="active_sliders.rgb">
+    <div class="slider-group" ng-show="CP.active_sliders.rgb">
       <div class="slider-box">
         <div>Red</div>
         <input class="color-slider" type="range" min="0" max="255"
@@ -71,7 +72,7 @@
       </div>
     </div>
 
-    <div class="slider-group" ng-show="active_sliders.hsv">
+    <div class="slider-group" ng-show="CP.active_sliders.hsv">
       <div class="slider-box">
         <div>Hue</div>
         <input class="color-slider" type="range" min="0" max="360"
@@ -98,7 +99,7 @@
       </div>
     </div>
 
-    <div class="slider-group" ng-show="active_sliders.hsl">
+    <div class="slider-group" ng-show="CP.active_sliders.hsl">
       <div class="slider-box">
         <div>Hue</div>
         <input class="color-slider" type="range" min="0" max="360"
@@ -135,10 +136,9 @@
         <input class="color-input" type="text" ng-model="color.alpha"><span class="type">%</span>
       </div>
     </div>
-
   </div>
 
-  <div ng-show="current_tab == 'palette'">
+  <div ng-show="CP.current_tab == 'palette'">
     <div style="max-width:240px">
       <span class="palette_box" title="{{c}}"
             ng-repeat="c in colorpalette"
@@ -152,10 +152,10 @@
   <div class="preview-box">
     <div class="colorpicker-box">
       <div class="tranparent_box"></div>
-      <div class="color_box" ng-style="{ 'background-color': Color.parse(current_color) }">
+      <div class="color_box" ng-style="{ 'background-color': Color.parse(CP.rule[CP.selector]) }">
       </div>
     </div>
-    <input class="colortext-input" type="text" ng-model="current_color" ng-model-options="{ updateOn: 'blur', debounce: { 'blur': 0 } }">
+    <input class="colortext-input" type="text" ng-model="CP.rule[CP.selector]" ng-model-options="{ updateOn: 'blur', debounce: { 'blur': 0 } }">
   </div>
 
 </div>

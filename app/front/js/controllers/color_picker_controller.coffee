@@ -1,14 +1,6 @@
 Application.controller 'colorpickerController',
 ['$scope', 'Color', 'Theme', ($scope, Color, Theme) ->
 
-  $scope.current_tab = 'sliders'
-  $scope.active_sliders = {
-    rgb: true
-    hsl: false
-    hsv: true
-  }
-
-  $scope.current_color = '#AE81FF'
   $scope.picker_options = { inline: true, letterCase: 'uppercase' }
   $scope.Theme = Theme
   $scope.colorpalette = []
@@ -21,16 +13,16 @@ Application.controller 'colorpickerController',
   }
 
   $scope.update_current_color = (new_color) ->
-    $scope.current_color = Color.tm_encode(tinycolor(new_color))
+    $scope.CP.rule[$scope.CP.selector] = Color.tm_encode(tinycolor(new_color))
 
   $scope.update_alpha = ->
-    current_color = Color.tm_decode($scope.current_color)
+    current_color = Color.tm_decode($scope.CP.rule[$scope.CP.selector])
     current_color.setAlpha($scope.color.alpha/100)
-    $scope.current_color = Color.tm_encode(current_color)
+    $scope.CP.rule[$scope.CP.selector] = Color.tm_encode(current_color)
 
   update_colors = (color) ->
     return unless color
-    decoded_color = Color.tm_decode($scope.current_color)
+    decoded_color = Color.tm_decode($scope.CP.rule[$scope.CP.selector])
 
     rgba = decoded_color.toRgb()
     hsla = decoded_color.toHsl()
@@ -51,15 +43,15 @@ Application.controller 'colorpickerController',
     $scope.color.hsva = hsva
 
   $scope.$watch "Theme.json", -> $scope.colorpalette = $scope.Theme.color_palette()
-  $scope.$watch "current_color", update_colors
+  $scope.$watch "CP.rule[CP.selector]", update_colors
   $scope.$watch "color.hex", (color) ->
     return unless color
     current_color = Color.tm_decode($scope.color.hex)
     current_color.setAlpha($scope.color.alpha/100)
-    $scope.current_color = Color.tm_encode(current_color)
+    $scope.CP.rule[$scope.CP.selector] = Color.tm_encode(current_color)
 
   $scope.select_color_from_palette = (color) ->
-    $scope.current_color = Color.tm_encode(color)
+    $scope.CP.rule[$scope.CP.selector] = Color.tm_encode(color)
 
   $scope.slider_gradient = (source, base, min, max, step) ->
     checkboard_bg = 'url(data:image/png;charset=utf-8;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAAAAACoWZBhAAAAFklEQVR4AWP4DwJnQIAkJpgE80lhAgBENVmnMdln/AAAAABJRU5ErkJggg==)'

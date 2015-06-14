@@ -1,7 +1,7 @@
 
-# [TMTheme Editor](http://tmtheme-editor.herokuapp.com/)
+# [tmTheme Editor](http://tmtheme-editor.herokuapp.com/)
 
-**TMTheme Editor** is a color scheme editor for [SublimeText](http://www.sublimetext.com/), 
+**tmTheme Editor** is a color scheme editor for [SublimeText](http://www.sublimetext.com/), 
 [Textmate](http://macromates.com/) and bunch of other text editors.
 It allows you to edit `tmtheme` files easier and faster. it's written in [coffeescript](http://coffeescript.org/) 
 using [angular.js](angularjs.org)
