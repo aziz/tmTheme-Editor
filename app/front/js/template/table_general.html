@@ -21,7 +21,7 @@
 
       <td ng-if="!gcolor.name.endsWith('Options')">
           <div class="colorpicker-box"
-               ng-click="CP.pick(gcolor.color)"
+               ng-click="CP.pick(gcolor, 'color')"
                ng-class="{ 'has_color': Color.is_color(gcolor.color) }"
                ng-style="{ 'background-color': Color.parse(gcolor.color), 'border-color': Theme.border_color() }"></div>
       </td>
