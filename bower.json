@@ -1,6 +1,5 @@
 {
   "name": "tmTheme-Editor",
-  "version": "0.8.0",
   "homepage": "https://github.com/aziz/tmTheme-Editor",
   "authors": [
     "Allen Bargi <allen.bargi@gmail.com>"
@@ -15,24 +14,22 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "~1.3.15",
-    "angular-sanitize": "~1.3.15",
-    "angular-ui-router": "~0.2.15",
-    "angular-ui-sortable": "~0.13.3",
+    "angular": "~1.4.0",
     "angular-bootstrap": "angular-ui/bootstrap",
+    "angular-minicolors": "~0.0.5",
+    "angular-sanitize": "~1.4.0",
     "angular-strap": "~2.2.4",
+    "angular-ui-router": "~0.2.15",
+    "angular-ui-sortable": "~0.13.4",
+    "angular-vs-repeat": "~1.0.0-rc9",
     "bootstrap": "2.1.0",
     "FileSaver": "*",
     "jquery": "~2.1.4",
     "jquery-ui": "~1.11.4",
     "jquery.cookie": "~1.4.1",
     "jquery.scrollintoview": "*",
-    "spin.js": "~2.3.0",
+    "spin.js": "~2.3.1",
     "sugar": "~1.4.1",
-    "tinycolor": "~1.1.2",
-    "angular-minicolors": "~0.0.5"
-  },
-  "resolutions": {
-    "bootstrap": "2.1.0"
+    "tinycolor": "~1.1.2"
   }
 }
