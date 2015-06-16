@@ -3,7 +3,8 @@ Application.factory "Theme", ['Color', 'json_to_plist', 'plist_to_json', (Color,
   json = ''
   type = ''
   gcolors = []
-
+  bg = {}
+  fg = {}
   _border_color = null
 
   process = (data) ->
@@ -15,12 +16,15 @@ Application.factory "Theme", ['Color', 'json_to_plist', 'plist_to_json', (Color,
       if @json && @json.settings
         for key, val of @json.settings[0].settings
           @gcolors.push({'name': key, 'color': val})
+        @bg = @gcolors.find((gc) -> gc.name == 'background')
+        @fg = @gcolors.find((gc) -> gc.name == 'foreground')
         _border_color = null
         @border_color()
         @json.colorSpaceName = 'sRGB'
-        @json.semanticClass = "theme.#{Color.light_or_dark(@bg())}.#{@json.name.underscore().replace(/[\(\)'&]/g, '')}"
+        @json.semanticClass = "theme.#{Color.light_or_dark(@bg.color)}.#{@json.name.underscore().replace(/[\(\)'&]/g, '')}"
     catch error
       return { error: error, msg: 'PARSE ERROR: could not parse your file!' }
+
 
   # TODO: should not be exposed, only used in save which should be part of this service
   update_general_colors = ->
@@ -42,8 +46,6 @@ Application.factory "Theme", ['Color', 'json_to_plist', 'plist_to_json', (Color,
 
   reset_color = (rule, attr) -> delete rule.settings[attr]
 
-  bg = -> @gcolors.length > 0 && @gcolors.find((gc) -> gc.name == 'background').color
-  fg = -> @gcolors.length > 0 && @gcolors.find((gc) -> gc.name == 'foreground').color
   selection_color = -> @gcolors.length > 0 && @gcolors.find((gc) -> gc.name == 'selection')?.color
   line_highlight = -> @gcolors.length > 0 && @gcolors.find((gc) -> gc.name == 'lineHighlight')?.color
   # TODO: should not be exposed
@@ -54,7 +56,7 @@ Application.factory "Theme", ['Color', 'json_to_plist', 'plist_to_json', (Color,
   border_color = ->
     return _border_color if _border_color
     # TODO: should not return style, should be a class name
-    _border_color = if Color.light_or_dark(Color.parse(@bg())) == 'light' then 'rgba(0,0,0,.33)' else 'rgba(255,255,255,.33)'
+    _border_color = if Color.light_or_dark(Color.parse(@bg.color)) == 'light' then 'rgba(0,0,0,.33)' else 'rgba(255,255,255,.33)'
 
   download = ->
     @update_general_colors()
@@ -89,14 +91,14 @@ Application.factory "Theme", ['Color', 'json_to_plist', 'plist_to_json', (Color,
 
   css_gutter = ->
     style = ''
-    if @json && @json.settings && @bg()
-      bgcolor = Color.parse(@bg())
+    if @json && @json.settings && @bg.color
+      bgcolor = Color.parse(@bg.color)
       if Color.light_or_dark(bgcolor) == 'light'
-        gutter_fg = Color.parse(@gutter_fg()) || Color.darken(bgcolor, 18)
-        gutter_bg = Color.parse(@gutter_bg()) || Color.darken(bgcolor, 3)
+        gutter_fg = Color.parse(@gutter_fg.color) || Color.darken(bgcolor, 18)
+        gutter_bg = Color.parse(@gutter_bg.color) || Color.darken(bgcolor, 3)
       else
-        gutter_fg = Color.parse(@gutter_fg()) || Color.lighten(bgcolor, 18)
-        gutter_bg = Color.parse(@gutter_bg()) || Color.lighten(bgcolor, 3)
+        gutter_fg = Color.parse(@gutter_fg.color) || Color.lighten(bgcolor, 18)
+        gutter_bg = Color.parse(@gutter_bg.color) || Color.lighten(bgcolor, 3)
       style = ".preview pre .l:before { color: #{gutter_fg}; background-color: #{gutter_bg}; }"
     style
 

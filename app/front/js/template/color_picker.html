@@ -21,7 +21,7 @@
     </div>
   </div>
 
-  <div ng-show="CP.current_tab == 'picker'">
+  <div ng-if="CP.current_tab == 'picker'">
     <div><input type="text" minicolors="picker_options" ng-model="color.hex"></div>
     <div class="slider-box picker-slider-box">
       <input class="color-slider" type="range" min="0" max="100"
@@ -31,7 +31,7 @@
     </div>
   </div>
 
-  <div ng-show="CP.current_tab == 'sliders'" style="margin-top: 10px;">
+  <div ng-if="CP.current_tab == 'sliders'" style="margin-top: 10px;">
 
     <div class="settings" dropdown>
       <a href="" class="dropdown-toggle" dropdown-toggle>
@@ -45,7 +45,7 @@
       </ul>
     </div>
 
-    <div class="slider-group" ng-show="CP.active_sliders.rgb">
+    <div class="slider-group" ng-if="CP.active_sliders.rgb">
       <div class="slider-box">
         <div>Red</div>
         <input class="color-slider" type="range" min="0" max="255"
@@ -72,7 +72,7 @@
       </div>
     </div>
 
-    <div class="slider-group" ng-show="CP.active_sliders.hsv">
+    <div class="slider-group" ng-if="CP.active_sliders.hsv">
       <div class="slider-box">
         <div>Hue</div>
         <input class="color-slider" type="range" min="0" max="360"
@@ -99,7 +99,7 @@
       </div>
     </div>
 
-    <div class="slider-group" ng-show="CP.active_sliders.hsl">
+    <div class="slider-group" ng-if="CP.active_sliders.hsl">
       <div class="slider-box">
         <div>Hue</div>
         <input class="color-slider" type="range" min="0" max="360"
@@ -138,11 +138,11 @@
     </div>
   </div>
 
-  <div ng-show="CP.current_tab == 'palette'">
+  <div ng-if="CP.current_tab == 'palette'">
     <div style="max-width:240px">
-      <span class="palette_box" title="{{c}}"
-            ng-repeat="c in colorpalette"
-            ng-click="select_color_from_palette(c)">
+      <span ng-repeat="c in colorpalette"
+            ng-click="select_color_from_palette(c)"
+            class="palette_box" title="{{::c}}">
           <span class="tranparent_box"></span>
           <span class="color_box" ng-style="{ 'background-color': c }"></span>
       </span>

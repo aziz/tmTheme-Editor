@@ -6,10 +6,10 @@
       <th width="10px"></th>
     </tr>
   </thead>
-  <tbody ng-style="{ 'background-color': Color.parse(Theme.bg()), 'color': Color.parse(Theme.fg()) }">
+  <tbody ng-style="{ 'background-color': Color.parse(Theme.bg.color), 'color': Color.parse(Theme.fg.color) }">
     <tr>
       <td class="name-box">UUID</td>
-      <td style="font-size: 13px">{{Theme.json.uuid}}</td>
+      <td style="font-size: 13px">{{::Theme.json.uuid}}</td>
       <td></td>
     </tr>
 

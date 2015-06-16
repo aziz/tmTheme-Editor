@@ -1,6 +1,6 @@
 <div id="gallery" ng-cloak
-     ng-class="'current_theme_' + Color.light_or_dark(Color.parse(Theme.bg()))"
-     ng-style="{ 'background-color': Color.parse(Theme.bg()), 'color': Color.parse(Theme.fg()) }">
+     ng-class="'current_theme_' + Color.light_or_dark(Color.parse(Theme.bg.color))"
+     ng-style="{ 'background-color': Color.parse(Theme.bg.color), 'color': Color.parse(Theme.fg.color) }">
 
   <div class="titlebar" ng-class="{ 'slide' : Editor.Gallery.visible }" ng-cloak>
     <div class="actions">
@@ -21,7 +21,7 @@
   </div>
 
   <div class="scrollbox" ng-class="{ 'slide' : Editor.Gallery.visible }"
-       ng-style="{ 'background-color': Color.parse(Theme.bg()), 'color': Color.parse(Theme.fg()) }">
+       ng-style="{ 'background-color': Color.parse(Theme.bg.color), 'color': Color.parse(Theme.fg.color) }">
     <div style="overflow-y: scroll; height: 100%">
       <div class="local_themes_list" ng-if="local_themes.length > 0">
         <h5>

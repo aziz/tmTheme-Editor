@@ -124,12 +124,12 @@ Application.controller 'editorController',
     theme_obj = {
       name: current_theme.name,
       url: current_theme.url,
-      color_type: Color.light_or_dark(Theme.bg())
+      color_type: Color.light_or_dark(Theme.bg.color)
     }
     FileManager.add_external_theme(theme_obj)
 
   update_local_theme = ->
-    current_theme_obj = {name: current_theme.name, color_type: Color.light_or_dark(Theme.bg())}
+    current_theme_obj = {name: current_theme.name, color_type: Color.light_or_dark(Theme.bg.color)}
     locals = FileManager.local_themes
     index = locals.findIndex((item) -> item.name == current_theme_obj.name)
     locals[index] = current_theme_obj

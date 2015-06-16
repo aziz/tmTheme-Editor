@@ -8,7 +8,7 @@
 
 <div class="sidebar" ng-cloak
      ng-class="{ 'slide': Editor.Gallery.visible, 'no-scroll': EditPopover.visible  }"
-     ng-style="{ 'background-color': Color.parse(Theme.bg())}">
+     ng-style="{ 'background-color': Color.parse(Theme.bg.color)}">
   <ng-include src="'template/table_general.html'"></ng-include>
   <ng-include src="'template/table_scopes.html'"></ng-include>
   <ng-include src="'template/table_info.html'"></ng-include>

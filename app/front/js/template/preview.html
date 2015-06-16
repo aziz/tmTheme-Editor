@@ -6,11 +6,11 @@
   <!-- preview  -->
   <div id="preview" class="preview"
        ng-class="{ 'slide': Editor.Gallery.visible, 'no-scroll': EditPopover.visible }"
-       ng-style="{ 'background-color': Color.parse(Theme.bg()), 'color': Color.parse(Theme.fg()) }">
+       ng-style="{ 'background-color': Color.parse(Theme.bg.color), 'color': Color.parse(Theme.fg.color) }">
     <pre ng-if="Theme.json"
          ng-class="root_scope"
          ng-bind-html="colorized"
-         ng-style="{ 'color': Color.parse(Theme.fg()) }"></pre>
+         ng-style="{ 'color': Color.parse(Theme.fg.color) }"></pre>
   </div>
 
   <!-- preview custom code -->
@@ -20,7 +20,7 @@
     <textarea spellcheck='false'
               focus-me="custom_code_editor_visible"
               ng-model="custom_code"
-              ng-style="{ 'background-color': Color.parse(Theme.bg()), 'color': Color.parse(Theme.fg()) }"></textarea>
+              ng-style="{ 'background-color': Color.parse(Theme.bg.color), 'color': Color.parse(Theme.fg.color) }"></textarea>
     <div class="cc_header">
       <p class="pull-left">Paste your code below and press Save button.</p>
     </div>
@@ -49,7 +49,7 @@
       {{ current_lang }}
     </a>
     <ul class="dropdown-menu pull-right">
-      <li ng-repeat="lang in available_langs">
+      <li ng-repeat="lang in ::available_langs">
         <a ng-click="set_lang(lang)">{{::lang}}</a>
       </li>
     </ul>

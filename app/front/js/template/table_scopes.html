@@ -12,7 +12,7 @@
   </thead>
 
   <tbody ui-sortable="sortable_options" ng-model="scopes_filtered"
-         ng-style="{ 'background-color': Color.parse(Theme.bg()), 'color': Color.parse(Theme.fg()) }">
+         ng-style="{ 'background-color': Color.parse(Theme.bg.color), 'color': Color.parse(Theme.fg.color) }">
 
     <tr ng-repeat="rule in scopes_filtered"
         ng-click="mark_as_selected(rule)"

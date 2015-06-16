@@ -37,7 +37,7 @@
   <div class="theme-title" ng-cloak ng-class="{ 'slide' : Editor.Gallery.visible }" ng-if="Theme.json">
     {{ Theme.json.name }}
     <span class="label label-success" style="position:relative;top:-2px"
-          ng-if="Theme.type != ''" >{{Theme.type}}</span>
+          ng-if="Theme.type != ''" >{{::Theme.type}}</span>
     <a ng-hide="Theme.type == 'Local File'" ng-click="open_theme_url()"
        data-placement='right'
        data-container="body"

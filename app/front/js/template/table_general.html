@@ -8,7 +8,7 @@
   </thead>
 
   <tbody ui-sortable="sortable_options" ng-model="Theme.gcolors"
-         ng-style="{ 'background-color': Color.parse(Theme.bg()), 'color': Color.parse(Theme.fg()) }">
+         ng-style="{ 'background-color': Color.parse(Theme.bg.color), 'color': Color.parse(Theme.fg.color) }">
 
     <tr ng-repeat="gcolor in Theme.gcolors track by gcolor.name"
         ng-click="mark_as_selected_gcolor(gcolor)"
