@@ -49,7 +49,7 @@
       <div class="slider-box">
         <div>Red</div>
         <input class="color-slider" type="range" min="0" max="255"
-               style="{{ slider_gradient(color.rgba, 'r', 0, 255, 2) }}"
+               style="{{ slider_gradient(color.rgba, 'r', 0, 255, 255) }}"
                ng-change="update_current_color(color.rgba)"
                ng-model="color.rgba.r">
         <input class="color-input" type="text" ng-model="color.rgba.r">
@@ -57,7 +57,7 @@
       <div class="slider-box">
         <div>Green</div>
         <input class="color-slider" type="range" min="0" max="255"
-               style="{{ slider_gradient(color.rgba, 'g', 0, 255, 2) }}"
+               style="{{ slider_gradient(color.rgba, 'g', 0, 255, 255) }}"
                ng-change="update_current_color(color.rgba)"
                ng-model="color.rgba.g">
         <input class="color-input" type="text" ng-model="color.rgba.g" >
@@ -65,7 +65,7 @@
       <div class="slider-box">
         <div>Blue</div>
         <input class="color-slider" type="range" min="0" max="255"
-               style="{{ slider_gradient(color.rgba, 'b', 0, 255, 2) }}"
+               style="{{ slider_gradient(color.rgba, 'b', 0, 255, 255) }}"
                ng-change="update_current_color(color.rgba)"
                ng-model="color.rgba.b">
         <input class="color-input" type="text" ng-model="color.rgba.b">
