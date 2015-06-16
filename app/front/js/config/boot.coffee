@@ -14,12 +14,12 @@ Application = angular.module('ThemeEditor',
   ]
 )
 
-# Production mode
-Application.config ['$logProvider','$compileProvider', ($logProvider, $compileProvider) ->
-  # $logProvider.debugEnabled false
-  # $compileProvider.debugInfoEnabled false
-]
-
-Application.run ['$rootScope', 'throbber', 'Editor', ($rootScope, throbber, Editor) ->
+Application.run ['$rootScope', 'Editor', ($rootScope, Editor) ->
   $rootScope.Editor = Editor
 ]
+
+# Production mode
+# Application.config ['$logProvider','$compileProvider', ($logProvider, $compileProvider) ->
+#   $logProvider.debugEnabled false
+#   $compileProvider.debugInfoEnabled false
+# ]

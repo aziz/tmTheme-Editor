@@ -21,7 +21,6 @@
     "angular-strap": "~2.2.4",
     "angular-ui-router": "~0.2.15",
     "angular-ui-sortable": "~0.13.4",
-    "angular-vs-repeat": "~1.0.0-rc9",
     "bootstrap": "2.1.0",
     "FileSaver": "*",
     "jquery": "~2.1.4",

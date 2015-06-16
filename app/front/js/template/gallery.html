@@ -62,15 +62,7 @@
           <span class="theme_count pull-right">{{filtered_gallery.length}}</span>
           Gallery
         </h5>
-        <ul>
-          <li ng-repeat="theme in filtered_gallery=(themes | filter: gallery_filter) track by theme.name"
-              ng-class="{ 'selected': theme.name == selected_theme }">
-              <a ng-href="/#!/editor/theme/{{::theme.name}}">
-                <span class="{{::theme.color_type}}_theme_icon"></span>
-                <span>{{::theme.name}}</span>
-              </a>
-          </li>
-        </ul>
+        <ul ng-bind-html="themes"></ul>
       </div>
     </div>
   </div>
