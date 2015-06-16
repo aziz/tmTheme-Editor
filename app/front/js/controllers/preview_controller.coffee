@@ -26,7 +26,7 @@ Application.controller 'previewController',
     'R'
     'Ruby'
   ]
-  $scope.current_lang = $.cookie("preview_lang") || $scope.available_langs[0]
+  $scope.current_lang = $.cookie("preview_lang") || 'Javascript'
 
   $scope.current_lang_for_api = ->
     lang = $scope.current_lang
