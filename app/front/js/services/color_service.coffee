@@ -1,9 +1,10 @@
-Application.factory "Color", [ ->
+Application.factory "Color", ['tinycolor', (tinycolor) ->
+
   clamp = (val, min= 0, max=1) -> Math.min(max, Math.max(min, val))
   tm_hex8 = (standard_hex_8) -> "##{standard_hex_8[2..8]}#{standard_hex_8[0..1]}"
 
   parse = (color) ->
-    return null unless color and color[0] == "#" and color.length >= 4
+    return color unless color and color[0] == "#" and color.length >= 4
     if color.length > 7
       hex     = color[0..6]
       rgba    = tinycolor(hex).toRgb()

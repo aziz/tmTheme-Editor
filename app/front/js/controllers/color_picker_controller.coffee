@@ -13,7 +13,7 @@ Application.controller 'colorpickerController',
   }
 
   $scope.update_current_color = (new_color) ->
-    $scope.CP.rule[$scope.CP.selector] = Color.tm_encode(tinycolor(new_color))
+    $scope.CP.rule[$scope.CP.selector] = Color.tm_encode(Color.tm_decode(new_color))
 
   $scope.update_alpha = ->
     current_color = Color.tm_decode($scope.CP.rule[$scope.CP.selector])
@@ -42,7 +42,9 @@ Application.controller 'colorpickerController',
     $scope.color.hsla = hsla
     $scope.color.hsva = hsva
 
-  $scope.$watch "Theme.json", -> $scope.colorpalette = $scope.Theme.color_palette()
+  $scope.$watch "Theme.json", ->
+    $scope.colorpalette = $scope.Theme.color_palette()
+  , true
   $scope.$watch "CP.rule[CP.selector]", update_colors
   $scope.$watch "color.hex", (color) ->
     return unless color
@@ -59,7 +61,7 @@ Application.controller 'colorpickerController',
     for value in [min..max] by step
       step_color = angular.copy(source)
       step_color[base] = value
-      steps.push "#{tinycolor(step_color).toHslString()} #{(value/max)*100}%"
+      steps.push "#{Color.tm_decode(step_color).toHslString()} #{(value/max)*100}%"
     "background-image: linear-gradient(to right, #{steps.join(',')}), #{checkboard_bg};"
 
   return

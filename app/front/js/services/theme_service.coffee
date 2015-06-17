@@ -123,7 +123,7 @@ Application.factory "Theme", ['Color', 'json_to_plist', 'plist_to_json', (Color,
         if rule.color and rule.color.startsWith("#")
           colors.push Color.parse(rule.color)
 
-    palette = colors.unique().map((c) -> tinycolor(c) )
+    palette = colors.unique().map((c) -> Color.tm_decode(c) )
     sorted = palette.sortBy((c) ->
       hsv = c.toHsv()
       hsv.h*100 + hsv.s*10 + hsv.v*1000 + (1-hsv.a)*1000000
