@@ -30,11 +30,13 @@ Application.factory "throbber", [ ->
       element.show().addClass("show full_window")
     else
       element.show().addClass("show")
+    return
 
   throbber.off = ->
     loading_counter -= 1 if loading_counter > 0
     # console.log "Off #{loading_counter}"
     element.removeClass("show").hide().removeClass("full_window") if loading_counter == 0
+    return
 
   throbber.visible = -> loading_counter > 0
 

@@ -160,4 +160,5 @@ Application.controller 'editorController',
 
   current_theme.data.then(process_theme, handle_load_error)
 
+  return
 ]

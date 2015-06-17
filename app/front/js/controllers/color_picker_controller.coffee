@@ -62,4 +62,5 @@ Application.controller 'colorpickerController',
       steps.push "#{tinycolor(step_color).toHslString()} #{(value/max)*100}%"
     "background-image: linear-gradient(to right, #{steps.join(',')}), #{checkboard_bg};"
 
+  return
 ]

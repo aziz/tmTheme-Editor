@@ -77,4 +77,5 @@ Application.controller 'statsController',
         light: theme.is_light
       }
 
+  return
 ]

@@ -16,6 +16,7 @@ Application = angular.module('ThemeEditor',
 
 Application.run ['$rootScope', 'Editor', ($rootScope, Editor) ->
   $rootScope.Editor = Editor
+  return
 ]
 
 # Production mode

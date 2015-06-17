@@ -77,4 +77,5 @@ Application.controller 'previewController',
 
   $scope.$watch 'current_lang', $scope.update_preview
 
+  return
 ]

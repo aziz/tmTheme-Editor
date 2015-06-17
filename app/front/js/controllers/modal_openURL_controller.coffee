@@ -5,4 +5,6 @@ Application.controller 'ModalOpenURLController',
   $scope.themeExternalURL = themeExternalURL
   $scope.ok = -> $modalInstance.close $scope.themeExternalURL
   $scope.cancel = -> $modalInstance.dismiss 'cancel'
+
+  return
 ]
