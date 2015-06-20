@@ -1,4 +1,4 @@
-<table ng-if="sidebar.current_tab == 'general'" class="list general">
+<table ng-if="sidebar.current_tab == 'general'" class="list general" id="general-list">
   <thead>
     <tr>
       <th class="align-begin truncate">General Colors</th>
@@ -12,8 +12,10 @@
 
     <tr ng-repeat="gcolor in Theme.gcolors track by gcolor.name"
         ng-click="mark_as_selected_gcolor(gcolor)"
-        ng-class="{ 'selected': gcolor == general_selected_rule }">
-      <td class="name-box">{{gcolor.name}}</td>
+        ng-class="{ 'selected': gcolor == general_selected_rule }"
+        class="rule-{{$index}}">
+      <td class="name-box"
+          ng-dblclick="GeneralColorsPopover.show(gcolor, $index)">{{gcolor.name}}</td>
 
       <td ng-if="!gcolor.isColor">
         <input type="text" class="gcolor-text-input" ng-model="gcolor.color">

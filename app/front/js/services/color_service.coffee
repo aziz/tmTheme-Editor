@@ -45,6 +45,8 @@ Application.factory "Color", ['tinycolor', (tinycolor) ->
 
   is_color = (color) -> if @parse(color) then true else false
 
+  random = -> tinycolor.random().toHexString().toUpperCase()
+
   # Color Effects and Adjustments -----------------------
 
   brightness_contrast = (color, brightness, contrast) ->
@@ -125,6 +127,7 @@ Application.factory "Color", ['tinycolor', (tinycolor) ->
     light_or_dark
     darken
     lighten
+    random
     is_color
     brightness_contrast
     change_hsl

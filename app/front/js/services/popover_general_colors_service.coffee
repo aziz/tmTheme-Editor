@@ -1,4 +1,4 @@
-Application.factory "EditPopover", ['$timeout', ($timeout) ->
+Application.factory "GeneralColorsPopover", ['$timeout', ($timeout) ->
 
   popover = {}
   popover.visible = false
@@ -11,8 +11,8 @@ Application.factory "EditPopover", ['$timeout', ($timeout) ->
     return
 
   popover.set_position = (rule_index) ->
-    popover_el = $('#edit-popover')
-    row  = $("#scopes-list .rule-#{rule_index}")
+    popover_el = $('#gc-popover')
+    row  = $("#general-list .rule-#{rule_index}")
     winH = $(window).height()
     popover_el_height = popover_el.outerHeight()
     row_height = row.outerHeight()

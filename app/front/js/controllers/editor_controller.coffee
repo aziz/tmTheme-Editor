@@ -1,6 +1,6 @@
 Application.controller 'editorController',
-['current_theme', 'Color', 'Editor', 'Theme', 'ColorPicker', 'ThemeLoader', 'FileManager', 'EditPopover', 'NewPopover', 'HUDEffects', 'throbber', '$filter', '$scope', '$location','$window', '$q', '$modal'
-( current_theme,   Color,   Editor,   Theme,   ColorPicker,   ThemeLoader,   FileManager,   EditPopover,   NewPopover,   HUDEffects,   throbber,   $filter,   $scope,   $location,  $window,   $q,   $modal) ->
+['current_theme', 'Color', 'Editor', 'Theme', 'ColorPicker', 'ThemeLoader', 'FileManager', 'EditPopover', 'NewPopover', 'GeneralColorsPopover',  'HUDEffects', 'throbber', '$filter', '$scope', '$location','$window', '$q', '$modal'
+( current_theme,   Color,   Editor,   Theme,   ColorPicker,   ThemeLoader,   FileManager,   EditPopover,   NewPopover,   GeneralColorsPopover,    HUDEffects,   throbber,   $filter,   $scope,   $location,  $window,   $q,   $modal ) ->
 
   default_external_theme_url = 'https://raw.githubusercontent.com/theymaybecoders/sublime-tomorrow-theme/master/Tomorrow.tmTheme'
 
@@ -8,6 +8,7 @@ Application.controller 'editorController',
   $scope.Theme = Theme
   $scope.HUD   = HUDEffects
   $scope.EditPopover = EditPopover
+  $scope.GeneralColorsPopover = GeneralColorsPopover
   $scope.NewPopover  = NewPopover
   $scope.CP  = ColorPicker
 
@@ -19,7 +20,9 @@ Application.controller 'editorController',
   $scope.hovered_rule   = null
   $scope.selected_rule  = null
   $scope.general_selected_rule = null
-  $scope.mark_as_selected_gcolor = (rule) -> $scope.general_selected_rule = rule
+  $scope.mark_as_selected_gcolor = (rule) ->
+    $scope.general_selected_rule = rule
+    GeneralColorsPopover.hide()
 
   $scope.dropdowns_max_height = $window.innerHeight - 100
   $($window).resize((-> $scope.$apply -> $scope.dropdowns_max_height = $window.innerHeight - 100).debounce(500))
@@ -27,6 +30,7 @@ Application.controller 'editorController',
   $scope.mark_as_selected = (rule) ->
     $scope.selected_rule = rule
     EditPopover.hide()
+    return
 
   $scope.scopes_filter = { name: '' }
   update_scopes_filter = ->
@@ -59,6 +63,14 @@ Application.controller 'editorController',
   $scope.hide_all_popovers = ->
     $scope.EditPopover.hide()
     $scope.NewPopover.hide()
+
+  $scope.delete_general_rule = (rule) ->
+    return unless rule and rule.deletable
+    index = Theme.gcolors.findIndex(rule)
+    Theme.remove_gcolor(rule)
+    $scope.general_selected_rule = Theme.gcolors[index]
+    GeneralColorsPopover.hide()
+    return
 
   $scope.delete_rule = (rule) ->
     return unless rule
@@ -118,10 +130,17 @@ Application.controller 'editorController',
   $scope.$watchCollection 'scopes_filter', update_scopes_filter
   $scope.$watch 'EditPopover.visible', (visible) ->
     if visible
-      $('#preview, #gallery').one 'click', (e) ->
+      $('#preview, #gallery, .sidebar').one 'click', (e) ->
         $scope.$apply ->
           EditPopover.visible = false
         return
+  $scope.$watch 'GeneralColorsPopover.visible', (visible) ->
+    if visible
+      $('#preview, #gallery, .sidebar').one 'click', (e) ->
+        $scope.$apply ->
+          GeneralColorsPopover.visible = false
+        return
+
   #-------------------------------------------------------------------------
 
   save_external_to_local_storage = ->

@@ -1,0 +1,50 @@
+<div id="gc-popover" class="edit-popover gcolor-popover" ng-cloak
+     ng-class="{ 'slide' : Editor.Gallery.visible }"
+     ng-show="GeneralColorsPopover.visible">
+
+  <div class="group">
+    <label class="big">{{GeneralColorsPopover.rule.name}}</label>
+    <div class="fg-box" ng-if="GeneralColorsPopover.rule.isColor">
+      <div class="colorpicker-box"
+           ng-click="CP.pick(GeneralColorsPopover.rule, 'color')"
+           ng-class="{ 'has_color': Color.is_color(GeneralColorsPopover.rule.color) }"
+           ng-style="{ 'background-color': Color.parse(GeneralColorsPopover.rule.color) }"></div>
+      <a ng-click="Theme.reset_color(GeneralColorsPopover.rule, 'color')" class="reset">Reset</a>
+      <input class="colortext-input" type="text" ng-model="GeneralColorsPopover.rule.color">
+    </div>
+
+    <div ng-if="!GeneralColorsPopover.rule.isColor">
+      <textarea ng-model="GeneralColorsPopover.rule.color" msd-elastic></textarea>
+    </div>
+  </div>
+
+  <div class="group" ng-if="GeneralColorsPopover.rule.description">
+    <label>Description</label>
+    <div class="description" ng-bind-html="GeneralColorsPopover.rule.description"
+          style="max-width:290px"></div>
+  </div>
+
+  <div class="group" ng-if="GeneralColorsPopover.rule.preview">
+    <label>Preview</label>
+    <div class="gcolor-preview-box" ng-bind-html="GeneralColorsPopover.rule.preview"></div>
+  </div>
+
+  <div class="group" ng-if="GeneralColorsPopover.rule.editor_support">
+    <label>Editor Support</label>
+    <span class="editor_support">
+      <span ng-repeat="editor in GeneralColorsPopover.rule.editor_support.editors"
+          ng-class="editor"
+          class="editor"></span>
+    </span>
+    <span>{{GeneralColorsPopover.rule.editor_support.text}}</span>
+  </div>
+
+
+  <div class="btn-sep">
+    <button ng-if="GeneralColorsPopover.rule.deletable"
+            ng-click="delete_general_rule(GeneralColorsPopover.rule)"
+            class="btn btn-small btn-danger pull-left">Delete</button>
+    <button ng-click="GeneralColorsPopover.hide()"
+            class="btn btn-small btn-primary transparent pull-right">Close</button>
+  </div>
+</div>

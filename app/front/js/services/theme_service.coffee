@@ -9,9 +9,6 @@ Application.factory "Theme",
   fg = {}
   _border_color = null
 
-  isColor = (key) ->
-    not (key.endsWith('Options') or key.endsWith('Width'))
-
   find_general_rules = (rules) ->
     rules.find((rule) -> rule.settings.lineHighlight) or rules[0]
 
@@ -24,15 +21,9 @@ Application.factory "Theme",
       if @json && @json.settings
         general_rules = find_general_rules(@json.settings)
         for key, val of general_rules.settings
-          g_color = {
-            name: key
-            color: val
-            isColor: isColor(key)
-            deletable: GeneralKB[key]?.deletable
-            preview_html: GeneralKB[key]?.preview_html
-            description: GeneralKB[key]?.description
-          }
-          @gcolors.push(g_color)
+          defaults = GeneralKB[key] or {}
+          extended = angular.extend({}, defaults, { name: key, color: val })
+          @gcolors.push(extended)
         @bg = @gcolors.find((gc) -> gc.name == 'background')
         @fg = @gcolors.find((gc) -> gc.name == 'foreground')
         _border_color = null
@@ -57,10 +48,12 @@ Application.factory "Theme",
 
   add_gcolor = (rule_name) ->
     rule = GeneralKB[rule_name]
+    rule.color = Color.random() if rule.isColor
     @gcolors.push(rule)
     return
 
   remove_gcolor = (rule) ->
+    return unless rule and rule.deletable
     @gcolors.remove(rule)
     return
 

@@ -23,19 +23,21 @@
   <div ng-if="sidebar.current_tab == 'general'" class="actions">
     <div class="actions">
       <div class="dropup" dropdown ng-show="Theme.json">
-        <a class="add dropdown-toggle"
+        <a class="add"
+           ng-class="{'dropdown-toggle': addables.length > 0, 'disabled': addables.length == 0 }"
            dropdown-toggle
            bs-tooltip="{title: 'Add'}"
            data-placement="top" data-container="body">
           <i class="icon-plus"></i>
         </a>
         <ul class="dropdown-menu pull-right" ng-style="{'max-height': dropdowns_max_height }">
-          <li ng-repeat="rule in Theme.addable_gcolors() | orderBy: rule">
+          <li ng-repeat="rule in (addables = Theme.addable_gcolors()) | orderBy: rule">
             <a ng-click="Theme.add_gcolor(rule)">{{rule}}</a>
           </li>
         </ul>
       </div>
-      <div ng-click="Theme.remove_gcolor(general_selected_rule)"
+
+      <div ng-click="delete_general_rule(general_selected_rule)"
            ng-class="{'disabled': !(general_selected_rule && general_selected_rule.deletable) }" class="remove"
            bs-tooltip="{title: 'Remove'}" data-placement="top" data-container="body">
         <i class="icon-minus"></i>
