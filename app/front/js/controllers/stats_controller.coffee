@@ -6,9 +6,10 @@ Application.controller 'statsController',
   $scope.scopes_data = []
   $scope.general_data = []
   $scope.progress = 0
-  $scope.predicate = 'name'
-  $scope.reverse = false
-  $scope.scopes_reverse = false
+
+  $scope.sort = {}
+  $scope.sort.predicate = 'name'
+  $scope.sort.reverse = false
 
   $scope.scopes_predicate = 'count'
   $scope.scopes_reverse = true
