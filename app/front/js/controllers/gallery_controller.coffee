@@ -9,12 +9,15 @@ Application.controller 'galleryController',
   $scope.external_themes = []
   $scope.themes = []
   $scope.filtered_gallery = []
+  $scope.gallery_filter = Editor.Gallery.filter
+
   ThemeLoader.themes.then (data) ->
     $scope.themes_data = data
     render_theme_list(data)
 
-  render_theme_list = (data) ->
-    return unless data
+  render_theme_list = (list) ->
+    return unless list
+    data = $filter('filter')(list, $scope.gallery_filter)
     $scope.filtered_gallery = data
     themes_html = ""
     selected = Editor.current_theme.name
@@ -29,8 +32,6 @@ Application.controller 'galleryController',
       """
     $scope.themes = themes_html
 
-
-  $scope.gallery_filter = {name: ''}
   $scope.toggle_gallery_type_filter = (type) ->
     if $scope.gallery_filter.color_type == type
       delete $scope.gallery_filter.color_type
@@ -39,8 +40,7 @@ Application.controller 'galleryController',
 
   $scope.$watch 'gallery_filter', (n, o) ->
     return unless n
-    data = $filter('filter')($scope.themes_data, $scope.gallery_filter)
-    render_theme_list(data)
+    render_theme_list($scope.themes_data)
   , true
 
   $scope.remove_local_theme = (theme) ->

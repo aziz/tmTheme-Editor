@@ -2,6 +2,7 @@ Application.factory "Editor", [ ->
 
   Gallery = {}
   Gallery.visible = angular.fromJson($.cookie("gallery_visible") || false)
+  Gallery.filter = {name: ''}
   Gallery.toggle = ->
     $('body').removeClass('transition-off')
     if Gallery.visible
