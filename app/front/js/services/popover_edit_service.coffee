@@ -1,4 +1,4 @@
-Application.factory "EditPopover", [ ->
+Application.factory "EditPopover", ['$timeout', ($timeout) ->
 
   popover = {}
   popover.visible = false
@@ -7,34 +7,35 @@ Application.factory "EditPopover", [ ->
   popover.show = (rule, rule_index) ->
     @rule = rule
     @visible = true
-    @set_position(rule_index)
+    $timeout => @set_position(rule_index)
     return
 
   popover.set_position = (rule_index) ->
     popover_el = $('#edit-popover')
     row  = $("#scope-lists .rule-#{rule_index}")
-    top  = row.offset().top
     winH = $(window).height()
+    popover_el_height = popover_el.outerHeight()
+    row_height = row.outerHeight()
+    top  = row.offset().top
 
-    if (winH - top) < 160
+    if (winH - top) < popover_el_height/2
       popover_el.css({
         'top': 'auto'
         'left': ''
         'bottom': winH - top
       }).removeClass('on-bottom').addClass('on-top')
-    else if top < 160
+    else if top < popover_el_height/2
       popover_el.css({
         'left': ''
-        'top': top + row.outerHeight()
+        'top': top + row_height
         'bottom': 'auto'
       }).removeClass('on-top').addClass('on-bottom')
     else
       popover_el.css({
-        'top': top + (row.outerHeight()/2) - 140
+        'top': top + (row_height/2) - (popover_el_height/2)
         'left': ''
         'bottom': 'auto'
       }).removeClass('on-top').removeClass('on-bottom')
-
     return true
 
   return popover
