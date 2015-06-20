@@ -21,6 +21,9 @@ Application.controller 'editorController',
   $scope.general_selected_rule = null
   $scope.mark_as_selected_gcolor = (rule) -> $scope.general_selected_rule = rule
 
+  $scope.dropdowns_max_height = $window.innerHeight - 100
+  $($window).resize((-> $scope.$apply -> $scope.dropdowns_max_height = $window.innerHeight - 100).debounce(500))
+
   $scope.mark_as_selected = (rule) ->
     $scope.selected_rule = rule
     EditPopover.hide()
@@ -146,7 +149,7 @@ Application.controller 'editorController',
     $scope.Theme.type = current_theme.type
     processed = Theme.process(data)
     if processed.error
-      console.log processed.error
+      console.warn processed.error
       # $location.path(previous_path)
       $scope.alerts.push { type: 'danger', msg: processed.msg }
       false

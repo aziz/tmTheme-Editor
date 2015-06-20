@@ -1,4 +1,6 @@
-Application.factory "Theme", ['Color', 'json_to_plist', 'plist_to_json', (Color, json_to_plist, plist_to_json) ->
+Application.factory "Theme",
+['Color', 'GeneralKB', 'json_to_plist', 'plist_to_json',
+ (Color,   GeneralKB,   json_to_plist,   plist_to_json) ->
   xml  = ''
   json = ''
   type = ''
@@ -22,7 +24,14 @@ Application.factory "Theme", ['Color', 'json_to_plist', 'plist_to_json', (Color,
       if @json && @json.settings
         general_rules = find_general_rules(@json.settings)
         for key, val of general_rules.settings
-          g_color = {'name': key, 'color': val, 'isColor': isColor(key) }
+          g_color = {
+            name: key
+            color: val
+            isColor: isColor(key)
+            deletable: GeneralKB[key]?.deletable
+            preview_html: GeneralKB[key]?.preview_html
+            description: GeneralKB[key]?.description
+          }
           @gcolors.push(g_color)
         @bg = @gcolors.find((gc) -> gc.name == 'background')
         @fg = @gcolors.find((gc) -> gc.name == 'foreground')
@@ -40,8 +49,23 @@ Application.factory "Theme", ['Color', 'json_to_plist', 'plist_to_json', (Color,
     globals.settings = {}
     globals.settings[gc.name] = gc.color for gc in @gcolors
 
+  addable_gcolors = ->
+    return unless @gcolors
+    known = Object.extended(GeneralKB).keys()
+    current = (gc.name for gc in @gcolors)
+    known.subtract(current)
+
+  add_gcolor = (rule_name) ->
+    rule = GeneralKB[rule_name]
+    @gcolors.push(rule)
+    return
+
+  remove_gcolor = (rule) ->
+    @gcolors.remove(rule)
+    return
+
   is_font_style = (fontStyle, rule) ->
-    rule.settings && rule.settings.fontStyle && rule.settings.fontStyle.indexOf(fontStyle) >= 0
+    rule?.settings?.fontStyle?.indexOf(fontStyle) >= 0
 
   toggle_font_style = (fontStyle, rule) ->
     rule.settings = {} unless rule.settings
@@ -76,7 +100,7 @@ Application.factory "Theme", ['Color', 'json_to_plist', 'plist_to_json', (Color,
 
   css_scopes = ->
     styles = ''
-    if @json && @json.settings
+    if @json and @json.settings
       for rule in @json.settings.compact()
         fg_color  = if rule?.settings?.foreground then Color.parse(rule.settings.foreground) else null
         bg_color  = if rule?.settings?.background then Color.parse(rule.settings.background) else null
@@ -140,9 +164,6 @@ Application.factory "Theme", ['Color', 'json_to_plist', 'plist_to_json', (Color,
     formatted = sorted.map( (c) -> c.toRgbString() )
     formatted.unique()
 
-
-
-  # TODO: some of these do not need to be exposed
   return {
     process
     download
@@ -151,6 +172,9 @@ Application.factory "Theme", ['Color', 'json_to_plist', 'plist_to_json', (Color,
     json
     type
     gcolors
+    addable_gcolors
+    add_gcolor
+    remove_gcolor
     update_general_colors
     is_font_style
     toggle_font_style

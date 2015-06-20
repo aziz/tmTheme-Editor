@@ -42,9 +42,9 @@ Application.controller 'colorpickerController',
     $scope.color.hsla = hsla
     $scope.color.hsva = hsva
 
-  $scope.$watch "Theme.json", ->
-    $scope.colorpalette = $scope.Theme.color_palette()
-  , true
+  $scope.$watch 'Theme.json', (-> $scope.colorpalette = $scope.Theme.color_palette()), true
+  $scope.$watch 'Theme.gcolors', (-> $scope.colorpalette = $scope.Theme.color_palette()), true
+
   $scope.$watch "CP.rule[CP.selector]", update_colors
   $scope.$watch "color.hex", (color) ->
     return unless color
