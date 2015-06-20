@@ -101,6 +101,7 @@ Application.controller 'editorController',
 
   $scope.save_theme = ->
     return unless Theme.json
+    Theme.update_general_colors()
     if Theme.type == 'Local File'
       FileManager.save(current_theme.name, Theme.to_plist())
     else

@@ -10,6 +10,9 @@ Application.factory "Theme", ['Color', 'json_to_plist', 'plist_to_json', (Color,
   isColor = (key) ->
     not (key.endsWith('Options') or key.endsWith('Width'))
 
+  find_general_rules = (rules) ->
+    rules.find((rule) -> rule.settings.lineHighlight) or rules[0]
+
   process = (data) ->
     try
       @xml = data
@@ -17,7 +20,8 @@ Application.factory "Theme", ['Color', 'json_to_plist', 'plist_to_json', (Color,
       @gcolors = []
       throw "can not covert to json" unless @json
       if @json && @json.settings
-        for key, val of @json.settings[0].settings
+        general_rules = find_general_rules(@json.settings)
+        for key, val of general_rules.settings
           g_color = {'name': key, 'color': val, 'isColor': isColor(key) }
           @gcolors.push(g_color)
         @bg = @gcolors.find((gc) -> gc.name == 'background')
@@ -32,7 +36,7 @@ Application.factory "Theme", ['Color', 'json_to_plist', 'plist_to_json', (Color,
 
   # TODO: should not be exposed, only used in save which should be part of this service
   update_general_colors = ->
-    globals = @json.settings[0]
+    globals = find_general_rules(@json.settings)
     globals.settings = {}
     globals.settings[gc.name] = gc.color for gc in @gcolors
 
@@ -50,12 +54,10 @@ Application.factory "Theme", ['Color', 'json_to_plist', 'plist_to_json', (Color,
 
   reset_color = (rule, attr) -> delete rule.settings[attr]
 
-  selection_color = -> @gcolors.length > 0 && @gcolors.find((gc) -> gc.name == 'selection')?.color
-  line_highlight = -> @gcolors.length > 0 && @gcolors.find((gc) -> gc.name == 'lineHighlight')?.color
-  # TODO: should not be exposed
-  gutter_fg = -> @gcolors.length > 0 && @gcolors.find((gc) -> gc.name == 'gutterForeground')?.color
-  # TODO: should not be exposed
-  gutter_bg = -> @gcolors.length > 0 && @gcolors.find((gc) -> gc.name == 'gutter')?.color
+  selection_color = -> @gcolors?.find((gc) -> gc.name == 'selection')?.color
+  line_highlight = -> @gcolors?.find((gc) -> gc.name == 'lineHighlight')?.color
+  gutter_fg = -> @gcolors?.find((gc) -> gc.name == 'gutterForeground')?.color
+  gutter_bg = -> @gcolors?.find((gc) -> gc.name == 'gutter')?.color
 
   border_color = ->
     return _border_color if _border_color
@@ -96,13 +98,14 @@ Application.factory "Theme", ['Color', 'json_to_plist', 'plist_to_json', (Color,
   css_gutter = ->
     style = ''
     if @json && @json.settings && @bg.color
-      bgcolor = Color.parse(@bg.color)
-      if Color.light_or_dark(bgcolor) == 'light'
-        gutter_fg = Color.parse(@gutter_fg.color) || Color.darken(bgcolor, 18)
-        gutter_bg = Color.parse(@gutter_bg.color) || Color.darken(bgcolor, 3)
-      else
-        gutter_fg = Color.parse(@gutter_fg.color) || Color.lighten(bgcolor, 18)
-        gutter_bg = Color.parse(@gutter_bg.color) || Color.lighten(bgcolor, 3)
+      gutter_bg = Color.parse(@gutter_bg()) || 'transparent'
+      gutter_fg = Color.parse(@gutter_fg())
+      unless gutter_fg
+        bgcolor = Color.parse(@bg.color)
+        gutter_fg =  if Color.light_or_dark(bgcolor) == 'light'
+            Color.darken(bgcolor, 18)
+          else
+            Color.lighten(bgcolor, 18)
       style = ".preview pre .l:before { color: #{gutter_fg}; background-color: #{gutter_bg}; }"
     style
 
