@@ -15,10 +15,14 @@ Application.factory "Editor", [ ->
 
   version = $("#version").attr("content")
 
+  Sidebar = {}
+  Sidebar.current_tab = 'scopes'
+
   current_theme = {}
 
   {
     Gallery
+    Sidebar
     version
     current_theme
   }

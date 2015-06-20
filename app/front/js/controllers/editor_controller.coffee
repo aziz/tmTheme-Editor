@@ -15,7 +15,7 @@ Application.controller 'editorController',
   $scope.alerts = []
   $scope.closeAlert = (index) -> $scope.alerts.splice(index, 1)
 
-  $scope.current_tab    = 'scopes'
+  $scope.sidebar = Editor.Sidebar
   $scope.hovered_rule   = null
   $scope.selected_rule  = null
   $scope.general_selected_rule = null

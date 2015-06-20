@@ -1,9 +1,9 @@
 <ng-include src="'template/action_bar.html'"></ng-include>
 
 <div ng-class="{ 'slide' : Editor.Gallery.visible }" class="tabbar" ng-cloak>
-  <a ng-click="current_tab = 'scopes'"  ng-class="{'active': current_tab == 'scopes'}">Scopes</a>
-  <a ng-click="current_tab = 'general'" ng-class="{'active': current_tab == 'general'}">General</a>
-  <a ng-click="current_tab = 'info'"    ng-class="{'active': current_tab == 'info'}">Info</a>
+  <a ng-click="sidebar.current_tab = 'scopes'"  ng-class="{'active': sidebar.current_tab == 'scopes'}">Scopes</a>
+  <a ng-click="sidebar.current_tab = 'general'" ng-class="{'active': sidebar.current_tab == 'general'}">General</a>
+  <a ng-click="sidebar.current_tab = 'info'"    ng-class="{'active': sidebar.current_tab == 'info'}">Info</a>
 </div>
 
 <div class="sidebar" ng-cloak
