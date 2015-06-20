@@ -43,8 +43,8 @@ Application.factory "HUDEffects", ['Theme', 'Color', (Theme, Color) ->
         if rule.settings.background
           rule.settings.background = Color[filter](rule.settings.background)
     for rule in Theme.gcolors
-      unless rule.name.endsWith("Options")
-        rule.color = Color[filter](rule.color)
+      continue unless rule.isColor
+      rule.color = Color[filter](rule.color)
     original_colors  = angular.copy(Theme.json.settings)
     original_gcolors = angular.copy(Theme.gcolors)
     return
@@ -58,6 +58,7 @@ Application.factory "HUDEffects", ['Theme', 'Color', (Theme, Color) ->
           Theme.json.settings[i].settings.background = apply_color_adjustments(bg)
     if @apply_to_general
       for rule,i in original_gcolors
+        continue unless rule.isColor
         Theme.gcolors[i].color = apply_color_adjustments(rule.color)
     return
   ).throttle(40)

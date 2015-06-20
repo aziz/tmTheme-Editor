@@ -7,6 +7,9 @@ Application.factory "Theme", ['Color', 'json_to_plist', 'plist_to_json', (Color,
   fg = {}
   _border_color = null
 
+  isColor = (key) ->
+    not (key.endsWith('Options') or key.endsWith('Width'))
+
   process = (data) ->
     try
       @xml = data
@@ -15,7 +18,8 @@ Application.factory "Theme", ['Color', 'json_to_plist', 'plist_to_json', (Color,
       throw "can not covert to json" unless @json
       if @json && @json.settings
         for key, val of @json.settings[0].settings
-          @gcolors.push({'name': key, 'color': val})
+          g_color = {'name': key, 'color': val, 'isColor': isColor(key) }
+          @gcolors.push(g_color)
         @bg = @gcolors.find((gc) -> gc.name == 'background')
         @fg = @gcolors.find((gc) -> gc.name == 'foreground')
         _border_color = null
@@ -105,9 +109,11 @@ Application.factory "Theme", ['Color', 'json_to_plist', 'plist_to_json', (Color,
   css_selection = ->
     style = ''
     if @json && @json.settings
-      style += "pre::selection { background: transparent }"
-      style += ".preview pre *::selection { background: #{Color.parse(@selection_color())} }\n"
-      style += ".selected { background-color: #{Color.parse(@line_highlight())} }"
+      style = """
+        pre::selection { background: transparent }
+        .preview pre *::selection { background: #{Color.parse(@selection_color())}; }
+        .selected { background-color: #{Color.parse(@line_highlight())} }
+      """
     style
 
   color_palette = ->

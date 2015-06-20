@@ -15,11 +15,11 @@
         ng-class="{ 'selected': gcolor == general_selected_rule }">
       <td class="name-box">{{gcolor.name}}</td>
 
-      <td ng-if="gcolor.name.endsWith('Options')">
+      <td ng-if="!gcolor.isColor">
         <input type="text" class="gcolor-text-input" ng-model="gcolor.color">
       </td>
 
-      <td ng-if="!gcolor.name.endsWith('Options')">
+      <td ng-if="gcolor.isColor">
           <div class="colorpicker-box"
                ng-click="CP.pick(gcolor, 'color')"
                ng-class="{ 'has_color': Color.is_color(gcolor.color) }"
