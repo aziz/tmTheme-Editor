@@ -2,7 +2,7 @@
      ng-class="{ 'slide' : Editor.Gallery.visible }" ng-show="NewPopover.visible">
 
   <label>Name</label>
-  <textarea class="name-input" ng-model="NewPopover.rule.name" focus-me="NewPopover.visible"></textarea>
+  <textarea class="name-input" ng-model="NewPopover.rule.name" focus-me="NewPopover.visible" msd-elastic></textarea>
 
   <table>
     <tr>
@@ -37,7 +37,7 @@
   </table>
 
   <label>Scope</label>
-  <textarea ng-model="NewPopover.rule.scope"></textarea>
+  <textarea ng-model="NewPopover.rule.scope" msd-elastic></textarea>
 
   <div class="btn-sep">
     <button ng-click="add_rule(NewPopover.rule)" class="btn btn-small btn-primary transparent pull-right">&nbsp;&nbsp;Add&nbsp;&nbsp;</button>

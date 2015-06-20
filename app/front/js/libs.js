@@ -23,3 +23,4 @@
 //= require angular-ui-sortable/sortable.js
 //= require jquery-minicolors/jquery.minicolors.js
 //= require angular-minicolors/angular-minicolors.js
+//= require angular-elastic/elastic.js

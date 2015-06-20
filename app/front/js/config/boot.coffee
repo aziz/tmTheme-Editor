@@ -11,6 +11,7 @@ Application = angular.module('ThemeEditor',
     'ui.bootstrap.modal'
     'mgcrea.ngStrap.tooltip'
     'minicolors'
+    'monospaced.elastic'
   ]
 )
 

@@ -1,6 +1,6 @@
 <div id="edit-popover" class="edit-popover" ng-cloak ng-class="{ 'slide' : Editor.Gallery.visible }" ng-show="EditPopover.visible">
   <label>Name</label>
-  <textarea class="name-input" ng-model="EditPopover.rule.name" focus-me="EditPopover.visible"></textarea>
+  <textarea class="name-input" ng-model="EditPopover.rule.name" focus-me="EditPopover.visible" msd-elastic></textarea>
 
   <table>
     <tr>
@@ -35,7 +35,7 @@
   </table>
 
   <label>Scope</label>
-  <textarea ng-model="EditPopover.rule.scope"></textarea>
+  <textarea ng-model="EditPopover.rule.scope" msd-elastic></textarea>
 
   <div class="btn-sep">
     <button ng-click="delete_rule(EditPopover.rule)" class="btn btn-small btn-danger pull-left">Delete</button>
