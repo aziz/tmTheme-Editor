@@ -42,6 +42,7 @@ Application.controller 'previewController',
   # Custom Code
   $scope.custom_code = localStorage.getItem('custom_code') || ''
   $scope.custom_code_editor_visible = false
+  $scope.scope_hunter_visible = false
   $scope.update_preview = ->
     # throbber.on(full_window: true)
     $.cookie("preview_lang", $scope.current_lang)

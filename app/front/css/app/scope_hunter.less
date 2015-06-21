@@ -1,0 +1,78 @@
+@import (reference) "lib/bootstrap_mixins.less";
+@import (reference) "lib/mixins";
+@import (reference) "lib/variables";
+
+.hunted {
+  background-color: #FFE792 !important;
+  color: #00161B !important;
+}
+
+.scope_hunter_box {
+  position: absolute;
+  bottom: 33px;
+  background-color: #FFF;
+  left: 0;
+  right: 0;
+  height: 175px;
+  font-size: 11px;
+  line-height: 16px;
+  color: #303942;
+  z-index: 9999;
+  overflow: scroll;
+
+  .header {
+    background-color: #eee;
+    border-bottom: 1px solid #BDBDBD;
+    border-top: 1px solid #BDBDBD;
+    padding: 0 10px;
+  }
+
+  .content {
+    padding: 0 10px;
+
+    .key {
+      color: #B771BD;
+      display: inline-block;
+      vertical-align: text-top;
+    }
+
+    .sep {
+      color: #82888d;
+      font-weight: bold;
+      display: inline-block;
+      vertical-align: text-top;
+    }
+    .color {
+      display: inline-block;
+      vertical-align: text-top;
+      width: 8px;
+      height: 8px;
+      border: 1px solid #b0b0b0;
+      position: relative;
+      top: 3px;
+    }
+
+    &.apprearance .value {
+      font-family: @monoFontFamily;
+    }
+  }
+
+  .element-scope, .value {
+    color: #FF6666;
+    max-width: 600px;
+    display: inline-block;
+    vertical-align: text-top;
+  }
+}
+
+.scope_hunter_toggle_btn {
+  position: absolute;
+  bottom: 3px;
+  left: 4px;
+  z-index: 998;
+
+  .icon {
+    position: relative;
+    top: 1px;
+  }
+}

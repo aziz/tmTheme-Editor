@@ -5,6 +5,7 @@
 <div ng-controller="previewController">
   <!-- preview  -->
   <div id="preview" class="preview"
+       inline-edit
        ng-class="{ 'slide': Editor.Gallery.visible, 'no-scroll': EditPopover.visible }"
        ng-style="{ 'background-color': Color.parse(Theme.bg.color), 'color': Color.parse(Theme.fg.color) }">
     <pre ng-if="Theme.json"
@@ -13,36 +14,6 @@
          ng-style="{ 'color': Color.parse(Theme.fg.color) }"></pre>
   </div>
 
-  <!-- preview custom code -->
-  <div ng-cloak id="custom_code" class="preview custom_code_edtior"
-       ng-show="custom_code_editor_visible"
-       ng-class="{ 'slide' : Editor.Gallery.visible }">
-    <textarea spellcheck='false'
-              focus-me="custom_code_editor_visible"
-              ng-model="custom_code"
-              ng-style="{ 'background-color': Color.parse(Theme.bg.color), 'color': Color.parse(Theme.fg.color) }"></textarea>
-    <div class="cc_header">
-      <p class="pull-left">Paste your code below and press Save button.</p>
-    </div>
-  </div>
-  <div class="custom_code_btn_bar" ng-show="custom_code_editor_visible" ng-cloak>
-    <a class="btn btn-small btn-danger" ng-click="custom_code='';custom_code_editor_visible = false;update_preview()">
-       &nbsp;Clear&nbsp;
-    </a>
-    <a class="btn btn-small btn-success" ng-click="update_preview()">
-       &nbsp;&nbsp;&nbsp;Save&nbsp;&nbsp;&nbsp;
-    </a>
-  </div>
-
-  <!-- preview footer -->
-  <div scope-bar></div>
-  <div class="btn-group custom_code_toggle_btn" ng-cloak ng-show="Theme.json">
-    <a class="btn btn-mac btn-small"
-       ng-click="custom_code_editor_visible = !custom_code_editor_visible"
-       ng-class="{'active': custom_code_editor_visible}">
-      Customize Preview Code
-    </a>
-  </div>
   <div class="btn-group dropup languages-dd" dropdown ng-cloak ng-show="Theme.json">
     <a class="btn btn-mac btn-small dropdown-toggle" dropdown-toggle>
       <span class="icon-arrow-combo ud-arrow"></span>
@@ -54,4 +25,7 @@
       </li>
     </ul>
   </div>
+
+  <ng-include src="'template/preview/custom_code.html'"></ng-include>
+  <ng-include src="'template/preview/scope_hunter.html'"></ng-include>
 </div>

@@ -1,0 +1,39 @@
+<div ng-cloak class="scope-bar">
+  <div class="header">Current Scope</div>
+  <div class="content element-scope">{{ hovered_element_scope }}</div>
+
+  <div class="header">Matching Rule</div>
+  <div>
+    <div class="content rule name">
+      <span class="key">Name</span><span class="sep">:</span>
+      <span class="value">{{ hovered_rule.name }}</span>
+    </div>
+    <div class="content rule scope">
+      <span class="key">Scope</span><span class="sep">:</span>
+      <span class="value">{{ hovered_rule.scope }}</span>
+    </div>
+  </div>
+
+  <div class="header">Appearance</div>
+  <div>
+    <div class="content apprearance fg">
+      <span class="key">Foreground</span><span class="sep">:</span>
+      <span class="color"
+            ng-show="hovered_rule.settings.foreground"
+            ng-style="{ 'background-color': Color.parse(hovered_rule.settings.foreground) }"></span><span
+            class="value">{{ hovered_rule.settings.foreground | uppercase }}</span>
+
+    </div>
+    <div class="content apprearance bg">
+      <span class="key">Background</span><span class="sep">:</span>
+      <span class="color"
+            ng-show="hovered_rule.settings.background"
+            ng-style="{ 'background-color': Color.parse(hovered_rule.settings.background) }"></span><span
+            class="value">{{ hovered_rule.settings.background | uppercase }}</span>
+    </div>
+    <div class="content apprearance fs">
+      <span class="key">Font Style</span><span class="sep">:</span>
+      <span class="value">{{ hovered_rule.settings.fontStyle }}</span>
+    </div>
+  </div>
+</div>
