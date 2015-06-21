@@ -46,7 +46,7 @@ if config.env_production
     buildDir:       config.assets_build_dir,
     paths:          config.assets,
     compress:       true,
-    fingerprinting: false
+    fingerprinting: true
   }, register_mincer_engines)
 
 app.use (req, res, next) ->
