@@ -1,8 +1,18 @@
-Application.directive 'scopeBar', ['ScopeMatcher', (ScopeMatcher) ->
+Application.directive 'scopeBar', ['ScopeMatcher', '$timeout', (ScopeMatcher, $timeout) ->
   replace: true
   templateUrl: 'template/scope_hunter/scope_hunter.html'
   link: ($scope, element, attr) ->
     preview_el = $('#preview')
+
+    $scope.scroll_rule_into_view = (rule) ->
+      $scope.Editor.Sidebar.current_tab = 'scopes'
+      $scope.Editor.ScopeHunter.hovered_rule = rule
+      scroll_finished = ->
+        $timeout((-> $scope.Editor.ScopeHunter.hovered_rule = null), 2000)
+      scroll_into_view = ->
+        $('.hovered').scrollintoview(duration: 400, direction: 'vertical', complete: scroll_finished)
+      $timeout scroll_into_view
+      return
 
     mousemove = (event) ->
       entityScope = event.target.dataset.entityScope
@@ -27,6 +37,7 @@ Application.directive 'scopeBar', ['ScopeMatcher', (ScopeMatcher) ->
           preview_el.bind 'mousemove', mousemove
           element.removeClass 'hunted'
         else
+          mousemove(event)
           preview_el.find('.hunted').removeClass('hunted')
           preview_el.unbind 'mousemove'
           element.addClass 'hunted'

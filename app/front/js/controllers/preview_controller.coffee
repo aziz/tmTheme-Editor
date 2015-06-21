@@ -1,6 +1,6 @@
 Application.controller 'previewController',
-['$scope', '$http', 'throbber', 'FileManager', '$window', '$q', '$sce',
-( $scope,   $http,   throbber,   FileManager,   $window,   $q,   $sce ) ->
+['$scope', '$http', 'throbber', 'FileManager', 'Editor', '$window', '$q', '$sce',
+( $scope,   $http,   throbber,   FileManager,   Editor,   $window,   $q,   $sce ) ->
 
   cache_prefix = "cache_sample"
 
@@ -42,7 +42,8 @@ Application.controller 'previewController',
   # Custom Code
   $scope.custom_code = localStorage.getItem('custom_code') || ''
   $scope.custom_code_editor_visible = false
-  $scope.scope_hunter_visible = false
+  $scope.ScopeHunter = Editor.ScopeHunter
+
   $scope.update_preview = ->
     # throbber.on(full_window: true)
     $.cookie("preview_lang", $scope.current_lang)

@@ -1,16 +1,25 @@
 <div ng-cloak class="scope-bar">
-  <div class="header">Current Scope</div>
+  <div class="header">
+    Current Scope
+  </div>
   <div class="content element-scope">{{ hovered_element_scope }}</div>
 
   <div class="header">Matching Rule</div>
   <div>
     <div class="content rule name">
       <span class="key">Name</span><span class="sep">:</span>
-      <span class="value">{{ hovered_rule.name }}</span>
+      <span class="value" ng-click="scroll_rule_into_view(hovered_rule)">
+        {{ hovered_rule.name }}
+        <i ng-show="hovered_rule.name" class="icon-search icon"></i>
+      </span>
+
     </div>
     <div class="content rule scope">
       <span class="key">Scope</span><span class="sep">:</span>
-      <span class="value">{{ hovered_rule.scope }}</span>
+      <span class="value" ng-click="scroll_rule_into_view(hovered_rule)">
+        {{ hovered_rule.scope }}
+        <i ng-show="hovered_rule.scope" class="icon-search icon"></i>
+      </span>
     </div>
   </div>
 

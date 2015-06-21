@@ -16,7 +16,7 @@
 
     <tr ng-repeat="rule in scopes_filtered"
         ng-click="mark_as_selected(rule)"
-        ng-class="{ 'selected': rule == selected_rule, 'hovered': rule == hovered_rule, 'hide': !rule.scope }"
+        ng-class="{ 'selected': rule == selected_rule, 'hovered': rule == Editor.ScopeHunter.hovered_rule, 'hide': !rule.scope }"
         class="rule-{{$index}}">
 
       <td class="name-box"

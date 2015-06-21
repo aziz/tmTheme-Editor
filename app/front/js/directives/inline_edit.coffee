@@ -2,7 +2,13 @@ Application.directive 'inlineEdit', ['ScopeMatcher', (ScopeMatcher) ->
   link: ($scope, element, attr) ->
     preview_el = $('#preview')
 
-    preview_el.bind 'dblclick', (event) ->
+    $scope.$watch 'ScopeHunter.visible', (visible) ->
+      if visible
+        preview_el.unbind 'dblclick'
+      else
+        preview_el.bind 'dblclick', inline_edit_click_event
+
+    inline_edit_click_event = (event) ->
       entityScope = event.target.dataset.entityScope
       if entityScope
         final_element_scope = ScopeMatcher.element_scope(entityScope, event)

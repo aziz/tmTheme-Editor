@@ -1,13 +1,15 @@
 <div class="preview-footer" ng-class="{ 'slide' : Editor.Gallery.visible }">
   <div class="btn-group scope_hunter_toggle_btn" ng-cloak ng-show="Theme.json">
     <a class="btn btn-mac btn-small"
-       ng-click="scope_hunter_visible = !scope_hunter_visible"
-       ng-class="{'active': scope_hunter_visible}">
+       ng-click="ScopeHunter.toggle()"
+       ng-class="{'active': ScopeHunter.visible }">
       <i class="icon-scope-hunter icon"></i> Scope Hunter
     </a>
   </div>
-
-  <div ng-if="scope_hunter_visible" class="scope_hunter_box">
-    <div scope-bar></div>
+  <div ng-if="ScopeHunter.visible" >
+    <span class="message">Inline editing disabled</span>
+    <div class="scope_hunter_box">
+      <div scope-bar></div>
+    </div>
   </div>
 </div>
