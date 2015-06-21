@@ -8,9 +8,14 @@ Application.directive 'scopeBar', ['ScopeMatcher', '$timeout', (ScopeMatcher, $t
       $scope.Editor.Sidebar.current_tab = 'scopes'
       $scope.Editor.ScopeHunter.hovered_rule = rule
       scroll_finished = ->
-        $timeout((-> $scope.Editor.ScopeHunter.hovered_rule = null), 2000)
+        $timeout(->
+          $scope.$apply -> $scope.Editor.ScopeHunter.hovered_rule = {}
+          return
+        , 2000)
       scroll_into_view = ->
-        $('.hovered').scrollintoview(duration: 400, direction: 'vertical', complete: scroll_finished)
+        $('.hovered').scrollintoview(duration: 400, direction: 'vertical')
+        scroll_finished()
+        return
       $timeout scroll_into_view
       return
 
