@@ -86,6 +86,7 @@
 {"name": "EggplantParm", "url": "https://raw.github.com/mimshwright/sublime-eggplant-parm/master/EggplantParm.tmTheme", "light": false},
 {"name": "Eiffel", "url": "https://raw.githubusercontent.com/filmgirl/TextMate-Themes/master/Eiffel.tmTheme", "light": true },
 {"name": "Emacs Strict", "url": "https://raw.githubusercontent.com/filmgirl/TextMate-Themes/master/Emacs%20Strict.tmTheme", "light": false },
+{"name" "Enlightened", "url": "https://github.com/vincentmac/enlightened/blob/master/enlightened.tmTheme", "light": false:}
 {"name": "Espresso Libre", "url": "https://raw.githubusercontent.com/filmgirl/TextMate-Themes/master/Espresso%20Libre.tmTheme", "light": false },
 {"name": "Espresso Tutti", "url": "https://raw.githubusercontent.com/filmgirl/TextMate-Themes/master/Espresso%20Tutti.tmTheme", "light": true },
 {"name": "Espresso", "url": "https://raw.githubusercontent.com/filmgirl/TextMate-Themes/master/Espresso.tmTheme", "light": true },
