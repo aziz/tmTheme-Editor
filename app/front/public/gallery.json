@@ -154,6 +154,7 @@
 {"name": "Obsidian", "url": "https://raw.github.com/mekwall/obsidian-color-scheme/master/textmate/Obsidian.tmTheme", "light": false },
 {"name": "Oceanic - Eighties", "url": "https://raw.github.com/memco/Oceanic-tmTheme/master/Themes/Oceanic%20-%20Eighties.tmTheme", "light": false },
 {"name": "Oceanic", "url": "https://raw.github.com/memco/Oceanic-tmTheme/master/Themes/Oceanic.tmTheme", "light": false },
+{"name": "One Dark", "url": "https://raw.githubusercontent.com/IceTimux/one-dark-sublime-text-3-color-scheme/master/One%20Dark.tmTheme", "light": false},
 {"name": "Oscuro", "url": "https://raw.github.com/hellogrid/oscuro/master/Oscuro.tmTheme", "light": false },
 {"name": "Paraíso (Dark)", "url": "https://raw.github.com/idleberg/Paraiso.tmTheme/master/Parai%CC%81so%20(Dark).tmTheme", "light": false },
 {"name": "Paraíso (Light)", "url": "https://raw.github.com/idleberg/Paraiso.tmTheme/master/Parai%CC%81so%20(Light).tmTheme", "light": true },
