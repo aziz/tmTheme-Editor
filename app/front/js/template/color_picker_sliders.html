@@ -19,7 +19,7 @@
              style="{{ slider_gradient(color.rgba, 'r', 0, 255, 255) }}"
              ng-change="update_current_color(color.rgba)"
              ng-model="color.rgba.r">
-      <input class="color-input" type="number"
+      <input class="color-input" type="number" min="0" max="255"
              ng-change="update_current_color(color.rgba)"
              ng-model="color.rgba.r">
     </div>
@@ -29,7 +29,7 @@
              style="{{ slider_gradient(color.rgba, 'g', 0, 255, 255) }}"
              ng-change="update_current_color(color.rgba)"
              ng-model="color.rgba.g">
-      <input class="color-input" type="number"
+      <input class="color-input" type="number" min="0" max="255"
              ng-change="update_current_color(color.rgba)"
              ng-model="color.rgba.g" >
     </div>
@@ -39,7 +39,7 @@
              style="{{ slider_gradient(color.rgba, 'b', 0, 255, 255) }}"
              ng-change="update_current_color(color.rgba)"
              ng-model="color.rgba.b">
-      <input class="color-input" type="number"
+      <input class="color-input" type="number" min="0" max="255"
              ng-change="update_current_color(color.rgba)"
              ng-model="color.rgba.b">
     </div>
@@ -52,7 +52,7 @@
              style="{{ slider_gradient(color.hsva, 'h', 0, 360, 10) }}"
              ng-change="update_current_color(color.hsva)"
              ng-model="color.hsva.h">
-      <input class="color-input" type="number"
+      <input class="color-input" type="number" min="0" max="360"
              ng-change="update_current_color(color.hsva)"
              ng-model="color.hsva.h"><span class="type">°</span>
     </div>
@@ -62,7 +62,7 @@
              style="{{ slider_gradient(color.hsva, 's', 0, 100, 20) }}"
              ng-change="update_current_color(color.hsva)"
              ng-model="color.hsva.s">
-      <input class="color-input" type="number"
+      <input class="color-input" type="number" min="0" max="100"
              ng-change="update_current_color(color.hsva)"
              ng-model="color.hsva.s"><span class="type">%</span>
     </div>
@@ -72,7 +72,7 @@
              style="{{ slider_gradient(color.hsva, 'v', 0, 100, 20) }}"
              ng-change="update_current_color(color.hsva)"
              ng-model="color.hsva.v">
-      <input class="color-input" type="number"
+      <input class="color-input" type="number" min="0" max="100"
              ng-change="update_current_color(color.hsva)"
              ng-model="color.hsva.v"><span class="type">%</span>
     </div>
@@ -85,7 +85,7 @@
              style="{{ slider_gradient(color.hsla, 'h', 0, 360, 10) }}"
              ng-change="update_current_color(color.hsla)"
              ng-model="color.hsla.h">
-      <input class="color-input" type="number"
+      <input class="color-input" type="number" min="0" max="360"
              ng-change="update_current_color(color.hsla)"
              ng-model="color.hsla.h"><span class="type">°</span>
     </div>
@@ -95,7 +95,7 @@
              style="{{ slider_gradient(color.hsla, 's', 0, 100, 20) }}"
              ng-change="update_current_color(color.hsla)"
              ng-model="color.hsla.s">
-      <input class="color-input" type="number"
+      <input class="color-input" type="number" min="0" max="100"
              ng-change="update_current_color(color.hsla)"
              ng-model="color.hsla.s"><span class="type">%</span>
     </div>
@@ -105,7 +105,7 @@
              style="{{ slider_gradient(color.hsla, 'l', 0, 100, 20) }}"
              ng-change="update_current_color(color.hsla)"
              ng-model="color.hsla.l">
-      <input class="color-input" type="number"
+      <input class="color-input" type="number" min="0" max="100"
              ng-change="update_current_color(color.hsla)"
              ng-model="color.hsla.l"><span class="type">%</span>
     </div>
@@ -118,7 +118,7 @@
              style="{{ slider_gradient(color.hsla, 'a', 0, 1, 0.2) }}"
              ng-change="update_alpha()"
              ng-model="color.alpha">
-      <input class="color-input" type="number"
+      <input class="color-input" type="number" min="0" max="100"
              ng-change="update_alpha()"
              ng-model="color.alpha"><span class="type">%</span>
     </div>
