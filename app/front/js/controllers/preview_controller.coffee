@@ -40,17 +40,19 @@ Application.controller 'previewController',
   $scope.set_lang = (lang) -> $scope.current_lang = lang
 
   # Custom Code
-  $scope.custom_code = localStorage.getItem('custom_code') || ''
-  $scope.custom_code_editor_visible = false
+  $scope.custom_code = {}
+  $scope.custom_code.text = localStorage.getItem('custom_code') || ''
+  $scope.custom_code.editor_visible = false
+
   $scope.ScopeHunter = Editor.ScopeHunter
 
   $scope.update_preview = ->
-    # throbber.on(full_window: true)
+    throbber.on(full_window: true)
     $.cookie("preview_lang", $scope.current_lang)
     defered_code = $q.defer()
-    if $scope.custom_code.length > 0
-      localStorage.setItem('custom_code', $scope.custom_code)
-      parser = $http.post("#{$window.API}/parse", {text: $scope.custom_code, syntax: $scope.current_lang_for_api()})
+    if $scope.custom_code.text.length > 0
+      localStorage.setItem('custom_code', $scope.custom_code.text)
+      parser = $http.post("#{$window.API}/parse", {text: $scope.custom_code.text, syntax: $scope.current_lang_for_api()})
       parser.success (data) -> defered_code.resolve(data)
       parser.error -> defered_code.resolve("")
     else
@@ -74,8 +76,8 @@ Application.controller 'previewController',
       console.log "Warning: more than one root scope found for this source code" if root_scope.length > 1
       $scope.root_scope = root_scope[0]
       $scope.colorized = $sce.trustAsHtml(data)
-      $scope.custom_code_editor_visible = false
-      # throbber.off()
+      $scope.custom_code.editor_visible = false
+      throbber.off()
 
   $scope.$watch 'current_lang', $scope.update_preview
 
