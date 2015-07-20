@@ -163,6 +163,7 @@
 {"name": "Perv Orange Moonlight", "url": "https://raw.github.com/FlavourSys/Perv-ColorScheme/master/Perv%20Orange%20Moonlight.tmTheme", "light": false },
 {"name": "Perv Orange", "url": "https://raw.github.com/FlavourSys/Perv-ColorScheme/master/Perv%20Orange.tmTheme", "light": false },
 {"name": "Phix Dark", "url": "https://raw.github.com/stuartherbert/sublime-phix-color-scheme/master/Phix%20Dark.tmTheme", "light": false },
+{"name": "PhpStorm", "url": "https://raw.githubusercontent.com/caluees/PhpStormTheme/master/PhpStorm.tmTheme", "light": true },
 {"name": "PKsTheme", "url": "https://raw.github.com/mjs7231/sublime-pkstheme/master/PKsTheme.tmTheme", "light": false},
 {"name": "PlasticCodeWrap", "url": "https://raw.githubusercontent.com/aziz/sublimeText3-Userfiles/master/Color%20Schemes/PlasticCodeWrap.tmTheme", "light": false },
 {"name": "Poe", "url": "https://raw.githubusercontent.com/darkness/Poe-Editor-Theme/master/Poe.tmTheme", "light": false},
