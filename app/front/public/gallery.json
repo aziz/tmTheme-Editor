@@ -182,6 +182,7 @@
 {"name": "SecureCloud", "url": "https://raw.githubusercontent.com/SecureCloud-biz/SecureCloud.tmTheme/master/SecureCloud.tmTheme", "light": false },
 {"name": "Shipwreck", "url": "https://raw.github.com/squidfunk/textmate-themes/master/Shipwreck.tmTheme", "light": false },
 {"name": "SidewalkChalk", "url": "https://raw.github.com/adamjt/textmate-themes/master/SidewalkChalk.tmTheme", "light": false },
+{"name": "SingingStars", "url": "https://raw.githubusercontent.com/Drewshg312/tmTheme-Editor/master/SingingStars.tmTheme", "light": false },
 {"name": "Skittles", "url": "https://raw.github.com/konakevin/Sublime-Text-Themes/master/Skittles.tmTheme", "light": false },
 {"name": "SleeplessMind", "url": "https://raw.github.com/godbout/sleeplessmind-color-scheme/master/Sleeplessmind.tmTheme", "light": false},
 {"name": "Slush & Poppies", "url": "https://raw.githubusercontent.com/filmgirl/TextMate-Themes/master/Slush%20&%20Poppies.tmTheme", "light": true },
