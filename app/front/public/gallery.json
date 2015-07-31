@@ -139,6 +139,7 @@
 {"name": "Minimal", "url": "https://raw.githubusercontent.com/viviengarcia/Sublime-Packages/master/Color%20Scheme%20-%20Dark/minimal%20Theme.tmTheme", "light": false },
 {"name": "Mirodark High Contrast", "url": "https://raw.github.com/djjcast/mirodark-st2/master/MirodarkHighContrast.tmTheme", "light": false},
 {"name": "Mirodark", "url": "https://raw.github.com/djjcast/mirodark-st2/master/Mirodark.tmTheme", "light": false},
+{"name": "Mirrr", "url": "https://raw.githubusercontent.com/mirrr/Mirrr.tmTheme/master/Mirrr.tmTheme", "light": false},
 {"name": "Monokai Extended Mod", "url": "https://raw.githubusercontent.com/stefanosc/sublime-monokai-extended-mod/master/Monokai%20Extended.tmTheme", "light": false },
 {"name": "Monokai", "url": "https://raw.githubusercontent.com/filmgirl/TextMate-Themes/master/Monokai.tmTheme", "light": false },
 {"name": "Monomacs", "url": "https://raw.githubusercontent.com/dgbillotte/so_sublime/master/Monomacs.tmTheme", "light": false },
