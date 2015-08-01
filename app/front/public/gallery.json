@@ -6,6 +6,7 @@
 {"name": "Amy", "url": "https://raw.githubusercontent.com/filmgirl/TextMate-Themes/master/Amy.tmTheme", "light": false },
 {"name": "Anarchist", "url": "https://raw.githubusercontent.com/Ritashugisha/SublimeColorSchemes/master/Anarchist.tmTheme", "light": false },
 {"name": "Antigua", "url": "https://raw.githubusercontent.com/Epigene/Antigua-Theme/master/Antigua.tmTheme", "light": false },
+{"name": "AP-Darcula", "url": "https://raw.githubusercontent.com/a-p-co/darcula-theme/bj-darcula-theme/Bj-Darcula.tmTheme", "light": false },
 {"name": "Ascetic", "url": "https://raw.githubusercontent.com/johnkind49/Ascetic.tmTheme/master/Ascetic.tmTheme", "light": false },
 {"name": "Asphalt", "url": "https://raw.githubusercontent.com/Orlmente/Theme-Asphalt/master/Asphalt.tmTheme", "light": false },
 {"name": "Atom Dark", "url": "https://raw.github.com/jasontruluck/Atom-Dark.tmTheme/master/Atom%20Dark.tmTheme", "light": false },
@@ -233,5 +234,4 @@
 {"name": "YellowStone", "url": "https://raw.github.com/antlong/Textmate-Themes/master/TM1/yellowStone.tmtheme", "light": true },
 {"name": "Zenburn", "url": "https://raw.github.com/colinta/zenburn/master/zenburn.tmTheme", "light": false },
 {"name": "Zenburnesque", "url": "https://raw.githubusercontent.com/filmgirl/TextMate-Themes/master/Zenburnesque.tmTheme", "light": false }
-{"name": "AP-Darcula", "url": "https://raw.githubusercontent.com/a-p-co/darcula-theme/bj-darcula-theme/Bj-Darcula.tmTheme", "light": false }
 ]
