@@ -101,7 +101,7 @@ Application.factory "Theme",
         italic    = @is_font_style('italic', rule)
         underline = @is_font_style('underline', rule)
         if rule.scope
-          rules = rule.scope.split(',').map (r) -> r.trim().split(' ').map((x) -> ".#{x}").join(' ')
+          rules = rule.scope.split(',').map (r) -> r.trim().split(/\s+/).map((x) -> ".#{x}").join(' ')
           rules.each (r) ->
             styles += "#{r}{"
             styles += "color:#{fg_color};" if fg_color
