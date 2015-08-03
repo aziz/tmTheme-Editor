@@ -127,7 +127,6 @@
 {"name": "LightLook", "url" : "https://raw.githubusercontent.com/josephinex/LightLook/master/LightLook.tmTheme", "light" : false },
 {"name": "LightRays", "url": "https://raw.githubusercontent.com/raydenvm/Public/master/LightRays.tmTheme", "light": true},
 {"name": "Limelight", "url": "https://raw.githubusercontent.com/examinedliving/limelight/master/Limelight.tmTheme", "light": false},
-{"name": "Lioshi", "url": "https://raw.github.com/lioshi/lioshiScheme/master/lioshi.tmTheme", "light": false },
 {"name": "Lollypop unicorn", "url": "https://raw.github.com/tdekoning/tmTheme_lollypopunicorn/master/lollypopunicorn.tmTheme", "light": false },
 {"name": "Lowlight", "url": "https://raw.githubusercontent.com/filmgirl/TextMate-Themes/master/Lowlight.tmTheme", "light": false },
 {"name": "Mac Classic", "url": "https://raw.githubusercontent.com/filmgirl/TextMate-Themes/master/Mac%20Classic.tmTheme", "light": true },
