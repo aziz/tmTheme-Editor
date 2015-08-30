@@ -81,6 +81,7 @@
 {"name": "Dimmed NoContrast", "url": "https://raw.githubusercontent.com/uonick/dimmed/master/dimmed-no-contrast.tmTheme", "light": false },
 {"name": "Dimmed NoContrast v2", "url": "https://raw.githubusercontent.com/uonick/dimmed/master/dimmed-no-contrast-v2.tmTheme", "light": false },
 {"name": "Dimmed Night","url": "https://raw.github.com/uonick/dimmed/master/dimmed-night.tmTheme","light": false},
+{"name": "Dimmed Phalcon","url": "https://raw.github.com/uonick/dimmed/master/dimmed-phalcon.tmTheme","light": false},
 {"name": "Dimmed Storm","url": "https://raw.githubusercontent.com/uonick/dimmed/master/dimmed-storm.tmTheme","light": false},
 {"name": "Django (Smoothy)", "url": "https://raw.githubusercontent.com/filmgirl/TextMate-Themes/master/Django%20(Smoothy).tmTheme", "light": false },
 {"name": "Dobdark", "url": "https://raw.github.com/charlesroper/DobDark-Theme/master/Dobdark.tmTheme", "light": false },
