@@ -186,6 +186,7 @@
 {"name": "RDark", "url": "https://raw.githubusercontent.com/filmgirl/TextMate-Themes/master/RDark.tmTheme", "light": false },
 {"name": "Red Planet", "url": "https://raw.githubusercontent.com/eliquious/Red-Planet-Theme/master/Red%20Planet.tmTheme", "light": false },
 {"name": "Resesif Boned", "url": "https://raw.githubusercontent.com/eibbors/Bubububububad/master/Resesif%20Boned.tmTheme", "light": false },
+{"name": "Resesif Extended", "url": "https://raw.githubusercontent.com/carloscuesta/resesif/master/resesif-extended.tmTheme", "light": false },
 {"name": "RSE", "url": "https://raw.githubusercontent.com/rse/sublime-scheme-rse/master/RSE.tmTheme", "light": true},
 {"name": "RubyBlue", "url": "https://raw.githubusercontent.com/jlong/rubyblue/master/RubyBlue.tmTheme", "light": false },
 {"name": "SecureCloud", "url": "https://raw.githubusercontent.com/SecureCloud-biz/SecureCloud.tmTheme/master/SecureCloud.tmTheme", "light": false },
