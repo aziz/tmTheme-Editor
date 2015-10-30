@@ -112,6 +112,7 @@
 {"name": "Funkenum", "url": "https://raw.githubusercontent.com/godotAndCoffee/Funkenum/master/Funkenum.thTheme", "light": false},
 {"name": "GDL dark", "url": "https://raw.githubusercontent.com/runxel/GDL-sublime/master/GDL-dark.tmTheme", "light": false },
 {"name": "GDL light", "url": "https://raw.githubusercontent.com/runxel/GDL-sublime/master/GDL-light.tmTheme", "light": true },
+{"name": "ggDark", "url": "https://raw.githubusercontent.com/tarzasai/ggthemes/master/ggDark.tmTheme", "light": false },
 {"name": "GitHub", "url": "https://raw.githubusercontent.com/filmgirl/TextMate-Themes/master/GitHub.tmTheme", "light": true },
 {"name": "GlitterBomb", "url": "https://raw.githubusercontent.com/filmgirl/TextMate-Themes/master/GlitterBomb.tmTheme", "light": false },
 {"name": "Hammer", "url": "https://raw.githubusercontent.com/jared-christensen/sublime-2-color-scheme-hammer/master/Hammer.tmTheme", "light": false },
