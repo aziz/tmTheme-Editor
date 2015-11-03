@@ -156,6 +156,7 @@
 {"name": "Mreq", "url": "https://raw.githubusercontent.com/mreq/mreq-theme/master/mreq.tmTheme", "light": false },
 {"name": "Neon", "url": "https://raw.githubusercontent.com/MattDMo/Neon.tmTheme/master/Neon.tmTheme", "light": false },
 {"name": "Nette", "url": "https://raw.githubusercontent.com/JZechy/tmThemes/master/Nette.tmTheme", "light": true },
+{"name": "New Moon", "url": "https://raw.githubusercontent.com/taniarascia/new-moon-sublime/master/New%20Moon.tmTheme", "light": false },
 {"name": "NodeJS", "url": "https://raw.githubusercontent.com/antlong/Textmate-Themes/master/TM1/nodejs.tmtheme", "light": false },
 {"name": "Notebook", "url": "https://raw.githubusercontent.com/filmgirl/TextMate-Themes/master/Notebook.tmTheme", "light": true },
 {"name": "Notepad-Plus-Plus", "url": "https://raw.githubusercontent.com/sdeering/Sublime3-Theme-NotepadPlusPlus/master/Notepad-Plus-Plus.tmTheme", "light": true },
