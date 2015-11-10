@@ -238,6 +238,7 @@
 {"name": "Visual Studio Light", "url": "https://raw.githubusercontent.com/mihaifm/Visual-Studio.tmTheme/master/Visual%20Studio.tmTheme", "light": true },
 {"name": "WebExPert", "url": "https://raw.githubusercontent.com/matiaspub/WebExPertColorScheme/master/WebExPert.tmTheme", "light": false },
 {"name": "Wildlife - Day", "url": "https://raw.githubusercontent.com/tushortz/wildlife/master/Wildlife%20-%20Day.tmTheme", "light": true },
+{"name": "Wildlife - Night", "url": "https://raw.githubusercontent.com/tushortz/wildlife/master/Wildlife%20-%20Night.tmTheme", "light": false },
 {"name": "Xcode Color Scheme", "url": "https://raw.githubusercontent.com/fredrikborggren/Xcode-Color-Scheme/master/Xcode-Color-Scheme.tmTheme", "light": true },
 {"name": "YellowStone", "url": "https://raw.githubusercontent.com/antlong/Textmate-Themes/master/TM1/yellowStone.tmtheme", "light": true },
 {"name": "Zenburn", "url": "https://raw.githubusercontent.com/colinta/zenburn/master/zenburn.tmTheme", "light": false },
