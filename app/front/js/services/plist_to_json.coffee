@@ -50,7 +50,8 @@ Application.value "plist_to_json", (plist) ->
     null
 
   # removing all the comments
-  plist_without_comments = plist.replace(/<!--[\s\S]+?-->/g, "")
+  plist_without_comments = plist.replace(/<!--[\s\S\n]+?-->/g, '').trim().replace(/\s&\s/, '&amp;')
+  # console.log(plist_without_comments)
   doc = loadXMLString(plist_without_comments)
   i = 0
   while i < doc.documentElement.childNodes.length
