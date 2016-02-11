@@ -3,24 +3,32 @@ Application.factory "FileManager", ['$q', ($q) ->
   PREFIX = "LOCAL"
   FM = {}
 
+  _store = (key, value) ->
+    try
+      return localStorage.setItem(key, value)
+    catch e
+      if e.code == 22
+        localStorage.clear()
+        return localStorage.setItem(key, value)
+
   _read_from_file_system = (file) ->
     deferred = $q.defer()
     reader = new FileReader()
     reader.readAsText(file)
     reader.onload = do (file) ->
       (e) ->
-        localStorage.setItem("#{PREFIX}/#{file.name}", e.target.result.trim())
+        _store("#{PREFIX}/#{file.name}", e.target.result.trim())
         deferred.resolve(file.name)
     return deferred.promise
 
   Object.defineProperty FM, "external_themes", {
     get: -> angular.fromJson(localStorage.getItem("external_themes") || [])
-    set: (new_val) -> localStorage.setItem('external_themes', angular.toJson(new_val))
+    set: (new_val) -> _store('external_themes', angular.toJson(new_val))
   }
 
   Object.defineProperty FM, "local_themes", {
     get: -> angular.fromJson(localStorage.getItem("local_themes") || [])
-    set: (new_val) -> localStorage.setItem('local_themes', angular.toJson(new_val))
+    set: (new_val) -> _store('local_themes', angular.toJson(new_val))
   }
 
   FM.add_external_theme = (theme_obj) ->
@@ -47,7 +55,7 @@ Application.factory "FileManager", ['$q', ($q) ->
     localStorage.getItem("#{prefix}/#{file_name}")
 
   FM.save = (file_name, content, prefix = PREFIX) ->
-    localStorage.setItem("#{prefix}/#{file_name}", content)
+    _store("#{prefix}/#{file_name}", content)
 
   FM.remove = (file, prefix = PREFIX) ->
     @local_themes = @local_themes.remove((item) -> item.name == file.name)
