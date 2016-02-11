@@ -16,8 +16,8 @@
     "build": "`npm bin`/gulp"
   },
   "engines": {
-    "node": "0.12.x",
-    "npm": "2.10.x"
+    "node": "5.x.x",
+    "npm": "3.x.x"
   },
   "dependencies": {
     "body-parser": "1.13.1",
