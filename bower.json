@@ -31,5 +31,8 @@
     "spin.js": "2.3.1",
     "sugar": "1.4.1",
     "tinycolor": "1.1.2"
+  },
+  "resolutions": {
+    "angular": "1.4.0"
   }
 }
