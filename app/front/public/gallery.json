@@ -745,6 +745,7 @@
 {"name":"Visual Studio Dark","url":"https://raw.githubusercontent.com/nikeee/visual-studio-dark/master/Visual%20Studio%20Dark.tmTheme","light":false},
 {"name":"Visual Studio Light","url":"https://raw.githubusercontent.com/mihaifm/Visual-Studio.tmTheme/master/Visual%20Studio.tmTheme","light":true},
 {"name":"Vorhees (json)","url":"https://raw.githubusercontent.com/frankjonen/vorhees/master/Vorhees%20(JSON).tmTheme","light":false},
+{"name":"VS_001","url":"https://raw.githubusercontent.com/sean1138/webdev_stuff/master/VS_001.tmTheme","light":false},
 {"name":"Warpos","url":"https://raw.githubusercontent.com/idleberg/WarpOS.tmTheme/master/WarpOS.tmTheme","light":false},
 {"name":"WebExPert","url":"https://raw.githubusercontent.com/matiaspub/WebExPertColorScheme/master/WebExPert.tmTheme","light":false},
 {"name":"White","url":"https://raw.githubusercontent.com/tonylegrone/terminal-sublime/master/White.tmTheme","light":false},
