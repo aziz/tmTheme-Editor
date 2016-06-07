@@ -513,6 +513,8 @@
 {"name":"Oceanic_next","url":"https://raw.githubusercontent.com/piotrkubisa/sublime-elementary/master/schemes/Oceanic_Next.tmTheme","light":false},
 {"name":"Once Upon A Time","url":"https://raw.githubusercontent.com/imagentleman/ublime/master/Once%20Upon%20a%20Time.tmTheme","light":false},
 {"name":"One Dark","url":"https://raw.githubusercontent.com/IceTimux/one-dark-sublime-text-3-color-scheme/master/One%20Dark.tmTheme","light":false},
+{"name":"One Half Dark","url":"https://raw.githubusercontent.com/sonph/onehalf-tmtheme/master/OneHalfDark.tmTheme","light":false},
+{"name":"One Half Light","url":"https://raw.githubusercontent.com/sonph/onehalf-tmtheme/master/OneHalfLight.tmTheme","light":true},
 {"name":"Orange","url":"https://raw.githubusercontent.com/tonylegrone/terminal-sublime/master/Orange.tmTheme","light":false},
 {"name":"Orbit Prograde","url":"https://raw.githubusercontent.com/hawkw/Orbit/master/Orbit.prograde.tmTheme","light":true},
 {"name":"Orchid Theme","url":"https://raw.githubusercontent.com/patrickfatrick/orchid-theme-sublime/master/orchid-theme.tmTheme","light":false},
