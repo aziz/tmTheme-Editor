@@ -771,5 +771,6 @@
 {"name":"Zeus Sublime Text","url":"https://raw.githubusercontent.com/zaynali53/Zeus-Theme/master/Sublime%20Text/Zeus-Sublime-Text.tmTheme","light":false},
 {"name":"Zurich (dark)","url":"https://raw.githubusercontent.com/idleberg/Subway.tmTheme/master/_dark/Zurich%20(dark).tmTheme","light":false},
 {"name":"Zurich","url":"https://raw.githubusercontent.com/idleberg/Subway.tmTheme/master/Zurich.tmTheme","light":true},
-{"name":"Zx Spectrum","url":"https://raw.githubusercontent.com/idleberg/RetroComputers.tmTheme/master/ZX%20Spectrum.tmTheme","light":false}
+{"name":"Zx Spectrum","url":"https://raw.githubusercontent.com/idleberg/RetroComputers.tmTheme/master/ZX%20Spectrum.tmTheme","light":false},
+{"name":"RealGithub","url":"https://raw.githubusercontent.com/RealGithub/RealGithub/master/RealGithub.tmTheme","light":true}
 ]
