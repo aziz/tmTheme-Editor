@@ -693,6 +693,7 @@
 {"name":"Sydney (dark)","url":"https://raw.githubusercontent.com/idleberg/Subway.tmTheme/master/_dark/Sydney%20(dark).tmTheme","light":false},
 {"name":"Sydney","url":"https://raw.githubusercontent.com/idleberg/Subway.tmTheme/master/Sydney.tmTheme","light":true},
 {"name":"Syntaxhighlighterreloaded","url":"https://raw.githubusercontent.com/unitmatrix/sublime-syntaxhighlighter/master/SyntaxHighlighterReloaded.tmTheme","light":true},
+{"name":"SzZsA-dark","url":"https://raw.githubusercontent.com/szzsa/sublimetext-theme/master/szzsa-dark.tmTheme","light":false},
 {"name":"Tango","url":"https://raw.githubusercontent.com/filmgirl/TextMate-Themes/master/Tango.tmTheme","light":true},
 {"name":"TangoGedit","url":"https://raw.githubusercontent.com/dcere/SublimeThemes/master/TangoGedit.tmTheme","light":true},
 {"name":"Tea","url":"https://raw.githubusercontent.com/watergear/sublime-tea-color-scheme/master/Tea.tmTheme","light":false},
@@ -766,6 +767,5 @@
 {"name":"Zeus Sublime Text","url":"https://raw.githubusercontent.com/zaynali53/Zeus-Theme/master/Sublime%20Text/Zeus-Sublime-Text.tmTheme","light":false},
 {"name":"Zurich (dark)","url":"https://raw.githubusercontent.com/idleberg/Subway.tmTheme/master/_dark/Zurich%20(dark).tmTheme","light":false},
 {"name":"Zurich","url":"https://raw.githubusercontent.com/idleberg/Subway.tmTheme/master/Zurich.tmTheme","light":true},
-{"name":"Zx Spectrum","url":"https://raw.githubusercontent.com/idleberg/RetroComputers.tmTheme/master/ZX%20Spectrum.tmTheme","light":false},
-{"name":"szzsa-dark","url":"https://raw.githubusercontent.com/szzsa/sublimetext-theme/master/szzsa-dark.tmTheme","light":false}
+{"name":"Zx Spectrum","url":"https://raw.githubusercontent.com/idleberg/RetroComputers.tmTheme/master/ZX%20Spectrum.tmTheme","light":false}
 ]
