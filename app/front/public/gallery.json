@@ -376,6 +376,7 @@
 {"name":"Lifted","url":"https://raw.githubusercontent.com/ooXei1sh/lifted-colorscheme-dark/master/Lifted.tmTheme","light":false},
 {"name":"Light Orgmode","url":"https://raw.githubusercontent.com/danielmagnussons/orgmode/master/Color%20Scheme/light-orgmode.tmTheme","light":true},
 {"name":"Light","url":"https://raw.githubusercontent.com/chemdemo/IceWorld/master/Light.tmTheme","light":true},
+{"name":"LightCode","url":"https://raw.githubusercontent.com/ZexZee/LightCodeTheme/master/LightCode.tmTheme","light":true},
 {"name":"LightLook","url":"https://raw.githubusercontent.com/josephinex/LightLook/master/LightLook.tmTheme","light":false},
 {"name":"LightRays","url":"https://raw.githubusercontent.com/raydenvm/Public/master/LightRays.tmTheme","light":true},
 {"name":"Lima","url":"https://raw.githubusercontent.com/imagentleman/ublime/master/Lima.tmTheme","light":true},
