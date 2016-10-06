@@ -29,7 +29,7 @@
     "morgan": "1.6.0",
     "uglify-js": "2.4.23",
     "bower": "1.7.7",
-    "request": "2.58.0",
+    "request": "2.74.0",
     "coffee-script": "1.9.3",
     "connect-assets": "4.7.1",
     "csswring": "3.0.5",
