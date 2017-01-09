@@ -459,6 +459,7 @@
 {"name":"Monokai Dxl","url":"https://raw.githubusercontent.com/Adarma/DXL/master/Monokai%20DXL.tmTheme","light":false},
 {"name":"Monokai Extended Bright","url":"https://raw.githubusercontent.com/piotrkubisa/sublime-elementary/master/schemes/Monokai%20Extended%20Bright.tmTheme","light":false},
 {"name":"Monokai Extended Mod","url":"https://raw.githubusercontent.com/stefanosc/sublime-monokai-extended-mod/master/Monokai%20Extended.tmTheme","light":false},
+{"name":"Monokai Light","url":"https://raw.githubusercontent.com/zoxon/monokai-light/master/Monokai%20Light.tmTheme","light":true},
 {"name":"Monokai Neue","url":"https://raw.githubusercontent.com/josh-kaplan/sublime-monokai-neue/master/Monokai-Neue.tmTheme","light":false},
 {"name":"Monokai SD","url":"https://raw.githubusercontent.com/SecretDeveloper/tmThemes/master/Monokai%20SD.tmTheme","light":false},
 {"name":"Monokai Spacegray Eighties","url":"https://raw.githubusercontent.com/pyoio/monokai-spacegray/master/Monokai%20-%20Spacegray%20Eighties.tmTheme","light":false},
