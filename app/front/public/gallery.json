@@ -126,6 +126,7 @@
 {"name":"Base16 Twilight Dark","url":"https://raw.githubusercontent.com/chriskempson/base16-textmate/master/themes/base16-twilight.dark.tmTheme","light":false},
 {"name":"Base16 Twilight Light","url":"https://raw.githubusercontent.com/chriskempson/base16-textmate/master/themes/base16-twilight.light.tmTheme","light":true},
 {"name":"BBEdit","url":"https://raw.githubusercontent.com/filmgirl/TextMate-Themes/master/BBEdit.tmTheme","light":true},
+{"name":"BBEdit Light","url":"https://raw.githubusercontent.com/jonbeebe/BBEdit-Light.tmTheme/master/BBEdit-Light.tmTheme","light":true},
 {"name":"Behave","url":"https://raw.githubusercontent.com/fnky/behave-theme/master/Behave.tmTheme","light":false},
 {"name":"Belafonte (Day)","url":"https://raw.githubusercontent.com/idleberg/Zissou.tmTheme/master/Belafonte-Day.tmTheme","light":true},
 {"name":"Belafonte (Night)","url":"https://raw.githubusercontent.com/idleberg/Zissou.tmTheme/master/Belafonte-Night.tmTheme","light":false},
