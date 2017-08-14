@@ -46,6 +46,7 @@
 {"name":"Azure","url":"https://raw.githubusercontent.com/daylerees/colour-schemes/master/sublime/azure.tmTheme","light":false},
 {"name":"Baara Dark","url":"https://raw.githubusercontent.com/jobedom/sublime-baara-dark/master/Baara%20Dark.tmTheme","light":false},
 {"name":"Baby, The Code Shines Bright","url":"https://raw.githubusercontent.com/spacekat/Baby-The-Code-Shines-Bright/master/Baby,%20The%20Code%20Shines%20Bright.tmTheme","light":false},
+{"name":"Bandedo","url":"https://github.com/banDedo/mac-os-bootstrap/blob/master/system/Application%20Support/Sublime%20Text%203/Packages/Colorsublime-Themes/Bandedo.tmTheme","light":false},
 {"name":"Barcelona (dark)","url":"https://raw.githubusercontent.com/idleberg/Subway.tmTheme/master/_dark/Barcelona%20(dark).tmTheme","light":false},
 {"name":"Barcelona","url":"https://raw.githubusercontent.com/idleberg/Subway.tmTheme/master/Barcelona.tmTheme","light":true},
 {"name":"Base16 3024 Dark","url":"https://raw.githubusercontent.com/chriskempson/base16-textmate/master/themes/base16-3024.dark.tmTheme","light":false},
