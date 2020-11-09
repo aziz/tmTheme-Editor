@@ -509,6 +509,7 @@
 {"name":"Oceanic","url":"https://raw.githubusercontent.com/memco/Oceanic-tmTheme/master/Themes/Oceanic.tmTheme","light":false},
 {"name":"Oceanic_next","url":"https://raw.githubusercontent.com/piotrkubisa/sublime-elementary/master/schemes/Oceanic_Next.tmTheme","light":false},
 {"name":"Once Upon A Time","url":"https://raw.githubusercontent.com/imagentleman/ublime/master/Once%20Upon%20a%20Time.tmTheme","light":false},
+{"name":"Once Upon A Time - Blues","url":"https://gist.githubusercontent.com/megmorsie/cc1800e01d2adb8555527cd1fa877751/raw/8bb3936ee5e8dcf03a32aa9d782a29ad0c73319e/Once%2520Upon%2520a%2520Time%2520-%2520Blues.tmTheme","light":false},
 {"name":"One Dark","url":"https://raw.githubusercontent.com/IceTimux/one-dark-sublime-text-3-color-scheme/master/One%20Dark.tmTheme","light":false},
 {"name":"One Half Dark","url":"https://raw.githubusercontent.com/sonph/onehalf-tmtheme/master/OneHalfDark.tmTheme","light":false},
 {"name":"One Half Light","url":"https://raw.githubusercontent.com/sonph/onehalf-tmtheme/master/OneHalfLight.tmTheme","light":true},
