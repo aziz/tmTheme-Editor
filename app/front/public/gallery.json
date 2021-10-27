@@ -163,6 +163,7 @@
 {"name":"Carbonight","url":"https://raw.githubusercontent.com/daylerees/colour-schemes/master/sublime/carbonight.tmTheme","light":false},
 {"name":"Cga","url":"https://raw.githubusercontent.com/idleberg/RetroComputers.tmTheme/master/CGA.tmTheme","light":false},
 {"name":"Chanfle","url":"https://raw.githubusercontent.com/imagentleman/ublime/master/Chanfle.tmTheme","light":true},
+{"name":"Chaos","url":"https://raw.githubusercontent.com/rstudio/rstudio/master/src/cpp/session/resources/themes/chaos.rstheme","dark":true}
 {"name":"Charcoal","url":"https://raw.githubusercontent.com/Dnld/charcoal-color-scheme/master/Charcoal.tmTheme","light":false},
 {"name":"Cheerfully Dark","url":"https://raw.githubusercontent.com/jorgehatccrma/CheerfullyDark/master/Cheerfully%20Dark.tmTheme","light":false},
 {"name":"Cheerfully Light","url":"https://raw.githubusercontent.com/jorgehatccrma/CheerfullyDark/master/Cheerfully%20Light.tmTheme","light":true},
