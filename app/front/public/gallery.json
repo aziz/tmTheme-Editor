@@ -693,6 +693,7 @@
 {"name":"Sydney (dark)","url":"https://raw.githubusercontent.com/idleberg/Subway.tmTheme/master/_dark/Sydney%20(dark).tmTheme","light":false},
 {"name":"Sydney","url":"https://raw.githubusercontent.com/idleberg/Subway.tmTheme/master/Sydney.tmTheme","light":true},
 {"name":"Syntaxhighlighterreloaded","url":"https://raw.githubusercontent.com/unitmatrix/sublime-syntaxhighlighter/master/SyntaxHighlighterReloaded.tmTheme","light":true},
+{"name":"Tanjiro","url":"https://github.com/mrmorgan17/Tanjiro/blob/main/Tanjiro.tmTheme","light":false},  
 {"name":"Tango","url":"https://raw.githubusercontent.com/filmgirl/TextMate-Themes/master/Tango.tmTheme","light":true},
 {"name":"TangoGedit","url":"https://raw.githubusercontent.com/dcere/SublimeThemes/master/TangoGedit.tmTheme","light":true},
 {"name":"Tea","url":"https://raw.githubusercontent.com/watergear/sublime-tea-color-scheme/master/Tea.tmTheme","light":false},
