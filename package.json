@@ -16,8 +16,8 @@
     "build": "`npm bin`/gulp"
   },
   "engines": {
-    "node": "5.x.x",
-    "npm": "3.x.x"
+    "node": "14.17.5",
+    "npm": "6.x.x"
   },
   "dependencies": {
     "body-parser": "1.13.1",
@@ -26,11 +26,11 @@
     "errorhandler": "1.4.0",
     "express-session": "1.11.3",
     "method-override": "2.3.3",
-    "morgan": "1.6.0",
+    "morgan": "1.10.0",
     "uglify-js": "2.4.23",
-    "bower": "1.7.7",
+    "bower": "1.8.14",
     "request": "2.58.0",
-    "coffee-script": "1.9.3",
+    "coffee-script": "1.12.7",
     "connect-assets": "4.7.1",
     "csswring": "3.0.5",
     "ect": "0.5.9",

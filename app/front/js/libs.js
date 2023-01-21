@@ -1,5 +1,5 @@
 //= require sugar/release/sugar-full.development.js
-//= require FileSaver/FileSaver.js
+//= require FileSaver/dist/FileSaver.js
 //= require spin.js/spin.js
 //= require jquery/dist/jquery.js
 //= require jquery.cookie/jquery.cookie.js
